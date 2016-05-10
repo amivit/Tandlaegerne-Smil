@@ -14,8 +14,9 @@ namespace Tandlægerne_Smil
         [STAThread]
         private static void Main()
         {
-            // Start controlleren
+            // Start controlleren og brugerfladen
             var controller = new Controller();
+            controller.StartGui();
         }
     }
 }

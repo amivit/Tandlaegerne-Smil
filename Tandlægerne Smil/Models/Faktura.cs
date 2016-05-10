@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tandlægerne_Smil.Models
 {
-    class Faktura
+    internal class Faktura : Global
     {
     }
 }

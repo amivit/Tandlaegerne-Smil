@@ -138,7 +138,7 @@
             name = name.Remove(0, 3);
         return name.Replace("_AB", "");
     };*/
-    TableRename = (name, schema) => name;   // Do nothing by default
+    TableRename = (name, schema) => $"{name}DB";   // Tilføje DB til tabellerne
 
     // Column modification*****************************************************************************************************************
     // Use the following list to replace column byte types with Enums.

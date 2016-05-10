@@ -34,18 +34,18 @@ namespace Tandlægerne_Smil.Controllers.DbController
     // Unit of work
     public interface Ismildb : System.IDisposable
     {
-        System.Data.Entity.DbSet<Ansat> Ansats { get; set; } // Ansat
-        System.Data.Entity.DbSet<Behandling> Behandlings { get; set; } // Behandling
-        System.Data.Entity.DbSet<Behandlingsrum> Behandlingsrums { get; set; } // Behandlingsrum
-        System.Data.Entity.DbSet<Booking> Bookings { get; set; } // Booking
-        System.Data.Entity.DbSet<Faktura> Fakturas { get; set; } // Faktura
-        System.Data.Entity.DbSet<Fakturalinjer> Fakturalinjers { get; set; } // Fakturalinjer
-        System.Data.Entity.DbSet<Patient> Patients { get; set; } // Patient
-        System.Data.Entity.DbSet<Postnummer> Postnummers { get; set; } // Postnummer
-        System.Data.Entity.DbSet<Stilling> Stillings { get; set; } // Stilling
-        System.Data.Entity.DbSet<Sysdiagram> Sysdiagrams { get; set; } // sysdiagrams
-        System.Data.Entity.DbSet<Udstyr> Udstyrs { get; set; } // Udstyr
-        System.Data.Entity.DbSet<Venteværelse> Venteværelse { get; set; } // Venteværelse
+        System.Data.Entity.DbSet<AnsatDb> AnsatDbs { get; set; } // Ansat
+        System.Data.Entity.DbSet<BehandlingDb> BehandlingDbs { get; set; } // Behandling
+        System.Data.Entity.DbSet<BehandlingsrumDb> BehandlingsrumDbs { get; set; } // Behandlingsrum
+        System.Data.Entity.DbSet<BookingDb> BookingDbs { get; set; } // Booking
+        System.Data.Entity.DbSet<FakturaDb> FakturaDbs { get; set; } // Faktura
+        System.Data.Entity.DbSet<FakturalinjerDb> FakturalinjerDbs { get; set; } // Fakturalinjer
+        System.Data.Entity.DbSet<PatientDb> PatientDbs { get; set; } // Patient
+        System.Data.Entity.DbSet<PostnummerDb> PostnummerDbs { get; set; } // Postnummer
+        System.Data.Entity.DbSet<StillingDb> StillingDbs { get; set; } // Stilling
+        System.Data.Entity.DbSet<SysdiagramsDb> SysdiagramsDbs { get; set; } // sysdiagrams
+        System.Data.Entity.DbSet<UdstyrDb> UdstyrDbs { get; set; } // Udstyr
+        System.Data.Entity.DbSet<VenteværelseDb> VenteværelseDb { get; set; } // Venteværelse
 
         int SaveChanges();
         System.Threading.Tasks.Task<int> SaveChangesAsync();
@@ -57,18 +57,18 @@ namespace Tandlægerne_Smil.Controllers.DbController
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
     public class smildb : System.Data.Entity.DbContext, Ismildb
     {
-        public System.Data.Entity.DbSet<Ansat> Ansats { get; set; } // Ansat
-        public System.Data.Entity.DbSet<Behandling> Behandlings { get; set; } // Behandling
-        public System.Data.Entity.DbSet<Behandlingsrum> Behandlingsrums { get; set; } // Behandlingsrum
-        public System.Data.Entity.DbSet<Booking> Bookings { get; set; } // Booking
-        public System.Data.Entity.DbSet<Faktura> Fakturas { get; set; } // Faktura
-        public System.Data.Entity.DbSet<Fakturalinjer> Fakturalinjers { get; set; } // Fakturalinjer
-        public System.Data.Entity.DbSet<Patient> Patients { get; set; } // Patient
-        public System.Data.Entity.DbSet<Postnummer> Postnummers { get; set; } // Postnummer
-        public System.Data.Entity.DbSet<Stilling> Stillings { get; set; } // Stilling
-        public System.Data.Entity.DbSet<Sysdiagram> Sysdiagrams { get; set; } // sysdiagrams
-        public System.Data.Entity.DbSet<Udstyr> Udstyrs { get; set; } // Udstyr
-        public System.Data.Entity.DbSet<Venteværelse> Venteværelse { get; set; } // Venteværelse
+        public System.Data.Entity.DbSet<AnsatDb> AnsatDbs { get; set; } // Ansat
+        public System.Data.Entity.DbSet<BehandlingDb> BehandlingDbs { get; set; } // Behandling
+        public System.Data.Entity.DbSet<BehandlingsrumDb> BehandlingsrumDbs { get; set; } // Behandlingsrum
+        public System.Data.Entity.DbSet<BookingDb> BookingDbs { get; set; } // Booking
+        public System.Data.Entity.DbSet<FakturaDb> FakturaDbs { get; set; } // Faktura
+        public System.Data.Entity.DbSet<FakturalinjerDb> FakturalinjerDbs { get; set; } // Fakturalinjer
+        public System.Data.Entity.DbSet<PatientDb> PatientDbs { get; set; } // Patient
+        public System.Data.Entity.DbSet<PostnummerDb> PostnummerDbs { get; set; } // Postnummer
+        public System.Data.Entity.DbSet<StillingDb> StillingDbs { get; set; } // Stilling
+        public System.Data.Entity.DbSet<SysdiagramsDb> SysdiagramsDbs { get; set; } // sysdiagrams
+        public System.Data.Entity.DbSet<UdstyrDb> UdstyrDbs { get; set; } // Udstyr
+        public System.Data.Entity.DbSet<VenteværelseDb> VenteværelseDb { get; set; } // Venteværelse
         
         static smildb()
         {
@@ -118,34 +118,34 @@ namespace Tandlægerne_Smil.Controllers.DbController
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Configurations.Add(new AnsatConfiguration());
-            modelBuilder.Configurations.Add(new BehandlingConfiguration());
-            modelBuilder.Configurations.Add(new BehandlingsrumConfiguration());
-            modelBuilder.Configurations.Add(new BookingConfiguration());
-            modelBuilder.Configurations.Add(new FakturaConfiguration());
-            modelBuilder.Configurations.Add(new FakturalinjerConfiguration());
-            modelBuilder.Configurations.Add(new PatientConfiguration());
-            modelBuilder.Configurations.Add(new PostnummerConfiguration());
-            modelBuilder.Configurations.Add(new StillingConfiguration());
-            modelBuilder.Configurations.Add(new SysdiagramConfiguration());
-            modelBuilder.Configurations.Add(new UdstyrConfiguration());
-            modelBuilder.Configurations.Add(new VenteværelseConfiguration());
+            modelBuilder.Configurations.Add(new AnsatDbConfiguration());
+            modelBuilder.Configurations.Add(new BehandlingDbConfiguration());
+            modelBuilder.Configurations.Add(new BehandlingsrumDbConfiguration());
+            modelBuilder.Configurations.Add(new BookingDbConfiguration());
+            modelBuilder.Configurations.Add(new FakturaDbConfiguration());
+            modelBuilder.Configurations.Add(new FakturalinjerDbConfiguration());
+            modelBuilder.Configurations.Add(new PatientDbConfiguration());
+            modelBuilder.Configurations.Add(new PostnummerDbConfiguration());
+            modelBuilder.Configurations.Add(new StillingDbConfiguration());
+            modelBuilder.Configurations.Add(new SysdiagramsDbConfiguration());
+            modelBuilder.Configurations.Add(new UdstyrDbConfiguration());
+            modelBuilder.Configurations.Add(new VenteværelseDbConfiguration());
         }
 
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
         {
-            modelBuilder.Configurations.Add(new AnsatConfiguration(schema));
-            modelBuilder.Configurations.Add(new BehandlingConfiguration(schema));
-            modelBuilder.Configurations.Add(new BehandlingsrumConfiguration(schema));
-            modelBuilder.Configurations.Add(new BookingConfiguration(schema));
-            modelBuilder.Configurations.Add(new FakturaConfiguration(schema));
-            modelBuilder.Configurations.Add(new FakturalinjerConfiguration(schema));
-            modelBuilder.Configurations.Add(new PatientConfiguration(schema));
-            modelBuilder.Configurations.Add(new PostnummerConfiguration(schema));
-            modelBuilder.Configurations.Add(new StillingConfiguration(schema));
-            modelBuilder.Configurations.Add(new SysdiagramConfiguration(schema));
-            modelBuilder.Configurations.Add(new UdstyrConfiguration(schema));
-            modelBuilder.Configurations.Add(new VenteværelseConfiguration(schema));
+            modelBuilder.Configurations.Add(new AnsatDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new BehandlingDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new BehandlingsrumDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new BookingDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new FakturaDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new FakturalinjerDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new PatientDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new PostnummerDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new StillingDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new SysdiagramsDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new UdstyrDbConfiguration(schema));
+            modelBuilder.Configurations.Add(new VenteværelseDbConfiguration(schema));
             return modelBuilder;
         }
     }
@@ -155,33 +155,33 @@ namespace Tandlægerne_Smil.Controllers.DbController
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
     public class Fakesmildb : Ismildb
     {
-        public System.Data.Entity.DbSet<Ansat> Ansats { get; set; }
-        public System.Data.Entity.DbSet<Behandling> Behandlings { get; set; }
-        public System.Data.Entity.DbSet<Behandlingsrum> Behandlingsrums { get; set; }
-        public System.Data.Entity.DbSet<Booking> Bookings { get; set; }
-        public System.Data.Entity.DbSet<Faktura> Fakturas { get; set; }
-        public System.Data.Entity.DbSet<Fakturalinjer> Fakturalinjers { get; set; }
-        public System.Data.Entity.DbSet<Patient> Patients { get; set; }
-        public System.Data.Entity.DbSet<Postnummer> Postnummers { get; set; }
-        public System.Data.Entity.DbSet<Stilling> Stillings { get; set; }
-        public System.Data.Entity.DbSet<Sysdiagram> Sysdiagrams { get; set; }
-        public System.Data.Entity.DbSet<Udstyr> Udstyrs { get; set; }
-        public System.Data.Entity.DbSet<Venteværelse> Venteværelse { get; set; }
+        public System.Data.Entity.DbSet<AnsatDb> AnsatDbs { get; set; }
+        public System.Data.Entity.DbSet<BehandlingDb> BehandlingDbs { get; set; }
+        public System.Data.Entity.DbSet<BehandlingsrumDb> BehandlingsrumDbs { get; set; }
+        public System.Data.Entity.DbSet<BookingDb> BookingDbs { get; set; }
+        public System.Data.Entity.DbSet<FakturaDb> FakturaDbs { get; set; }
+        public System.Data.Entity.DbSet<FakturalinjerDb> FakturalinjerDbs { get; set; }
+        public System.Data.Entity.DbSet<PatientDb> PatientDbs { get; set; }
+        public System.Data.Entity.DbSet<PostnummerDb> PostnummerDbs { get; set; }
+        public System.Data.Entity.DbSet<StillingDb> StillingDbs { get; set; }
+        public System.Data.Entity.DbSet<SysdiagramsDb> SysdiagramsDbs { get; set; }
+        public System.Data.Entity.DbSet<UdstyrDb> UdstyrDbs { get; set; }
+        public System.Data.Entity.DbSet<VenteværelseDb> VenteværelseDb { get; set; }
 
         public Fakesmildb()
         {
-            Ansats = new FakeDbSet<Ansat>("AnsatId");
-            Behandlings = new FakeDbSet<Behandling>("BehandlingId");
-            Behandlingsrums = new FakeDbSet<Behandlingsrum>("RumId");
-            Bookings = new FakeDbSet<Booking>("BookingId");
-            Fakturas = new FakeDbSet<Faktura>("FakturaId");
-            Fakturalinjers = new FakeDbSet<Fakturalinjer>("FakturaId");
-            Patients = new FakeDbSet<Patient>("PatientId");
-            Postnummers = new FakeDbSet<Postnummer>("Postnr");
-            Stillings = new FakeDbSet<Stilling>("StillingId");
-            Sysdiagrams = new FakeDbSet<Sysdiagram>("DiagramId");
-            Udstyrs = new FakeDbSet<Udstyr>("UdstyrId");
-            Venteværelse = new FakeDbSet<Venteværelse>("PatientId");
+            AnsatDbs = new FakeDbSet<AnsatDb>("AnsatId");
+            BehandlingDbs = new FakeDbSet<BehandlingDb>("BehandlingId");
+            BehandlingsrumDbs = new FakeDbSet<BehandlingsrumDb>("RumId");
+            BookingDbs = new FakeDbSet<BookingDb>("BookingId");
+            FakturaDbs = new FakeDbSet<FakturaDb>("FakturaId");
+            FakturalinjerDbs = new FakeDbSet<FakturalinjerDb>("FakturaId");
+            PatientDbs = new FakeDbSet<PatientDb>("PatientId");
+            PostnummerDbs = new FakeDbSet<PostnummerDb>("Postnr");
+            StillingDbs = new FakeDbSet<StillingDb>("StillingId");
+            SysdiagramsDbs = new FakeDbSet<SysdiagramsDb>("DiagramId");
+            UdstyrDbs = new FakeDbSet<UdstyrDb>("UdstyrId");
+            VenteværelseDb = new FakeDbSet<VenteværelseDb>("PatientId");
         }
         
         public int SaveChangesCount { get; private set; } 
@@ -459,7 +459,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
     // Ansat
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Ansat
+    public class AnsatDb
     {
         public int AnsatId { get; set; } // ansat_id (Primary key)
         public int StillingId { get; set; } // stilling_id
@@ -470,20 +470,20 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public bool Elev { get; set; } // elev
 
         // Reverse navigation
-        public virtual System.Collections.Generic.ICollection<Booking> Bookings { get; set; } // Booking.FK_Booking_Ansat
+        public virtual System.Collections.Generic.ICollection<BookingDb> BookingDbs { get; set; } // Booking.FK_Booking_Ansat
 
         // Foreign keys
-        public virtual Stilling Stilling { get; set; } // FK_Ansat_Stilling
+        public virtual StillingDb StillingDb { get; set; } // FK_Ansat_Stilling
         
-        public Ansat()
+        public AnsatDb()
         {
-            Bookings = new System.Collections.Generic.List<Booking>();
+            BookingDbs = new System.Collections.Generic.List<BookingDb>();
         }
     }
 
     // Behandling
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Behandling
+    public class BehandlingDb
     {
         public int BehandlingId { get; set; } // behandling_id (Primary key)
         public string Navn { get; set; } // navn (length: 20)
@@ -491,35 +491,35 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public int? AnslåetTid { get; set; } // anslået_tid
 
         // Reverse navigation
-        public virtual System.Collections.Generic.ICollection<Fakturalinjer> Fakturalinjers { get; set; } // Fakturalinjer.FK_Fakturalinjer_Behandling
+        public virtual System.Collections.Generic.ICollection<FakturalinjerDb> FakturalinjerDbs { get; set; } // Fakturalinjer.FK_Fakturalinjer_Behandling
         
-        public Behandling()
+        public BehandlingDb()
         {
-            Fakturalinjers = new System.Collections.Generic.List<Fakturalinjer>();
+            FakturalinjerDbs = new System.Collections.Generic.List<FakturalinjerDb>();
         }
     }
 
     // Behandlingsrum
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Behandlingsrum
+    public class BehandlingsrumDb
     {
         public short RumId { get; set; } // rum_id (Primary key)
         public int UdstyrId { get; set; } // udstyr_id
 
         // Reverse navigation
-        public virtual System.Collections.Generic.ICollection<Booking> Bookings { get; set; } // Booking.FK_Booking_Behandlingsrum
-        public virtual System.Collections.Generic.ICollection<Udstyr> Udstyrs { get; set; } // Udstyr.FK_Udstyr_Behandlingsrum
+        public virtual System.Collections.Generic.ICollection<BookingDb> BookingDbs { get; set; } // Booking.FK_Booking_Behandlingsrum
+        public virtual System.Collections.Generic.ICollection<UdstyrDb> UdstyrDbs { get; set; } // Udstyr.FK_Udstyr_Behandlingsrum
         
-        public Behandlingsrum()
+        public BehandlingsrumDb()
         {
-            Bookings = new System.Collections.Generic.List<Booking>();
-            Udstyrs = new System.Collections.Generic.List<Udstyr>();
+            BookingDbs = new System.Collections.Generic.List<BookingDb>();
+            UdstyrDbs = new System.Collections.Generic.List<UdstyrDb>();
         }
     }
 
     // Booking
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Booking
+    public class BookingDb
     {
         public int BookingId { get; set; } // booking_id (Primary key)
         public System.DateTime Tidspunkt { get; set; } // tidspunkt
@@ -527,21 +527,21 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public int? LægeId { get; set; } // læge_id
 
         // Reverse navigation
-        public virtual System.Collections.Generic.ICollection<Venteværelse> Venteværelse { get; set; } // Venteværelse.FK_Venteværelse_Booking
+        public virtual System.Collections.Generic.ICollection<VenteværelseDb> VenteværelseDb { get; set; } // Venteværelse.FK_Venteværelse_Booking
 
         // Foreign keys
-        public virtual Ansat Ansat { get; set; } // FK_Booking_Ansat
-        public virtual Behandlingsrum Behandlingsrum { get; set; } // FK_Booking_Behandlingsrum
+        public virtual AnsatDb AnsatDb { get; set; } // FK_Booking_Ansat
+        public virtual BehandlingsrumDb BehandlingsrumDb { get; set; } // FK_Booking_Behandlingsrum
         
-        public Booking()
+        public BookingDb()
         {
-            Venteværelse = new System.Collections.Generic.List<Venteværelse>();
+            VenteværelseDb = new System.Collections.Generic.List<VenteværelseDb>();
         }
     }
 
     // Faktura
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Faktura
+    public class FakturaDb
     {
         public int FakturaId { get; set; } // faktura_id (Primary key)
         public int PatientId { get; set; } // patient_id
@@ -549,28 +549,28 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public System.DateTime FakturaDato { get; set; } // faktura_dato
 
         // Foreign keys
-        public virtual Fakturalinjer Fakturalinjer { get; set; } // FK_Faktura_Fakturalinjer
-        public virtual Patient Patient { get; set; } // FK_Faktura_Patient
+        public virtual FakturalinjerDb FakturalinjerDb { get; set; } // FK_Faktura_Fakturalinjer
+        public virtual PatientDb PatientDb { get; set; } // FK_Faktura_Patient
     }
 
     // Fakturalinjer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Fakturalinjer
+    public class FakturalinjerDb
     {
         public int FakturaId { get; set; } // faktura_id (Primary key)
         public int BehandlingId { get; set; } // behandling_id
         public System.DateTime? Tidspunkt { get; set; } // tidspunkt
 
         // Reverse navigation
-        public virtual Faktura Faktura { get; set; } // Faktura.FK_Faktura_Fakturalinjer
+        public virtual FakturaDb FakturaDb { get; set; } // Faktura.FK_Faktura_Fakturalinjer
 
         // Foreign keys
-        public virtual Behandling Behandling { get; set; } // FK_Fakturalinjer_Behandling
+        public virtual BehandlingDb BehandlingDb { get; set; } // FK_Fakturalinjer_Behandling
     }
 
     // Patient
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Patient
+    public class PatientDb
     {
         public int PatientId { get; set; } // patient_id (Primary key)
         public string Fornavn { get; set; } // fornavn (length: 20)
@@ -580,53 +580,53 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public short Postnummer { get; set; } // postnummer
 
         // Reverse navigation
-        public virtual System.Collections.Generic.ICollection<Faktura> Fakturas { get; set; } // Faktura.FK_Faktura_Patient
-        public virtual Venteværelse Venteværelse { get; set; } // Venteværelse.FK_Venteværelse_Patient
+        public virtual System.Collections.Generic.ICollection<FakturaDb> FakturaDbs { get; set; } // Faktura.FK_Faktura_Patient
+        public virtual VenteværelseDb VenteværelseDb { get; set; } // Venteværelse.FK_Venteværelse_Patient
 
         // Foreign keys
-        public virtual Postnummer Postnummer_Postnummer { get; set; } // FK_Patient_Postnummer
+        public virtual PostnummerDb PostnummerDb { get; set; } // FK_Patient_Postnummer
         
-        public Patient()
+        public PatientDb()
         {
-            Fakturas = new System.Collections.Generic.List<Faktura>();
+            FakturaDbs = new System.Collections.Generic.List<FakturaDb>();
         }
     }
 
     // Postnummer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Postnummer
+    public class PostnummerDb
     {
         public short Postnr { get; set; } // postnr (Primary key)
         public string Distrikt { get; set; } // distrikt (length: 24)
 
         // Reverse navigation
-        public virtual System.Collections.Generic.ICollection<Patient> Patients { get; set; } // Patient.FK_Patient_Postnummer
+        public virtual System.Collections.Generic.ICollection<PatientDb> PatientDbs { get; set; } // Patient.FK_Patient_Postnummer
         
-        public Postnummer()
+        public PostnummerDb()
         {
-            Patients = new System.Collections.Generic.List<Patient>();
+            PatientDbs = new System.Collections.Generic.List<PatientDb>();
         }
     }
 
     // Stilling
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Stilling
+    public class StillingDb
     {
         public int StillingId { get; set; } // stilling_id (Primary key)
         public string JobTitel { get; set; } // job_titel (length: 50)
 
         // Reverse navigation
-        public virtual System.Collections.Generic.ICollection<Ansat> Ansats { get; set; } // Ansat.FK_Ansat_Stilling
+        public virtual System.Collections.Generic.ICollection<AnsatDb> AnsatDbs { get; set; } // Ansat.FK_Ansat_Stilling
         
-        public Stilling()
+        public StillingDb()
         {
-            Ansats = new System.Collections.Generic.List<Ansat>();
+            AnsatDbs = new System.Collections.Generic.List<AnsatDb>();
         }
     }
 
     // sysdiagrams
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Sysdiagram
+    public class SysdiagramsDb
     {
         public string Name { get; set; } // name (length: 128)
         public int PrincipalId { get; set; } // principal_id
@@ -637,26 +637,26 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
     // Udstyr
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Udstyr
+    public class UdstyrDb
     {
         public int UdstyrId { get; set; } // udstyr_id (Primary key)
         public string Navn { get; set; } // navn (length: 50)
         public short RumId { get; set; } // rum_id
 
         // Foreign keys
-        public virtual Behandlingsrum Behandlingsrum { get; set; } // FK_Udstyr_Behandlingsrum
+        public virtual BehandlingsrumDb BehandlingsrumDb { get; set; } // FK_Udstyr_Behandlingsrum
     }
 
     // Venteværelse
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class Venteværelse
+    public class VenteværelseDb
     {
         public int PatientId { get; set; } // patient_id (Primary key)
         public int BookingId { get; set; } // booking_id
 
         // Foreign keys
-        public virtual Booking Booking { get; set; } // FK_Venteværelse_Booking
-        public virtual Patient Patient { get; set; } // FK_Venteværelse_Patient
+        public virtual BookingDb BookingDb { get; set; } // FK_Venteværelse_Booking
+        public virtual PatientDb PatientDb { get; set; } // FK_Venteværelse_Patient
     }
 
 
@@ -665,14 +665,14 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
     // Ansat
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class AnsatConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Ansat>
+    public class AnsatDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AnsatDb>
     {
-        public AnsatConfiguration()
+        public AnsatDbConfiguration()
             : this("dbo")
         {
         }
  
-        public AnsatConfiguration(string schema)
+        public AnsatDbConfiguration(string schema)
         {
             ToTable(schema + ".Ansat");
             HasKey(x => x.AnsatId);
@@ -686,20 +686,20 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.Elev).HasColumnName(@"elev").IsRequired().HasColumnType("bit");
 
             // Foreign keys
-            HasRequired(a => a.Stilling).WithMany(b => b.Ansats).HasForeignKey(c => c.StillingId); // FK_Ansat_Stilling
+            HasRequired(a => a.StillingDb).WithMany(b => b.AnsatDbs).HasForeignKey(c => c.StillingId); // FK_Ansat_Stilling
         }
     }
 
     // Behandling
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class BehandlingConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Behandling>
+    public class BehandlingDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<BehandlingDb>
     {
-        public BehandlingConfiguration()
+        public BehandlingDbConfiguration()
             : this("dbo")
         {
         }
  
-        public BehandlingConfiguration(string schema)
+        public BehandlingDbConfiguration(string schema)
         {
             ToTable(schema + ".Behandling");
             HasKey(x => x.BehandlingId);
@@ -713,14 +713,14 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
     // Behandlingsrum
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class BehandlingsrumConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Behandlingsrum>
+    public class BehandlingsrumDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<BehandlingsrumDb>
     {
-        public BehandlingsrumConfiguration()
+        public BehandlingsrumDbConfiguration()
             : this("dbo")
         {
         }
  
-        public BehandlingsrumConfiguration(string schema)
+        public BehandlingsrumDbConfiguration(string schema)
         {
             ToTable(schema + ".Behandlingsrum");
             HasKey(x => x.RumId);
@@ -732,14 +732,14 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
     // Booking
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class BookingConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Booking>
+    public class BookingDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<BookingDb>
     {
-        public BookingConfiguration()
+        public BookingDbConfiguration()
             : this("dbo")
         {
         }
  
-        public BookingConfiguration(string schema)
+        public BookingDbConfiguration(string schema)
         {
             ToTable(schema + ".Booking");
             HasKey(x => x.BookingId);
@@ -750,21 +750,21 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.LægeId).HasColumnName(@"læge_id").IsOptional().HasColumnType("int");
 
             // Foreign keys
-            HasOptional(a => a.Ansat).WithMany(b => b.Bookings).HasForeignKey(c => c.LægeId); // FK_Booking_Ansat
-            HasRequired(a => a.Behandlingsrum).WithMany(b => b.Bookings).HasForeignKey(c => c.LokaleId); // FK_Booking_Behandlingsrum
+            HasOptional(a => a.AnsatDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.LægeId); // FK_Booking_Ansat
+            HasRequired(a => a.BehandlingsrumDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.LokaleId); // FK_Booking_Behandlingsrum
         }
     }
 
     // Faktura
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class FakturaConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Faktura>
+    public class FakturaDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<FakturaDb>
     {
-        public FakturaConfiguration()
+        public FakturaDbConfiguration()
             : this("dbo")
         {
         }
  
-        public FakturaConfiguration(string schema)
+        public FakturaDbConfiguration(string schema)
         {
             ToTable(schema + ".Faktura");
             HasKey(x => x.FakturaId);
@@ -775,21 +775,21 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.FakturaDato).HasColumnName(@"faktura_dato").IsRequired().HasColumnType("datetime");
 
             // Foreign keys
-            HasRequired(a => a.Fakturalinjer).WithOptional(b => b.Faktura); // FK_Faktura_Fakturalinjer
-            HasRequired(a => a.Patient).WithMany(b => b.Fakturas).HasForeignKey(c => c.PatientId); // FK_Faktura_Patient
+            HasRequired(a => a.FakturalinjerDb).WithOptional(b => b.FakturaDb); // FK_Faktura_Fakturalinjer
+            HasRequired(a => a.PatientDb).WithMany(b => b.FakturaDbs).HasForeignKey(c => c.PatientId); // FK_Faktura_Patient
         }
     }
 
     // Fakturalinjer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class FakturalinjerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Fakturalinjer>
+    public class FakturalinjerDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<FakturalinjerDb>
     {
-        public FakturalinjerConfiguration()
+        public FakturalinjerDbConfiguration()
             : this("dbo")
         {
         }
  
-        public FakturalinjerConfiguration(string schema)
+        public FakturalinjerDbConfiguration(string schema)
         {
             ToTable(schema + ".Fakturalinjer");
             HasKey(x => x.FakturaId);
@@ -799,20 +799,20 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.Tidspunkt).HasColumnName(@"tidspunkt").IsOptional().HasColumnType("datetime");
 
             // Foreign keys
-            HasRequired(a => a.Behandling).WithMany(b => b.Fakturalinjers).HasForeignKey(c => c.BehandlingId); // FK_Fakturalinjer_Behandling
+            HasRequired(a => a.BehandlingDb).WithMany(b => b.FakturalinjerDbs).HasForeignKey(c => c.BehandlingId); // FK_Fakturalinjer_Behandling
         }
     }
 
     // Patient
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class PatientConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Patient>
+    public class PatientDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PatientDb>
     {
-        public PatientConfiguration()
+        public PatientDbConfiguration()
             : this("dbo")
         {
         }
  
-        public PatientConfiguration(string schema)
+        public PatientDbConfiguration(string schema)
         {
             ToTable(schema + ".Patient");
             HasKey(x => x.PatientId);
@@ -825,20 +825,20 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.Postnummer).HasColumnName(@"postnummer").IsRequired().HasColumnType("smallint");
 
             // Foreign keys
-            HasRequired(a => a.Postnummer_Postnummer).WithMany(b => b.Patients).HasForeignKey(c => c.Postnummer); // FK_Patient_Postnummer
+            HasRequired(a => a.PostnummerDb).WithMany(b => b.PatientDbs).HasForeignKey(c => c.Postnummer); // FK_Patient_Postnummer
         }
     }
 
     // Postnummer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class PostnummerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Postnummer>
+    public class PostnummerDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PostnummerDb>
     {
-        public PostnummerConfiguration()
+        public PostnummerDbConfiguration()
             : this("dbo")
         {
         }
  
-        public PostnummerConfiguration(string schema)
+        public PostnummerDbConfiguration(string schema)
         {
             ToTable(schema + ".Postnummer");
             HasKey(x => x.Postnr);
@@ -850,14 +850,14 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
     // Stilling
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class StillingConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Stilling>
+    public class StillingDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<StillingDb>
     {
-        public StillingConfiguration()
+        public StillingDbConfiguration()
             : this("dbo")
         {
         }
  
-        public StillingConfiguration(string schema)
+        public StillingDbConfiguration(string schema)
         {
             ToTable(schema + ".Stilling");
             HasKey(x => x.StillingId);
@@ -869,14 +869,14 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
     // sysdiagrams
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class SysdiagramConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Sysdiagram>
+    public class SysdiagramsDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SysdiagramsDb>
     {
-        public SysdiagramConfiguration()
+        public SysdiagramsDbConfiguration()
             : this("dbo")
         {
         }
  
-        public SysdiagramConfiguration(string schema)
+        public SysdiagramsDbConfiguration(string schema)
         {
             ToTable(schema + ".sysdiagrams");
             HasKey(x => x.DiagramId);
@@ -891,14 +891,14 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
     // Udstyr
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class UdstyrConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Udstyr>
+    public class UdstyrDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<UdstyrDb>
     {
-        public UdstyrConfiguration()
+        public UdstyrDbConfiguration()
             : this("dbo")
         {
         }
  
-        public UdstyrConfiguration(string schema)
+        public UdstyrDbConfiguration(string schema)
         {
             ToTable(schema + ".Udstyr");
             HasKey(x => x.UdstyrId);
@@ -908,20 +908,20 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.RumId).HasColumnName(@"rum_id").IsRequired().HasColumnType("smallint");
 
             // Foreign keys
-            HasRequired(a => a.Behandlingsrum).WithMany(b => b.Udstyrs).HasForeignKey(c => c.RumId); // FK_Udstyr_Behandlingsrum
+            HasRequired(a => a.BehandlingsrumDb).WithMany(b => b.UdstyrDbs).HasForeignKey(c => c.RumId); // FK_Udstyr_Behandlingsrum
         }
     }
 
     // Venteværelse
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
-    public class VenteværelseConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Venteværelse>
+    public class VenteværelseDbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<VenteværelseDb>
     {
-        public VenteværelseConfiguration()
+        public VenteværelseDbConfiguration()
             : this("dbo")
         {
         }
  
-        public VenteværelseConfiguration(string schema)
+        public VenteværelseDbConfiguration(string schema)
         {
             ToTable(schema + ".Venteværelse");
             HasKey(x => x.PatientId);
@@ -930,8 +930,8 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.BookingId).HasColumnName(@"booking_id").IsRequired().HasColumnType("int");
 
             // Foreign keys
-            HasRequired(a => a.Booking).WithMany(b => b.Venteværelse).HasForeignKey(c => c.BookingId); // FK_Venteværelse_Booking
-            HasRequired(a => a.Patient).WithOptional(b => b.Venteværelse); // FK_Venteværelse_Patient
+            HasRequired(a => a.BookingDb).WithMany(b => b.VenteværelseDb).HasForeignKey(c => c.BookingId); // FK_Venteværelse_Booking
+            HasRequired(a => a.PatientDb).WithOptional(b => b.VenteværelseDb); // FK_Venteværelse_Patient
         }
     }
 
