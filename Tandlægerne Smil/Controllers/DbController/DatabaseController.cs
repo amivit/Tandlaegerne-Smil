@@ -23,10 +23,10 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.51
+// TargetFrameworkVersion = 4.52
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
-namespace Tandlægerne_Smil
+namespace Tandlægerne_Smil.Controllers.DbController
 {
     using System.Linq;
 

@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Tandlægerne_Smil.Controller">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Program" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Form1" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.smildb" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAgAAAAAYAgAAEAEgABAAAQBAAAAAcAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Fakesmildb" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAAACAgAEAAAYIgAAEAAgAAAAAQBAAAAAcAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.FakeDbSet&lt;TEntity&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACIKAAAABAAAAgAgAAAABAAACIBYAEAAAAAAAEAEgAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.FakeDbAsyncQueryProvider&lt;TEntity&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAgACAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.FakeDbAsyncEnumerable&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.FakeDbAsyncEnumerator&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAgABAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Ansat" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEIEAAAAAgAAAAQAAAAAAAAAAAAAAAEAAAACAAAAI=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Behandling" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAQAAAACAAAIAAQAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Behandlingsrum" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACgAAAAAAAAAAAAAgAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Booking" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAMAAAAAAAgAAEAAIAAAAAAAAAgAAIAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Faktura" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAQAQAAAAAAAAQAAAAAAIAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Fakturalinjer" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAFAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAgIAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Patient" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAQAAACAAIAAAAAAAAAAAAAAAAAAAQAOAAAI=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Postnummer" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAACAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Stilling">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Sysdiagram" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAACAAAAAIAQAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Udstyr" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAgAgAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.Venteværelse">
+    <Position X="8.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAIAAAAAAAAAAAAAABAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.AnsatConfiguration" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.BehandlingConfiguration" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.BehandlingsrumConfiguration" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.BookingConfiguration" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.FakturaConfiguration" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.FakturalinjerConfiguration" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.PatientConfiguration" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.PostnummerConfiguration" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.StillingConfiguration" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.SysdiagramConfiguration" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.UdstyrConfiguration" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Controllers.DbController.VenteværelseConfiguration" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Models.Book" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Book.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Models.Faktura" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Faktura.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Models.Patient" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Patient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Models.Venteværelse" Collapsed="true">
+    <Position X="4.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Venteværelse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Properties.Resources" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tandlægerne_Smil.Properties.Settings" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Tandlægerne_Smil.Controllers.DbController.Ismildb">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAAAAAgAEAAAYAgAAEAAgAAAAAQBAAAAAcAAAA=</HashCode>
+      <FileName>Controllers\DbController\DatabaseController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
