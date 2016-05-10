@@ -14,6 +14,8 @@ namespace Tandlægerne_Smil
         [STAThread]
         private static void Main()
         {
+
+			//Yo kkjkj
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
