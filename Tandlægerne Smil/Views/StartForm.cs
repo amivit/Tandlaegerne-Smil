@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tandlægerne_Smil.Controllers;
 
 namespace Tandlægerne_Smil.Views
 {
@@ -21,7 +22,7 @@ namespace Tandlægerne_Smil.Views
 
         private void opretTestPatient_Click(object sender, EventArgs e)
         {
-            controller.patient.OpretTestPatient();
+            controller.Patient.OpretTestPatient();
         }
     }
 }
