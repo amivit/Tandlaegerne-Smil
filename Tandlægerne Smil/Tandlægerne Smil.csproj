@@ -89,7 +89,7 @@
     <EmbeddedResource Include="Views\StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ÅBEN OG SE MIG.cd" />
     <None Include="Controllers\DbController\EF.Reverse.POCO.Core.ttinclude" />
     <None Include="Controllers\DbController\EF.Reverse.POCO.ttinclude" />
     <None Include="packages.config" />
