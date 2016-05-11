@@ -39,17 +39,25 @@ namespace Tandlægerne_Smil.Views
         private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Her skal items farvemarkeres som grønt, når patienten er ankommet, og fjernes når patienten er færdigbehandlet
-
         }
 
         private void buttonOpretPatient_Click(object sender, EventArgs e)
         {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
+        }
 
+        private void omToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"Dette program er udviklet til Tandlægerne Smil af:
+Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
+        }
+
+        private void afslutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
