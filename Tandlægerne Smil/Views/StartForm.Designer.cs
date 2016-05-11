@@ -55,6 +55,8 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.buttonOpretBooking = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.indstillingerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonUdskrivDagensBookninger = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -78,6 +80,7 @@
             // filerToolStripMenuItem
             // 
             this.filerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.indstillingerToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.filerToolStripMenuItem.Name = "filerToolStripMenuItem";
             this.filerToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
@@ -192,6 +195,7 @@
             // 
             // tabLiveView
             // 
+            this.tabLiveView.Controls.Add(this.buttonUdskrivDagensBookninger);
             this.tabLiveView.Controls.Add(this.buttonOpretBooking);
             this.tabLiveView.Controls.Add(this.dateTimePicker1);
             this.tabLiveView.Controls.Add(this.buttonAkutAnkomst);
@@ -321,6 +325,21 @@
             this.tabControl1.Size = new System.Drawing.Size(647, 457);
             this.tabControl1.TabIndex = 2;
             // 
+            // indstillingerToolStripMenuItem
+            // 
+            this.indstillingerToolStripMenuItem.Name = "indstillingerToolStripMenuItem";
+            this.indstillingerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.indstillingerToolStripMenuItem.Text = "Indstillinger";
+            // 
+            // buttonUdskrivDagensBookninger
+            // 
+            this.buttonUdskrivDagensBookninger.Location = new System.Drawing.Point(236, 106);
+            this.buttonUdskrivDagensBookninger.Name = "buttonUdskrivDagensBookninger";
+            this.buttonUdskrivDagensBookninger.Size = new System.Drawing.Size(171, 23);
+            this.buttonUdskrivDagensBookninger.TabIndex = 13;
+            this.buttonUdskrivDagensBookninger.Text = "Udskriv Dagens Bookninger";
+            this.buttonUdskrivDagensBookninger.UseVisualStyleBackColor = true;
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -373,5 +392,7 @@
         private System.Windows.Forms.ListView listViewVenteværelse;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ToolStripMenuItem indstillingerToolStripMenuItem;
+        private System.Windows.Forms.Button buttonUdskrivDagensBookninger;
     }
 }
