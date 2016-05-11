@@ -14,7 +14,8 @@ namespace Tandlægerne_Smil.Models
         // Alle Models nedavres fra denne "base-class".
         // Her kan tilføjes fields/metoder som alle sub-klasser skal kunne bruge
         // F.eks. skal alle have adgang til database-interfacet
-        public Ismildb db;
+
+        public Ismildb db = new smildb();
 
         public Global()
         {

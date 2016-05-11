@@ -18,9 +18,21 @@ namespace Tandlægerne_Smil.Models
         public void OpretTestPatient()
         {
             // Opret test patient her
+            var testPatient = new PatientDb // En måde at gøre det på
+            {
+                Adresse = "Testvej1234",
+                Cpr = 1111909999,
+                Efternavn = "Wittig",
+                Fornavn = "Paul",
+                Postnummer = 7100
+            };
+
+            testPatient.Fornavn = "test"; // En anden måde at gøre det på
+            testPatient.Cpr = 1111959999;
+
+            db.PatientDbs.Add(testPatient); // Tilføje testPatient til tabellen
+            db.SaveChangesAsync(); // Gem ændringerne i db (async gør det i separat tråd i baggrunden)
             MessageBox.Show(@"TEST PATIENT OPRETTES");
-            db.PatientDbs.Add(new PatientDb());
-            db.SaveChangesAsync(); // Gem ændringer i db
         }
     }
 }
