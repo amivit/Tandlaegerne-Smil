@@ -5,9 +5,10 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Patient : Global
     {
-        public void OpretTestPatient()
+        private readonly PatientDb _patientDb = new PatientDb();
+
+        public void OpretTestPatient() // Opret test patient her, denne metode bør slettes
         {
-            // Opret test patient her
             var testPatient = new PatientDb // En måde at gøre det på
             {
                 Adresse = "Testvej1234",

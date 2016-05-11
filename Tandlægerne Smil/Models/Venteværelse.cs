@@ -10,6 +10,7 @@ namespace Tandlægerne_Smil.Models
     internal class Venteværelse : Global
     {
         private readonly BookingDb _bookingDb = new BookingDb();
+        private readonly VenteværelseDb _venteværelseDb = new VenteværelseDb();
 
         public void TjekkeInd(PatientDb patientDb)
         {
