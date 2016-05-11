@@ -59,7 +59,7 @@
             // 
             // opretTestPatient
             // 
-            this.opretTestPatient.Location = new System.Drawing.Point(12, 43);
+            this.opretTestPatient.Location = new System.Drawing.Point(540, 384);
             this.opretTestPatient.Name = "opretTestPatient";
             this.opretTestPatient.Size = new System.Drawing.Size(96, 23);
             this.opretTestPatient.TabIndex = 0;

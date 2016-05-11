@@ -33,6 +33,7 @@ namespace Tandlægerne_Smil.Views
         private void button1_Click(object sender, EventArgs e)
         {
             // Denne knap sørger for en bookning registreres i venteværelset, når patient ankommer
+            // "Indtast CPR-nummer eller markere en Bookning"
         }
 
         private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
