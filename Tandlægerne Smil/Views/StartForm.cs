@@ -24,5 +24,31 @@ namespace Tandlægerne_Smil.Views
         {
             controller.Patient.OpretTestPatient();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Denne knap skal åbne en ny form, hvor lægen kan opdatere fakturaen med behandlingen.
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Denne knap sørger for en bookning registreres i venteværelset, når patient ankommer
+        }
+
+        private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Her skal items farvemarkeres som grønt, når patienten er ankommet, og fjernes når patienten er færdigbehandlet
+
+        }
+
+        private void buttonOpretPatient_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
