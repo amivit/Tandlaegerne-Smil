@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Tandlægerne_Smil.Models;
+﻿using Tandlægerne_Smil.Models;
 using Tandlægerne_Smil.Views;
 
-namespace Tandlægerne_Smil
+namespace Tandlægerne_Smil.Controllers
 {
     internal class Controller
     {
-        public Patient patient = new Patient();
-        public Faktura faktura = new Faktura();
-        public Book book = new Book();
-        public Venteværelse venteværelse = new Venteværelse();
-
-        public Controller()
-        {
-            // Controller constructor her
-        }
+        public Patient Patient = new Patient();
+        public Faktura Faktura = new Faktura();
+        public Book Book = new Book();
+        public Venteværelse Venteværelse = new Venteværelse();
 
         public void StartGui()
         {
