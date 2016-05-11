@@ -24,5 +24,10 @@ namespace Tandlægerne_Smil.Models
             Db.SaveChangesAsync(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
             MessageBox.Show(@"TEST PATIENT OPRETTES");
         }
+
+        public void OpretPatient()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

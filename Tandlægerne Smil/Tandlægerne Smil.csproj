@@ -62,6 +62,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseController.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Ansat.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Faktura.cs" />
     <Compile Include="Models\Global.cs" />

@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tandlægerne_Smil.Controllers.DbController;
 
 namespace Tandlægerne_Smil.Models
 {
-    internal class Venteværelse : Global
+    internal class Ansat : Global
     {
-        private readonly BookingDb _bookingDb = new BookingDb();
-
-        public void TjekkeInd(PatientDb patientDb)
+        public void OpretAnsat()
         {
             throw new System.NotImplementedException();
         }
 
-        public void TjekkeUd()
+        public void DeaktivereAnsat()
         {
             throw new System.NotImplementedException();
         }

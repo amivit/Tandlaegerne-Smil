@@ -8,5 +8,14 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Faktura : Global
     {
+        public void UdskrivFaktura()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void BetalingModtaget()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

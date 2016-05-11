@@ -525,6 +525,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public System.DateTime Tidspunkt { get; set; } // tidspunkt
         public short LokaleId { get; set; } // lokale_id
         public int? LægeId { get; set; } // læge_id
+        public int PatientId { get; set; } // patient_id
 
         // Reverse navigation
         public virtual System.Collections.Generic.ICollection<VenteværelseDb> VenteværelseDb { get; set; } // Venteværelse.FK_Venteværelse_Booking
@@ -532,6 +533,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         // Foreign keys
         public virtual AnsatDb AnsatDb { get; set; } // FK_Booking_Ansat
         public virtual BehandlingsrumDb BehandlingsrumDb { get; set; } // FK_Booking_Behandlingsrum
+        public virtual PatientDb PatientDb { get; set; } // FK_Booking_Patient
         
         public BookingDb()
         {
@@ -578,8 +580,10 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public int Cpr { get; set; } // cpr
         public string Adresse { get; set; } // adresse (length: 50)
         public short Postnummer { get; set; } // postnummer
+        public int? Telefon { get; set; } // telefon
 
         // Reverse navigation
+        public virtual System.Collections.Generic.ICollection<BookingDb> BookingDbs { get; set; } // Booking.FK_Booking_Patient
         public virtual System.Collections.Generic.ICollection<FakturaDb> FakturaDbs { get; set; } // Faktura.FK_Faktura_Patient
         public virtual VenteværelseDb VenteværelseDb { get; set; } // Venteværelse.FK_Venteværelse_Patient
 
@@ -588,6 +592,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         
         public PatientDb()
         {
+            BookingDbs = new System.Collections.Generic.List<BookingDb>();
             FakturaDbs = new System.Collections.Generic.List<FakturaDb>();
         }
     }
@@ -641,7 +646,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
     {
         public int UdstyrId { get; set; } // udstyr_id (Primary key)
         public string Navn { get; set; } // navn (length: 50)
-        public short RumId { get; set; } // rum_id
+        public short? RumId { get; set; } // rum_id
 
         // Foreign keys
         public virtual BehandlingsrumDb BehandlingsrumDb { get; set; } // FK_Udstyr_Behandlingsrum
@@ -748,10 +753,12 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.Tidspunkt).HasColumnName(@"tidspunkt").IsRequired().HasColumnType("datetime");
             Property(x => x.LokaleId).HasColumnName(@"lokale_id").IsRequired().HasColumnType("smallint");
             Property(x => x.LægeId).HasColumnName(@"læge_id").IsOptional().HasColumnType("int");
+            Property(x => x.PatientId).HasColumnName(@"patient_id").IsRequired().HasColumnType("int");
 
             // Foreign keys
             HasOptional(a => a.AnsatDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.LægeId); // FK_Booking_Ansat
             HasRequired(a => a.BehandlingsrumDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.LokaleId); // FK_Booking_Behandlingsrum
+            HasRequired(a => a.PatientDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.PatientId); // FK_Booking_Patient
         }
     }
 
@@ -823,6 +830,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.Cpr).HasColumnName(@"cpr").IsRequired().HasColumnType("int");
             Property(x => x.Adresse).HasColumnName(@"adresse").IsRequired().IsFixedLength().HasColumnType("nchar").HasMaxLength(50);
             Property(x => x.Postnummer).HasColumnName(@"postnummer").IsRequired().HasColumnType("smallint");
+            Property(x => x.Telefon).HasColumnName(@"telefon").IsOptional().HasColumnType("int");
 
             // Foreign keys
             HasRequired(a => a.PostnummerDb).WithMany(b => b.PatientDbs).HasForeignKey(c => c.Postnummer); // FK_Patient_Postnummer
@@ -905,10 +913,10 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
             Property(x => x.UdstyrId).HasColumnName(@"udstyr_id").IsRequired().HasColumnType("int").HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.Navn).HasColumnName(@"navn").IsRequired().IsFixedLength().HasColumnType("nchar").HasMaxLength(50);
-            Property(x => x.RumId).HasColumnName(@"rum_id").IsRequired().HasColumnType("smallint");
+            Property(x => x.RumId).HasColumnName(@"rum_id").IsOptional().HasColumnType("smallint");
 
             // Foreign keys
-            HasRequired(a => a.BehandlingsrumDb).WithMany(b => b.UdstyrDbs).HasForeignKey(c => c.RumId); // FK_Udstyr_Behandlingsrum
+            HasOptional(a => a.BehandlingsrumDb).WithMany(b => b.UdstyrDbs).HasForeignKey(c => c.RumId); // FK_Udstyr_Behandlingsrum
         }
     }
 
