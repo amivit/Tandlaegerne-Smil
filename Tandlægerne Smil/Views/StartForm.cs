@@ -64,7 +64,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void StartForm_Load(object sender, EventArgs e)
         {
-            P.UdskrivPatient(listViewPatienter);
+            P.UdskrivPatient(listBox1);
         }
     }
 }
