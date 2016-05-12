@@ -15,7 +15,7 @@ namespace Tandlægerne_Smil.Views
 {
     public partial class StartForm : Form
     {
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll")] // Næste 6 linjer er for at skjule konsollen
         private static extern IntPtr GetConsoleWindow();
 
         [DllImport("user32.dll")]
@@ -23,7 +23,8 @@ namespace Tandlægerne_Smil.Views
 
         private const int SwHide = 0;
         private const int SwShow = 5;
-        private readonly Controller _controller = new Controller();
+
+        private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
 
         public StartForm()
         {
@@ -72,6 +73,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void StartForm_Load(object sender, EventArgs e)
         {
+            _controller.Patient.RefreshPatientView(listViewPatienter);
         }
 
         private void VisKonsolToolStripMenuItem_Click(object sender, EventArgs e)
