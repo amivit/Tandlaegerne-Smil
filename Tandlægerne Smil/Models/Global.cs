@@ -15,9 +15,12 @@ namespace Tandlægerne_Smil.Models
         // Alle Models nedavres fra denne "base-class".
         // Her kan tilføjes fields/metoder som alle sub-klasser skal kunne bruge
         // F.eks. skal alle have adgang til database-interfacet
-        public Ismildb Db = new smildb();
+        public smildb Db = new smildb();
 
-        private smildb _db = new smildb();
+        public Patient Patient = new Patient();
+        public Faktura Faktura = new Faktura();
+        public Book Book = new Book();
+        public Venteværelse Venteværelse = new Venteværelse();
 
         public void LogSqlQuery()
         {
@@ -25,7 +28,7 @@ namespace Tandlægerne_Smil.Models
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("SQL QUERY KØRES: ");
             Console.ResetColor();
-            _db.Database.Log = Console.WriteLine;
+            Db.Database.Log = Console.Write;
         }
     }
 }

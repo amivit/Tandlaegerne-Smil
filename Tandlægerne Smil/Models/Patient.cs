@@ -9,8 +9,6 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Patient : Global
     {
-        private readonly smildb _db = new smildb();
-
         public void OpretTestPatient() // Opret test patient her, denne metode bør slettes
         {
             var testPatient = new PatientDb // En måde at gøre det på
@@ -25,15 +23,15 @@ namespace Tandlægerne_Smil.Models
             testPatient.Fornavn = "test"; // En anden måde at gøre det på
             testPatient.Cpr = 1111959999;
 
-            _db.PatientDbs.Add(testPatient); // Tilføje testPatient til tabellen
-            _db.Database.Log = Console.WriteLine; // Udskriv sql-query til konsol
-            _db.SaveChangesAsync(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
+            Db.PatientDbs.Add(testPatient); // Tilføje testPatient til tabellen
+            Db.Database.Log = Console.WriteLine; // Udskriv sql-query til konsol
+            Db.SaveChangesAsync(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
             MessageBox.Show(@"TEST PATIENT OPRETTES");
         }
 
         public void RefreshPatientView(ListView listViewPatient)
         {
-            var patientList = _db.PatientDbs.ToList();
+            var patientList = Db.PatientDbs.ToList();
             var index = 0;
             foreach (var patientDb in patientList)
             {

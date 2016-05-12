@@ -23,8 +23,7 @@ namespace Tandlægerne_Smil.Views
 
         private const int SW_HIDE = 0;
         private const int SW_SHOW = 5;
-        private readonly Patient _patient = new Patient();
-        private readonly Controller _controller = new Controller();
+        private Controller _controller = new Controller();
 
         public StartForm()
         {
@@ -33,7 +32,7 @@ namespace Tandlægerne_Smil.Views
 
         private void opretTestPatient_Click(object sender, EventArgs e)
         {
-            _controller.Patient.OpretTestPatient();
+            OpretTestPatient();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -73,8 +72,8 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void StartForm_Load(object sender, EventArgs e)
         {
-            _patient.RefreshPatientView(listViewPatienter);
         }
+
         private void VisKonsolToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var handle = GetConsoleWindow();
