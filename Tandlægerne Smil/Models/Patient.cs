@@ -1,11 +1,13 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers.DbController;
 
 namespace Tandlægerne_Smil.Models
 {
     internal class Patient : Global
     {
-        private readonly PatientDb _patientDb = new PatientDb();
+        private Ismildb Db = new smildb();
+
 
         public void OpretTestPatient() // Opret test patient her, denne metode bør slettes
         {
@@ -26,9 +28,13 @@ namespace Tandlægerne_Smil.Models
             MessageBox.Show(@"TEST PATIENT OPRETTES");
         }
 
-        public void OpretPatient()
+        public void UdskrivPatient(ListView LV)
         {
-            throw new System.NotImplementedException();
+            foreach (var patient in Db.PatientDbs)
+            {
+                LV.Items.Add(patient.ToString());
+            }
+            LV.Items.Add("Test");
         }
     }
 }
