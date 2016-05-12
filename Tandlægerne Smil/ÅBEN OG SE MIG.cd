@@ -3,7 +3,7 @@
   <Class Name="Tandlægerne_Smil.Models.Book">
     <Position X="7.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAQAAAAABAAAABBAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AABAAAAQAAAAABAAAAABAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>Models\Book.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,14 +17,14 @@
   <Class Name="Tandlægerne_Smil.Models.Global" Collapsed="true">
     <Position X="5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Global.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tandlægerne_Smil.Models.Patient">
     <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Models\Patient.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -38,11 +38,11 @@
   <Class Name="Tandlægerne_Smil.Views.StartForm" Collapsed="true">
     <Position X="14.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EUhAAAwAAaASATECAECAAAAiAOITAAAJJGIAAIAAFAA=</HashCode>
+      <HashCode>EVhAAAwBAaASADACAGCQAAACAeITAgAJJXoCAEZgFAA=</HashCode>
       <FileName>Views\StartForm.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Tandlægerne_Smil.Views.StartGui" Collapsed="true">
+  <Class Name="Tandlægerne_Smil.Views.StartGui">
     <Position X="11.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
