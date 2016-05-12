@@ -24,7 +24,7 @@ namespace Tandlægerne_Smil.Models
             testPatient.Cpr = 1111959999;
 
             Db.PatientDbs.Add(testPatient); // Tilføje testPatient til tabellen
-            Db.Database.Log = Console.WriteLine; // Udskriv sql-query til konsol
+            LogSqlQuery(); // Udskriv sql-query til konsol
             Db.SaveChangesAsync(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
             MessageBox.Show(@"TEST PATIENT OPRETTES");
         }

@@ -17,11 +17,6 @@ namespace Tandlægerne_Smil.Models
         // F.eks. skal alle have adgang til database-interfacet
         public smildb Db = new smildb();
 
-        public Patient Patient = new Patient();
-        public Faktura Faktura = new Faktura();
-        public Book Book = new Book();
-        public Venteværelse Venteværelse = new Venteværelse();
-
         public void LogSqlQuery()
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;

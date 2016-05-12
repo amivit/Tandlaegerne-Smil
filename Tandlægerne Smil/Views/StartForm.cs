@@ -21,9 +21,9 @@ namespace Tandlægerne_Smil.Views
         [DllImport("user32.dll")]
         private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
-        private const int SW_HIDE = 0;
-        private const int SW_SHOW = 5;
-        private Controller _controller = new Controller();
+        private const int SwHide = 0;
+        private const int SwShow = 5;
+        private readonly Controller _controller = new Controller();
 
         public StartForm()
         {
@@ -32,7 +32,7 @@ namespace Tandlægerne_Smil.Views
 
         private void opretTestPatient_Click(object sender, EventArgs e)
         {
-            OpretTestPatient();
+            _controller.Patient.OpretTestPatient();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -79,12 +79,12 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             var handle = GetConsoleWindow();
             if (gemVisKonsolToolStripMenuItem.Checked == true)
             {
-                ShowWindow(handle, SW_HIDE);
+                ShowWindow(handle, SwHide);
                 gemVisKonsolToolStripMenuItem.Checked = false;
             }
             else
             {
-                ShowWindow(handle, SW_SHOW);
+                ShowWindow(handle, SwShow);
                 gemVisKonsolToolStripMenuItem.Checked = true;
             }
         }
