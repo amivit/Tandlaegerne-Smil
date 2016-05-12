@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers.DbController;
@@ -8,9 +10,6 @@ namespace Tandlægerne_Smil.Models
     internal class Patient : Global
     {
         private Ismildb Db = new smildb();
-        private PatientDb PDB = new PatientDb();
-
-
         public void OpretTestPatient() // Opret test patient her, denne metode bør slettes
         {
             var testPatient = new PatientDb // En måde at gøre det på
@@ -30,10 +29,23 @@ namespace Tandlægerne_Smil.Models
             MessageBox.Show(@"TEST PATIENT OPRETTES");
         }
 
-        public void UdskrivPatient(ListBox LB)
+        public void UdskrivPatient(ListView listViewPatient)
         {
-           
+            using (smildb context = new smildb())
+            {
+                context.Database.Log = Console.WriteLine;
+                var patientList = context.PatientDbs.ToList();
+                var index = 0;
 
+                foreach (var patientDb in patientList)
+                {
+                    ListViewItem lvi = new ListViewItem(patientList[index].Fornavn);
+                    lvi.SubItems.Add(patientList[index].Efternavn);
+                    listViewPatient.Items.Add(lvi);
+                    index ++;
+                }
+                
+            }
         }
     }
 }

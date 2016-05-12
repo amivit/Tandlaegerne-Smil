@@ -14,8 +14,8 @@ namespace Tandlægerne_Smil.Views
 {
     public partial class StartForm : Form
     {
-        Patient P = new Patient();
-        private Controller controller = new Controller();
+        private Patient _patient = new Patient();
+        private Controller _controller = new Controller();
 
         public StartForm()
         {
@@ -24,7 +24,7 @@ namespace Tandlægerne_Smil.Views
 
         private void opretTestPatient_Click(object sender, EventArgs e)
         {
-            controller.Patient.OpretTestPatient();
+            _controller.Patient.OpretTestPatient();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -64,7 +64,12 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void StartForm_Load(object sender, EventArgs e)
         {
-            P.UdskrivPatient(listBox1);
+            _patient.UdskrivPatient(listViewPatienter);
+        }
+
+        private void listViewPatienter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

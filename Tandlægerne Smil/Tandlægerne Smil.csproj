@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DD208598-3B2E-46F8-B0C9-1DAAADC43AA9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tandlægerne_Smil</RootNamespace>
     <AssemblyName>Tandlægerne Smil</AssemblyName>
@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -90,6 +93,8 @@
     <EmbeddedResource Include="Views\StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Tandlægerne_Smil.Controllers.DbController.PatientDb.datasource" />
+    <None Include="Properties\DataSources\Tandlægerne_Smil.Models.Patient.datasource" />
     <None Include="ÅBEN OG SE MIG.cd" />
     <None Include="Controllers\DbController\EF.Reverse.POCO.Core.ttinclude" />
     <None Include="Controllers\DbController\EF.Reverse.POCO.ttinclude" />

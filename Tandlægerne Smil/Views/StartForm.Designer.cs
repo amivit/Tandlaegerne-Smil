@@ -28,13 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "",
-            "",
-            ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indstillingerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +42,8 @@
             this.udskrivFaktura = new System.Windows.Forms.Button();
             this.tabPatient = new System.Windows.Forms.TabPage();
             this.listViewPatienter = new System.Windows.Forms.ListView();
+            this.columnFornavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnEfternavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonOpretPatient = new System.Windows.Forms.Button();
             this.buttonRedigerePatient = new System.Windows.Forms.Button();
@@ -64,7 +62,10 @@
             this.listViewVenteværelse = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -72,6 +73,10 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.tabLiveView.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -81,7 +86,7 @@
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(671, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(671, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -91,19 +96,19 @@
             this.indstillingerToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.filerToolStripMenuItem.Name = "filerToolStripMenuItem";
-            this.filerToolStripMenuItem.Size = new System.Drawing.Size(52, 25);
+            this.filerToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.filerToolStripMenuItem.Text = "Filer";
             // 
             // indstillingerToolStripMenuItem
             // 
             this.indstillingerToolStripMenuItem.Name = "indstillingerToolStripMenuItem";
-            this.indstillingerToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.indstillingerToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.indstillingerToolStripMenuItem.Text = "Indstillinger";
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
@@ -112,13 +117,13 @@
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.omToolStripMenuItem});
             this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
-            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(63, 25);
+            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.hjælpToolStripMenuItem.Text = "Hjælp";
             // 
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 26);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.omToolStripMenuItem.Text = "Om";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -151,7 +156,6 @@
             // 
             // tabPatient
             // 
-            this.tabPatient.Controls.Add(this.listBox1);
             this.tabPatient.Controls.Add(this.listViewPatienter);
             this.tabPatient.Controls.Add(this.flowLayoutPanel1);
             this.tabPatient.Location = new System.Drawing.Point(4, 22);
@@ -163,16 +167,33 @@
             // 
             // listViewPatienter
             // 
-            this.listViewPatienter.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4});
+            this.listViewPatienter.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnFornavn,
+            this.columnEfternavn});
+            this.listViewPatienter.FullRowSelect = true;
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup2.Header = "ListViewGroup";
+            listViewGroup2.Name = "listViewGroup2";
+            this.listViewPatienter.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1,
+            listViewGroup2});
             this.listViewPatienter.Location = new System.Drawing.Point(3, 3);
             this.listViewPatienter.Name = "listViewPatienter";
             this.listViewPatienter.Size = new System.Drawing.Size(522, 181);
             this.listViewPatienter.TabIndex = 3;
             this.listViewPatienter.UseCompatibleStateImageBehavior = false;
+            this.listViewPatienter.View = System.Windows.Forms.View.Details;
+            this.listViewPatienter.SelectedIndexChanged += new System.EventHandler(this.listViewPatienter_SelectedIndexChanged);
+            // 
+            // columnFornavn
+            // 
+            this.columnFornavn.Text = "Fornavn";
+            this.columnFornavn.Width = 91;
+            // 
+            // columnEfternavn
+            // 
+            this.columnEfternavn.Text = "Efternavn";
             // 
             // flowLayoutPanel1
             // 
@@ -348,19 +369,41 @@
             this.tabControl1.Controls.Add(this.tabLiveView);
             this.tabControl1.Controls.Add(this.tabPatient);
             this.tabControl1.Controls.Add(this.tabFaktura);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(12, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(647, 457);
             this.tabControl1.TabIndex = 2;
             // 
-            // listBox1
+            // tabPage1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(61, 227);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(235, 173);
-            this.listBox1.TabIndex = 4;
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(639, 431);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.DataSource = this.patientBindingSource1;
+            this.dataGridView1.Location = new System.Drawing.Point(108, 35);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // patientBindingSource1
+            // 
+            this.patientBindingSource1.DataSource = typeof(Tandlægerne_Smil.Models.Patient);
+            // 
+            // patientBindingSource
+            // 
+            this.patientBindingSource.DataSource = typeof(Tandlægerne_Smil.Models.Patient);
             // 
             // StartForm
             // 
@@ -384,6 +427,10 @@
             this.tabLiveView.ResumeLayout(false);
             this.tabLiveView.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,6 +466,11 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ToolStripMenuItem indstillingerToolStripMenuItem;
         private System.Windows.Forms.Button buttonUdskrivDagensBookninger;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource patientBindingSource;
+        private System.Windows.Forms.BindingSource patientBindingSource1;
+        private System.Windows.Forms.ColumnHeader columnFornavn;
+        private System.Windows.Forms.ColumnHeader columnEfternavn;
     }
 }
