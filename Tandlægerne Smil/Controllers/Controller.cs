@@ -1,4 +1,5 @@
-﻿using Tandlægerne_Smil.Models;
+﻿using System;
+using Tandlægerne_Smil.Models;
 using Tandlægerne_Smil.Views;
 
 namespace Tandlægerne_Smil.Controllers
@@ -12,6 +13,11 @@ namespace Tandlægerne_Smil.Controllers
 
         public void StartGui()
         {
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Denne konsol er blot til debugging og slås fra for produktion.\n");
+            Console.ResetColor();
+
             new StartGui();
         }
     }

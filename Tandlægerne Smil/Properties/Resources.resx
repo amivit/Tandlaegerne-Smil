@@ -119,4 +119,9 @@
 Nikolaj Kiil, Kasper Skov, Patrick Korsgaard &amp; Paul Wittig.
 Version 0.0.1</value>
   </data>
+  <data name="Controller_StartGui_" xml:space="preserve">
+    <value>
+Denne konsol er blot til debugging og slås fra for produktion.
+</value>
+  </data>
 </root>

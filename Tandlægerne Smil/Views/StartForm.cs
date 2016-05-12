@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,8 +15,16 @@ namespace Tandlægerne_Smil.Views
 {
     public partial class StartForm : Form
     {
-        private Patient _patient = new Patient();
-        private Controller _controller = new Controller();
+        [DllImport("kernel32.dll")]
+        private static extern IntPtr GetConsoleWindow();
+
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        private const int SW_HIDE = 0;
+        private const int SW_SHOW = 5;
+        private readonly Patient _patient = new Patient();
+        private readonly Controller _controller = new Controller();
 
         public StartForm()
         {
@@ -57,19 +66,28 @@ namespace Tandlægerne_Smil.Views
 Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         }
 
-        private void afslutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AfslutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
         private void StartForm_Load(object sender, EventArgs e)
         {
-            _patient.UdskrivPatient(listViewPatienter);
+            _patient.RefreshPatientView(listViewPatienter);
         }
-
-        private void listViewPatienter_SelectedIndexChanged(object sender, EventArgs e)
+        private void VisKonsolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            var handle = GetConsoleWindow();
+            if (gemVisKonsolToolStripMenuItem.Checked == true)
+            {
+                ShowWindow(handle, SW_HIDE);
+                gemVisKonsolToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                ShowWindow(handle, SW_SHOW);
+                gemVisKonsolToolStripMenuItem.Checked = true;
+            }
         }
     }
 }

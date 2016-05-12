@@ -61,6 +61,17 @@ namespace Tandlægerne_Smil.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 
+        ///Denne konsol er blot til debugging og slås fra for produktion.
+        ///.
+        /// </summary>
+        internal static string Controller_StartGui_ {
+            get {
+                return ResourceManager.GetString("Controller_StartGui_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dette program er udviklet til Tandlægerne Smil af:
         ///Nikolaj Kiil, Kasper Skov, Patrick Korsgaard &amp; Paul Wittig.
         ///Version 0.0.1.

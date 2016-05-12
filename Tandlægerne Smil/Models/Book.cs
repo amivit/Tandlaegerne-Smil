@@ -10,7 +10,6 @@ namespace Tandlægerne_Smil.Models
     internal class Book : Global
     {
         private readonly BookingDb _bookingDb = new BookingDb();
-        private readonly PatientDb _patientDb = new PatientDb();
 
         public void OpretBookning()
         {
