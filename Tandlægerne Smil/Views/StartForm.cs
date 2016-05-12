@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers;
+using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
 {
     public partial class StartForm : Form
     {
+        Patient P = new Patient();
         private Controller controller = new Controller();
 
         public StartForm()
@@ -60,9 +62,9 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             Application.Exit();
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void StartForm_Load(object sender, EventArgs e)
         {
-
+            P.UdskrivPatient(listViewPatienter);
         }
     }
 }
