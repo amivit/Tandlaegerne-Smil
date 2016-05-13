@@ -13,7 +13,7 @@ namespace Tandlægerne_Smil.Models
     {
         public void OpretPatient(TextBox textBoxNavn, TextBox textBoxEfternavn, TextBox textBoxCPR, TextBox textBoxAdresse, TextBox textBoxPostnummer, TextBox textBoxTelefon) // Opret test patient her, denne metode bør slettes
         {
-            var Patient = new PatientDb // Opret Patient
+            var patient = new PatientDb // Opret Patient
             {
                 Fornavn = textBoxNavn.Text,
                 Efternavn = textBoxEfternavn.Text,
@@ -22,20 +22,31 @@ namespace Tandlægerne_Smil.Models
                 Postnummer = Convert.ToInt16(textBoxPostnummer.Text),
                 Telefon = textBoxTelefon.Text
             };
-            try
+            bool postNummerCheck = Db.PostnummerDbs.Any(p => p.Postnr == patient.Postnummer); // DETTE ER DET SYGESTE SHIT
+            if (!postNummerCheck)
             {
-                Db.PatientDbs.Add(Patient); // Tilføj patienten til tabellen
-                LogSqlQuery(); // Udskriv sql-query til konsol
-                Db.SaveChanges(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
+                MessageBox.Show("Postnummer findes ikke i databasen.");
             }
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            else
             {
-                Exception raise = dbEx;
-                MessageBox.Show(dbEx.ToString());
-                throw raise;
+                try
+                {
+                    Db.PatientDbs.Add(patient); // Tilføj patienten til tabellen
+                    LogSqlQuery(); // Udskriv sql-query til konsol
+                    Db.SaveChanges(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
+                    MessageBox.Show("Patient oprettet");
+                }
+                catch (Exception dbEx) // System.Data.Entity.Validation.DbEntityValidationException dbEx,
+                {
+                    MessageBox.Show("Fejl i input",
+                        "Fejl",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    Exception raise = dbEx;
+                    MessageBox.Show(dbEx.ToString());
+                    throw raise;
+                }
             }
-            
-
         }
 
         public void RefreshPatientView(ListView listViewPatient)

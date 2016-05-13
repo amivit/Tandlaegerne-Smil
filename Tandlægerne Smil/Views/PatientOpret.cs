@@ -21,39 +21,20 @@ namespace Tandlægerne_Smil.Views
         public PatientOpret()
         {
             InitializeComponent();
-           
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _controller.Patient.OpretPatient(textBoxNavn, textBoxEfternavn, textBoxCPR, textBoxAdresse, textBoxPostnummer,
+            _controller.Patient.OpretPatient(textBoxNavn, textBoxEfternavn, textBoxCPR, textBoxAdresse, textBoxPostnummer,
                     textBoxTelefon);
-            
-                MessageBox.Show("Patient oprettet");
-
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("Fejl i input",
-                    "Fejl",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-           
-     
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
         }
 
         private void OpretPatient_Load(object sender, EventArgs e)
         {
-
         }
     }
 }
