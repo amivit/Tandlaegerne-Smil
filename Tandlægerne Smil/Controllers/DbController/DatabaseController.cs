@@ -582,7 +582,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public long PatientId { get; set; } // patient_id (Primary key)
         public string Fornavn { get; set; } // fornavn (length: 20)
         public string Efternavn { get; set; } // efternavn (length: 20)
-        public long Cpr { get; set; } // cpr
+        public string Cpr { get; set; } // cpr (length: 11)
         public string Adresse { get; set; } // adresse (length: 50)
         public short Postnummer { get; set; } // postnummer
         public string Telefon { get; set; } // telefon (length: 20)
@@ -846,7 +846,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.PatientId).HasColumnName(@"patient_id").IsRequired().HasColumnType("bigint").HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.Fornavn).HasColumnName(@"fornavn").IsRequired().IsFixedLength().HasColumnType("nchar").HasMaxLength(20);
             Property(x => x.Efternavn).HasColumnName(@"efternavn").IsRequired().IsFixedLength().HasColumnType("nchar").HasMaxLength(20);
-            Property(x => x.Cpr).HasColumnName(@"cpr").IsRequired().HasColumnType("bigint");
+            Property(x => x.Cpr).HasColumnName(@"cpr").IsRequired().HasColumnType("nvarchar").HasMaxLength(11);
             Property(x => x.Adresse).HasColumnName(@"adresse").IsRequired().IsFixedLength().HasColumnType("nchar").HasMaxLength(50);
             Property(x => x.Postnummer).HasColumnName(@"postnummer").IsRequired().HasColumnType("smallint");
             Property(x => x.Telefon).HasColumnName(@"telefon").IsOptional().HasColumnType("nvarchar").HasMaxLength(20);
