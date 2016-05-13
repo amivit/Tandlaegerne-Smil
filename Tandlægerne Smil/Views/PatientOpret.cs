@@ -25,12 +25,18 @@ namespace Tandlægerne_Smil.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _controller.Patient.OpretPatient(textBoxNavn, textBoxEfternavn, textBoxCPR, textBoxAdresse, textBoxPostnummer,
-                    textBoxTelefon);
+          
+                _controller.Patient.OpretPatient(textBoxNavn, textBoxEfternavn, textBoxCPR, textBoxAdresse, textBoxPostnummer,
+                   textBoxTelefon);
+            
+          
+      
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Close();
         }
 
         private void OpretPatient_Load(object sender, EventArgs e)

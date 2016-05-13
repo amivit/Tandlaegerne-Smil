@@ -11,42 +11,52 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Patient : Global
     {
+        
         public void OpretPatient(TextBox textBoxNavn, TextBox textBoxEfternavn, TextBox textBoxCPR, TextBox textBoxAdresse, TextBox textBoxPostnummer, TextBox textBoxTelefon) // Opret test patient her, denne metode bør slettes
         {
-            var patient = new PatientDb // Opret Patient
+            try
             {
-                Fornavn = textBoxNavn.Text,
-                Efternavn = textBoxEfternavn.Text,
-                Cpr = textBoxCPR.Text,
-                Adresse = textBoxAdresse.Text,
-                Postnummer = Convert.ToInt16(textBoxPostnummer.Text),
-                Telefon = textBoxTelefon.Text
-            };
-            bool postNummerCheck = Db.PostnummerDbs.Any(p => p.Postnr == patient.Postnummer); // DETTE ER DET SYGESTE SHIT
-            if (!postNummerCheck)
-            {
-                MessageBox.Show("Postnummer findes ikke i databasen.");
-            }
-            else
-            {
-                try
+                var patient = new PatientDb // Smider data fra textboxende ind i de rigtige attributter
                 {
-                    Db.PatientDbs.Add(patient); // Tilføj patienten til tabellen
-                    LogSqlQuery(); // Udskriv sql-query til konsol
-                    Db.SaveChanges(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
-                    MessageBox.Show("Patient oprettet");
-                }
-                catch (Exception dbEx) // System.Data.Entity.Validation.DbEntityValidationException dbEx,
+                    Fornavn = textBoxNavn.Text,
+                    Efternavn = textBoxEfternavn.Text,
+                    Cpr = textBoxCPR.Text,
+                    Adresse = textBoxAdresse.Text,
+                    Postnummer = Convert.ToInt16(textBoxPostnummer.Text),
+                    Telefon = textBoxTelefon.Text
+                };
+                bool postNummerCheck = Db.PostnummerDbs.Any(p => p.Postnr == patient.Postnummer); //Tjekker om postnummert er i posttabellen
+
+                if (!postNummerCheck) // Hvis postnummert ikke findes
                 {
-                    MessageBox.Show("Fejl i input",
-                        "Fejl",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    Exception raise = dbEx;
-                    MessageBox.Show(dbEx.ToString());
-                    throw raise;
+                    MessageBox.Show("Postnummeret eksitere ikke",
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+                }
+                else // Hvis postnummert findes
+                {               
+                        Db.PatientDbs.Add(patient); // Tilføj patienten til tabellen
+                        LogSqlQuery(); // Udskriv sql-query til konsol
+                        Db.SaveChanges(); // Gem ændringerne i db
+                   
+                        MessageBox.Show("Patient oprettet", // Oprettelse besked
+                            "Oprettet",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    Form.ActiveForm.Close();
+                     
+                                                   
                 }
             }
+            catch (Exception) // Fejl besked
+            {
+                MessageBox.Show("Fejl i input",
+                    "Fejl",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);             
+            }
+
         }
 
         public void RefreshPatientView(ListView listViewPatient)
