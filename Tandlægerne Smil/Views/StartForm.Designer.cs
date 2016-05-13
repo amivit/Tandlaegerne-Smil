@@ -409,17 +409,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(647, 457);
             this.tabControl1.TabIndex = 2;
-            // 
-            // patientBindingSource1
-            // 
-            this.patientBindingSource1.DataSource = typeof(Tandlægerne_Smil.Models.Patient);
-            // 
-            // patientBindingSource
-            // 
-            this.patientBindingSource.DataSource = typeof(Tandlægerne_Smil.Models.Patient);
-            // 
-            // StartForm
-            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 495);
