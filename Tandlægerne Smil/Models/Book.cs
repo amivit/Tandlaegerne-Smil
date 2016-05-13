@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers.DbController;
 
 namespace Tandlægerne_Smil.Models
@@ -26,9 +27,12 @@ namespace Tandlægerne_Smil.Models
             throw new System.NotImplementedException();
         }
 
-        public void GemDagensProgram(DateTime dateTimePicker)
+        public void GemDagensProgram(DateTimePicker dateTimePicker)
         {
-            Console.WriteLine(dateTimePicker.Day);
+            //Console.WriteLine(dateTimePicker.Value.Day);
+            var index = 0;
+            var bookings = Db.BookingDbs.ToList();
+            Console.WriteLine(bookings[index].Tidspunkt.ToShortDateString());
         }
     }
 }

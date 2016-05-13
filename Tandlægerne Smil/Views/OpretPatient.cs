@@ -26,16 +26,16 @@ namespace Tandlægerne_Smil.Views
                 Efternavn = textBoxEfternavn.Text,
                 Cpr = Convert.ToInt32(textBoxCPR.Text),
                 Adresse = textBoxAdresse.Text,    
-                Postnummer = Convert.ToInt16(textBoxPostnummer.Text) ,
-                Telefon = textBoxTelefon.Text;
+                Postnummer = Convert.ToInt16(textBoxPostnummer.Text),
+                Telefon = textBoxTelefon.Text
             };
 
           
 
-            Db.PatientDbs.Add(testPatient); // Tilføje testPatient til tabellen
-            LogSqlQuery(); // Udskriv sql-query til konsol
-            Db.SaveChangesAsync(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
-            MessageBox.Show(@"TEST PATIENT OPRETTES");
+            //Db.PatientDbs.Add(testPatient); // Tilføje testPatient til tabellen
+            //LogSqlQuery(); // Udskriv sql-query til konsol
+            //Db.SaveChangesAsync(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
+            //MessageBox.Show(@"TEST PATIENT OPRETTES");
         }
     }
 }
