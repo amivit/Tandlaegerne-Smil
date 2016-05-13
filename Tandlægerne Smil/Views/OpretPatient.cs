@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tandlægerne_Smil.Controllers;
 using Tandlægerne_Smil.Controllers.DbController;
 using Tandlægerne_Smil.Models;
 
@@ -14,7 +15,8 @@ namespace Tandlægerne_Smil.Views
 {
     public partial class OpretPatient : Form
     {
-        Patient P = new Patient();
+        //Patient P = new Patient();
+        Controller C = new Controller();
         public OpretPatient()
         {
             InitializeComponent();
@@ -25,8 +27,9 @@ namespace Tandlægerne_Smil.Views
         {
             try
             {
-                P.OpretPatient(textBoxNavn, textBoxEfternavn, textBoxCPR, textBoxAdresse, textBoxPostnummer,
+                C.Patient.OpretPatient(textBoxNavn, textBoxEfternavn, textBoxCPR, textBoxAdresse, textBoxPostnummer,
                     textBoxTelefon);
+               // C.Patient.RefreshPatientView(listViewPatienter);              
                 MessageBox.Show("Patient oprettet");
 
             }
@@ -40,6 +43,11 @@ namespace Tandlægerne_Smil.Views
             }
            
      
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

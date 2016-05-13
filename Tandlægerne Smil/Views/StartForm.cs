@@ -97,5 +97,10 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         {
             _controller.Book.GemDagensProgram(this.dateTimePicker);
         }
+
+        private void buttonRedigerePatient_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

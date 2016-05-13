@@ -86,7 +86,7 @@
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(671, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(671, 29);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -96,7 +96,7 @@
             this.gemVisKonsolToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.filerToolStripMenuItem.Name = "filerToolStripMenuItem";
-            this.filerToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.filerToolStripMenuItem.Size = new System.Drawing.Size(52, 25);
             this.filerToolStripMenuItem.Text = "Filer";
             // 
             // gemVisKonsolToolStripMenuItem
@@ -105,14 +105,14 @@
             this.gemVisKonsolToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.gemVisKonsolToolStripMenuItem.Name = "gemVisKonsolToolStripMenuItem";
             this.gemVisKonsolToolStripMenuItem.ShowShortcutKeys = false;
-            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
             this.gemVisKonsolToolStripMenuItem.Text = "Vis Konsol";
             this.gemVisKonsolToolStripMenuItem.Click += new System.EventHandler(this.VisKonsolToolStripMenuItem_Click);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.AfslutToolStripMenuItem_Click);
             // 
@@ -121,13 +121,13 @@
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.omToolStripMenuItem});
             this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
-            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(63, 25);
             this.hjælpToolStripMenuItem.Text = "Hjælp";
             // 
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 26);
             this.omToolStripMenuItem.Text = "Om";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -231,6 +231,7 @@
             this.buttonRedigerePatient.TabIndex = 2;
             this.buttonRedigerePatient.Text = "Redigere Patient";
             this.buttonRedigerePatient.UseVisualStyleBackColor = true;
+            this.buttonRedigerePatient.Click += new System.EventHandler(this.buttonRedigerePatient_Click);
             // 
             // opretTestPatient
             // 
