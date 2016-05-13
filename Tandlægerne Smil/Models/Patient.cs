@@ -20,7 +20,7 @@ namespace Tandlægerne_Smil.Models
                 Postnummer = Convert.ToInt16(textBoxPostnummer.Text),
                 Telefon = textBoxTelefon.Text
             };
-
+            
             Db.PatientDbs.Add(Patient); // Tilføj patienten til tabellen
             LogSqlQuery(); // Udskriv sql-query til konsol
             Db.SaveChangesAsync(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)

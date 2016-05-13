@@ -16,7 +16,8 @@ namespace Tandlægerne_Smil.Views
     public partial class OpretPatient : Form
     {
         //Patient P = new Patient();
-        Controller C = new Controller();
+        private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
+
         public OpretPatient()
         {
             InitializeComponent();
@@ -27,9 +28,9 @@ namespace Tandlægerne_Smil.Views
         {
             try
             {
-                C.Patient.OpretPatient(textBoxNavn, textBoxEfternavn, textBoxCPR, textBoxAdresse, textBoxPostnummer,
+                _controller.Patient.OpretPatient(textBoxNavn, textBoxEfternavn, textBoxCPR, textBoxAdresse, textBoxPostnummer,
                     textBoxTelefon);
-               // C.Patient.RefreshPatientView(listViewPatienter);              
+            
                 MessageBox.Show("Patient oprettet");
 
             }

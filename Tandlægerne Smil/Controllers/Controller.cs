@@ -11,6 +11,7 @@ namespace Tandlægerne_Smil.Controllers
         public Book Book = new Book();
         public Venteværelse Venteværelse = new Venteværelse();
 
+
         public void StartGui()
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
