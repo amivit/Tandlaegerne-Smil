@@ -26,14 +26,9 @@ namespace Tandlægerne_Smil.Models
             throw new System.NotImplementedException();
         }
 
-        public void HentDagensProgram()
+        public void GemDagensProgram(DateTime dateTimePicker)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void GemDagensProgram()
-        {
-            throw new System.NotImplementedException();
+            Console.WriteLine(dateTimePicker.Day);
         }
     }
 }

@@ -51,7 +51,7 @@
             this.tabLiveView = new System.Windows.Forms.TabPage();
             this.buttonUdskrivDagensBookninger = new System.Windows.Forms.Button();
             this.buttonOpretBooking = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.buttonAkutAnkomst = new System.Windows.Forms.Button();
             this.buttonRedigereBookning = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -96,7 +96,7 @@
             this.gemVisKonsolToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.filerToolStripMenuItem.Name = "filerToolStripMenuItem";
-            this.filerToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.filerToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.filerToolStripMenuItem.Text = "Filer";
             // 
             // gemVisKonsolToolStripMenuItem
@@ -105,14 +105,14 @@
             this.gemVisKonsolToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.gemVisKonsolToolStripMenuItem.Name = "gemVisKonsolToolStripMenuItem";
             this.gemVisKonsolToolStripMenuItem.ShowShortcutKeys = false;
-            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.gemVisKonsolToolStripMenuItem.Text = "Vis Konsol";
             this.gemVisKonsolToolStripMenuItem.Click += new System.EventHandler(this.VisKonsolToolStripMenuItem_Click);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.AfslutToolStripMenuItem_Click);
             // 
@@ -121,13 +121,13 @@
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.omToolStripMenuItem});
             this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
-            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.hjælpToolStripMenuItem.Text = "Hjælp";
             // 
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.omToolStripMenuItem.Text = "Om";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -246,7 +246,7 @@
             // 
             this.tabLiveView.Controls.Add(this.buttonUdskrivDagensBookninger);
             this.tabLiveView.Controls.Add(this.buttonOpretBooking);
-            this.tabLiveView.Controls.Add(this.dateTimePicker1);
+            this.tabLiveView.Controls.Add(this.dateTimePicker);
             this.tabLiveView.Controls.Add(this.buttonAkutAnkomst);
             this.tabLiveView.Controls.Add(this.buttonRedigereBookning);
             this.tabLiveView.Controls.Add(this.button4);
@@ -272,6 +272,7 @@
             this.buttonUdskrivDagensBookninger.TabIndex = 13;
             this.buttonUdskrivDagensBookninger.Text = "Udskriv Dagens Bookninger";
             this.buttonUdskrivDagensBookninger.UseVisualStyleBackColor = true;
+            this.buttonUdskrivDagensBookninger.Click += new System.EventHandler(this.buttonUdskrivDagensBookninger_Click);
             // 
             // buttonOpretBooking
             // 
@@ -282,12 +283,12 @@
             this.buttonOpretBooking.Text = "Opret Booking";
             this.buttonOpretBooking.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dateTimePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(9, 223);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 11;
+            this.dateTimePicker.Location = new System.Drawing.Point(9, 223);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker.TabIndex = 11;
             // 
             // buttonAkutAnkomst
             // 
@@ -469,7 +470,7 @@
         private System.Windows.Forms.TabPage tabLiveView;
         private System.Windows.Forms.Button buttonUdskrivDagensBookninger;
         private System.Windows.Forms.Button buttonOpretBooking;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Button buttonAkutAnkomst;
         private System.Windows.Forms.Button buttonRedigereBookning;
         private System.Windows.Forms.Button button4;

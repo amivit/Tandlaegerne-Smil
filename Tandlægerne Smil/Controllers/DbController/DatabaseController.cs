@@ -585,7 +585,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public long Cpr { get; set; } // cpr
         public string Adresse { get; set; } // adresse (length: 50)
         public short Postnummer { get; set; } // postnummer
-        public int? Telefon { get; set; } // telefon
+        public string Telefon { get; set; } // telefon (length: 20)
 
         // Reverse navigation
         public virtual System.Collections.Generic.ICollection<BookingDb> BookingDbs { get; set; } // Booking.FK_Booking_Patient
@@ -849,7 +849,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.Cpr).HasColumnName(@"cpr").IsRequired().HasColumnType("bigint");
             Property(x => x.Adresse).HasColumnName(@"adresse").IsRequired().IsFixedLength().HasColumnType("nchar").HasMaxLength(50);
             Property(x => x.Postnummer).HasColumnName(@"postnummer").IsRequired().HasColumnType("smallint");
-            Property(x => x.Telefon).HasColumnName(@"telefon").IsOptional().HasColumnType("int");
+            Property(x => x.Telefon).HasColumnName(@"telefon").IsOptional().HasColumnType("nvarchar").HasMaxLength(20);
 
             // Foreign keys
             HasRequired(a => a.PostnummerDb).WithMany(b => b.PatientDbs).HasForeignKey(c => c.Postnummer); // FK_Patient_Postnummer
