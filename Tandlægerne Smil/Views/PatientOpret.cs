@@ -13,12 +13,12 @@ using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
 {
-    public partial class OpretPatient : Form
+    public partial class PatientOpret : Form
     {
         //Patient P = new Patient();
         private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
 
-        public OpretPatient()
+        public PatientOpret()
         {
             InitializeComponent();
            
@@ -47,6 +47,11 @@ namespace Tandlægerne_Smil.Views
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpretPatient_Load(object sender, EventArgs e)
         {
 
         }

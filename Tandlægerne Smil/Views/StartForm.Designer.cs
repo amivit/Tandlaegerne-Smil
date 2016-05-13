@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gemVisKonsolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +68,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.demotilstandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -86,7 +87,7 @@
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(671, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(671, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -94,9 +95,10 @@
             // 
             this.filerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gemVisKonsolToolStripMenuItem,
+            this.demotilstandToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.filerToolStripMenuItem.Name = "filerToolStripMenuItem";
-            this.filerToolStripMenuItem.Size = new System.Drawing.Size(52, 25);
+            this.filerToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.filerToolStripMenuItem.Text = "Filer";
             // 
             // gemVisKonsolToolStripMenuItem
@@ -105,14 +107,14 @@
             this.gemVisKonsolToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.gemVisKonsolToolStripMenuItem.Name = "gemVisKonsolToolStripMenuItem";
             this.gemVisKonsolToolStripMenuItem.ShowShortcutKeys = false;
-            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
+            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.gemVisKonsolToolStripMenuItem.Text = "Vis Konsol";
             this.gemVisKonsolToolStripMenuItem.Click += new System.EventHandler(this.VisKonsolToolStripMenuItem_Click);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.AfslutToolStripMenuItem_Click);
             // 
@@ -121,13 +123,13 @@
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.omToolStripMenuItem});
             this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
-            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(63, 25);
+            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.hjælpToolStripMenuItem.Text = "Hjælp";
             // 
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 26);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.omToolStripMenuItem.Text = "Om";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -176,10 +178,10 @@
             this.columnEfternavn,
             this.columnTelefon});
             this.listViewPatienter.FullRowSelect = true;
-            listViewGroup1.Header = "Tandlægerne Smil\'s Patienter";
-            listViewGroup1.Name = "Tandlægerne Smil\'s Patienter";
+            listViewGroup2.Header = "Tandlægerne Smil\'s Patienter";
+            listViewGroup2.Name = "Tandlægerne Smil\'s Patienter";
             this.listViewPatienter.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
+            listViewGroup2});
             this.listViewPatienter.Location = new System.Drawing.Point(3, 3);
             this.listViewPatienter.MultiSelect = false;
             this.listViewPatienter.Name = "listViewPatienter";
@@ -409,6 +411,17 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(647, 457);
             this.tabControl1.TabIndex = 2;
+            // 
+            // demotilstandToolStripMenuItem
+            // 
+            this.demotilstandToolStripMenuItem.Checked = true;
+            this.demotilstandToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.demotilstandToolStripMenuItem.Name = "demotilstandToolStripMenuItem";
+            this.demotilstandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.demotilstandToolStripMenuItem.Text = "Demo-tilstand";
+            // 
+            // StartForm
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 495);
@@ -475,5 +488,6 @@
         private System.Windows.Forms.ColumnHeader columnPatient;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ToolStripMenuItem demotilstandToolStripMenuItem;
     }
 }

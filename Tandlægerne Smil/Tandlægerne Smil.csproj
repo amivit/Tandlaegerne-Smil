@@ -81,11 +81,35 @@
     <Compile Include="Models\Venteværelse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\OpretPatient.cs">
+    <Compile Include="Views\BehandlingAfslut.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\OpretPatient.Designer.cs">
-      <DependentUpon>OpretPatient.cs</DependentUpon>
+    <Compile Include="Views\BehandlingAfslut.Designer.cs">
+      <DependentUpon>BehandlingAfslut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookingOpret.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BookingOpret.Designer.cs">
+      <DependentUpon>BookingOpret.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookingRedigere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BookingRedigere.Designer.cs">
+      <DependentUpon>BookingRedigere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientOpret.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PatientOpret.Designer.cs">
+      <DependentUpon>PatientOpret.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientRedigere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PatientRedigere.Designer.cs">
+      <DependentUpon>PatientRedigere.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\StartForm.cs">
       <SubType>Form</SubType>
@@ -104,8 +128,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\OpretPatient.resx">
-      <DependentUpon>OpretPatient.cs</DependentUpon>
+    <EmbeddedResource Include="Views\PatientOpret.resx">
+      <DependentUpon>PatientOpret.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
