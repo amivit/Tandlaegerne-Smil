@@ -15,7 +15,7 @@ namespace Tandlægerne_Smil.Models
             {
                 Fornavn = textBoxNavn.Text,
                 Efternavn = textBoxEfternavn.Text,
-                Cpr = Convert.ToInt32(textBoxCPR.Text),
+                //Cpr = Convert.ToInt32(textBoxCPR.Text),
                 Adresse = textBoxAdresse.Text,
                 Postnummer = Convert.ToInt16(textBoxPostnummer.Text),
                 Telefon = textBoxTelefon.Text
