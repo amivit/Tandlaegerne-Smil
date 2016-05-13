@@ -33,7 +33,6 @@ namespace Tandlægerne_Smil.Views
 
         private void opretTestPatient_Click(object sender, EventArgs e)
         {
-            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -54,7 +53,7 @@ namespace Tandlægerne_Smil.Views
 
         private void buttonOpretPatient_Click(object sender, EventArgs e)
         {
-            OpretPatient OP = new OpretPatient();
+            PatientOpret OP = new PatientOpret();
             OP.Show();
         }
 
@@ -81,7 +80,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         private void VisKonsolToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var handle = GetConsoleWindow();
-            if (gemVisKonsolToolStripMenuItem.Checked == true)
+            if (gemVisKonsolToolStripMenuItem.Checked)
             {
                 ShowWindow(handle, SwHide);
                 gemVisKonsolToolStripMenuItem.Checked = false;
@@ -100,7 +99,6 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void buttonRedigerePatient_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

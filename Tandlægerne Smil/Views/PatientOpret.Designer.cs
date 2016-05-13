@@ -1,6 +1,6 @@
 ﻿namespace Tandlægerne_Smil.Views
 {
-    partial class OpretPatient
+    partial class PatientOpret
     {
         /// <summary>
         /// Required designer variable.
@@ -160,7 +160,7 @@
             this.textBoxTelefon.Size = new System.Drawing.Size(183, 20);
             this.textBoxTelefon.TabIndex = 13;
             // 
-            // OpretPatient
+            // PatientOpret
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -179,8 +179,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "OpretPatient";
-            this.Text = "OpretPatient";
+            this.Name = "PatientOpret";
+            this.Text = "PatientOpret";
+            this.Load += new System.EventHandler(this.OpretPatient_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
