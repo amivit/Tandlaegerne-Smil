@@ -33,7 +33,7 @@ namespace Tandlægerne_Smil.Views
 
         private void opretTestPatient_Click(object sender, EventArgs e)
         {
-            _controller.Patient.OpretTestPatient();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

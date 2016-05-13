@@ -9,24 +9,21 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Patient : Global
     {
-        public void OpretTestPatient() // Opret test patient her, denne metode bør slettes
+        public void OpretPatient(TextBox textBoxNavn, TextBox textBoxEfternavn, TextBox textBoxCPR, TextBox textBoxAdresse, TextBox textBoxPostnummer, TextBox textBoxTelefon) // Opret test patient her, denne metode bør slettes
         {
-            var testPatient = new PatientDb // En måde at gøre det på
+            var Patient = new PatientDb // Opret Patient
             {
-                Adresse = "Testvej1234",
-                Cpr = 1111909999,
-                Efternavn = "Wittig",
-                Fornavn = "Paul",
-                Postnummer = 7100
+                Fornavn = textBoxNavn.Text,
+                Efternavn = textBoxEfternavn.Text,
+                Cpr = Convert.ToInt32(textBoxCPR.Text),
+                Adresse = textBoxAdresse.Text,
+                Postnummer = Convert.ToInt16(textBoxPostnummer.Text),
+                Telefon = textBoxTelefon.Text
             };
 
-            testPatient.Fornavn = "test"; // En anden måde at gøre det på
-            testPatient.Cpr = 1111959999;
-
-            Db.PatientDbs.Add(testPatient); // Tilføje testPatient til tabellen
+            Db.PatientDbs.Add(Patient); // Tilføj patienten til tabellen
             LogSqlQuery(); // Udskriv sql-query til konsol
             Db.SaveChangesAsync(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
-            MessageBox.Show(@"TEST PATIENT OPRETTES");
         }
 
         public void RefreshPatientView(ListView listViewPatient)
@@ -37,7 +34,7 @@ namespace Tandlægerne_Smil.Models
             {
                 ListViewItem lvi = new ListViewItem(patientList[index].Fornavn.Replace(" ", string.Empty));
                 lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
-                lvi.SubItems.Add(patientList[index].Telefon.ToString().Replace(" ", string.Empty));
+                lvi.SubItems.Add(patientList[index].Telefon);
                 listViewPatient.Items.Add(lvi);
                 listViewPatient.Items[index].Group = listViewPatient.Groups[0];
                 index++;
