@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers.DbController;
@@ -20,10 +22,20 @@ namespace Tandlægerne_Smil.Models
                 Postnummer = Convert.ToInt16(textBoxPostnummer.Text),
                 Telefon = textBoxTelefon.Text
             };
+            try
+            {
+                Db.PatientDbs.Add(Patient); // Tilføj patienten til tabellen
+                LogSqlQuery(); // Udskriv sql-query til konsol
+                Db.SaveChanges(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                MessageBox.Show(dbEx.ToString());
+                throw raise;
+            }
             
-            Db.PatientDbs.Add(Patient); // Tilføj patienten til tabellen
-            LogSqlQuery(); // Udskriv sql-query til konsol
-            Db.SaveChangesAsync(); // Gem ændringerne i db (async gør det i baggrunden vha. en separat tråd)
+
         }
 
         public void RefreshPatientView(ListView listViewPatient)
