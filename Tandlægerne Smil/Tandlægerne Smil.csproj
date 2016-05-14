@@ -131,6 +131,9 @@
     <EmbeddedResource Include="Views\PatientOpret.resx">
       <DependentUpon>PatientOpret.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\PatientRedigere.resx">
+      <DependentUpon>PatientRedigere.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\StartForm.resx">
       <DependentUpon>StartForm.cs</DependentUpon>
     </EmbeddedResource>

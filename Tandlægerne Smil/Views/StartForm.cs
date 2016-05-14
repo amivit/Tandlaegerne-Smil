@@ -99,6 +99,29 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void buttonRedigerePatient_Click(object sender, EventArgs e)
         {
+            try
+            {            
+                string Patientnavn = listViewPatienter.SelectedItems[0].Text;
+                string PatientEfternavn = listViewPatienter.SelectedItems[0].SubItems[1].Text;
+                //OBS patienttelefon må gerne være null.. her kommer en fejl
+                string PatientTelefon = listViewPatienter.SelectedItems[0].SubItems[2].Text;
+                string PatientID = listViewPatienter.SelectedItems[0].SubItems[3].Text;
+
+                PatientRedigere PR = new PatientRedigere(Patientnavn, PatientEfternavn, PatientTelefon, PatientID);
+                PR.Show();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Vælg en patient",
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+            }
+            
+
+           
+
         }
     }
 }

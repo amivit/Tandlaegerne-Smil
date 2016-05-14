@@ -59,6 +59,14 @@ namespace Tandlægerne_Smil.Models
 
         }
 
+        public void SletPatient(int patientID)
+        {
+            var employer = new PatientDb { PatientId = patientID  };
+            Db.PatientDbs.Attach(employer);
+            Db.PatientDbs.Remove(employer);
+            Db.SaveChanges();
+        }
+
         public void RefreshPatientView(ListView listViewPatient)
         {
             var patientList = Db.PatientDbs.ToList();
@@ -68,6 +76,7 @@ namespace Tandlægerne_Smil.Models
                 ListViewItem lvi = new ListViewItem(patientList[index].Fornavn.Replace(" ", string.Empty));
                 lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
                 lvi.SubItems.Add(patientList[index].Telefon);
+                lvi.SubItems.Add(patientList[index].PatientId.ToString());
                 listViewPatient.Items.Add(lvi);
                 listViewPatient.Items[index].Group = listViewPatient.Groups[0];
                 index++;

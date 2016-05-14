@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gemVisKonsolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.demotilstandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +69,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.demotilstandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.columnPatientID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -107,14 +108,22 @@
             this.gemVisKonsolToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.gemVisKonsolToolStripMenuItem.Name = "gemVisKonsolToolStripMenuItem";
             this.gemVisKonsolToolStripMenuItem.ShowShortcutKeys = false;
-            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.gemVisKonsolToolStripMenuItem.Text = "Vis Konsol";
             this.gemVisKonsolToolStripMenuItem.Click += new System.EventHandler(this.VisKonsolToolStripMenuItem_Click);
+            // 
+            // demotilstandToolStripMenuItem
+            // 
+            this.demotilstandToolStripMenuItem.Checked = true;
+            this.demotilstandToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.demotilstandToolStripMenuItem.Name = "demotilstandToolStripMenuItem";
+            this.demotilstandToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.demotilstandToolStripMenuItem.Text = "Demo-tilstand";
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.AfslutToolStripMenuItem_Click);
             // 
@@ -176,12 +185,14 @@
             this.listViewPatienter.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnFornavn,
             this.columnEfternavn,
-            this.columnTelefon});
+            this.columnTelefon,
+            this.columnPatientID});
             this.listViewPatienter.FullRowSelect = true;
-            listViewGroup2.Header = "Tandlægerne Smil\'s Patienter";
-            listViewGroup2.Name = "Tandlægerne Smil\'s Patienter";
+            listViewGroup1.Header = "Tandlægerne Smil\'s Patienter";
+            listViewGroup1.Name = "Tandlægerne Smil\'s Patienter";
             this.listViewPatienter.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup2});
+            listViewGroup1});
+            this.listViewPatienter.HideSelection = false;
             this.listViewPatienter.Location = new System.Drawing.Point(3, 3);
             this.listViewPatienter.MultiSelect = false;
             this.listViewPatienter.Name = "listViewPatienter";
@@ -412,13 +423,10 @@
             this.tabControl1.Size = new System.Drawing.Size(647, 457);
             this.tabControl1.TabIndex = 2;
             // 
-            // demotilstandToolStripMenuItem
+            // columnPatientID
             // 
-            this.demotilstandToolStripMenuItem.Checked = true;
-            this.demotilstandToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.demotilstandToolStripMenuItem.Name = "demotilstandToolStripMenuItem";
-            this.demotilstandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.demotilstandToolStripMenuItem.Text = "Demo-tilstand";
+            this.columnPatientID.Text = "ID";
+            this.columnPatientID.Width = 40;
             // 
             // StartForm
             // 
@@ -489,5 +497,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ToolStripMenuItem demotilstandToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader columnPatientID;
     }
 }
