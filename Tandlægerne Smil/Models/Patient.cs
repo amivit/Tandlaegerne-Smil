@@ -11,7 +11,6 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Patient : Global
     {
-        
         public void OpretPatient(TextBox textBoxNavn, TextBox textBoxEfternavn, TextBox textBoxCPR, TextBox textBoxAdresse, TextBox textBoxPostnummer, TextBox textBoxTelefon) // Opret test patient her, denne metode bør slettes
         {
             try
@@ -35,18 +34,16 @@ namespace Tandlægerne_Smil.Models
                      MessageBoxIcon.Error);
                 }
                 else // Hvis postnummert findes
-                {               
-                        Db.PatientDbs.Add(patient); // Tilføj patienten til tabellen
-                        LogSqlQuery(); // Udskriv sql-query til konsol
-                        Db.SaveChanges(); // Gem ændringerne i db
-                   
-                        MessageBox.Show("Patient oprettet", // Oprettelse besked
-                            "Oprettet",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                {
+                    Db.PatientDbs.Add(patient); // Tilføj patienten til tabellen
+                    LogSqlQuery(); // Udskriv sql-query til konsol
+                    Db.SaveChanges(); // Gem ændringerne i db
+
+                    MessageBox.Show("Patient oprettet", // Oprettelse besked
+                        "Oprettet",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     Form.ActiveForm.Close();
-                     
-                                                   
                 }
             }
             catch (Exception) // Fejl besked
@@ -54,16 +51,16 @@ namespace Tandlægerne_Smil.Models
                 MessageBox.Show("Fejl i input",
                     "Fejl",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);             
+                    MessageBoxIcon.Error);
             }
-
         }
 
         public void SletPatient(int patientID)
         {
-            var employer = new PatientDb { PatientId = patientID  };
-            Db.PatientDbs.Attach(employer);
-            Db.PatientDbs.Remove(employer);
+            var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID); // Denne LINQ i stedet for nedenstående
+            //var patient = new PatientDb { PatientId = patientID  };
+            //Db.PatientDbs.Attach(patient);
+            Db.PatientDbs.Remove(patient);
             Db.SaveChanges();
         }
 
