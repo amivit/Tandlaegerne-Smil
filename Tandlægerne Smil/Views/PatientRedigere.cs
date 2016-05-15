@@ -19,6 +19,7 @@ namespace Tandlægerne_Smil.Views
         string PatientTelefon;
         string PatientID;
         Patient P = new Patient();
+        StartForm S = new StartForm();
         
 
         public PatientRedigere(string PatientNavn, string PatientEfternavn, string PatientTelefon,string PatientID)
@@ -40,7 +41,17 @@ namespace Tandlægerne_Smil.Views
 
         private void Slet_Click(object sender, EventArgs e)
         {
-            P.SletPatient(Convert.ToInt32(PatientID));
+            if (MessageBox.Show("Er du sikker på at du vil slette valgte patient", "Advarsel", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                P.SletPatient(Convert.ToInt32(PatientID));
+            }
+           
+
+        }
+
+        private void Afslut_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

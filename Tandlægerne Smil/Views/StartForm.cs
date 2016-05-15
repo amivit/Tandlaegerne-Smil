@@ -33,6 +33,8 @@ namespace Tandlægerne_Smil.Views
 
         private void opretTestPatient_Click(object sender, EventArgs e)
         {
+            listViewPatienter.Items.Clear();
+            _controller.Patient.RefreshPatientView(listViewPatienter);
         }
 
         private void button2_Click(object sender, EventArgs e)

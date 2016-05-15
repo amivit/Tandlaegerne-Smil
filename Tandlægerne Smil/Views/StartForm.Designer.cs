@@ -45,6 +45,7 @@
             this.columnFornavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnEfternavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTelefon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnPatientID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonOpretPatient = new System.Windows.Forms.Button();
             this.buttonRedigerePatient = new System.Windows.Forms.Button();
@@ -69,7 +70,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.columnPatientID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -216,6 +216,11 @@
             this.columnTelefon.Text = "Telefon";
             this.columnTelefon.Width = 95;
             // 
+            // columnPatientID
+            // 
+            this.columnPatientID.Text = "ID";
+            this.columnPatientID.Width = 40;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.buttonOpretPatient);
@@ -252,7 +257,7 @@
             this.opretTestPatient.Name = "opretTestPatient";
             this.opretTestPatient.Size = new System.Drawing.Size(96, 23);
             this.opretTestPatient.TabIndex = 0;
-            this.opretTestPatient.Text = "opretTestPatient";
+            this.opretTestPatient.Text = "Refresh";
             this.opretTestPatient.UseVisualStyleBackColor = true;
             this.opretTestPatient.Click += new System.EventHandler(this.opretTestPatient_Click);
             // 
@@ -423,11 +428,6 @@
             this.tabControl1.Size = new System.Drawing.Size(647, 457);
             this.tabControl1.TabIndex = 2;
             // 
-            // columnPatientID
-            // 
-            this.columnPatientID.Text = "ID";
-            this.columnPatientID.Width = 40;
-            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -470,7 +470,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button udskrivFaktura;
         private System.Windows.Forms.TabPage tabPatient;
-        private System.Windows.Forms.ListView listViewPatienter;
         private System.Windows.Forms.ColumnHeader columnFornavn;
         private System.Windows.Forms.ColumnHeader columnEfternavn;
         private System.Windows.Forms.ColumnHeader columnTelefon;
@@ -498,5 +497,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ToolStripMenuItem demotilstandToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader columnPatientID;
+        public System.Windows.Forms.ListView listViewPatienter;
     }
 }

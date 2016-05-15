@@ -11,6 +11,7 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Patient : Global
     {
+        
         public void OpretPatient(TextBox textBoxNavn, TextBox textBoxEfternavn, TextBox textBoxCPR, TextBox textBoxAdresse, TextBox textBoxPostnummer, TextBox textBoxTelefon) // Opret test patient her, denne metode bør slettes
         {
             try
@@ -43,6 +44,7 @@ namespace Tandlægerne_Smil.Models
                         "Oprettet",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+
                     Form.ActiveForm.Close();
                 }
             }
@@ -58,14 +60,14 @@ namespace Tandlægerne_Smil.Models
         public void SletPatient(int patientID)
         {
             var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID); // Denne LINQ i stedet for nedenstående
-            //var patient = new PatientDb { PatientId = patientID  };
-            //Db.PatientDbs.Attach(patient);
             Db.PatientDbs.Remove(patient);
             Db.SaveChanges();
+            Form.ActiveForm.Close();
         }
 
         public void RefreshPatientView(ListView listViewPatient)
         {
+            
             var patientList = Db.PatientDbs.ToList();
             var index = 0;
             foreach (var patientDb in patientList)

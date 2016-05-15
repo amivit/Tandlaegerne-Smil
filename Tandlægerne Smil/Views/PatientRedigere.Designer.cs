@@ -151,6 +151,7 @@
             this.Afslut.TabIndex = 15;
             this.Afslut.Text = "Afslut";
             this.Afslut.UseVisualStyleBackColor = true;
+            this.Afslut.Click += new System.EventHandler(this.Afslut_Click);
             // 
             // Redigere
             // 
