@@ -79,35 +79,35 @@ namespace Tandlægerne_Smil.Models
 
         }
 
-        public void RefreshPatientView(ListView listViewPatient)
-        {
-            listViewPatient.Items.Clear();
+        //public void RefreshPatientView(ListView listViewPatient)
+        //{
+        //    listViewPatient.Items.Clear();
 
-            //var patientList = Db.PatientDbs.ToList();
-            //var Db2 = new smildb();
-            using (var db = new smildb())
-            {
-                var patientList = db.PatientDbs.ToList();
+        //    //var patientList = Db.PatientDbs.ToList();
+        //    //var Db2 = new smildb();
+        //    using (var db = new smildb())
+        //    {
+        //        var patientList = db.PatientDbs.ToList();
 
-                var index = 0;
-                // Db.Entry(Db.PatientDbs).Reload();
-                foreach (var patientDb in patientList)
-                {
-                    ListViewItem lvi = new ListViewItem(patientList[index].Fornavn.Replace(" ", string.Empty));
-                    lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
-                    lvi.SubItems.Add(patientList[index].Telefon);
-                    lvi.SubItems.Add(patientList[index].PatientId.ToString());
-                    listViewPatient.Items.Add(lvi);
-                    listViewPatient.Items[index].Group = listViewPatient.Groups[0];
-                    index++;
-                }
-            }
+        //        var index = 0;
+        //        // Db.Entry(Db.PatientDbs).Reload();
+        //        foreach (var patientDb in patientList)
+        //        {
+        //            ListViewItem lvi = new ListViewItem(patientList[index].Fornavn.Replace(" ", string.Empty));
+        //            lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
+        //            lvi.SubItems.Add(patientList[index].Telefon);
+        //            lvi.SubItems.Add(patientList[index].PatientId.ToString());
+        //            listViewPatient.Items.Add(lvi);
+        //            listViewPatient.Items[index].Group = listViewPatient.Groups[0];
+        //            index++;
+        //        }
+        //    }
+        //}    
+
             
 
-            
 
-
-        }
+        
 
         public void RedigerePatientGem(int patientID, PatientRedigere patientRedigere)
         {

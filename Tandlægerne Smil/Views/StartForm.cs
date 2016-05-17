@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers;
+using Tandlægerne_Smil.Controllers.DbController;
 using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
@@ -38,9 +39,33 @@ namespace Tandlægerne_Smil.Views
         
         private void opretTestPatient_Click(object sender, EventArgs e)
         {
-            _controller.Patient.RefreshPatientView(listViewPatienter);
+            RefreshPatientView();
         }
 
+        public void RefreshPatientView()
+        {
+            listViewPatienter.Items.Clear();
+
+            //var patientList = Db.PatientDbs.ToList();
+            //var Db2 = new smildb();
+            using (var db = new smildb())
+            {
+                var patientList = db.PatientDbs.ToList();
+
+                var index = 0;
+                // Db.Entry(Db.PatientDbs).Reload();
+                foreach (var patientDb in patientList)
+                {
+                    ListViewItem lvi = new ListViewItem(patientList[index].Fornavn.Replace(" ", string.Empty));
+                    lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
+                    lvi.SubItems.Add(patientList[index].Telefon);
+                    lvi.SubItems.Add(patientList[index].PatientId.ToString());
+                    listViewPatienter.Items.Add(lvi);
+                    listViewPatienter.Items[index].Group = listViewPatienter.Groups[0];
+                    index++;
+                }
+            }
+        }
 
 
         private void button2_Click(object sender, EventArgs e)
@@ -82,7 +107,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void StartForm_Load(object sender, EventArgs e)
         {
-            _controller.Patient.RefreshPatientView(listViewPatienter);
+            RefreshPatientView();
         }
 
         private void VisKonsolToolStripMenuItem_Click(object sender, EventArgs e)
@@ -111,7 +136,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             try
             {
                 int PatientID = Convert.ToInt32(listViewPatienter.SelectedItems[0].SubItems[3].Text);
-                PatientRedigere PR = new PatientRedigere(PatientID);
+                PatientRedigere PR = new PatientRedigere(PatientID, this);
                 PR.Show();
 
             }
