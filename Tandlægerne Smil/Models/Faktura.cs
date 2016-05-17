@@ -52,5 +52,7 @@ namespace Tandlægerne_Smil.Models
                 index++;
             }
         }
-    }
+
+
+	}
 }
