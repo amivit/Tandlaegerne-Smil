@@ -86,7 +86,7 @@ namespace Tandlægerne_Smil.Views
 
         private void buttonOpretPatient_Click(object sender, EventArgs e)
         {
-            PatientOpret OP = new PatientOpret();
+            PatientOpret OP = new PatientOpret(this);
             OP.Show();
         }
 

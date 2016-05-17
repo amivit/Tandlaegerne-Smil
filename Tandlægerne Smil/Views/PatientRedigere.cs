@@ -37,6 +37,7 @@ namespace Tandlægerne_Smil.Views
             if (MessageBox.Show("Er du sikker på at du vil slette valgte patient", "Advarsel", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 _controller.Patient.SletPatient(Convert.ToInt32(_patientId));
+                _startForm.RefreshPatientView();
             }
         }
 
