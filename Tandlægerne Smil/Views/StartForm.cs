@@ -189,5 +189,28 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         {
 
         }
-    }
+
+		private void button_VisAllePatienter_Click(object sender, EventArgs e)
+		{
+			int idNummer = 0;
+			try
+			{
+				listView_Faktura.Items.Clear();
+				foreach (var item in listView_Faktura.Items.ToString())
+				{
+					_controller.Faktura.hentFaktura(idNummer, listView_Faktura);
+					idNummer ++;
+				}
+				
+			}
+			catch
+			{
+				MessageBox.Show("Kunne ikke hente data");
+			}
+			
+			
+		
+			
+		}
+	}
 }

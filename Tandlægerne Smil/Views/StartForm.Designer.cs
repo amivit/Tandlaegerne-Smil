@@ -28,508 +28,539 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.filerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gemVisKonsolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.demotilstandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabFaktura = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox_PatientID = new System.Windows.Forms.TextBox();
-            this.udskrivFaktura = new System.Windows.Forms.Button();
-            this.listView_Faktura = new System.Windows.Forms.ListView();
-            this.FakturaID_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Navn_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PertientID_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.FakturaingsDato_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Button_Søg = new System.Windows.Forms.Button();
-            this.tabPatient = new System.Windows.Forms.TabPage();
-            this.listViewPatienter = new System.Windows.Forms.ListView();
-            this.columnFornavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnEfternavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnTelefon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnPatientID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonOpretPatient = new System.Windows.Forms.Button();
-            this.buttonRedigerePatient = new System.Windows.Forms.Button();
-            this.opretTestPatient = new System.Windows.Forms.Button();
-            this.tabLiveView = new System.Windows.Forms.TabPage();
-            this.buttonUdskrivDagensBookninger = new System.Windows.Forms.Button();
-            this.buttonOpretBooking = new System.Windows.Forms.Button();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.buttonAkutAnkomst = new System.Windows.Forms.Button();
-            this.buttonRedigereBookning = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.buttonTjekkeInd = new System.Windows.Forms.Button();
-            this.listViewDagensProgram = new System.Windows.Forms.ListView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.listViewVenteværelse = new System.Windows.Forms.ListView();
-            this.columnBookingTid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnBehandling = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnLæge = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnPatient = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.menuStrip1.SuspendLayout();
-            this.tabFaktura.SuspendLayout();
-            this.tabPatient.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.tabLiveView.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.components = new System.ComponentModel.Container();
+			System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.filerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.gemVisKonsolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.demotilstandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.tabFaktura = new System.Windows.Forms.TabPage();
+			this.button_VisAllePatienter = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.textBox_PatientID = new System.Windows.Forms.TextBox();
+			this.udskrivFaktura = new System.Windows.Forms.Button();
+			this.listView_Faktura = new System.Windows.Forms.ListView();
+			this.FakturaID_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.Navn_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.PertientID_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.FakturaingsDato_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.Button_Søg = new System.Windows.Forms.Button();
+			this.tabPatient = new System.Windows.Forms.TabPage();
+			this.listViewPatienter = new System.Windows.Forms.ListView();
+			this.columnFornavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnEfternavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnTelefon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnPatientID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.buttonOpretPatient = new System.Windows.Forms.Button();
+			this.buttonRedigerePatient = new System.Windows.Forms.Button();
+			this.opretTestPatient = new System.Windows.Forms.Button();
+			this.tabLiveView = new System.Windows.Forms.TabPage();
+			this.buttonUdskrivDagensBookninger = new System.Windows.Forms.Button();
+			this.buttonOpretBooking = new System.Windows.Forms.Button();
+			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.buttonAkutAnkomst = new System.Windows.Forms.Button();
+			this.buttonRedigereBookning = new System.Windows.Forms.Button();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.buttonTjekkeInd = new System.Windows.Forms.Button();
+			this.listViewDagensProgram = new System.Windows.Forms.ListView();
+			this.label2 = new System.Windows.Forms.Label();
+			this.listViewVenteværelse = new System.Windows.Forms.ListView();
+			this.columnBookingTid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnBehandling = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnLæge = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnPatient = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.label1 = new System.Windows.Forms.Label();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.menuStrip1.SuspendLayout();
+			this.tabFaktura.SuspendLayout();
+			this.tabPatient.SuspendLayout();
+			this.flowLayoutPanel1.SuspendLayout();
+			this.tabLiveView.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filerToolStripMenuItem,
             this.hjælpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(671, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // filerToolStripMenuItem
-            // 
-            this.filerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+			this.menuStrip1.Size = new System.Drawing.Size(895, 28);
+			this.menuStrip1.TabIndex = 1;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// filerToolStripMenuItem
+			// 
+			this.filerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gemVisKonsolToolStripMenuItem,
             this.demotilstandToolStripMenuItem,
             this.afslutToolStripMenuItem});
-            this.filerToolStripMenuItem.Name = "filerToolStripMenuItem";
-            this.filerToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.filerToolStripMenuItem.Text = "Filer";
-            // 
-            // gemVisKonsolToolStripMenuItem
-            // 
-            this.gemVisKonsolToolStripMenuItem.Checked = true;
-            this.gemVisKonsolToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.gemVisKonsolToolStripMenuItem.Name = "gemVisKonsolToolStripMenuItem";
-            this.gemVisKonsolToolStripMenuItem.ShowShortcutKeys = false;
-            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.gemVisKonsolToolStripMenuItem.Text = "Vis Konsol";
-            this.gemVisKonsolToolStripMenuItem.Click += new System.EventHandler(this.VisKonsolToolStripMenuItem_Click);
-            // 
-            // demotilstandToolStripMenuItem
-            // 
-            this.demotilstandToolStripMenuItem.Checked = true;
-            this.demotilstandToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.demotilstandToolStripMenuItem.Name = "demotilstandToolStripMenuItem";
-            this.demotilstandToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.demotilstandToolStripMenuItem.Text = "Demo-tilstand";
-            // 
-            // afslutToolStripMenuItem
-            // 
-            this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.afslutToolStripMenuItem.Text = "Afslut";
-            this.afslutToolStripMenuItem.Click += new System.EventHandler(this.AfslutToolStripMenuItem_Click);
-            // 
-            // hjælpToolStripMenuItem
-            // 
-            this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.filerToolStripMenuItem.Name = "filerToolStripMenuItem";
+			this.filerToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+			this.filerToolStripMenuItem.Text = "Filer";
+			// 
+			// gemVisKonsolToolStripMenuItem
+			// 
+			this.gemVisKonsolToolStripMenuItem.Checked = true;
+			this.gemVisKonsolToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.gemVisKonsolToolStripMenuItem.Name = "gemVisKonsolToolStripMenuItem";
+			this.gemVisKonsolToolStripMenuItem.ShowShortcutKeys = false;
+			this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+			this.gemVisKonsolToolStripMenuItem.Text = "Vis Konsol";
+			this.gemVisKonsolToolStripMenuItem.Click += new System.EventHandler(this.VisKonsolToolStripMenuItem_Click);
+			// 
+			// demotilstandToolStripMenuItem
+			// 
+			this.demotilstandToolStripMenuItem.Checked = true;
+			this.demotilstandToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.demotilstandToolStripMenuItem.Name = "demotilstandToolStripMenuItem";
+			this.demotilstandToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+			this.demotilstandToolStripMenuItem.Text = "Demo-tilstand";
+			// 
+			// afslutToolStripMenuItem
+			// 
+			this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
+			this.afslutToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+			this.afslutToolStripMenuItem.Text = "Afslut";
+			this.afslutToolStripMenuItem.Click += new System.EventHandler(this.AfslutToolStripMenuItem_Click);
+			// 
+			// hjælpToolStripMenuItem
+			// 
+			this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.omToolStripMenuItem});
-            this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
-            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.hjælpToolStripMenuItem.Text = "Hjælp";
-            // 
-            // omToolStripMenuItem
-            // 
-            this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
-            this.omToolStripMenuItem.Text = "Om";
-            this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
-            // 
-            // tabFaktura
-            // 
-            this.tabFaktura.Controls.Add(this.button1);
-            this.tabFaktura.Controls.Add(this.label3);
-            this.tabFaktura.Controls.Add(this.textBox_PatientID);
-            this.tabFaktura.Controls.Add(this.udskrivFaktura);
-            this.tabFaktura.Controls.Add(this.listView_Faktura);
-            this.tabFaktura.Controls.Add(this.Button_Søg);
-            this.tabFaktura.Location = new System.Drawing.Point(4, 22);
-            this.tabFaktura.Name = "tabFaktura";
-            this.tabFaktura.Size = new System.Drawing.Size(639, 431);
-            this.tabFaktura.TabIndex = 3;
-            this.tabFaktura.Text = "Faktura";
-            this.tabFaktura.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(529, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Vis Alle Patienter";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Pertient ID";
-            // 
-            // textBox_PatientID
-            // 
-            this.textBox_PatientID.Location = new System.Drawing.Point(71, 6);
-            this.textBox_PatientID.Name = "textBox_PatientID";
-            this.textBox_PatientID.Size = new System.Drawing.Size(60, 20);
-            this.textBox_PatientID.TabIndex = 3;
-            // 
-            // udskrivFaktura
-            // 
-            this.udskrivFaktura.Location = new System.Drawing.Point(474, 366);
-            this.udskrivFaktura.Name = "udskrivFaktura";
-            this.udskrivFaktura.Size = new System.Drawing.Size(90, 23);
-            this.udskrivFaktura.TabIndex = 0;
-            this.udskrivFaktura.Text = "Udskriv Faktura";
-            this.udskrivFaktura.UseVisualStyleBackColor = true;
-            this.udskrivFaktura.Click += new System.EventHandler(this.udskrivFaktura_Click);
-            // 
-            // listView_Faktura
-            // 
-            this.listView_Faktura.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
+			this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+			this.hjælpToolStripMenuItem.Text = "Hjælp";
+			// 
+			// omToolStripMenuItem
+			// 
+			this.omToolStripMenuItem.Name = "omToolStripMenuItem";
+			this.omToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
+			this.omToolStripMenuItem.Text = "Om";
+			this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
+			// 
+			// tabFaktura
+			// 
+			this.tabFaktura.Controls.Add(this.button_VisAllePatienter);
+			this.tabFaktura.Controls.Add(this.label3);
+			this.tabFaktura.Controls.Add(this.textBox_PatientID);
+			this.tabFaktura.Controls.Add(this.udskrivFaktura);
+			this.tabFaktura.Controls.Add(this.listView_Faktura);
+			this.tabFaktura.Controls.Add(this.Button_Søg);
+			this.tabFaktura.Location = new System.Drawing.Point(4, 25);
+			this.tabFaktura.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabFaktura.Name = "tabFaktura";
+			this.tabFaktura.Size = new System.Drawing.Size(855, 533);
+			this.tabFaktura.TabIndex = 3;
+			this.tabFaktura.Text = "Faktura";
+			this.tabFaktura.UseVisualStyleBackColor = true;
+			// 
+			// button_VisAllePatienter
+			// 
+			this.button_VisAllePatienter.Location = new System.Drawing.Point(705, 10);
+			this.button_VisAllePatienter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.button_VisAllePatienter.Name = "button_VisAllePatienter";
+			this.button_VisAllePatienter.Size = new System.Drawing.Size(128, 28);
+			this.button_VisAllePatienter.TabIndex = 5;
+			this.button_VisAllePatienter.Text = "Vis Alle Patienter";
+			this.button_VisAllePatienter.UseVisualStyleBackColor = true;
+			this.button_VisAllePatienter.Click += new System.EventHandler(this.button_VisAllePatienter_Click);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(11, 10);
+			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(74, 17);
+			this.label3.TabIndex = 4;
+			this.label3.Text = "Pertient ID";
+			// 
+			// textBox_PatientID
+			// 
+			this.textBox_PatientID.Location = new System.Drawing.Point(95, 7);
+			this.textBox_PatientID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.textBox_PatientID.Name = "textBox_PatientID";
+			this.textBox_PatientID.Size = new System.Drawing.Size(79, 22);
+			this.textBox_PatientID.TabIndex = 3;
+			// 
+			// udskrivFaktura
+			// 
+			this.udskrivFaktura.Location = new System.Drawing.Point(632, 450);
+			this.udskrivFaktura.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.udskrivFaktura.Name = "udskrivFaktura";
+			this.udskrivFaktura.Size = new System.Drawing.Size(120, 28);
+			this.udskrivFaktura.TabIndex = 0;
+			this.udskrivFaktura.Text = "Udskriv Faktura";
+			this.udskrivFaktura.UseVisualStyleBackColor = true;
+			this.udskrivFaktura.Click += new System.EventHandler(this.udskrivFaktura_Click);
+			// 
+			// listView_Faktura
+			// 
+			this.listView_Faktura.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.FakturaID_ListView,
             this.Navn_ListView,
             this.PertientID_ListView,
             this.FakturaingsDato_ListView});
-            this.listView_Faktura.Location = new System.Drawing.Point(11, 32);
-            this.listView_Faktura.Name = "listView_Faktura";
-            this.listView_Faktura.Size = new System.Drawing.Size(385, 185);
-            this.listView_Faktura.TabIndex = 2;
-            this.listView_Faktura.UseCompatibleStateImageBehavior = false;
-            this.listView_Faktura.View = System.Windows.Forms.View.Details;
-            this.listView_Faktura.SelectedIndexChanged += new System.EventHandler(this.listView_Faktura_SelectedIndexChanged);
-            // 
-            // FakturaID_ListView
-            // 
-            this.FakturaID_ListView.Text = "Faktura ID";
-            this.FakturaID_ListView.Width = 84;
-            // 
-            // Navn_ListView
-            // 
-            this.Navn_ListView.Text = "Navn";
-            this.Navn_ListView.Width = 87;
-            // 
-            // PertientID_ListView
-            // 
-            this.PertientID_ListView.Text = "Patient ID";
-            this.PertientID_ListView.Width = 85;
-            // 
-            // FakturaingsDato_ListView
-            // 
-            this.FakturaingsDato_ListView.Text = "Fakturerings Dato";
-            this.FakturaingsDato_ListView.Width = 101;
-            // 
-            // Button_Søg
-            // 
-            this.Button_Søg.Location = new System.Drawing.Point(137, 4);
-            this.Button_Søg.Name = "Button_Søg";
-            this.Button_Søg.Size = new System.Drawing.Size(75, 23);
-            this.Button_Søg.TabIndex = 1;
-            this.Button_Søg.Text = "Søg";
-            this.Button_Søg.UseVisualStyleBackColor = true;
-            this.Button_Søg.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // tabPatient
-            // 
-            this.tabPatient.Controls.Add(this.listViewPatienter);
-            this.tabPatient.Controls.Add(this.flowLayoutPanel1);
-            this.tabPatient.Location = new System.Drawing.Point(4, 22);
-            this.tabPatient.Name = "tabPatient";
-            this.tabPatient.Size = new System.Drawing.Size(639, 431);
-            this.tabPatient.TabIndex = 2;
-            this.tabPatient.Text = "Patient";
-            this.tabPatient.UseVisualStyleBackColor = true;
-            // 
-            // listViewPatienter
-            // 
-            this.listViewPatienter.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this.listView_Faktura.Location = new System.Drawing.Point(15, 39);
+			this.listView_Faktura.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.listView_Faktura.Name = "listView_Faktura";
+			this.listView_Faktura.Size = new System.Drawing.Size(512, 227);
+			this.listView_Faktura.TabIndex = 2;
+			this.listView_Faktura.UseCompatibleStateImageBehavior = false;
+			this.listView_Faktura.View = System.Windows.Forms.View.Details;
+			this.listView_Faktura.SelectedIndexChanged += new System.EventHandler(this.listView_Faktura_SelectedIndexChanged);
+			// 
+			// FakturaID_ListView
+			// 
+			this.FakturaID_ListView.Text = "Faktura ID";
+			this.FakturaID_ListView.Width = 84;
+			// 
+			// Navn_ListView
+			// 
+			this.Navn_ListView.Text = "Navn";
+			this.Navn_ListView.Width = 87;
+			// 
+			// PertientID_ListView
+			// 
+			this.PertientID_ListView.Text = "Patient ID";
+			this.PertientID_ListView.Width = 85;
+			// 
+			// FakturaingsDato_ListView
+			// 
+			this.FakturaingsDato_ListView.Text = "Fakturerings Dato";
+			this.FakturaingsDato_ListView.Width = 101;
+			// 
+			// Button_Søg
+			// 
+			this.Button_Søg.Location = new System.Drawing.Point(183, 5);
+			this.Button_Søg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Button_Søg.Name = "Button_Søg";
+			this.Button_Søg.Size = new System.Drawing.Size(100, 28);
+			this.Button_Søg.TabIndex = 1;
+			this.Button_Søg.Text = "Søg";
+			this.Button_Søg.UseVisualStyleBackColor = true;
+			this.Button_Søg.Click += new System.EventHandler(this.button1_Click_1);
+			// 
+			// tabPatient
+			// 
+			this.tabPatient.Controls.Add(this.listViewPatienter);
+			this.tabPatient.Controls.Add(this.flowLayoutPanel1);
+			this.tabPatient.Location = new System.Drawing.Point(4, 25);
+			this.tabPatient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabPatient.Name = "tabPatient";
+			this.tabPatient.Size = new System.Drawing.Size(855, 533);
+			this.tabPatient.TabIndex = 2;
+			this.tabPatient.Text = "Patient";
+			this.tabPatient.UseVisualStyleBackColor = true;
+			// 
+			// listViewPatienter
+			// 
+			this.listViewPatienter.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnFornavn,
             this.columnEfternavn,
             this.columnTelefon,
             this.columnPatientID});
-            this.listViewPatienter.FullRowSelect = true;
-            listViewGroup1.Header = "Tandlægerne Smil\'s Patienter";
-            listViewGroup1.Name = "Tandlægerne Smil\'s Patienter";
-            this.listViewPatienter.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+			this.listViewPatienter.FullRowSelect = true;
+			listViewGroup1.Header = "Tandlægerne Smil\'s Patienter";
+			listViewGroup1.Name = "Tandlægerne Smil\'s Patienter";
+			this.listViewPatienter.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1});
-            this.listViewPatienter.HideSelection = false;
-            this.listViewPatienter.Location = new System.Drawing.Point(6, 6);
-            this.listViewPatienter.MultiSelect = false;
-            this.listViewPatienter.Name = "listViewPatienter";
-            this.listViewPatienter.Size = new System.Drawing.Size(522, 387);
-            this.listViewPatienter.TabIndex = 3;
-            this.listViewPatienter.UseCompatibleStateImageBehavior = false;
-            this.listViewPatienter.View = System.Windows.Forms.View.Details;
-            // 
-            // columnFornavn
-            // 
-            this.columnFornavn.Text = "Fornavn";
-            this.columnFornavn.Width = 82;
-            // 
-            // columnEfternavn
-            // 
-            this.columnEfternavn.Text = "Efternavn";
-            this.columnEfternavn.Width = 100;
-            // 
-            // columnTelefon
-            // 
-            this.columnTelefon.Text = "Telefon";
-            this.columnTelefon.Width = 95;
-            // 
-            // columnPatientID
-            // 
-            this.columnPatientID.Text = "ID";
-            this.columnPatientID.Width = 40;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.buttonOpretPatient);
-            this.flowLayoutPanel1.Controls.Add(this.buttonRedigerePatient);
-            this.flowLayoutPanel1.Controls.Add(this.opretTestPatient);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(531, 3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(105, 428);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // buttonOpretPatient
-            // 
-            this.buttonOpretPatient.Location = new System.Drawing.Point(3, 3);
-            this.buttonOpretPatient.Name = "buttonOpretPatient";
-            this.buttonOpretPatient.Size = new System.Drawing.Size(96, 23);
-            this.buttonOpretPatient.TabIndex = 1;
-            this.buttonOpretPatient.Text = "Opret Ny Patient";
-            this.buttonOpretPatient.UseVisualStyleBackColor = true;
-            this.buttonOpretPatient.Click += new System.EventHandler(this.buttonOpretPatient_Click);
-            // 
-            // buttonRedigerePatient
-            // 
-            this.buttonRedigerePatient.Location = new System.Drawing.Point(3, 32);
-            this.buttonRedigerePatient.Name = "buttonRedigerePatient";
-            this.buttonRedigerePatient.Size = new System.Drawing.Size(96, 23);
-            this.buttonRedigerePatient.TabIndex = 2;
-            this.buttonRedigerePatient.Text = "Redigere Patient";
-            this.buttonRedigerePatient.UseVisualStyleBackColor = true;
-            this.buttonRedigerePatient.Click += new System.EventHandler(this.buttonRedigerePatient_Click);
-            // 
-            // opretTestPatient
-            // 
-            this.opretTestPatient.Location = new System.Drawing.Point(3, 61);
-            this.opretTestPatient.Name = "opretTestPatient";
-            this.opretTestPatient.Size = new System.Drawing.Size(96, 23);
-            this.opretTestPatient.TabIndex = 0;
-            this.opretTestPatient.Text = "Refresh";
-            this.opretTestPatient.UseVisualStyleBackColor = true;
-            this.opretTestPatient.Click += new System.EventHandler(this.opretTestPatient_Click);
-            // 
-            // tabLiveView
-            // 
-            this.tabLiveView.Controls.Add(this.buttonUdskrivDagensBookninger);
-            this.tabLiveView.Controls.Add(this.buttonOpretBooking);
-            this.tabLiveView.Controls.Add(this.dateTimePicker);
-            this.tabLiveView.Controls.Add(this.buttonAkutAnkomst);
-            this.tabLiveView.Controls.Add(this.buttonRedigereBookning);
-            this.tabLiveView.Controls.Add(this.button4);
-            this.tabLiveView.Controls.Add(this.button2);
-            this.tabLiveView.Controls.Add(this.buttonTjekkeInd);
-            this.tabLiveView.Controls.Add(this.listViewDagensProgram);
-            this.tabLiveView.Controls.Add(this.label2);
-            this.tabLiveView.Controls.Add(this.listViewVenteværelse);
-            this.tabLiveView.Controls.Add(this.label1);
-            this.tabLiveView.Location = new System.Drawing.Point(4, 22);
-            this.tabLiveView.Name = "tabLiveView";
-            this.tabLiveView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLiveView.Size = new System.Drawing.Size(639, 431);
-            this.tabLiveView.TabIndex = 0;
-            this.tabLiveView.Text = "Live-View";
-            this.tabLiveView.UseVisualStyleBackColor = true;
-            this.tabLiveView.Click += new System.EventHandler(this.tabLiveView_Click);
-            // 
-            // buttonUdskrivDagensBookninger
-            // 
-            this.buttonUdskrivDagensBookninger.Location = new System.Drawing.Point(518, 391);
-            this.buttonUdskrivDagensBookninger.Name = "buttonUdskrivDagensBookninger";
-            this.buttonUdskrivDagensBookninger.Size = new System.Drawing.Size(115, 34);
-            this.buttonUdskrivDagensBookninger.TabIndex = 13;
-            this.buttonUdskrivDagensBookninger.Text = "Udskriv Dagens Bookninger";
-            this.buttonUdskrivDagensBookninger.UseVisualStyleBackColor = true;
-            this.buttonUdskrivDagensBookninger.Click += new System.EventHandler(this.buttonUdskrivDagensBookninger_Click);
-            // 
-            // buttonOpretBooking
-            // 
-            this.buttonOpretBooking.Location = new System.Drawing.Point(518, 362);
-            this.buttonOpretBooking.Name = "buttonOpretBooking";
-            this.buttonOpretBooking.Size = new System.Drawing.Size(115, 23);
-            this.buttonOpretBooking.TabIndex = 12;
-            this.buttonOpretBooking.Text = "Opret Booking";
-            this.buttonOpretBooking.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.Location = new System.Drawing.Point(9, 223);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker.TabIndex = 11;
-            // 
-            // buttonAkutAnkomst
-            // 
-            this.buttonAkutAnkomst.Location = new System.Drawing.Point(518, 89);
-            this.buttonAkutAnkomst.Name = "buttonAkutAnkomst";
-            this.buttonAkutAnkomst.Size = new System.Drawing.Size(115, 23);
-            this.buttonAkutAnkomst.TabIndex = 10;
-            this.buttonAkutAnkomst.Text = "AKUT Ankomst";
-            this.buttonAkutAnkomst.UseVisualStyleBackColor = true;
-            // 
-            // buttonRedigereBookning
-            // 
-            this.buttonRedigereBookning.Location = new System.Drawing.Point(518, 333);
-            this.buttonRedigereBookning.Name = "buttonRedigereBookning";
-            this.buttonRedigereBookning.Size = new System.Drawing.Size(115, 23);
-            this.buttonRedigereBookning.TabIndex = 9;
-            this.buttonRedigereBookning.Text = "Åbne Booking";
-            this.buttonRedigereBookning.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(518, 19);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(115, 35);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Markere som Under Behandling";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(518, 60);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Afslut Behandling";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // buttonTjekkeInd
-            // 
-            this.buttonTjekkeInd.Location = new System.Drawing.Point(518, 304);
-            this.buttonTjekkeInd.Name = "buttonTjekkeInd";
-            this.buttonTjekkeInd.Size = new System.Drawing.Size(115, 23);
-            this.buttonTjekkeInd.TabIndex = 5;
-            this.buttonTjekkeInd.Text = "Tjekke Patient Ind";
-            this.buttonTjekkeInd.UseVisualStyleBackColor = true;
-            this.buttonTjekkeInd.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // listViewDagensProgram
-            // 
-            this.listViewDagensProgram.Location = new System.Drawing.Point(6, 249);
-            this.listViewDagensProgram.Name = "listViewDagensProgram";
-            this.listViewDagensProgram.Size = new System.Drawing.Size(506, 176);
-            this.listViewDagensProgram.TabIndex = 4;
-            this.listViewDagensProgram.UseCompatibleStateImageBehavior = false;
-            this.listViewDagensProgram.SelectedIndexChanged += new System.EventHandler(this.listViewDagensProgram_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 207);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Dagens Bookninger";
-            // 
-            // listViewVenteværelse
-            // 
-            this.listViewVenteværelse.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this.listViewPatienter.HideSelection = false;
+			this.listViewPatienter.Location = new System.Drawing.Point(8, 7);
+			this.listViewPatienter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.listViewPatienter.MultiSelect = false;
+			this.listViewPatienter.Name = "listViewPatienter";
+			this.listViewPatienter.Size = new System.Drawing.Size(695, 475);
+			this.listViewPatienter.TabIndex = 3;
+			this.listViewPatienter.UseCompatibleStateImageBehavior = false;
+			this.listViewPatienter.View = System.Windows.Forms.View.Details;
+			// 
+			// columnFornavn
+			// 
+			this.columnFornavn.Text = "Fornavn";
+			this.columnFornavn.Width = 82;
+			// 
+			// columnEfternavn
+			// 
+			this.columnEfternavn.Text = "Efternavn";
+			this.columnEfternavn.Width = 100;
+			// 
+			// columnTelefon
+			// 
+			this.columnTelefon.Text = "Telefon";
+			this.columnTelefon.Width = 95;
+			// 
+			// columnPatientID
+			// 
+			this.columnPatientID.Text = "ID";
+			this.columnPatientID.Width = 40;
+			// 
+			// flowLayoutPanel1
+			// 
+			this.flowLayoutPanel1.Controls.Add(this.buttonOpretPatient);
+			this.flowLayoutPanel1.Controls.Add(this.buttonRedigerePatient);
+			this.flowLayoutPanel1.Controls.Add(this.opretTestPatient);
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(708, 4);
+			this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(140, 527);
+			this.flowLayoutPanel1.TabIndex = 2;
+			// 
+			// buttonOpretPatient
+			// 
+			this.buttonOpretPatient.Location = new System.Drawing.Point(4, 4);
+			this.buttonOpretPatient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.buttonOpretPatient.Name = "buttonOpretPatient";
+			this.buttonOpretPatient.Size = new System.Drawing.Size(128, 28);
+			this.buttonOpretPatient.TabIndex = 1;
+			this.buttonOpretPatient.Text = "Opret Ny Patient";
+			this.buttonOpretPatient.UseVisualStyleBackColor = true;
+			this.buttonOpretPatient.Click += new System.EventHandler(this.buttonOpretPatient_Click);
+			// 
+			// buttonRedigerePatient
+			// 
+			this.buttonRedigerePatient.Location = new System.Drawing.Point(4, 40);
+			this.buttonRedigerePatient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.buttonRedigerePatient.Name = "buttonRedigerePatient";
+			this.buttonRedigerePatient.Size = new System.Drawing.Size(128, 28);
+			this.buttonRedigerePatient.TabIndex = 2;
+			this.buttonRedigerePatient.Text = "Redigere Patient";
+			this.buttonRedigerePatient.UseVisualStyleBackColor = true;
+			this.buttonRedigerePatient.Click += new System.EventHandler(this.buttonRedigerePatient_Click);
+			// 
+			// opretTestPatient
+			// 
+			this.opretTestPatient.Location = new System.Drawing.Point(4, 76);
+			this.opretTestPatient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.opretTestPatient.Name = "opretTestPatient";
+			this.opretTestPatient.Size = new System.Drawing.Size(128, 28);
+			this.opretTestPatient.TabIndex = 0;
+			this.opretTestPatient.Text = "Refresh";
+			this.opretTestPatient.UseVisualStyleBackColor = true;
+			this.opretTestPatient.Click += new System.EventHandler(this.opretTestPatient_Click);
+			// 
+			// tabLiveView
+			// 
+			this.tabLiveView.Controls.Add(this.buttonUdskrivDagensBookninger);
+			this.tabLiveView.Controls.Add(this.buttonOpretBooking);
+			this.tabLiveView.Controls.Add(this.dateTimePicker);
+			this.tabLiveView.Controls.Add(this.buttonAkutAnkomst);
+			this.tabLiveView.Controls.Add(this.buttonRedigereBookning);
+			this.tabLiveView.Controls.Add(this.button4);
+			this.tabLiveView.Controls.Add(this.button2);
+			this.tabLiveView.Controls.Add(this.buttonTjekkeInd);
+			this.tabLiveView.Controls.Add(this.listViewDagensProgram);
+			this.tabLiveView.Controls.Add(this.label2);
+			this.tabLiveView.Controls.Add(this.listViewVenteværelse);
+			this.tabLiveView.Controls.Add(this.label1);
+			this.tabLiveView.Location = new System.Drawing.Point(4, 25);
+			this.tabLiveView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabLiveView.Name = "tabLiveView";
+			this.tabLiveView.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabLiveView.Size = new System.Drawing.Size(855, 533);
+			this.tabLiveView.TabIndex = 0;
+			this.tabLiveView.Text = "Live-View";
+			this.tabLiveView.UseVisualStyleBackColor = true;
+			this.tabLiveView.Click += new System.EventHandler(this.tabLiveView_Click);
+			// 
+			// buttonUdskrivDagensBookninger
+			// 
+			this.buttonUdskrivDagensBookninger.Location = new System.Drawing.Point(691, 481);
+			this.buttonUdskrivDagensBookninger.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.buttonUdskrivDagensBookninger.Name = "buttonUdskrivDagensBookninger";
+			this.buttonUdskrivDagensBookninger.Size = new System.Drawing.Size(153, 42);
+			this.buttonUdskrivDagensBookninger.TabIndex = 13;
+			this.buttonUdskrivDagensBookninger.Text = "Udskriv Dagens Bookninger";
+			this.buttonUdskrivDagensBookninger.UseVisualStyleBackColor = true;
+			this.buttonUdskrivDagensBookninger.Click += new System.EventHandler(this.buttonUdskrivDagensBookninger_Click);
+			// 
+			// buttonOpretBooking
+			// 
+			this.buttonOpretBooking.Location = new System.Drawing.Point(691, 446);
+			this.buttonOpretBooking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.buttonOpretBooking.Name = "buttonOpretBooking";
+			this.buttonOpretBooking.Size = new System.Drawing.Size(153, 28);
+			this.buttonOpretBooking.TabIndex = 12;
+			this.buttonOpretBooking.Text = "Opret Booking";
+			this.buttonOpretBooking.UseVisualStyleBackColor = true;
+			// 
+			// dateTimePicker
+			// 
+			this.dateTimePicker.Location = new System.Drawing.Point(12, 274);
+			this.dateTimePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.dateTimePicker.Name = "dateTimePicker";
+			this.dateTimePicker.Size = new System.Drawing.Size(265, 22);
+			this.dateTimePicker.TabIndex = 11;
+			// 
+			// buttonAkutAnkomst
+			// 
+			this.buttonAkutAnkomst.Location = new System.Drawing.Point(691, 110);
+			this.buttonAkutAnkomst.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.buttonAkutAnkomst.Name = "buttonAkutAnkomst";
+			this.buttonAkutAnkomst.Size = new System.Drawing.Size(153, 28);
+			this.buttonAkutAnkomst.TabIndex = 10;
+			this.buttonAkutAnkomst.Text = "AKUT Ankomst";
+			this.buttonAkutAnkomst.UseVisualStyleBackColor = true;
+			// 
+			// buttonRedigereBookning
+			// 
+			this.buttonRedigereBookning.Location = new System.Drawing.Point(691, 410);
+			this.buttonRedigereBookning.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.buttonRedigereBookning.Name = "buttonRedigereBookning";
+			this.buttonRedigereBookning.Size = new System.Drawing.Size(153, 28);
+			this.buttonRedigereBookning.TabIndex = 9;
+			this.buttonRedigereBookning.Text = "Åbne Booking";
+			this.buttonRedigereBookning.UseVisualStyleBackColor = true;
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(691, 23);
+			this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(153, 43);
+			this.button4.TabIndex = 8;
+			this.button4.Text = "Markere som Under Behandling";
+			this.button4.UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(691, 74);
+			this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(153, 28);
+			this.button2.TabIndex = 6;
+			this.button2.Text = "Afslut Behandling";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// buttonTjekkeInd
+			// 
+			this.buttonTjekkeInd.Location = new System.Drawing.Point(691, 374);
+			this.buttonTjekkeInd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.buttonTjekkeInd.Name = "buttonTjekkeInd";
+			this.buttonTjekkeInd.Size = new System.Drawing.Size(153, 28);
+			this.buttonTjekkeInd.TabIndex = 5;
+			this.buttonTjekkeInd.Text = "Tjekke Patient Ind";
+			this.buttonTjekkeInd.UseVisualStyleBackColor = true;
+			this.buttonTjekkeInd.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// listViewDagensProgram
+			// 
+			this.listViewDagensProgram.Location = new System.Drawing.Point(8, 306);
+			this.listViewDagensProgram.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.listViewDagensProgram.Name = "listViewDagensProgram";
+			this.listViewDagensProgram.Size = new System.Drawing.Size(673, 216);
+			this.listViewDagensProgram.TabIndex = 4;
+			this.listViewDagensProgram.UseCompatibleStateImageBehavior = false;
+			this.listViewDagensProgram.SelectedIndexChanged += new System.EventHandler(this.listViewDagensProgram_SelectedIndexChanged);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(8, 255);
+			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(133, 17);
+			this.label2.TabIndex = 3;
+			this.label2.Text = "Dagens Bookninger";
+			// 
+			// listViewVenteværelse
+			// 
+			this.listViewVenteværelse.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnBookingTid,
             this.columnBehandling,
             this.columnLæge,
             this.columnPatient});
-            this.listViewVenteværelse.Location = new System.Drawing.Point(6, 19);
-            this.listViewVenteværelse.Name = "listViewVenteværelse";
-            this.listViewVenteværelse.Size = new System.Drawing.Size(506, 185);
-            this.listViewVenteværelse.TabIndex = 2;
-            this.listViewVenteværelse.UseCompatibleStateImageBehavior = false;
-            this.listViewVenteværelse.View = System.Windows.Forms.View.Details;
-            // 
-            // columnBookingTid
-            // 
-            this.columnBookingTid.Text = "Booking Tid";
-            this.columnBookingTid.Width = 87;
-            // 
-            // columnBehandling
-            // 
-            this.columnBehandling.Text = "Behandling";
-            this.columnBehandling.Width = 195;
-            // 
-            // columnLæge
-            // 
-            this.columnLæge.Text = "Ansat";
-            this.columnLæge.Width = 105;
-            // 
-            // columnPatient
-            // 
-            this.columnPatient.Text = "Patient";
-            this.columnPatient.Width = 115;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Venteværelse";
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabLiveView);
-            this.tabControl1.Controls.Add(this.tabPatient);
-            this.tabControl1.Controls.Add(this.tabFaktura);
-            this.tabControl1.Location = new System.Drawing.Point(12, 27);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(647, 457);
-            this.tabControl1.TabIndex = 2;
-            // 
-            // StartForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 495);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
-            this.Name = "StartForm";
-            this.Text = "Tandlægerne Smil";
-            this.Load += new System.EventHandler(this.StartForm_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.tabFaktura.ResumeLayout(false);
-            this.tabFaktura.PerformLayout();
-            this.tabPatient.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.tabLiveView.ResumeLayout(false);
-            this.tabLiveView.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.listViewVenteværelse.Location = new System.Drawing.Point(8, 23);
+			this.listViewVenteværelse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.listViewVenteværelse.Name = "listViewVenteværelse";
+			this.listViewVenteværelse.Size = new System.Drawing.Size(673, 227);
+			this.listViewVenteværelse.TabIndex = 2;
+			this.listViewVenteværelse.UseCompatibleStateImageBehavior = false;
+			this.listViewVenteværelse.View = System.Windows.Forms.View.Details;
+			// 
+			// columnBookingTid
+			// 
+			this.columnBookingTid.Text = "Booking Tid";
+			this.columnBookingTid.Width = 87;
+			// 
+			// columnBehandling
+			// 
+			this.columnBehandling.Text = "Behandling";
+			this.columnBehandling.Width = 195;
+			// 
+			// columnLæge
+			// 
+			this.columnLæge.Text = "Ansat";
+			this.columnLæge.Width = 105;
+			// 
+			// columnPatient
+			// 
+			this.columnPatient.Text = "Patient";
+			this.columnPatient.Width = 115;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(8, 4);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(96, 17);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Venteværelse";
+			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabLiveView);
+			this.tabControl1.Controls.Add(this.tabPatient);
+			this.tabControl1.Controls.Add(this.tabFaktura);
+			this.tabControl1.Location = new System.Drawing.Point(16, 33);
+			this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(863, 562);
+			this.tabControl1.TabIndex = 2;
+			// 
+			// StartForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(895, 609);
+			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.menuStrip1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.MainMenuStrip = this.menuStrip1;
+			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.MaximizeBox = false;
+			this.Name = "StartForm";
+			this.Text = "Tandlægerne Smil";
+			this.Load += new System.EventHandler(this.StartForm_Load);
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
+			this.tabFaktura.ResumeLayout(false);
+			this.tabFaktura.PerformLayout();
+			this.tabPatient.ResumeLayout(false);
+			this.flowLayoutPanel1.ResumeLayout(false);
+			this.tabLiveView.ResumeLayout(false);
+			this.tabLiveView.PerformLayout();
+			this.tabControl1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
@@ -581,6 +612,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox_PatientID;
         private System.Windows.Forms.ColumnHeader Navn_ListView;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_VisAllePatienter;
     }
 }
