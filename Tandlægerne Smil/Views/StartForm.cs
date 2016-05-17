@@ -15,6 +15,8 @@ namespace Tandlægerne_Smil.Views
 {
     public partial class StartForm : Form
     {
+        #region Console-Debugger
+
         [DllImport("kernel32.dll")] // Næste 6 linjer er for at skjule konsollen
         private static extern IntPtr GetConsoleWindow();
 
@@ -23,14 +25,17 @@ namespace Tandlægerne_Smil.Views
 
         private const int SwHide = 0;
         private const int SwShow = 5;
+        #endregion
+
 
         private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
+       
 
         public StartForm()
         {
             InitializeComponent();
         }
-
+        
         private void opretTestPatient_Click(object sender, EventArgs e)
         {
             listViewPatienter.Items.Clear();
@@ -120,9 +125,45 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
                      MessageBoxButtons.OK,
                      MessageBoxIcon.Error);
             }
-            
 
-           
+
+            #region faktura
+        }
+
+        private void tabLiveView_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void udskrivFaktura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e) //Søg
+        {
+            try
+            {
+                listView_Faktura.Items.Clear();
+                _controller.Faktura.hentFaktura(int.Parse(textBox_PatientID.Text), listView_Faktura);
+            }
+            catch
+            {
+                MessageBox.Show("Fejl i Patient ID prøv igen");
+            }
+            
+            
+        }
+
+        private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        private void listView_Faktura_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
