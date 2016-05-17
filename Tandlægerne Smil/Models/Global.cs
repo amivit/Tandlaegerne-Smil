@@ -16,7 +16,7 @@ namespace Tandlægerne_Smil.Models
         // Her kan tilføjes fields/metoder som alle sub-klasser skal kunne bruge
         // F.eks. skal alle have adgang til database-interfacet
         public smildb Db = new smildb();
-
+        
         public void LogSqlQuery()
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;

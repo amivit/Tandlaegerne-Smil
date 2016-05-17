@@ -41,7 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Afslut = new System.Windows.Forms.Button();
-            this.Redigere = new System.Windows.Forms.Button();
+            this.Gem = new System.Windows.Forms.Button();
             this.textBoxID = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.Slet = new System.Windows.Forms.Button();
@@ -149,18 +149,19 @@
             this.Afslut.Name = "Afslut";
             this.Afslut.Size = new System.Drawing.Size(75, 23);
             this.Afslut.TabIndex = 15;
-            this.Afslut.Text = "Afslut";
+            this.Afslut.Text = "Annulere";
             this.Afslut.UseVisualStyleBackColor = true;
             this.Afslut.Click += new System.EventHandler(this.Afslut_Click);
             // 
-            // Redigere
+            // Gem
             // 
-            this.Redigere.Location = new System.Drawing.Point(303, 12);
-            this.Redigere.Name = "Redigere";
-            this.Redigere.Size = new System.Drawing.Size(75, 23);
-            this.Redigere.TabIndex = 14;
-            this.Redigere.Text = "Redigere";
-            this.Redigere.UseVisualStyleBackColor = true;
+            this.Gem.Location = new System.Drawing.Point(303, 12);
+            this.Gem.Name = "Gem";
+            this.Gem.Size = new System.Drawing.Size(75, 23);
+            this.Gem.TabIndex = 14;
+            this.Gem.Text = "Gem";
+            this.Gem.UseVisualStyleBackColor = true;
+            this.Gem.Click += new System.EventHandler(this.Gem_Click);
             // 
             // textBoxID
             // 
@@ -209,7 +210,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Afslut);
-            this.Controls.Add(this.Redigere);
+            this.Controls.Add(this.Gem);
             this.Name = "PatientRedigere";
             this.Text = "PatientRedigere";
             this.Load += new System.EventHandler(this.PatientRedigere_Load);
@@ -219,13 +220,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBoxTelefon;
-        private System.Windows.Forms.TextBox textBoxPostnummer;
-        private System.Windows.Forms.TextBox textBoxAdresse;
-        private System.Windows.Forms.TextBox textBoxCPR;
-        private System.Windows.Forms.TextBox textBoxEfternavn;
-        private System.Windows.Forms.TextBox textBoxNavn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -233,9 +227,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Afslut;
-        private System.Windows.Forms.Button Redigere;
-        private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.Button Gem;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button Slet;
+        public System.Windows.Forms.TextBox textBoxNavn;
+        public System.Windows.Forms.TextBox textBoxTelefon;
+        public System.Windows.Forms.TextBox textBoxPostnummer;
+        public System.Windows.Forms.TextBox textBoxAdresse;
+        public System.Windows.Forms.TextBox textBoxCPR;
+        public System.Windows.Forms.TextBox textBoxEfternavn;
+        public System.Windows.Forms.TextBox textBoxID;
     }
 }
