@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gemVisKonsolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,7 +38,16 @@
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabFaktura = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox_PatientID = new System.Windows.Forms.TextBox();
             this.udskrivFaktura = new System.Windows.Forms.Button();
+            this.listView_Faktura = new System.Windows.Forms.ListView();
+            this.FakturaID_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Navn_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PertientID_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FakturaingsDato_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Button_Søg = new System.Windows.Forms.Button();
             this.tabPatient = new System.Windows.Forms.TabPage();
             this.listViewPatienter = new System.Windows.Forms.ListView();
             this.columnFornavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -69,15 +78,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Button_Søg = new System.Windows.Forms.Button();
-            this.listView_Faktura = new System.Windows.Forms.ListView();
-            this.FakturaID_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PertientID_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.FakturaingsDato_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox_PatientID = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.Navn_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.tabPatient.SuspendLayout();
@@ -106,7 +106,7 @@
             this.demotilstandToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.filerToolStripMenuItem.Name = "filerToolStripMenuItem";
-            this.filerToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.filerToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.filerToolStripMenuItem.Text = "Filer";
             // 
             // gemVisKonsolToolStripMenuItem
@@ -115,7 +115,7 @@
             this.gemVisKonsolToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.gemVisKonsolToolStripMenuItem.Name = "gemVisKonsolToolStripMenuItem";
             this.gemVisKonsolToolStripMenuItem.ShowShortcutKeys = false;
-            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.gemVisKonsolToolStripMenuItem.Text = "Vis Konsol";
             this.gemVisKonsolToolStripMenuItem.Click += new System.EventHandler(this.VisKonsolToolStripMenuItem_Click);
             // 
@@ -124,13 +124,13 @@
             this.demotilstandToolStripMenuItem.Checked = true;
             this.demotilstandToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.demotilstandToolStripMenuItem.Name = "demotilstandToolStripMenuItem";
-            this.demotilstandToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.demotilstandToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.demotilstandToolStripMenuItem.Text = "Demo-tilstand";
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.AfslutToolStripMenuItem_Click);
             // 
@@ -139,13 +139,13 @@
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.omToolStripMenuItem});
             this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
-            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.hjælpToolStripMenuItem.Text = "Hjælp";
             // 
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.omToolStripMenuItem.Text = "Om";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -164,6 +164,31 @@
             this.tabFaktura.Text = "Faktura";
             this.tabFaktura.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(529, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Vis Alle Patienter";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Pertient ID";
+            // 
+            // textBox_PatientID
+            // 
+            this.textBox_PatientID.Location = new System.Drawing.Point(71, 6);
+            this.textBox_PatientID.Name = "textBox_PatientID";
+            this.textBox_PatientID.Size = new System.Drawing.Size(60, 20);
+            this.textBox_PatientID.TabIndex = 3;
+            // 
             // udskrivFaktura
             // 
             this.udskrivFaktura.Location = new System.Drawing.Point(474, 366);
@@ -173,6 +198,51 @@
             this.udskrivFaktura.Text = "Udskriv Faktura";
             this.udskrivFaktura.UseVisualStyleBackColor = true;
             this.udskrivFaktura.Click += new System.EventHandler(this.udskrivFaktura_Click);
+            // 
+            // listView_Faktura
+            // 
+            this.listView_Faktura.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.FakturaID_ListView,
+            this.Navn_ListView,
+            this.PertientID_ListView,
+            this.FakturaingsDato_ListView});
+            this.listView_Faktura.Location = new System.Drawing.Point(11, 32);
+            this.listView_Faktura.Name = "listView_Faktura";
+            this.listView_Faktura.Size = new System.Drawing.Size(385, 185);
+            this.listView_Faktura.TabIndex = 2;
+            this.listView_Faktura.UseCompatibleStateImageBehavior = false;
+            this.listView_Faktura.View = System.Windows.Forms.View.Details;
+            this.listView_Faktura.SelectedIndexChanged += new System.EventHandler(this.listView_Faktura_SelectedIndexChanged);
+            // 
+            // FakturaID_ListView
+            // 
+            this.FakturaID_ListView.Text = "Faktura ID";
+            this.FakturaID_ListView.Width = 84;
+            // 
+            // Navn_ListView
+            // 
+            this.Navn_ListView.Text = "Navn";
+            this.Navn_ListView.Width = 87;
+            // 
+            // PertientID_ListView
+            // 
+            this.PertientID_ListView.Text = "Patient ID";
+            this.PertientID_ListView.Width = 85;
+            // 
+            // FakturaingsDato_ListView
+            // 
+            this.FakturaingsDato_ListView.Text = "Fakturerings Dato";
+            this.FakturaingsDato_ListView.Width = 101;
+            // 
+            // Button_Søg
+            // 
+            this.Button_Søg.Location = new System.Drawing.Point(137, 4);
+            this.Button_Søg.Name = "Button_Søg";
+            this.Button_Søg.Size = new System.Drawing.Size(75, 23);
+            this.Button_Søg.TabIndex = 1;
+            this.Button_Søg.Text = "Søg";
+            this.Button_Søg.UseVisualStyleBackColor = true;
+            this.Button_Søg.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // tabPatient
             // 
@@ -193,10 +263,10 @@
             this.columnTelefon,
             this.columnPatientID});
             this.listViewPatienter.FullRowSelect = true;
-            listViewGroup5.Header = "Tandlægerne Smil\'s Patienter";
-            listViewGroup5.Name = "Tandlægerne Smil\'s Patienter";
+            listViewGroup1.Header = "Tandlægerne Smil\'s Patienter";
+            listViewGroup1.Name = "Tandlægerne Smil\'s Patienter";
             this.listViewPatienter.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup5});
+            listViewGroup1});
             this.listViewPatienter.HideSelection = false;
             this.listViewPatienter.Location = new System.Drawing.Point(6, 6);
             this.listViewPatienter.MultiSelect = false;
@@ -433,77 +503,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(647, 457);
             this.tabControl1.TabIndex = 2;
-            // 
-            // Button_Søg
-            // 
-            this.Button_Søg.Location = new System.Drawing.Point(137, 4);
-            this.Button_Søg.Name = "Button_Søg";
-            this.Button_Søg.Size = new System.Drawing.Size(75, 23);
-            this.Button_Søg.TabIndex = 1;
-            this.Button_Søg.Text = "Søg";
-            this.Button_Søg.UseVisualStyleBackColor = true;
-            this.Button_Søg.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // listView_Faktura
-            // 
-            this.listView_Faktura.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.FakturaID_ListView,
-            this.Navn_ListView,
-            this.PertientID_ListView,
-            this.FakturaingsDato_ListView});
-            this.listView_Faktura.Location = new System.Drawing.Point(11, 32);
-            this.listView_Faktura.Name = "listView_Faktura";
-            this.listView_Faktura.Size = new System.Drawing.Size(385, 185);
-            this.listView_Faktura.TabIndex = 2;
-            this.listView_Faktura.UseCompatibleStateImageBehavior = false;
-            this.listView_Faktura.View = System.Windows.Forms.View.Details;
-            this.listView_Faktura.SelectedIndexChanged += new System.EventHandler(this.listView_Faktura_SelectedIndexChanged);
-            // 
-            // FakturaID_ListView
-            // 
-            this.FakturaID_ListView.Text = "Faktura ID";
-            this.FakturaID_ListView.Width = 84;
-            // 
-            // PertientID_ListView
-            // 
-            this.PertientID_ListView.Text = "Patient ID";
-            this.PertientID_ListView.Width = 85;
-            // 
-            // FakturaingsDato_ListView
-            // 
-            this.FakturaingsDato_ListView.DisplayIndex = 2;
-            this.FakturaingsDato_ListView.Text = "Fakturerings Dato";
-            this.FakturaingsDato_ListView.Width = 101;
-            // 
-            // textBox_PatientID
-            // 
-            this.textBox_PatientID.Location = new System.Drawing.Point(71, 6);
-            this.textBox_PatientID.Name = "textBox_PatientID";
-            this.textBox_PatientID.Size = new System.Drawing.Size(60, 20);
-            this.textBox_PatientID.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Pertient ID";
-            // 
-            // Navn_ListView
-            // 
-            this.Navn_ListView.Text = "Navn";
-            this.Navn_ListView.Width = 87;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(529, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Vis Alle Patienter";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // StartForm
             // 

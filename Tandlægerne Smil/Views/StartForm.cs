@@ -38,9 +38,10 @@ namespace Tandlægerne_Smil.Views
         
         private void opretTestPatient_Click(object sender, EventArgs e)
         {
-            listViewPatienter.Items.Clear();
             _controller.Patient.RefreshPatientView(listViewPatienter);
         }
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -126,7 +127,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
             #region faktura
         }
-
+        
         private void tabLiveView_Click(object sender, EventArgs e)
         {
 
