@@ -27,7 +27,7 @@ namespace Tandlægerne_Smil.Views
         private const int SwShow = 5;
         #endregion
 
-
+        //test
         private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
        
 
