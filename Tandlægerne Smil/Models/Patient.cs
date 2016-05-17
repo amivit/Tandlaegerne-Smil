@@ -12,7 +12,6 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Patient : Global
     {
-        
         public void OpretPatient(TextBox textBoxNavn, TextBox textBoxEfternavn, TextBox textBoxCPR, TextBox textBoxAdresse, TextBox textBoxPostnummer, TextBox textBoxTelefon) // Opret test patient her, denne metode bør slettes
         {
             try
@@ -80,27 +79,35 @@ namespace Tandlægerne_Smil.Models
 
         }
 
-        public void RefreshPatientView(ListView listViewPatient)
-        {
-            
-            var patientList = Db.PatientDbs.ToList();
-            var index = 0;
-            // Db.Entry(Db.PatientDbs).Reload();
-            foreach (var patientDb in patientList)
-            {
-                ListViewItem lvi = new ListViewItem(patientList[index].Fornavn.Replace(" ", string.Empty));
-                lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
-                lvi.SubItems.Add(patientList[index].Telefon);
-                lvi.SubItems.Add(patientList[index].PatientId.ToString());
-                listViewPatient.Items.Add(lvi);
-                listViewPatient.Items[index].Group = listViewPatient.Groups[0];
-                index++;
-            }
+        //public void RefreshPatientView(ListView listViewPatient)
+        //{
+        //    listViewPatient.Items.Clear();
+
+        //    //var patientList = Db.PatientDbs.ToList();
+        //    //var Db2 = new smildb();
+        //    using (var db = new smildb())
+        //    {
+        //        var patientList = db.PatientDbs.ToList();
+
+        //        var index = 0;
+        //        // Db.Entry(Db.PatientDbs).Reload();
+        //        foreach (var patientDb in patientList)
+        //        {
+        //            ListViewItem lvi = new ListViewItem(patientList[index].Fornavn.Replace(" ", string.Empty));
+        //            lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
+        //            lvi.SubItems.Add(patientList[index].Telefon);
+        //            lvi.SubItems.Add(patientList[index].PatientId.ToString());
+        //            listViewPatient.Items.Add(lvi);
+        //            listViewPatient.Items[index].Group = listViewPatient.Groups[0];
+        //            index++;
+        //        }
+        //    }
+        //}    
 
             
 
 
-        }
+        
 
         public void RedigerePatientGem(int patientID, PatientRedigere patientRedigere)
         {
@@ -135,12 +142,13 @@ namespace Tandlægerne_Smil.Models
                         //Db.PatientDbs.Add(patient); // Tilføj patienten til tabellen
                         LogSqlQuery(); // Udskriv sql-query til konsol
                         Db.SaveChanges(); // Gem ændringerne i db
+                        Db.Database.Connection.Close();
 
-                        MessageBox.Show("Patient oprettet", // Oprettelse besked
-                            "Oprettet",
+                        MessageBox.Show("Patient redigeret.", // Oprettelse besked
+                            "Success",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
-
+                        
                         Form.ActiveForm.Close();
                     }
                 };

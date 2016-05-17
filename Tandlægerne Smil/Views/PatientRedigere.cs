@@ -15,16 +15,14 @@ namespace Tandlægerne_Smil.Views
 {
     public partial class PatientRedigere : Form
     {
-
-        int PatientID;
+        readonly int _patientId;
+        private StartForm _startForm;
         private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controllerenPatient P = new Patient();
-        StartForm S = new StartForm();
-        
-
-        public PatientRedigere(int PatientID)
+        public PatientRedigere(int PatientID, StartForm startForm)
         {
             InitializeComponent();
-            this.PatientID = PatientID;
+            this._patientId = PatientID;
+            this._startForm = startForm;
             _controller.Patient.LoadRedigerePatient(Convert.ToInt32(PatientID), this);
 
         }
@@ -38,23 +36,21 @@ namespace Tandlægerne_Smil.Views
         {
             if (MessageBox.Show("Er du sikker på at du vil slette valgte patient", "Advarsel", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _controller.Patient.SletPatient(Convert.ToInt32(PatientID));
+                _controller.Patient.SletPatient(Convert.ToInt32(_patientId));
             }
-           
-
-
         }
 
         private void Afslut_Click(object sender, EventArgs e)
         {
             
-            // this.Close();
+            this.Close();
             
         }
 
         private void Gem_Click(object sender, EventArgs e)
         {
-            _controller.Patient.RedigerePatientGem(PatientID, this);
+            _controller.Patient.RedigerePatientGem(_patientId, this);
+            _startForm.RefreshPatientView();
 
         }
     }
