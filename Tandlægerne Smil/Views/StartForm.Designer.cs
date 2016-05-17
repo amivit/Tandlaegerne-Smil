@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gemVisKonsolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,6 +77,7 @@
             this.textBox_PatientID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Navn_ListView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.tabPatient.SuspendLayout();
@@ -150,6 +151,7 @@
             // 
             // tabFaktura
             // 
+            this.tabFaktura.Controls.Add(this.button1);
             this.tabFaktura.Controls.Add(this.label3);
             this.tabFaktura.Controls.Add(this.textBox_PatientID);
             this.tabFaktura.Controls.Add(this.udskrivFaktura);
@@ -191,10 +193,10 @@
             this.columnTelefon,
             this.columnPatientID});
             this.listViewPatienter.FullRowSelect = true;
-            listViewGroup4.Header = "Tandlægerne Smil\'s Patienter";
-            listViewGroup4.Name = "Tandlægerne Smil\'s Patienter";
+            listViewGroup5.Header = "Tandlægerne Smil\'s Patienter";
+            listViewGroup5.Name = "Tandlægerne Smil\'s Patienter";
             this.listViewPatienter.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup4});
+            listViewGroup5});
             this.listViewPatienter.HideSelection = false;
             this.listViewPatienter.Location = new System.Drawing.Point(6, 6);
             this.listViewPatienter.MultiSelect = false;
@@ -494,6 +496,15 @@
             this.Navn_ListView.Text = "Navn";
             this.Navn_ListView.Width = 87;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(529, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Vis Alle Patienter";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -571,5 +582,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox_PatientID;
         private System.Windows.Forms.ColumnHeader Navn_ListView;
+        private System.Windows.Forms.Button button1;
     }
 }
