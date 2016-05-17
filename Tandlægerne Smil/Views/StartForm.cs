@@ -101,6 +101,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void buttonUdskrivDagensBookninger_Click(object sender, EventArgs e)
         {
+            //
             _controller.Book.GemDagensProgram(this.dateTimePicker);
         }
 
