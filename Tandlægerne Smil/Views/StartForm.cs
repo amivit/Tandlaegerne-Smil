@@ -221,7 +221,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void button_VisAlleFolk_Click(object sender, EventArgs e)
         {
-            FakturaPatienter F = new FakturaPatienter();
+            FakturaPatienter F = new FakturaPatienter(this);
             F.Show();
         }
 
@@ -236,6 +236,11 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void textBox_PatientID_TextChanged(object sender, EventArgs e)
         {
 
         }
