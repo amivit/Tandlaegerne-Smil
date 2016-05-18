@@ -68,6 +68,52 @@ namespace Tandlægerne_Smil.Views
 			}
 		}
 
+	    public void RefreshBookingView()
+	    {
+	        listViewDagensProgram.Items.Clear();
+
+            
+            using (var db = new smildb())
+            {
+                var Bookninglist = db.BookingDbs.ToList();
+                var Lokalelist = db.BehandlingsrumDbs.ToList();
+                var Lægelist = db.AnsatDbs.ToList();
+                var Patientlist = db.PatientDbs.ToList();
+
+                var Join = from b in Bookninglist
+                           join br in Lokalelist
+                           on b.LokaleId equals br.RumId
+                           join a in Lægelist
+                           
+                           on b.LægeId equals a.AnsatId
+                          // join p in Patientlist
+                          // on new { patientNavn = p.Fornavn }
+                           //on b.PatientId equals p.PatientId
+                
+                    select new
+                    {
+                        b.Tidspunkt,
+                        br.RumNavn,
+                        a.Fornavn,
+                        
+
+                    };
+
+                var index = 0;
+                // Db.Entry(Db.PatientDbs).Reload();
+                foreach (var patientDb in Bookninglist)
+                {
+                    ListViewItem lvi = new ListViewItem(Bookninglist[index].Tidspunkt.ToString());
+                    //lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
+                    //lvi.SubItems.Add(patientList[index].Telefon);
+                    //lvi.SubItems.Add(patientList[index].PatientId.ToString());
+                    listViewDagensProgram.Items.Add(lvi);
+                    //listViewPatienter.Items[index].Group = listViewPatienter.Groups[0];
+                    index++;
+                }
+            }
+        }
+
 
 		private void button2_Click(object sender, EventArgs e)
 		{
@@ -109,6 +155,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 		private void StartForm_Load(object sender, EventArgs e)
 		{
 			RefreshPatientView();
+            RefreshBookingView();
 		}
 
 		private void VisKonsolToolStripMenuItem_Click(object sender, EventArgs e)
