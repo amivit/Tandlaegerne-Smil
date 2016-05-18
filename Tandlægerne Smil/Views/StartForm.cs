@@ -150,7 +150,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
                      MessageBoxIcon.Error);
             }
 
-
+            //*******************************************FAKTURA**********************************************
             #region faktura
         }
         
@@ -184,7 +184,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         }
 
-        #endregion
+
 
         private void listView_Faktura_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -244,5 +244,26 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         {
 
         }
+
+        private void button_VisDetaljer_Click(object sender, EventArgs e)
+        {
+            try //viser faktura detaljer
+            {
+                _controller.Faktura.HentOplysningerPåValgteFakatura(
+                int.Parse(listView_Faktura.SelectedItems[0].SubItems[0].Text), listView_FakturaDetaljer);
+                //Sender faktura nr. + listviewet faktura detaljer så vi kan tilføje linjer i faktura klassen (Y)
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Vælg en Faktura",
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+            }
+        }
+
+        
+        #endregion
     }
 }
