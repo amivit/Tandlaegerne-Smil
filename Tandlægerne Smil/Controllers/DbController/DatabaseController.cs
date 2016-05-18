@@ -492,6 +492,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public int? KrævetUdstyrId { get; set; } // krævet_udstyr_id
 
         // Reverse navigation
+        public virtual System.Collections.Generic.ICollection<BookingDb> BookingDbs { get; set; } // Booking.FK_Booking_Behandling
         public virtual System.Collections.Generic.ICollection<FakturalinjerDb> FakturalinjerDbs { get; set; } // Many to many mapping
 
         // Foreign keys
@@ -499,6 +500,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         
         public BehandlingDb()
         {
+            BookingDbs = new System.Collections.Generic.List<BookingDb>();
             FakturalinjerDbs = new System.Collections.Generic.List<FakturalinjerDb>();
         }
     }
@@ -531,12 +533,14 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public int? LægeId { get; set; } // læge_id
         public long PatientId { get; set; } // patient_id
         public bool Ankommet { get; set; } // ankommet
+        public long BehandlingId { get; set; } // behandling_id
 
         // Reverse navigation
         public virtual System.Collections.Generic.ICollection<VenteværelseDb> VenteværelseDb { get; set; } // Venteværelse.FK_Venteværelse_Booking
 
         // Foreign keys
         public virtual AnsatDb AnsatDb { get; set; } // FK_Booking_Ansat
+        public virtual BehandlingDb BehandlingDb { get; set; } // FK_Booking_Behandling
         public virtual BehandlingsrumDb BehandlingsrumDb { get; set; } // FK_Booking_Behandlingsrum
         public virtual PatientDb PatientDb { get; set; } // FK_Booking_Patient
         
@@ -780,9 +784,11 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.LægeId).HasColumnName(@"læge_id").IsOptional().HasColumnType("int");
             Property(x => x.PatientId).HasColumnName(@"patient_id").IsRequired().HasColumnType("bigint");
             Property(x => x.Ankommet).HasColumnName(@"ankommet").IsRequired().HasColumnType("bit");
+            Property(x => x.BehandlingId).HasColumnName(@"behandling_id").IsRequired().HasColumnType("bigint");
 
             // Foreign keys
             HasOptional(a => a.AnsatDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.LægeId); // FK_Booking_Ansat
+            HasRequired(a => a.BehandlingDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.BehandlingId); // FK_Booking_Behandling
             HasRequired(a => a.BehandlingsrumDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.LokaleId); // FK_Booking_Behandlingsrum
             HasRequired(a => a.PatientDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.PatientId); // FK_Booking_Patient
         }
