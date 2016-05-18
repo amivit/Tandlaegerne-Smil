@@ -53,6 +53,38 @@ namespace Tandlægerne_Smil.Models
             }
         }
 
+        public void HentOplysningerPåValgteFakatura(int fakturaNR, ListView FakuraDetaljer)
+        {
+            FakuraDetaljer.Items.Clear();
+            var faktura_Linjer_ = Db.FakturalinjerDbs.ToList();
+            var behandlinger_ = Db.BehandlingDbs.ToList();
 
+            var joined = from fl in faktura_Linjer_
+                         join bl in behandlinger_
+                         on fl.BehandlingId equals bl.BehandlingId
+                         select new
+                         {
+                             fl.BehandlingId,
+                             fl.FakturaId,
+                             navn = bl.Navn,
+                             bl.Pris
+                         };
+
+
+            var sortQurry = (from r in joined
+                         where (r.FakturaId == fakturaNR)
+                         select r).ToList();
+
+             
+            foreach (var r in sortQurry)
+            {
+                ListViewItem list = new ListViewItem(r.BehandlingId.ToString());
+                list.SubItems.Add(r.FakturaId.ToString());
+                list.SubItems.Add(r.navn);
+                list.SubItems.Add(r.Pris.ToString());
+                FakuraDetaljer.Items.Add(list);
+
+            }
+        }
 	}
 }
