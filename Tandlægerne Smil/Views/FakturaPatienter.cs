@@ -18,10 +18,13 @@ namespace Tandlægerne_Smil.Views
     {
         Global _global = new Global();
         private readonly Controller _controller = new Controller();
+        StartForm startform;
 
-        public FakturaPatienter()
+        public FakturaPatienter(StartForm startform)
         {
+            this.startform = startform;
             InitializeComponent();
+
         }
 
         private void FakturaPatienter_Load(object sender, EventArgs e)
@@ -41,6 +44,18 @@ namespace Tandlægerne_Smil.Views
                     index++;
                 }
             }
+        }
+
+        private void button_OK_Click(object sender, EventArgs e)
+        {
+            startform.textBox_PatientID.Text = listView.SelectedItems[0].SubItems[1].Text;
+            this.Close();
+
+        }
+
+        private void listView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

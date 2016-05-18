@@ -204,6 +204,7 @@
             this.textBox_PatientID.Name = "textBox_PatientID";
             this.textBox_PatientID.Size = new System.Drawing.Size(60, 20);
             this.textBox_PatientID.TabIndex = 3;
+            this.textBox_PatientID.TextChanged += new System.EventHandler(this.textBox_PatientID_TextChanged);
             // 
             // udskrivFaktura
             // 
@@ -597,9 +598,9 @@
         private System.Windows.Forms.ColumnHeader PertientID_ListView;
         private System.Windows.Forms.ColumnHeader FakturaingsDato_ListView;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox_PatientID;
         private System.Windows.Forms.ColumnHeader Navn_ListView;
         private System.Windows.Forms.Button button_VisAllePatienter;
         private System.Windows.Forms.Button button_VisAlleFolk;
+        public System.Windows.Forms.TextBox textBox_PatientID;
     }
 }
