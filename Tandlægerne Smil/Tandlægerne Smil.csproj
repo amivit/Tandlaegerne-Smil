@@ -135,9 +135,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\BookingOpret.resx">
-      <DependentUpon>BookingOpret.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\FakturaPatienter.resx">
       <DependentUpon>FakturaPatienter.cs</DependentUpon>
     </EmbeddedResource>
