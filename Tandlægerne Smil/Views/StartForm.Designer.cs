@@ -39,7 +39,6 @@
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabFaktura = new System.Windows.Forms.TabPage();
             this.button_VisAlleFolk = new System.Windows.Forms.Button();
-            this.button_VisAllePatienter = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox_PatientID = new System.Windows.Forms.TextBox();
             this.udskrivFaktura = new System.Windows.Forms.Button();
@@ -79,6 +78,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.listView_FakturaDetaljer = new System.Windows.Forms.ListView();
+            this.button_VisDetaljer = new System.Windows.Forms.Button();
+            this.column_BehanID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_Navn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_Pris = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_FakID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.tabPatient.SuspendLayout();
@@ -154,8 +159,9 @@
             // 
             // tabFaktura
             // 
+            this.tabFaktura.Controls.Add(this.button_VisDetaljer);
+            this.tabFaktura.Controls.Add(this.listView_FakturaDetaljer);
             this.tabFaktura.Controls.Add(this.button_VisAlleFolk);
-            this.tabFaktura.Controls.Add(this.button_VisAllePatienter);
             this.tabFaktura.Controls.Add(this.label3);
             this.tabFaktura.Controls.Add(this.textBox_PatientID);
             this.tabFaktura.Controls.Add(this.udskrivFaktura);
@@ -171,23 +177,13 @@
             // 
             // button_VisAlleFolk
             // 
-            this.button_VisAlleFolk.Location = new System.Drawing.Point(548, 8);
+            this.button_VisAlleFolk.Location = new System.Drawing.Point(321, 4);
             this.button_VisAlleFolk.Name = "button_VisAlleFolk";
             this.button_VisAlleFolk.Size = new System.Drawing.Size(75, 23);
             this.button_VisAlleFolk.TabIndex = 6;
-            this.button_VisAlleFolk.Text = "button1";
+            this.button_VisAlleFolk.Text = "Søg Patient";
             this.button_VisAlleFolk.UseVisualStyleBackColor = true;
             this.button_VisAlleFolk.Click += new System.EventHandler(this.button_VisAlleFolk_Click);
-            // 
-            // button_VisAllePatienter
-            // 
-            this.button_VisAllePatienter.Location = new System.Drawing.Point(527, 56);
-            this.button_VisAllePatienter.Name = "button_VisAllePatienter";
-            this.button_VisAllePatienter.Size = new System.Drawing.Size(96, 23);
-            this.button_VisAllePatienter.TabIndex = 5;
-            this.button_VisAllePatienter.Text = "Vis Alle Patienter";
-            this.button_VisAllePatienter.UseVisualStyleBackColor = true;
-            this.button_VisAllePatienter.Click += new System.EventHandler(this.button_VisAllePatienter_Click);
             // 
             // label3
             // 
@@ -208,7 +204,7 @@
             // 
             // udskrivFaktura
             // 
-            this.udskrivFaktura.Location = new System.Drawing.Point(474, 366);
+            this.udskrivFaktura.Location = new System.Drawing.Point(546, 405);
             this.udskrivFaktura.Name = "udskrivFaktura";
             this.udskrivFaktura.Size = new System.Drawing.Size(90, 23);
             this.udskrivFaktura.TabIndex = 0;
@@ -223,6 +219,7 @@
             this.Navn_ListView,
             this.PertientID_ListView,
             this.FakturaingsDato_ListView});
+            this.listView_Faktura.FullRowSelect = true;
             this.listView_Faktura.Location = new System.Drawing.Point(11, 32);
             this.listView_Faktura.Name = "listView_Faktura";
             this.listView_Faktura.Size = new System.Drawing.Size(385, 185);
@@ -523,6 +520,47 @@
             this.tabControl1.Size = new System.Drawing.Size(647, 457);
             this.tabControl1.TabIndex = 2;
             // 
+            // listView_FakturaDetaljer
+            // 
+            this.listView_FakturaDetaljer.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.column_BehanID,
+            this.column_FakID,
+            this.column_Navn,
+            this.column_Pris});
+            this.listView_FakturaDetaljer.Location = new System.Drawing.Point(11, 224);
+            this.listView_FakturaDetaljer.Name = "listView_FakturaDetaljer";
+            this.listView_FakturaDetaljer.Size = new System.Drawing.Size(385, 191);
+            this.listView_FakturaDetaljer.TabIndex = 7;
+            this.listView_FakturaDetaljer.UseCompatibleStateImageBehavior = false;
+            this.listView_FakturaDetaljer.View = System.Windows.Forms.View.Details;
+            // 
+            // button_VisDetaljer
+            // 
+            this.button_VisDetaljer.Location = new System.Drawing.Point(403, 224);
+            this.button_VisDetaljer.Name = "button_VisDetaljer";
+            this.button_VisDetaljer.Size = new System.Drawing.Size(75, 23);
+            this.button_VisDetaljer.TabIndex = 8;
+            this.button_VisDetaljer.Text = "Vis detaljer";
+            this.button_VisDetaljer.UseVisualStyleBackColor = true;
+            this.button_VisDetaljer.Click += new System.EventHandler(this.button_VisDetaljer_Click);
+            // 
+            // column_BehanID
+            // 
+            this.column_BehanID.Text = "ID";
+            // 
+            // column_Navn
+            // 
+            this.column_Navn.Text = "Behan Navn";
+            this.column_Navn.Width = 119;
+            // 
+            // column_Pris
+            // 
+            this.column_Pris.Text = "Pris";
+            // 
+            // column_FakID
+            // 
+            this.column_FakID.Text = "Fak.ID";
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -592,15 +630,20 @@
         private System.Windows.Forms.ToolStripMenuItem demotilstandToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader columnPatientID;
         public System.Windows.Forms.ListView listViewPatienter;
-        private System.Windows.Forms.Button Button_Søg;
         private System.Windows.Forms.ListView listView_Faktura;
         private System.Windows.Forms.ColumnHeader FakturaID_ListView;
         private System.Windows.Forms.ColumnHeader PertientID_ListView;
         private System.Windows.Forms.ColumnHeader FakturaingsDato_ListView;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ColumnHeader Navn_ListView;
-        private System.Windows.Forms.Button button_VisAllePatienter;
         private System.Windows.Forms.Button button_VisAlleFolk;
         public System.Windows.Forms.TextBox textBox_PatientID;
+        public System.Windows.Forms.Button Button_Søg;
+        private System.Windows.Forms.Button button_VisDetaljer;
+        private System.Windows.Forms.ColumnHeader column_BehanID;
+        private System.Windows.Forms.ColumnHeader column_Navn;
+        private System.Windows.Forms.ColumnHeader column_Pris;
+        private System.Windows.Forms.ColumnHeader column_FakID;
+        public System.Windows.Forms.ListView listView_FakturaDetaljer;
     }
 }
