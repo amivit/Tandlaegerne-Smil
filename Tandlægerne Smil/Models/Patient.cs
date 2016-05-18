@@ -23,10 +23,11 @@ namespace Tandlægerne_Smil.Models
                     Cpr = textBoxCPR.Text,
                     Adresse = textBoxAdresse.Text,
                     Postnummer = Convert.ToInt16(textBoxPostnummer.Text),
-                    Telefon = textBoxTelefon.Text
-                };
+                    Telefon = textBoxTelefon.Text,
+                    Tandlægeskræk = false
+            };
                 bool postNummerCheck = Db.PostnummerDbs.Any(p => p.Postnr == patient.Postnummer); //Tjekker om postnummert er i posttabellen
-
+                
 
                 if (!postNummerCheck) // Hvis postnummert ikke findes
                 {
@@ -76,7 +77,8 @@ namespace Tandlægerne_Smil.Models
             patientRedigere.textBoxID.Text = patient.PatientId.ToString();
             patientRedigere.textBoxPostnummer.Text= patient.Postnummer.ToString();
             patientRedigere.textBoxTelefon.Text = patient.Telefon;
-
+            patientRedigere.checkBoxTandlægeSkræk.Checked = patient.Tandlægeskræk.Value;
+            patientRedigere.textBoxNoter.Text = patient.Noter;
         }
 
         //public void RefreshPatientView(ListView listViewPatient)
@@ -124,7 +126,8 @@ namespace Tandlægerne_Smil.Models
                     patientRedigere.textBoxID.Text = patient.PatientId.ToString();
                     patientRedigere.textBoxPostnummer.Text = patient.Postnummer.ToString();
                     patient.Telefon = patientRedigere.textBoxTelefon.Text;
-                    
+                    patient.Tandlægeskræk = patientRedigere.checkBoxTandlægeSkræk.Checked;
+                    patient.Noter = patientRedigere.textBoxNoter.Text;
 
 
                     bool postNummerCheck = Db.PostnummerDbs.Any(p => p.Postnr == patient.Postnummer); //Tjekker om postnummert er i posttabellen
