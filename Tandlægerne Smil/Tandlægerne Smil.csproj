@@ -54,6 +54,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -99,6 +100,12 @@
     <Compile Include="Views\BookingRedigere.Designer.cs">
       <DependentUpon>BookingRedigere.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\FakturaPatienter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FakturaPatienter.Designer.cs">
+      <DependentUpon>FakturaPatienter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\PatientOpret.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +135,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\FakturaPatienter.resx">
+      <DependentUpon>FakturaPatienter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\PatientOpret.resx">
       <DependentUpon>PatientOpret.cs</DependentUpon>
     </EmbeddedResource>

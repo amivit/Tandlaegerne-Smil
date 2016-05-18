@@ -29,6 +29,7 @@ namespace Tandlægerne_Smil.Views
         #endregion
 
         //test
+        Global _global = new Global();
         private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
        
 
@@ -212,5 +213,31 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 		
 			
 		}
-	}
+
+        private void tabFaktura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_VisAlleFolk_Click(object sender, EventArgs e)
+        {
+            FakturaPatienter F = new FakturaPatienter();
+            F.Show();
+        }
+
+        private void listViewPatienter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewVenteværelse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+    }
 }
