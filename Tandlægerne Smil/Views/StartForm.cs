@@ -14,182 +14,182 @@ using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
 {
-	public partial class StartForm : Form
-	{
-		#region Console-Debugger
+    public partial class StartForm : Form
+    {
+        #region Console-Debugger
 
-		[DllImport("kernel32.dll")] // Næste 6 linjer er for at skjule konsollen
-		private static extern IntPtr GetConsoleWindow();
+        [DllImport("kernel32.dll")] // Næste 6 linjer er for at skjule konsollen
+        private static extern IntPtr GetConsoleWindow();
 
-		[DllImport("user32.dll")]
-		private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
-		private const int SwHide = 0;
-		private const int SwShow = 5;
-		#endregion
+        private const int SwHide = 0;
+        private const int SwShow = 5;
+        #endregion
 
-		//test
-		Global _global = new Global();
-		private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
-	   
+        //test
+        Global _global = new Global();
+        private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
+       
 
-		public StartForm()
-		{
-			InitializeComponent();
-		}
-		
-		private void opretTestPatient_Click(object sender, EventArgs e)
-		{
-			RefreshPatientView();
-		}
+        public StartForm()
+        {
+            InitializeComponent();
+        }
+        
+        private void opretTestPatient_Click(object sender, EventArgs e)
+        {
+            RefreshPatientView();
+        }
 
-		public void RefreshPatientView()
-		{
-			listViewPatienter.Items.Clear();
+        public void RefreshPatientView()
+        {
+            listViewPatienter.Items.Clear();
 
-			//var patientList = Db.PatientDbs.ToList();
-			//var Db2 = new smildb();
-			using (var db = new smildb())
-			{
-				var patientList = db.PatientDbs.ToList();
+            //var patientList = Db.PatientDbs.ToList();
+            //var Db2 = new smildb();
+            using (var db = new smildb())
+            {
+                var patientList = db.PatientDbs.ToList();
 
-				var index = 0;
-				// Db.Entry(Db.PatientDbs).Reload();
-				foreach (var patientDb in patientList)
-				{
-					ListViewItem lvi = new ListViewItem(patientList[index].Fornavn.Replace(" ", string.Empty));
-					lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
-					lvi.SubItems.Add(patientList[index].Telefon);
-					lvi.SubItems.Add(patientList[index].PatientId.ToString());
-					listViewPatienter.Items.Add(lvi);
-					listViewPatienter.Items[index].Group = listViewPatienter.Groups[0];
-					index++;
-				}
-			}
-		}
+                var index = 0;
+                // Db.Entry(Db.PatientDbs).Reload();
+                foreach (var patientDb in patientList)
+                {
+                    ListViewItem lvi = new ListViewItem(patientList[index].Fornavn.Replace(" ", string.Empty));
+                    lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
+                    lvi.SubItems.Add(patientList[index].Telefon);
+                    lvi.SubItems.Add(patientList[index].PatientId.ToString());
+                    listViewPatienter.Items.Add(lvi);
+                    listViewPatienter.Items[index].Group = listViewPatienter.Groups[0];
+                    index++;
+                }
+            }
+        }
 
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-			// Denne knap skal åbne en ny form, hvor lægen kan opdatere fakturaen med behandlingen.
-		}
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Denne knap skal åbne en ny form, hvor lægen kan opdatere fakturaen med behandlingen.
+        }
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-			// Denne knap sørger for en bookning registreres i venteværelset, når patient ankommer
-			// "Indtast CPR-nummer eller markere en Bookning"
-		}
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Denne knap sørger for en bookning registreres i venteværelset, når patient ankommer
+            // "Indtast CPR-nummer eller markere en Bookning"
+        }
 
-		private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			// Her skal items farvemarkeres som grønt, når patienten er ankommet, og fjernes når patienten er færdigbehandlet
-		}
+        private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Her skal items farvemarkeres som grønt, når patienten er ankommet, og fjernes når patienten er færdigbehandlet
+        }
 
-		private void buttonOpretPatient_Click(object sender, EventArgs e)
-		{
-			PatientOpret OP = new PatientOpret(this);
-			OP.Show();
-		}
+        private void buttonOpretPatient_Click(object sender, EventArgs e)
+        {
+            PatientOpret OP = new PatientOpret(this);
+            OP.Show();
+        }
 
-		private void label1_Click(object sender, EventArgs e)
-		{
-		}
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
 
-		private void omToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			MessageBox.Show(@"Dette program er udviklet til Tandlægerne Smil af:
+        private void omToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"Dette program er udviklet til Tandlægerne Smil af:
 Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
-		}
+        }
 
-		private void AfslutToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Application.Exit();
-		}
+        private void AfslutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
-		private void StartForm_Load(object sender, EventArgs e)
-		{
-			RefreshPatientView();
-		}
+        private void StartForm_Load(object sender, EventArgs e)
+        {
+            RefreshPatientView();
+        }
 
-		private void VisKonsolToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			var handle = GetConsoleWindow();
-			if (gemVisKonsolToolStripMenuItem.Checked)
-			{
-				ShowWindow(handle, SwHide);
-				gemVisKonsolToolStripMenuItem.Checked = false;
-			}
-			else
-			{
-				ShowWindow(handle, SwShow);
-				gemVisKonsolToolStripMenuItem.Checked = true;
-			}
-		}
+        private void VisKonsolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var handle = GetConsoleWindow();
+            if (gemVisKonsolToolStripMenuItem.Checked)
+            {
+                ShowWindow(handle, SwHide);
+                gemVisKonsolToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                ShowWindow(handle, SwShow);
+                gemVisKonsolToolStripMenuItem.Checked = true;
+            }
+        }
 
-		private void buttonUdskrivDagensBookninger_Click(object sender, EventArgs e)
-		{
-			//
-			_controller.Book.GemDagensProgram(this.dateTimePicker);
-		}
+        private void buttonUdskrivDagensBookninger_Click(object sender, EventArgs e)
+        {
+            //
+            _controller.Book.GemDagensProgram(this.dateTimePicker);
+        }
 
-		private void buttonRedigerePatient_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				int PatientID = Convert.ToInt32(listViewPatienter.SelectedItems[0].SubItems[3].Text);
-				PatientRedigere PR = new PatientRedigere(PatientID, this);
-				PR.Show();
+        private void buttonRedigerePatient_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int PatientID = Convert.ToInt32(listViewPatienter.SelectedItems[0].SubItems[3].Text);
+                PatientRedigere PR = new PatientRedigere(PatientID, this);
+                PR.Show();
 
-			}
-			catch (Exception)
-			{
+            }
+            catch (Exception)
+            {
 
-				MessageBox.Show("Vælg en patient",
-					 "Fejl",
-					 MessageBoxButtons.OK,
-					 MessageBoxIcon.Error);
-			}
+                MessageBox.Show("Vælg en patient",
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+            }
+
+            //*******************************************FAKTURA**********************************************
+            #region faktura
+        }
+        
+        private void tabLiveView_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void udskrivFaktura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e) //Søg
+        {
+            try
+            {
+                listView_Faktura.Items.Clear();
+                _controller.Faktura.hentFaktura(int.Parse(textBox_PatientID.Text), listView_Faktura);
+            }
+            catch
+            {
+                MessageBox.Show("Fejl i Patient ID prøv igen");
+            }
+            
+            
+        }
+
+        private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
 
 
-			#region faktura
-		}
-		
-		private void tabLiveView_Click(object sender, EventArgs e)
-		{
 
-		}
+        private void listView_Faktura_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-		private void udskrivFaktura_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void button1_Click_1(object sender, EventArgs e) //Søg
-		{
-			try
-			{
-				listView_Faktura.Items.Clear();
-				_controller.Faktura.hentFaktura(int.Parse(textBox_PatientID.Text), listView_Faktura);
-			}
-			catch
-			{
-				MessageBox.Show("Fejl i Patient ID prøv igen");
-			}
-			
-			
-		}
-
-		private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
-
-		#endregion
-
-		private void listView_Faktura_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
+        }
 
 		private void button_VisAllePatienter_Click(object sender, EventArgs e)
 		{
@@ -214,40 +214,56 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 			
 		}
 
-		private void tabFaktura_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		private void button_VisAlleFolk_Click(object sender, EventArgs e)
-		{
-			FakturaPatienter F = new FakturaPatienter(this);
-			F.Show();
-		}
-
-		private void listViewPatienter_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void listViewVenteværelse_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-		{
-
-		}
-
-		private void textBox_PatientID_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        private void tabFaktura_Click(object sender, EventArgs e)
         {
-            
+
         }
+
+        private void button_VisAlleFolk_Click(object sender, EventArgs e)
+        {
+            FakturaPatienter F = new FakturaPatienter(this);
+            F.Show();
+        }
+
+        private void listViewPatienter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewVenteværelse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void textBox_PatientID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_VisDetaljer_Click(object sender, EventArgs e)
+        {
+            try //viser faktura detaljer
+            {
+                _controller.Faktura.HentOplysningerPåValgteFakatura(
+                int.Parse(listView_Faktura.SelectedItems[0].SubItems[0].Text), listView_FakturaDetaljer);
+                //Sender faktura nr. + listviewet faktura detaljer så vi kan tilføje linjer i faktura klassen (Y)
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Vælg en Faktura",
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+            }
+        }
+
+        
+        #endregion
     }
 }
