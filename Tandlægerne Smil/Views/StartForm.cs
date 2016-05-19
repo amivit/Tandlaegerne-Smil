@@ -79,38 +79,47 @@ namespace Tandlægerne_Smil.Views
                 var Lokalelist = db.BehandlingsrumDbs.ToList();
                 var Lægelist = db.AnsatDbs.ToList();
                 var Patientlist = db.PatientDbs.ToList();
+                var Behandlinglist = db.BehandlingDbs.ToList();
 
                 var Join = from b in Bookninglist
                            join br in Lokalelist
                            on b.LokaleId equals br.RumId
-                           join a in Lægelist
-                           
-                           on b.LægeId equals a.AnsatId
-                          // join p in Patientlist
-                          // on new { patientNavn = p.Fornavn }
-                           //on b.PatientId equals p.PatientId
 
+                           join a in Lægelist                          
+                           on b.LægeId equals a.AnsatId
+
+                           join p in Patientlist
+                           on b.PatientId equals p.PatientId
+
+                           join bh in Behandlinglist
+                           on b.BehandlingId equals bh.BehandlingId                                                   
                     select new
                     {
                         b.Tidspunkt,
                         br.RumNavn,
                         a.Fornavn,
-                        
-
+                        patientnavn = p.Fornavn,
+                        bh.Navn
                     };
 
-                var index = 0;
-                // Db.Entry(Db.PatientDbs).Reload();
-                foreach (var patientDb in Bookninglist)
+
+                var sortQurry = (from r in Join
+                                 //where (r.Tidspunkt == dateTimePicker.Value)
+                                 select r).ToList();
+
+
+                foreach (var r in sortQurry)
                 {
-                    ListViewItem lvi = new ListViewItem(Bookninglist[index].Tidspunkt.ToString());
-                    //lvi.SubItems.Add(patientList[index].Efternavn.Replace(" ", string.Empty));
-                    //lvi.SubItems.Add(patientList[index].Telefon);
-                    //lvi.SubItems.Add(patientList[index].PatientId.ToString());
-                    listViewDagensProgram.Items.Add(lvi);
-                    //listViewPatienter.Items[index].Group = listViewPatienter.Groups[0];
-                    index++;
+                    ListViewItem list = new ListViewItem(r.Tidspunkt.ToString());
+                    list.SubItems.Add(r.RumNavn);
+                    list.SubItems.Add(r.Fornavn);
+                    list.SubItems.Add(r.patientnavn);
+                    list.SubItems.Add(r.Navn);
+                    listViewDagensProgram.Items.Add(list);
+
                 }
+
+               
             }
         }
 
