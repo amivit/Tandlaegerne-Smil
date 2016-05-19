@@ -68,60 +68,60 @@ namespace Tandlægerne_Smil.Views
 			}
 		}
 
-	    public void RefreshBookingView()
-	    {
-	        listViewDagensProgram.Items.Clear();
+		public void RefreshBookingView()
+		{
+			listViewDagensProgram.Items.Clear();
 
-            
-            using (var db = new smildb())
-            {
-                var Bookninglist = db.BookingDbs.ToList();
-                var Lokalelist = db.BehandlingsrumDbs.ToList();
-                var Lægelist = db.AnsatDbs.ToList();
-                var Patientlist = db.PatientDbs.ToList();
-                var Behandlinglist = db.BehandlingDbs.ToList();
+			
+			using (var db = new smildb())
+			{
+				var Bookninglist = db.BookingDbs.ToList();
+				var Lokalelist = db.BehandlingsrumDbs.ToList();
+				var Lægelist = db.AnsatDbs.ToList();
+				var Patientlist = db.PatientDbs.ToList();
+				var Behandlinglist = db.BehandlingDbs.ToList();
 
-                var Join = from b in Bookninglist
-                           join br in Lokalelist
-                           on b.LokaleId equals br.RumId
+				var Join = from b in Bookninglist
+						   join br in Lokalelist
+						   on b.LokaleId equals br.RumId
 
-                           join a in Lægelist                          
-                           on b.LægeId equals a.AnsatId
+						   join a in Lægelist                          
+						   on b.LægeId equals a.AnsatId
 
-                           join p in Patientlist
-                           on b.PatientId equals p.PatientId
+						   join p in Patientlist
+						   on b.PatientId equals p.PatientId
 
-                           join bh in Behandlinglist
-                           on b.BehandlingId equals bh.BehandlingId                                                   
-                    select new
-                    {
-                        b.Tidspunkt,
-                        br.RumNavn,
-                        a.Fornavn,
-                        patientnavn = p.Fornavn,
-                        bh.Navn
-                    };
-
-
-                var sortQurry = (from r in Join
-                                 where (r.Tidspunkt.Day == dateTimePicker.Value.Day)
-                                 select r).ToList();
+						   join bh in Behandlinglist
+						   on b.BehandlingId equals bh.BehandlingId                                                   
+					select new
+					{
+						b.Tidspunkt,
+						br.RumNavn,
+						a.Fornavn,
+						patientnavn = p.Fornavn,
+						bh.Navn
+					};
 
 
-                foreach (var r in sortQurry)
-                {
-                    ListViewItem list = new ListViewItem(r.Tidspunkt.ToString());
-                    list.SubItems.Add(r.RumNavn);
-                    list.SubItems.Add(r.Fornavn);
-                    list.SubItems.Add(r.patientnavn);
-                    list.SubItems.Add(r.Navn);
-                    listViewDagensProgram.Items.Add(list);
+				var sortQurry = (from r in Join
+								 where (r.Tidspunkt.Day == dateTimePicker.Value.Day)
+								 select r).ToList();
 
-                }
 
-               
-            }
-        }
+				foreach (var r in sortQurry)
+				{
+					ListViewItem list = new ListViewItem(r.Tidspunkt.ToString());
+					list.SubItems.Add(r.RumNavn);
+					list.SubItems.Add(r.Fornavn);
+					list.SubItems.Add(r.patientnavn);
+					list.SubItems.Add(r.Navn);
+					listViewDagensProgram.Items.Add(list);
+
+				}
+
+			   
+			}
+		}
 
 
 		private void button2_Click(object sender, EventArgs e)
@@ -133,8 +133,8 @@ namespace Tandlægerne_Smil.Views
 		{
 			// Denne knap sørger for en bookning registreres i venteværelset, når patient ankommer
 			// "Indtast CPR-nummer eller markere en Bookning"
-		    RefreshBookingView();
-           
+			RefreshBookingView();
+		   
 		}
 
 		private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,7 +166,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 		private void StartForm_Load(object sender, EventArgs e)
 		{
 			RefreshPatientView();
-            RefreshBookingView();
+			RefreshBookingView();
 		}
 
 		private void VisKonsolToolStripMenuItem_Click(object sender, EventArgs e)
@@ -207,11 +207,9 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 					 MessageBoxButtons.OK,
 					 MessageBoxIcon.Error);
 			}
-
-            //*******************************************FAKTURA**********************************************
-			#region faktura
 		}
-		
+		//*******************************************FAKTURA**********************************************
+		#region faktura
 		private void tabLiveView_Click(object sender, EventArgs e)
 		{
 
@@ -303,30 +301,48 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
 		}
 
-        private void button_VisDetaljer_Click(object sender, EventArgs e)
-        {
-            try //viser faktura detaljer
-            {
-                _controller.Faktura.HentOplysningerPåValgteFakatura(
-                int.Parse(listView_Faktura.SelectedItems[0].SubItems[0].Text), listView_FakturaDetaljer);
-                //Sender faktura nr. + listviewet faktura detaljer så vi kan tilføje linjer i faktura klassen (Y)
-            }
-            catch (Exception)
-        {
-            
-                MessageBox.Show("Vælg en Faktura",
-                     "Fejl",
-                     MessageBoxButtons.OK,
-                     MessageBoxIcon.Error);
-            }
-        }
+		private void button_VisDetaljer_Click(object sender, EventArgs e)
+		{
+			try //viser faktura detaljer
+			{
+				_controller.Faktura.HentOplysningerPåValgteFakatura(
+				int.Parse(listView_Faktura.SelectedItems[0].SubItems[0].Text), listView_FakturaDetaljer);
+				//Sender faktura nr. + listviewet faktura detaljer så vi kan tilføje linjer i faktura klassen (Y)
+			}
+			catch (Exception)
+		{
+			
+				MessageBox.Show("Vælg en Faktura",
+					 "Fejl",
+					 MessageBoxButtons.OK,
+					 MessageBoxIcon.Error);
+			}
+		}
 
 
-        #endregion
+		#endregion
 
-        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            RefreshBookingView();
-        }
-    }
+		private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+		{
+			RefreshBookingView();
+		}
+
+		private void buttonOpretBooking_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				int PatientID = Convert.ToInt32(listViewPatienter.SelectedItems[0].SubItems[3].Text);
+				BookingOpretRedigere bookingOpretRedigere = new BookingOpretRedigere(PatientID, this);
+				bookingOpretRedigere.Show();
+			}
+			catch (Exception)
+			{
+
+				MessageBox.Show("Vælg en patient",
+					 "Fejl",
+					 MessageBoxButtons.OK,
+					 MessageBoxIcon.Error);
+			}
+		}
+	}
 }
