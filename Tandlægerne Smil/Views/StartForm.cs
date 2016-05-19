@@ -104,7 +104,7 @@ namespace Tandlægerne_Smil.Views
 
 
                 var sortQurry = (from r in Join
-                                 //where (r.Tidspunkt == dateTimePicker.Value)
+                                 where (r.Tidspunkt.Day == dateTimePicker.Value.Day)
                                  select r).ToList();
 
 
@@ -133,6 +133,8 @@ namespace Tandlægerne_Smil.Views
 		{
 			// Denne knap sørger for en bookning registreres i venteværelset, når patient ankommer
 			// "Indtast CPR-nummer eller markere en Bookning"
+		    RefreshBookingView();
+           
 		}
 
 		private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
@@ -319,7 +321,12 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             }
         }
 
-        
+
         #endregion
+
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshBookingView();
+        }
     }
 }
