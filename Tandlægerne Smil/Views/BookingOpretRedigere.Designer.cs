@@ -71,6 +71,7 @@
             // dateTimePickerBooking
             // 
             this.dateTimePickerBooking.Checked = false;
+            this.dateTimePickerBooking.CustomFormat = "MM/dd/yy hh:mm";
             this.dateTimePickerBooking.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerBooking.Location = new System.Drawing.Point(12, 69);
             this.dateTimePickerBooking.Name = "dateTimePickerBooking";
