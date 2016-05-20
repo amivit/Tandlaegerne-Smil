@@ -222,35 +222,18 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void udskrivFaktura_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
-            sfd.FilterIndex = 1;
-
-            if (sfd.ShowDialog() == DialogResult.OK)
+            try 
             {
-                //Faktura f = new Faktura(this);
-                //File.WriteAllText(sfd.FileName,f.UdskrivFaktura() );
-               
-              
-                using (var SW = new StreamWriter(sfd.FileName)) 
+                _controller.Faktura.UdskrivFaktura(int.Parse(listView_Faktura.SelectedItems[0].SubItems[0].Text));
+                
+            }
+            catch (Exception)
+            {
 
-                if (listView_FakturaDetaljer.Items.Count > 0) // not my code http://stackoverflow.com/questions/2635226/how-to-save-the-listview-contents-to-a-text-file
-                    {
-                  
-                    foreach (ListViewItem lvi in listView_FakturaDetaljer.Items)
-                    {
-                        string sb = "";
-
-                        foreach (ListViewItem.ListViewSubItem listViewSubItem in lvi.SubItems)
-                        {
-                            sb = sb + (string.Format("{0}\t", listViewSubItem.Text));
-                        }
-                        SW.WriteLine(sb.ToString());
-                    }
-                    SW.WriteLine();
-                      
-                }
+                MessageBox.Show("Vælg en Faktura",
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
             }
         }
     

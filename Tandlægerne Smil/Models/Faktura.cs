@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Tandlægerne_Smil.Controllers.DbController;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Views;
-
+using System.IO;
 
 namespace Tandlægerne_Smil.Models
 {
@@ -30,23 +30,100 @@ namespace Tandlægerne_Smil.Models
 		    
 	    }
 
-        public string UdskrivFaktura()
+        public void UdskrivFaktura(int fakturaNR)
         {
-	        string test = "";
-	        foreach (ListViewItem item in startform.listView_FakturaDetaljer.Items)
-	        {
-		        test = test + item.ToString() + "\n";
-	        }
-	        return test;
-	        //string test = startform.listView_FakturaDetaljer.Items[0].SubItems[0].Text +
-	        //			  startform.listView_FakturaDetaljer.Items[0].SubItems[1].Text +
-	        //			  startform.listView_FakturaDetaljer.Items[0].SubItems[2].Text +
-	        //			  startform.listView_FakturaDetaljer.Items[0].SubItems[3].Text +
-	        //			  startform.listView_FakturaDetaljer.Items[0].SubItems[4].Text;
 
 
 
-	        //         return test;
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
+            sfd.FilterIndex = 1;
+
+            using (var db = new smildb())
+            {
+                StreamWriter SW = null;
+                var patient = db.PatientDbs.ToList();
+                var bookning = db.BookingDbs.ToList();
+                var læge = db.AnsatDbs.ToList();
+                var behandling = db.BehandlingDbs.ToList();
+                var fakturalinjer = db.FakturalinjerDbs.ToList();
+                var faktura = db.FakturaDbs.ToList();
+
+
+                var Join = from pa in patient
+                    join bo in bookning
+                        on pa.PatientId equals bo.PatientId
+
+                    join læ in læge
+                        on bo.LægeId equals læ.AnsatId
+
+                    join be in behandling
+                        on bo.BehandlingId equals be.BehandlingId
+
+                    join fal in fakturalinjer
+                        on be.BehandlingId equals fal.BehandlingId
+
+                    join fa in faktura
+                        on fal.FakturaId equals fa.FakturaId
+
+                    select new
+                    {
+                        patientNavn = pa.Fornavn + " " + pa.Efternavn,
+                        patientAdresse = pa.Adresse,
+                        patientPostnummer = pa.Postnummer,
+                        patientID = pa.PatientId,
+
+                        lægeNavn = læ.Fornavn + " " + læ.Efternavn,
+
+                        fakturaNummer = fa.FakturaId,
+                        fakturaDato = fa.FakturaDato,
+
+                        behandlingsNavn = be.Navn,
+                        behandlingsPris = be.Pris
+                    };
+
+
+                var sortQurry = (from r in Join
+                    where (r.fakturaNummer == fakturaNR)
+                    select r).ToList();
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    using (SW = new StreamWriter(sfd.FileName))
+                        foreach (var r in sortQurry)
+                    {
+                        SW.WriteLine("                       Tandlægerne Smil");
+                        SW.WriteLine("                                       ");
+                        SW.WriteLine("                          Tandlægevej 7");
+                        SW.WriteLine("                             7100 Vejle");
+                        SW.WriteLine("{0}                     Tlf:77 34 81 05", sortQurry[0].patientNavn);
+                        SW.WriteLine("{0}                                    ", sortQurry[0].patientAdresse);
+                        SW.WriteLine("{0}                                    ", sortQurry[0].patientPostnummer);
+                        SW.WriteLine("                          EasyBill Bank");
+                        SW.WriteLine("                            Regnr: 0000");
+                        SW.WriteLine("PatientNummer: {0}     Kontonr: 0099999",r.patientID);
+                        SW.WriteLine("                                       ");
+                        SW.WriteLine("                                       ");
+                        SW.WriteLine("                                       ");
+                        SW.WriteLine("FAKTURA                                ");
+                        SW.WriteLine("                     Fakturanummer: {0}",r.fakturaNummer);
+                        SW.WriteLine("                       Fakturadato: {0}",r.fakturaDato);
+                        SW.WriteLine("                    Betalingsdato: igår");
+                        SW.WriteLine("Behandling              Pris           ");
+                        SW.WriteLine("---------------------------------------");
+                        break;
+                    }
+                   
+                    //foreach (var r in sortQurry)
+                    //{
+                    //    SW.WriteLine("Du har fået {0} og prisen er {1}       ", r.behandlingsNavn, r.behandlingsPris);
+                    //}
+
+
+
+                }
+            }
         }
 
         public void BetalingModtaget()
@@ -61,7 +138,7 @@ namespace Tandlægerne_Smil.Models
             var query = (from r in Db.FakturaDbs.AsEnumerable()
                          where (r.PatientId == patientID)
                          select r).ToList();
-
+            
 
             
             var index = 0;
