@@ -71,11 +71,11 @@
             // dateTimePickerBooking
             // 
             this.dateTimePickerBooking.Checked = false;
-            this.dateTimePickerBooking.CustomFormat = "MM/dd/yy hh:mm";
+            this.dateTimePickerBooking.CustomFormat = "dd/MM/yy HH:mm";
             this.dateTimePickerBooking.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerBooking.Location = new System.Drawing.Point(12, 69);
             this.dateTimePickerBooking.Name = "dateTimePickerBooking";
-            this.dateTimePickerBooking.Size = new System.Drawing.Size(194, 20);
+            this.dateTimePickerBooking.Size = new System.Drawing.Size(97, 20);
             this.dateTimePickerBooking.TabIndex = 3;
             // 
             // label3
