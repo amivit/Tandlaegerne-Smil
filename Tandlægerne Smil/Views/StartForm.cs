@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers;
 using Tandlægerne_Smil.Controllers.DbController;
 using Tandlægerne_Smil.Models;
+using System.IO;
 
 namespace Tandlægerne_Smil.Views
 {
@@ -217,7 +218,15 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
 		private void udskrivFaktura_Click(object sender, EventArgs e)
 		{
+			SaveFileDialog sfd = new SaveFileDialog();
+			sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"; //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
+			sfd.FilterIndex = 1;
 
+			if (sfd.ShowDialog() == DialogResult.OK)
+			{
+				Faktura f = new Faktura(this);
+				File.WriteAllText(sfd.FileName,f.UdskrivFaktura() );
+			}
 		}
 
 		private void button1_Click_1(object sender, EventArgs e) //Søg

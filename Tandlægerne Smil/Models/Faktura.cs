@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tandlægerne_Smil.Controllers.DbController;
 using System.Windows.Forms;
+using Tandlægerne_Smil.Views;
 
 
 namespace Tandlægerne_Smil.Models
@@ -16,12 +17,36 @@ namespace Tandlægerne_Smil.Models
         private readonly PatientDb _patientDb = new PatientDb();
         private readonly BehandlingDb _behandlingDb = new BehandlingDb();
         private readonly AnsatDb _ansatDb = new AnsatDb();
+		private StartForm startform;
 
-        
+	    public Faktura(StartForm startform)
+	    {
+		    this.startform = startform;
 
-        public void UdskrivFaktura()
+	    }
+
+	    public Faktura()
+	    {
+		    
+	    }
+
+        public string UdskrivFaktura()
         {
-               
+	        string test = "";
+	        foreach (ListViewItem item in startform.listView_FakturaDetaljer.Items)
+	        {
+		        test = test + item.ToString() + "\n";
+	        }
+	        return test;
+	        //string test = startform.listView_FakturaDetaljer.Items[0].SubItems[0].Text +
+	        //			  startform.listView_FakturaDetaljer.Items[0].SubItems[1].Text +
+	        //			  startform.listView_FakturaDetaljer.Items[0].SubItems[2].Text +
+	        //			  startform.listView_FakturaDetaljer.Items[0].SubItems[3].Text +
+	        //			  startform.listView_FakturaDetaljer.Items[0].SubItems[4].Text;
+
+
+
+	        //         return test;
         }
 
         public void BetalingModtaget()
@@ -86,5 +111,6 @@ namespace Tandlægerne_Smil.Models
 
             }
         }
+
 	}
 }
