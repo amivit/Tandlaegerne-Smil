@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -11,7 +12,6 @@ using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers;
 using Tandlægerne_Smil.Controllers.DbController;
 using Tandlægerne_Smil.Models;
-using System.IO;
 
 namespace Tandlægerne_Smil.Views
 {
@@ -28,12 +28,12 @@ namespace Tandlægerne_Smil.Views
         private const int SwHide = 0;
         private const int SwShow = 5;
 
-        #endregion
+        #endregion Console-Debugger
 
         //test
-        Global _global = new Global();
-        private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
+        private Global _global = new Global();
 
+        private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
 
         public StartForm()
         {
@@ -74,7 +74,6 @@ namespace Tandlægerne_Smil.Views
         {
             listViewDagensProgram.Items.Clear();
 
-
             using (var db = new smildb())
             {
                 var Bookninglist = db.BookingDbs.ToList();
@@ -84,31 +83,29 @@ namespace Tandlægerne_Smil.Views
                 var Behandlinglist = db.BehandlingDbs.ToList();
 
                 var Join = from b in Bookninglist
-                    join br in Lokalelist
-                        on b.LokaleId equals br.RumId
+                           join br in Lokalelist
+                               on b.LokaleId equals br.RumId
 
-                    join a in Lægelist
-                        on b.LægeId equals a.AnsatId
+                           join a in Lægelist
+                               on b.LægeId equals a.AnsatId
 
-                    join p in Patientlist
-                        on b.PatientId equals p.PatientId
+                           join p in Patientlist
+                               on b.PatientId equals p.PatientId
 
-                    join bh in Behandlinglist
-                        on b.BehandlingId equals bh.BehandlingId
-                    select new
-                    {
-                        b.Tidspunkt,
-                        br.RumNavn,
-                        a.Fornavn,
-                        patientnavn = p.Fornavn,
-                        bh.Navn
-                    };
-
+                           join bh in Behandlinglist
+                               on b.BehandlingId equals bh.BehandlingId
+                           select new
+                           {
+                               b.Tidspunkt,
+                               br.RumNavn,
+                               a.Fornavn,
+                               patientnavn = p.Fornavn,
+                               bh.Navn
+                           };
 
                 var sortQurry = (from r in Join
-                    where (r.Tidspunkt.Day == dateTimePicker.Value.Day)
-                    select r).ToList();
-
+                                 where (r.Tidspunkt.Day == dateTimePicker.Value.Day)
+                                 select r).ToList();
 
                 foreach (var r in sortQurry)
                 {
@@ -118,13 +115,9 @@ namespace Tandlægerne_Smil.Views
                     list.SubItems.Add(r.patientnavn);
                     list.SubItems.Add(r.Navn);
                     listViewDagensProgram.Items.Add(list);
-
                 }
-
-
             }
         }
-
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -136,7 +129,6 @@ namespace Tandlægerne_Smil.Views
             // Denne knap sørger for en bookning registreres i venteværelset, når patient ankommer
             // "Indtast CPR-nummer eller markere en Bookning"
             RefreshBookingView();
-
         }
 
         private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
@@ -199,11 +191,9 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
                 int PatientID = Convert.ToInt32(listViewPatienter.SelectedItems[0].SubItems[3].Text);
                 PatientRedigere PR = new PatientRedigere(PatientID, this);
                 PR.Show();
-
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Vælg en patient",
                     "Fejl",
                     MessageBoxButtons.OK,
@@ -217,150 +207,131 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void tabLiveView_Click(object sender, EventArgs e)
         {
-
         }
 
         private void udskrivFaktura_Click(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 _controller.Faktura.UdskrivFaktura(int.Parse(listView_Faktura.SelectedItems[0].SubItems[0].Text));
-                
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Vælg en Faktura",
                      "Fejl",
                      MessageBoxButtons.OK,
                      MessageBoxIcon.Error);
             }
         }
-    
 
-    private void button1_Click_1(object sender, EventArgs e) //Søg
-		{
-			try
-			{
-				listView_Faktura.Items.Clear();
-				_controller.Faktura.hentFaktura(int.Parse(textBox_PatientID.Text), listView_Faktura);
-			}
-			catch
-			{
-				MessageBox.Show("Fejl i Patient ID prøv igen");
-			}
-			
-			
-		}
+        private void button1_Click_1(object sender, EventArgs e) //Søg
+        {
+            try
+            {
+                listView_Faktura.Items.Clear();
+                _controller.Faktura.hentFaktura(int.Parse(textBox_PatientID.Text), listView_Faktura);
+            }
+            catch
+            {
+                MessageBox.Show("Fejl i Patient ID prøv igen");
+            }
+        }
 
-		private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
-		{
+        private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+        }
 
-		}
+        private void listView_Faktura_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
 
+        private void button_VisAllePatienter_Click(object sender, EventArgs e)
+        {
+            int idNummer = 0;
+            try
+            {
+                listView_Faktura.Items.Clear();
+                foreach (var item in listView_Faktura.Items.ToString())
+                {
+                    _controller.Faktura.hentFaktura(idNummer, listView_Faktura);
+                    idNummer++;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Kunne ikke hente data");
+            }
+        }
 
+        private void tabFaktura_Click(object sender, EventArgs e)
+        {
+        }
 
-		private void listView_Faktura_SelectedIndexChanged(object sender, EventArgs e)
-		{
+        private void button_VisAlleFolk_Click(object sender, EventArgs e)
+        {
+            FakturaPatienter F = new FakturaPatienter(this);
+            F.Show();
+        }
 
-		}
+        private void listViewPatienter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
 
-		private void button_VisAllePatienter_Click(object sender, EventArgs e)
-		{
-			int idNummer = 0;
-			try
-			{
-				listView_Faktura.Items.Clear();
-				foreach (var item in listView_Faktura.Items.ToString())
-				{
-					_controller.Faktura.hentFaktura(idNummer, listView_Faktura);
-					idNummer ++;
-				}
-				
-			}
-			catch
-			{
-				MessageBox.Show("Kunne ikke hente data");
-			}
-			
-			
-		
-			
-		}
+        private void listViewVenteværelse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
 
-		private void tabFaktura_Click(object sender, EventArgs e)
-		{
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+        }
 
-		}
+        private void textBox_PatientID_TextChanged(object sender, EventArgs e)
+        {
+        }
 
-		private void button_VisAlleFolk_Click(object sender, EventArgs e)
-		{
-			FakturaPatienter F = new FakturaPatienter(this);
-			F.Show();
-		}
+        private void button_VisDetaljer_Click(object sender, EventArgs e)
+        {
+            try //viser faktura detaljer
+            {
+                _controller.Faktura.HentOplysningerPåValgteFakatura(
+                int.Parse(listView_Faktura.SelectedItems[0].SubItems[0].Text), listView_FakturaDetaljer);
+                //Sender faktura nr. + listviewet faktura detaljer så vi kan tilføje linjer i faktura klassen (Y)
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Vælg en Faktura",
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+            }
+        }
 
-		private void listViewPatienter_SelectedIndexChanged(object sender, EventArgs e)
-		{
+        #endregion faktura
 
-		}
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshBookingView();
+        }
 
-		private void listViewVenteværelse_SelectedIndexChanged(object sender, EventArgs e)
-		{
+        private void buttonOpretBooking_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int PatientID = Convert.ToInt32(listViewPatienter.SelectedItems[0].SubItems[3].Text);
+                BookingOpretRedigere bookingOpretRedigere = new BookingOpretRedigere(PatientID, this);
+                bookingOpretRedigere.Show();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Vælg en patient",
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+            }
+        }
 
-		}
-
-		private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-		{
-
-		}
-
-		private void textBox_PatientID_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void button_VisDetaljer_Click(object sender, EventArgs e)
-		{
-			try //viser faktura detaljer
-			{
-				_controller.Faktura.HentOplysningerPåValgteFakatura(
-				int.Parse(listView_Faktura.SelectedItems[0].SubItems[0].Text), listView_FakturaDetaljer);
-				//Sender faktura nr. + listviewet faktura detaljer så vi kan tilføje linjer i faktura klassen (Y)
-			}
-			catch (Exception)
-		{
-			
-				MessageBox.Show("Vælg en Faktura",
-					 "Fejl",
-					 MessageBoxButtons.OK,
-					 MessageBoxIcon.Error);
-			}
-		}
-
-
-		#endregion
-
-		private void dateTimePicker_ValueChanged(object sender, EventArgs e)
-		{
-			RefreshBookingView();
-		}
-
-		private void buttonOpretBooking_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				int PatientID = Convert.ToInt32(listViewPatienter.SelectedItems[0].SubItems[3].Text);
-				BookingOpretRedigere bookingOpretRedigere = new BookingOpretRedigere(PatientID, this);
-				bookingOpretRedigere.Show();
-			}
-			catch (Exception)
-			{
-
-				MessageBox.Show("Vælg en patient",
-					 "Fejl",
-					 MessageBoxButtons.OK,
-					 MessageBoxIcon.Error);
-			}
-		}
-	}
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+        }
+    }
 }

@@ -417,7 +417,7 @@
             this.tabLiveView.Controls.Add(this.label1);
             this.tabLiveView.Location = new System.Drawing.Point(4, 22);
             this.tabLiveView.Name = "tabLiveView";
-            this.tabLiveView.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabLiveView.Padding = new System.Windows.Forms.Padding(3);
             this.tabLiveView.Size = new System.Drawing.Size(771, 431);
             this.tabLiveView.TabIndex = 0;
             this.tabLiveView.Text = "Live-View";
