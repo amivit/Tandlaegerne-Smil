@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,51 +16,56 @@ namespace Tandlægerne_Smil.Views
 {
     public partial class PatientOpret : Form
     {
-
         private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
-        private StartForm startform;
+        private static StartForm _startForm;
+        private static PatientOpret _instance;
 
-        public PatientOpret(StartForm startForm)
+        protected PatientOpret(StartForm startForm) // protected så man ikke længere kan benytte constructeren, men skal bruge metoden SingletonLazyInstance()
         {
             InitializeComponent();
-            this.startform = startForm;
+            PatientOpret._startForm = startForm;
+        }
+
+        public static PatientOpret SingletonLazyInstance()
+        {
+            // lazy initialization
+            if (_instance == null)
+            {
+                _instance = new PatientOpret(_startForm);
+            }
+            return _instance;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             _controller.Patient.OpretPatient(textBoxNavn, textBoxEfternavn, textBoxCPR, textBoxAdresse, textBoxPostnummer,
                textBoxTelefon);
-            startform.RefreshPatientView();
+            _startForm.RefreshPatientView();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-            
         }
 
         private void OpretPatient_Load(object sender, EventArgs e)
         {
         }
 
-		private void textBoxCPR_TextChanged(object sender, EventArgs e)
-		{
+        private void textBoxCPR_TextChanged(object sender, EventArgs e)
+        {
+        }
 
-		}
+        private void textBoxAdresse_TextChanged(object sender, EventArgs e)
+        {
+        }
 
-		private void textBoxAdresse_TextChanged(object sender, EventArgs e)
-		{
+        private void textBoxEfternavn_TextChanged(object sender, EventArgs e)
+        {
+        }
 
-		}
-
-		private void textBoxEfternavn_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void pictureBox1_Click(object sender, EventArgs e)
-		{
-
-		}
-	}
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+        }
+    }
 }

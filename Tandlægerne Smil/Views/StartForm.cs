@@ -184,7 +184,7 @@ namespace Tandlægerne_Smil.Views
 
         private void buttonOpretPatient_Click(object sender, EventArgs e)
         {
-            PatientOpret OP = new PatientOpret(this);
+            PatientOpret OP = PatientOpret.SingletonLazyInstance(); // Singleton så man kun kan åbne formen en gang
             OP.Show();
         }
 
