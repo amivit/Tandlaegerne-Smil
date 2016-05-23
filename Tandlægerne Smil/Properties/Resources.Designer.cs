@@ -85,6 +85,16 @@ namespace Tandlægerne_Smil.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap stocked {
+            get {
+                object obj = ResourceManager.GetObject("stocked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tandlægerne_smil_Logo_2 {
             get {
                 object obj = ResourceManager.GetObject("Tandlægerne-smil-Logo-2", resourceCulture);
