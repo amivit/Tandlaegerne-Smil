@@ -72,7 +72,6 @@ namespace Tandlægerne_Smil.Views
         private void RefreshBookingView()
         {
             listViewDagensProgram.Items.Clear();
-
             using (var db = new smildb())
             {
                 var dagensBookinger = db.BookingDbs
@@ -80,31 +79,26 @@ namespace Tandlægerne_Smil.Views
                     .Where(b => b.Tidspunkt.Day == dateTimePicker.Value.Day) // Kun den valgte dag
                     .OrderBy(b => b.Tidspunkt) // Sortere dem i rækkefølge
                     .ToList();
-
                 foreach (var booking in dagensBookinger)
                 {
-                    ListViewItem list = new ListViewItem(booking.Tidspunkt.ToString());
-                    list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
-                    list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
-                    list.SubItems.Add(booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
-
+                    ListViewItem list = new ListViewItem(booking.Tidspunkt.Hour.ToString() + ":" + booking.Tidspunkt.Minute.ToString());
                     var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == booking.BookingId).ToList();
-
-                    // Hvis der er en booking uden behandlinger, så man ikke får fejl
-                    var behandlingString = string.Empty;
+                    var behandlingString = "";
                     var totalAnslåetTid = 0;
-
-                    if (behandlinger.Count > 0) //
+                    if (behandlinger.Count > 0) // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
                     {
                         behandlingString = behandlinger[0].Navn;
                         totalAnslåetTid = behandlinger[0].AnslåetTid;
                     }
-                    foreach (var behandling in behandlinger.Skip(1)) // Spring den første over, og tilføje alle (hvis der er nogle)
+                    foreach (var behandling in behandlinger.Skip(1)) // Spring den første over, og tilføje alle behandlinger (hvis der er nogle)
                     {
                         behandlingString += ", " + behandling.Navn;
                         totalAnslåetTid += behandling.AnslåetTid;
                     }
+                    list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
                     list.SubItems.Add(totalAnslåetTid.ToString());
+                    list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
+                    list.SubItems.Add(booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
                     list.SubItems.Add(behandlingString);
                     listViewDagensProgram.Items.Add(list);
                 }
@@ -174,7 +168,6 @@ namespace Tandlægerne_Smil.Views
 
         private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // TODO: Her skal items farvemarkeres som grønt, når patienten er ankommet, og fjernes når patienten er færdigbehandlet
         }
 
         private void buttonOpretPatient_Click(object sender, EventArgs e)
@@ -201,6 +194,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         private void StartForm_Load(object sender, EventArgs e)
         {
             RefreshPatientView();
+            //new Task(RefreshBookingView).Start();
             RefreshBookingView();
         }
 

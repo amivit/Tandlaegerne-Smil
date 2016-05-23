@@ -77,6 +77,7 @@
             this.columnHeaderLokale = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderLæge = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPatient = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnTotalAnslåetTid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderBehandling = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.listViewVenteværelse = new System.Windows.Forms.ListView();
@@ -89,7 +90,6 @@
             this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.columnTotalAnslåetTid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.tabPatient.SuspendLayout();
@@ -494,12 +494,12 @@
             // 
             this.listViewDagensProgram.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderTid,
-            this.columnHeaderLokale,
             this.columnHeaderLæge,
-            this.columnHeaderPatient,
             this.columnTotalAnslåetTid,
+            this.columnHeaderLokale,
+            this.columnHeaderPatient,
             this.columnHeaderBehandling});
-            this.listViewDagensProgram.Location = new System.Drawing.Point(6, 45);
+            this.listViewDagensProgram.Location = new System.Drawing.Point(9, 45);
             this.listViewDagensProgram.Name = "listViewDagensProgram";
             this.listViewDagensProgram.Size = new System.Drawing.Size(639, 176);
             this.listViewDagensProgram.TabIndex = 4;
@@ -510,12 +510,12 @@
             // columnHeaderTid
             // 
             this.columnHeaderTid.Text = "Tidspunkt";
-            this.columnHeaderTid.Width = 113;
+            this.columnHeaderTid.Width = 59;
             // 
             // columnHeaderLokale
             // 
             this.columnHeaderLokale.Text = "Lokale";
-            this.columnHeaderLokale.Width = 68;
+            this.columnHeaderLokale.Width = 77;
             // 
             // columnHeaderLæge
             // 
@@ -525,12 +525,17 @@
             // columnHeaderPatient
             // 
             this.columnHeaderPatient.Text = "Patient";
-            this.columnHeaderPatient.Width = 94;
+            this.columnHeaderPatient.Width = 93;
+            // 
+            // columnTotalAnslåetTid
+            // 
+            this.columnTotalAnslåetTid.Text = "Anslået Tid";
+            this.columnTotalAnslåetTid.Width = 66;
             // 
             // columnHeaderBehandling
             // 
-            this.columnHeaderBehandling.Text = "Behandling";
-            this.columnHeaderBehandling.Width = 222;
+            this.columnHeaderBehandling.Text = "Behandling(er)";
+            this.columnHeaderBehandling.Width = 267;
             // 
             // label2
             // 
@@ -599,11 +604,6 @@
             // backgroundWorker1
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            // 
-            // columnTotalAnslåetTid
-            // 
-            this.columnTotalAnslåetTid.Text = "Anslået Tid";
-            this.columnTotalAnslåetTid.Width = 66;
             // 
             // StartForm
             // 
