@@ -13,7 +13,7 @@ namespace Tandlægerne_Smil.Models
 	internal class Faktura : Global
 	{
 		private readonly FakturaDb _fakturaDb = new FakturaDb();
-		private readonly FakturalinjerDb _fakturalinjerDb = new FakturalinjerDb();
+		private readonly BehandlingslinjerDb _fakturalinjerDb = new BehandlingslinjerDb();
 		private readonly PatientDb _patientDb = new PatientDb();
 		private readonly BehandlingDb _behandlingDb = new BehandlingDb();
 		private readonly AnsatDb _ansatDb = new AnsatDb();
@@ -48,7 +48,7 @@ namespace Tandlægerne_Smil.Models
 				var bookning = db.BookingDbs.ToList();
 				var læge = db.AnsatDbs.ToList();
 				var behandling = db.BehandlingDbs.ToList();
-				var fakturalinjer = db.FakturalinjerDbs.ToList();
+				var fakturalinjer = db.BehandlingslinjerDbs.ToList();
 				var faktura = db.FakturaDbs.ToList();
 
 				
