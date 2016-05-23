@@ -57,5 +57,10 @@ namespace Tandlægerne_Smil.Views
 		{
 
 		}
-	}
+
+        private void buttonGemBooking_Click(object sender, EventArgs e)
+        {
+            _controller.Book.GemBooking(this);
+        }
+    }
 }

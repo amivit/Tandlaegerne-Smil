@@ -13,17 +13,8 @@ namespace Tandlægerne_Smil.Models
     {
         private readonly BookingDb _bookingDb = new BookingDb();
 
-        public void AkutAnkomst()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public void SletBookning()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void GemDagensProgram(DateTimePicker dateTimePicker)
+        public void GemDagensProgram(DateTimePicker dateTimePicker) // TODO: Gem dagens program
         {
             //Console.WriteLine(dateTimePicker.Value.Day);
             var index = 0;
@@ -48,7 +39,6 @@ namespace Tandlægerne_Smil.Models
 			var indexbehandlinger = 0;
 			foreach (var item in Db.AnsatDbs)
 			{
-
 				bookingOpretRedigere.comboBoxLæge.Items.Add(læger[indexNavn].Fornavn + " " + læger[indexNavn].Efternavn);
 				indexNavn ++;
 			}
@@ -63,22 +53,28 @@ namespace Tandlægerne_Smil.Models
 				bookingOpretRedigere.comboBoxBehandling.Items.Add(behandlinger[indexbehandlinger].Navn);
 				indexbehandlinger ++;
 			}
-
 		}
 
-	   // public  GetBehandlingId(string behandlingText) // Denne metode tager det valgte behandling fra Dropdown-listen, og returnere ID på behandlingen
-	   // {
-		  //  var behandlingId = from b in Db.BehandlingDbs
-			 //   where b.Navn == behandlingText
-			 //   select b.BehandlingId;
-				
-				
-				
-				////Db.BehandlingDbs.FirstOrDefault(b => b.Navn == behandlingText);
+        public void GemBooking(BookingOpretRedigere bookingOpretRedigere)
+        {
+            
+            _bookingDb.Ankommet = false;
+
+            // Match Læge fra combobox, med databasen. Fornavn og efternavn skal splittes, da de ligger i 2 forskellige kolonner i db'en
+            var names = bookingOpretRedigere.comboBoxLæge.Text.Split(' ');
+            string lægeFornavn = names[0];
+            string lægeEfternavn = names[1];
+            var læge = Db.AnsatDbs.FirstOrDefault(a => a.Fornavn == lægeFornavn && a.Efternavn == lægeEfternavn);
+            _bookingDb.AnsatDb = læge;
+
+            // Match Lokale fra combobox, med lokale i databasen
+            var lokale = Db.BehandlingsrumDbs.FirstOrDefault(b => b.RumNavn == bookingOpretRedigere.comboBoxLokale.Text);
+            _bookingDb.LokaleId = lokale.RumId;
 
 
 
-		  //  return behandlingId;
-	   // }
+
+
+        }
     }
 }
