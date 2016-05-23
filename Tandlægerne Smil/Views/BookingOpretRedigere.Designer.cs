@@ -40,6 +40,14 @@
 			this.comboBoxLokale = new System.Windows.Forms.ComboBox();
 			this.textBoxNoter = new System.Windows.Forms.TextBox();
 			this.label6 = new System.Windows.Forms.Label();
+			this.buttonTilføj = new System.Windows.Forms.Button();
+			this.label7 = new System.Windows.Forms.Label();
+			this.listViewBehandling = new System.Windows.Forms.ListView();
+			this.ColumnBeskrivelse = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ColumnPris = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.label8 = new System.Windows.Forms.Label();
+			this.dateTimeOnlyPicker = new System.Windows.Forms.DateTimePicker();
+			this.columnAnslåetTid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// label1
@@ -62,7 +70,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(9, 53);
+			this.label2.Location = new System.Drawing.Point(12, 92);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(54, 13);
 			this.label2.TabIndex = 2;
@@ -71,17 +79,17 @@
 			// dateTimePickerBooking
 			// 
 			this.dateTimePickerBooking.Checked = false;
-			this.dateTimePickerBooking.CustomFormat = "dd/MM/yy HH:mm";
+			this.dateTimePickerBooking.CustomFormat = "dd/MM/yy";
 			this.dateTimePickerBooking.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
 			this.dateTimePickerBooking.Location = new System.Drawing.Point(12, 69);
 			this.dateTimePickerBooking.Name = "dateTimePickerBooking";
-			this.dateTimePickerBooking.Size = new System.Drawing.Size(97, 20);
+			this.dateTimePickerBooking.Size = new System.Drawing.Size(93, 20);
 			this.dateTimePickerBooking.TabIndex = 3;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(12, 92);
+			this.label3.Location = new System.Drawing.Point(9, 132);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(35, 13);
 			this.label3.TabIndex = 4;
@@ -89,8 +97,9 @@
 			// 
 			// comboBoxLæge
 			// 
+			this.comboBoxLæge.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxLæge.FormattingEnabled = true;
-			this.comboBoxLæge.Location = new System.Drawing.Point(12, 108);
+			this.comboBoxLæge.Location = new System.Drawing.Point(9, 148);
 			this.comboBoxLæge.Name = "comboBoxLæge";
 			this.comboBoxLæge.Size = new System.Drawing.Size(194, 21);
 			this.comboBoxLæge.TabIndex = 5;
@@ -98,7 +107,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(12, 172);
+			this.label4.Location = new System.Drawing.Point(9, 212);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(39, 13);
 			this.label4.TabIndex = 6;
@@ -106,8 +115,9 @@
 			// 
 			// comboBoxBehandling
 			// 
+			this.comboBoxBehandling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxBehandling.FormattingEnabled = true;
-			this.comboBoxBehandling.Location = new System.Drawing.Point(12, 148);
+			this.comboBoxBehandling.Location = new System.Drawing.Point(9, 188);
 			this.comboBoxBehandling.Name = "comboBoxBehandling";
 			this.comboBoxBehandling.Size = new System.Drawing.Size(194, 21);
 			this.comboBoxBehandling.TabIndex = 7;
@@ -115,7 +125,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(12, 132);
+			this.label5.Location = new System.Drawing.Point(9, 172);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(60, 13);
 			this.label5.TabIndex = 8;
@@ -123,35 +133,111 @@
 			// 
 			// comboBoxLokale
 			// 
+			this.comboBoxLokale.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxLokale.FormattingEnabled = true;
-			this.comboBoxLokale.Location = new System.Drawing.Point(12, 188);
+			this.comboBoxLokale.Location = new System.Drawing.Point(9, 228);
 			this.comboBoxLokale.Name = "comboBoxLokale";
 			this.comboBoxLokale.Size = new System.Drawing.Size(194, 21);
 			this.comboBoxLokale.TabIndex = 9;
 			// 
 			// textBoxNoter
 			// 
-			this.textBoxNoter.Location = new System.Drawing.Point(412, 19);
+			this.textBoxNoter.Location = new System.Drawing.Point(239, 30);
 			this.textBoxNoter.Multiline = true;
 			this.textBoxNoter.Name = "textBoxNoter";
 			this.textBoxNoter.ReadOnly = true;
-			this.textBoxNoter.Size = new System.Drawing.Size(272, 190);
+			this.textBoxNoter.Size = new System.Drawing.Size(485, 99);
 			this.textBoxNoter.TabIndex = 10;
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(409, 3);
+			this.label6.Location = new System.Drawing.Point(236, 14);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(69, 13);
 			this.label6.TabIndex = 11;
 			this.label6.Text = "Patient Noter";
 			// 
+			// buttonTilføj
+			// 
+			this.buttonTilføj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.buttonTilføj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.buttonTilføj.Location = new System.Drawing.Point(209, 137);
+			this.buttonTilføj.Name = "buttonTilføj";
+			this.buttonTilføj.Size = new System.Drawing.Size(24, 38);
+			this.buttonTilføj.TabIndex = 12;
+			this.buttonTilføj.Text = "+";
+			this.buttonTilføj.UseVisualStyleBackColor = true;
+			this.buttonTilføj.Click += new System.EventHandler(this.buttonTilføj_Click);
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(236, 132);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(69, 13);
+			this.label7.TabIndex = 14;
+			this.label7.Text = "Behandlinger";
+			// 
+			// listViewBehandling
+			// 
+			this.listViewBehandling.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColumnBeskrivelse,
+            this.ColumnPris,
+            this.columnAnslåetTid});
+			this.listViewBehandling.Location = new System.Drawing.Point(239, 148);
+			this.listViewBehandling.Name = "listViewBehandling";
+			this.listViewBehandling.Size = new System.Drawing.Size(485, 182);
+			this.listViewBehandling.TabIndex = 15;
+			this.listViewBehandling.UseCompatibleStateImageBehavior = false;
+			this.listViewBehandling.View = System.Windows.Forms.View.Details;
+			// 
+			// ColumnBeskrivelse
+			// 
+			this.ColumnBeskrivelse.Text = "Beskrivelse";
+			this.ColumnBeskrivelse.Width = 342;
+			// 
+			// ColumnPris
+			// 
+			this.ColumnPris.Text = "Pris";
+			this.ColumnPris.Width = 70;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(12, 53);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(30, 13);
+			this.label8.TabIndex = 16;
+			this.label8.Text = "Dato";
+			// 
+			// dateTimeOnlyPicker
+			// 
+			this.dateTimeOnlyPicker.CustomFormat = "HH:mm";
+			this.dateTimeOnlyPicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+			this.dateTimeOnlyPicker.Location = new System.Drawing.Point(15, 109);
+			this.dateTimeOnlyPicker.Name = "dateTimeOnlyPicker";
+			this.dateTimeOnlyPicker.ShowUpDown = true;
+			this.dateTimeOnlyPicker.Size = new System.Drawing.Size(90, 20);
+			this.dateTimeOnlyPicker.TabIndex = 17;
+			this.dateTimeOnlyPicker.Value = new System.DateTime(2016, 5, 23, 12, 26, 0, 0);
+			this.dateTimeOnlyPicker.ValueChanged += new System.EventHandler(this.dateTimeOnly_ValueChanged);
+			// 
+			// columnAnslåetTid
+			// 
+			this.columnAnslåetTid.Text = "Anslået Tid";
+			this.columnAnslåetTid.Width = 65;
+			// 
 			// BookingOpretRedigere
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(696, 342);
+			this.ClientSize = new System.Drawing.Size(736, 342);
+			this.Controls.Add(this.dateTimeOnlyPicker);
+			this.Controls.Add(this.label8);
+			this.Controls.Add(this.listViewBehandling);
+			this.Controls.Add(this.label7);
+			this.Controls.Add(this.buttonTilføj);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.textBoxNoter);
 			this.Controls.Add(this.comboBoxLokale);
@@ -165,7 +251,7 @@
 			this.Controls.Add(this.textBoxPatient);
 			this.Controls.Add(this.label1);
 			this.Name = "BookingOpretRedigere";
-			this.Text = "BookingOpret";
+			this.Text = "Booking";
 			this.Load += new System.EventHandler(this.BookingOpretRedigere_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -186,5 +272,13 @@
 		public System.Windows.Forms.ComboBox comboBoxBehandling;
 		public System.Windows.Forms.ComboBox comboBoxLokale;
 		public System.Windows.Forms.TextBox textBoxNoter;
+		private System.Windows.Forms.Button buttonTilføj;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.ListView listViewBehandling;
+		private System.Windows.Forms.ColumnHeader ColumnBeskrivelse;
+		private System.Windows.Forms.ColumnHeader ColumnPris;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.DateTimePicker dateTimeOnlyPicker;
+		private System.Windows.Forms.ColumnHeader columnAnslåetTid;
 	}
 }

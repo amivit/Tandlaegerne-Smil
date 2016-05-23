@@ -66,5 +66,19 @@ namespace Tandlægerne_Smil.Models
 
 		}
 
-	}
+	   // public  GetBehandlingId(string behandlingText) // Denne metode tager det valgte behandling fra Dropdown-listen, og returnere ID på behandlingen
+	   // {
+		  //  var behandlingId = from b in Db.BehandlingDbs
+			 //   where b.Navn == behandlingText
+			 //   select b.BehandlingId;
+				
+				
+				
+				////Db.BehandlingDbs.FirstOrDefault(b => b.Navn == behandlingText);
+
+
+
+		  //  return behandlingId;
+	   // }
+    }
 }

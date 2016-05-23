@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers;
+using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
 {
@@ -16,6 +17,8 @@ namespace Tandlægerne_Smil.Views
         private StartForm _startForm;
         readonly int _patientId;
 		private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controllerenPatient P = new Patient();
+		private Global _global = new Global();
+
 
 
 		public BookingOpretRedigere(int patientId, StartForm startForm)
@@ -35,5 +38,24 @@ namespace Tandlægerne_Smil.Views
         {
 		
         }
-    }
+
+		private void buttonTilføj_Click(object sender, EventArgs e)
+		{
+
+			var behandling = _global.Db.BehandlingDbs.FirstOrDefault(b => b.Navn == comboBoxBehandling.Text);
+			Console.WriteLine(behandling.ToString());
+			ListViewItem lvi = new ListViewItem(behandling.Navn);
+			lvi.SubItems.Add(behandling.Pris.ToString());
+			lvi.SubItems.Add(behandling.AnslåetTid.ToString());
+
+
+
+			listViewBehandling.Items.Add(lvi);
+		}
+		
+		private void dateTimeOnly_ValueChanged(object sender, EventArgs e) // TODO: fjerne sekunder
+		{
+
+		}
+	}
 }

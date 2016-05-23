@@ -52,44 +52,44 @@ namespace Tandlægerne_Smil.Models
                 var faktura = db.FakturaDbs.ToList();
 
 
-                //var Join = from pa in patient
-                //    join bo in bookning
-                //        on pa.PatientId equals bo.PatientId
+				var Join = from pa in patient
+						   join bo in bookning
+							   on pa.PatientId equals bo.PatientId
 
-                //    join læ in læge
-                //        on bo.LægeId equals læ.AnsatId
+						   join læ in læge
+							   on bo.LægeId equals læ.AnsatId
 
-                //    join be in behandling
-                //        on bo.BehandlingId equals be.BehandlingId
+						   join be in behandling
+							   on bo.BehandlingId equals be.BehandlingId
 
-                //    join fal in fakturalinjer
-                //        on be.BehandlingId equals fal.BehandlingId
+						   join fal in fakturalinjer
+							   on be.BehandlingId equals fal.BehandlingId
 
-                //    join fa in faktura
-                //        on fal.FakturaId equals fa.FakturaId
+						   join fa in faktura
+							   on fal.FakturaId equals fa.FakturaId
 
-                    //select new
-                    //{
-                    //    patientNavn = pa.Fornavn + " " + pa.Efternavn,
-                    //    patientAdresse = pa.Adresse,
-                    //    patientPostnummer = pa.Postnummer,
-                    //    patientID = pa.PatientId,
+						   select new
+						   {
+							   patientNavn = pa.Fornavn + " " + pa.Efternavn,
+							   patientAdresse = pa.Adresse,
+							   patientPostnummer = pa.Postnummer,
+							   patientID = pa.PatientId,
 
-                    //    lægeNavn = læ.Fornavn + " " + læ.Efternavn,
+							   lægeNavn = læ.Fornavn + " " + læ.Efternavn,
 
-                    //    fakturaNummer = fa.FakturaId,
-                    //    fakturaDato = fa.FakturaDato,
+							   fakturaNummer = fa.FakturaId,
+							   fakturaDato = fa.FakturaDato,
 
-                    //    behandlingsNavn = be.Navn,
-                    //    behandlingsPris = be.Pris
-                    //};
+							   behandlingsNavn = be.Navn,
+							   behandlingsPris = be.Pris
+						   };
 
 
-                //var sortQurry = (from r in Join
-                //    where (r.fakturaNummer == fakturaNR)
-                //    select r).ToList();
+				var sortQurry = (from r in Join
+								 where (r.fakturaNummer == fakturaNR)
+								 select r).ToList();
 
-                if (sfd.ShowDialog() == DialogResult.OK)
+				if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     using (SW = new StreamWriter(sfd.FileName))
                         foreach (var r in sortQurry)
@@ -103,7 +103,7 @@ namespace Tandlægerne_Smil.Models
                         SW.WriteLine("{0}                                    ", sortQurry[0].patientPostnummer);
                         SW.WriteLine("                          EasyBill Bank");
                         SW.WriteLine("                            Regnr: 0000");
-                        SW.WriteLine("PatientNummer: {0}     Kontonr: 0099999",r.patiesntID);
+                        SW.WriteLine("PatientNummer: {0}     Kontonr: 0099999",r.patientID);
                         SW.WriteLine("                                       ");
                         SW.WriteLine("                                       ");
                         SW.WriteLine("                                       ");
