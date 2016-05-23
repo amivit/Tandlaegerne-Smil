@@ -47,23 +47,26 @@ namespace Tandlægerne_Smil.Models
 				var patient = db.PatientDbs.ToList();
 				var bookning = db.BookingDbs.ToList();
 				var læge = db.AnsatDbs.ToList();
-				var behandling = db.BehandlingDbs.ToList();
-				var fakturalinjer = db.BehandlingslinjerDbs.ToList();
+				var behandling = db.BehandlingDbs.ToList(); //indeholder navn og pris
+				var behandlingslinje = db.BehandlingslinjerDbs.ToList(); // tidliger faktura linjer
 				var faktura = db.FakturaDbs.ToList();
 
 				
-				var OrderLinier = from fl in fakturalinjer
-							join bh in behandling
-							on fl.BehandlingId equals bh.BehandlingId
+				var OrderLinier = from fi in faktura
+                                  join bl  in behandlingslinje
+                                  on fi.FakturaId equals bl.FakturaId
+                                  join be in behandling
+                                  on bl.BehandlingId equals be.BehandlingId
+							
 						   select new
 						   {
-							  behandlingsNavn = bh.Navn,
-							  behandlingsPris = bh.Pris,
-							  fakturaID = fl.FakturaId 
-						   };
+                               _behandlingsNavn = be.Navn,
+                               _behandlingsPris = be.Pris,
+                               _fakturaNummer = fi.FakturaId
+                           };
 				
 				var OrderLinjerSortQurry = (from r in OrderLinier
-								 where (r.fakturaID == fakturaNR)
+								 where (r._fakturaNummer == fakturaNR)
 								 select r).ToList();
 
 				var patientSortQurry = (from r in patient
@@ -101,10 +104,10 @@ namespace Tandlægerne_Smil.Models
 							int testpris = 0;
 							foreach (var r in OrderLinjerSortQurry)
 							{
-								SW.WriteLine(r.behandlingsNavn.PadRight(PadVærdi) + r.behandlingsPris+" DKK");
+								SW.WriteLine(r._behandlingsNavn.PadRight(PadVærdi) + r._behandlingsPris+" DKK");
 								try
 								{
-									string pris = r.behandlingsPris.ToString();
+									string pris = r._behandlingsPris.ToString();
 									testpris += int.Parse(pris);
 								}
 								catch(Exception)
@@ -164,7 +167,7 @@ namespace Tandlægerne_Smil.Models
 		public void HentOplysningerPåValgteFakatura(int fakturaNR, ListView FakuraDetaljer)
 		{
 			FakuraDetaljer.Items.Clear();
-			var faktura_Linjer_ = Db.FakturalinjerDbs.ToList();
+			var faktura_Linjer_ = Db.BehandlingslinjerDbs.ToList();
 			var behandlinger_ = Db.BehandlingDbs.ToList();
 
 			var joined = from fl in faktura_Linjer_

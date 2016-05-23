@@ -76,44 +76,65 @@ namespace Tandlægerne_Smil.Views
 
             using (var db = new smildb())
             {
-                var Bookninglist = db.BookingDbs.ToList();
-                var Lokalelist = db.BehandlingsrumDbs.ToList();
-                var Lægelist = db.AnsatDbs.ToList();
+                var BookingList = db.BookingDbs.ToList();
+                var lokaleList = db.BehandlingsrumDbs.ToList();
+                var lægeList = db.AnsatDbs.ToList();
                 var Patientlist = db.PatientDbs.ToList();
-                var Behandlinglist = db.BehandlingDbs.ToList();
+                var Behandling = db.BehandlingDbs.ToList();
+                var behandlingslinje = db.BehandlingslinjerDbs.ToList();
 
-                var Join = from b in Bookninglist
-                           join br in Lokalelist
+                var Join = from b in BookingList
+                           join br in lokaleList
                                on b.LokaleId equals br.RumId
 
-                           join a in Lægelist
+                           join a in lægeList
                                on b.LægeId equals a.AnsatId
 
                            join p in Patientlist
                                on b.PatientId equals p.PatientId
 
-                           join bh in Behandlinglist
-                               on b.BehandlingId equals bh.BehandlingId
+                           join bl in behandlingslinje
+                            on b.BookingId equals bl.BookingId
+
+                           join bh in Behandling
+                           on bl.BehandlingId equals bh.BehandlingId
+
                            select new
                            {
                                b.Tidspunkt,
                                br.RumNavn,
                                a.Fornavn,
                                patientnavn = p.Fornavn,
-                               bh.Navn
+                               behandlingsNavn = bh.Navn,
+                               patrientid = p.PatientId,
+                               bookingId = b.BookingId
+
                            };
 
-                var sortQurry = (from r in Join
+                var sortQuery = (from r in Join
                                  where (r.Tidspunkt.Day == dateTimePicker.Value.Day)
                                  select r).ToList();
 
-                foreach (var r in sortQurry)
+                //sortQuery.GroupBy(i => i.bookingId).Select(g => new {Id = g.Key});
+                //list.GroupBy(i => i.Id).Select(g => new { Id = g.Key, Total = g.Sum(i => i.Quantity) });
+                //var dagensBookinger = (from r in sortQuery
+                //                       where 
+                //    )
+                //var behandlingerString = "";
+                //var index = 0;
+                //foreach (var behandling in sortQuery)
+                //{
+                //    behandlingerString += behandling.behandlingsNavn;
+                //    behandlingerString += ", ";
+                //}
+
+                    foreach (var r in sortQuery)
                 {
                     ListViewItem list = new ListViewItem(r.Tidspunkt.ToString());
                     list.SubItems.Add(r.RumNavn);
                     list.SubItems.Add(r.Fornavn);
                     list.SubItems.Add(r.patientnavn);
-                    list.SubItems.Add(r.Navn);
+                    //list.SubItems.Add(behandlingerString);
                     listViewDagensProgram.Items.Add(list);
                 }
             }

@@ -70,11 +70,6 @@ namespace Tandlægerne_Smil.Models
             // Match Lokale fra combobox, med lokale i databasen
             var lokale = Db.BehandlingsrumDbs.FirstOrDefault(b => b.RumNavn == bookingOpretRedigere.comboBoxLokale.Text);
             _bookingDb.LokaleId = lokale.RumId;
-
-
-
-
-
         }
     }
 }
