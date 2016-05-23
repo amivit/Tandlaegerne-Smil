@@ -41,5 +41,25 @@ namespace Tandlægerne_Smil.Views
         private void OpretPatient_Load(object sender, EventArgs e)
         {
         }
-    }
+
+		private void textBoxCPR_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void textBoxAdresse_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void textBoxEfternavn_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void pictureBox1_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }
