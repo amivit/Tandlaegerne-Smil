@@ -213,9 +213,10 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         {
             try
             {
-                int patientid = int.Parse(listView_Faktura.SelectedItems[0].SubItems[3].Text);
+                string patientnavn = listView_Faktura.SelectedItems[0].SubItems[1].Text;
+                int patientid = int.Parse(listView_Faktura.SelectedItems[0].SubItems[2].Text);
                 int fakturaNR = int.Parse(listView_Faktura.SelectedItems[0].SubItems[0].Text);
-                _controller.Faktura.UdskrivFaktura(fakturaNR,patientid);
+                _controller.Faktura.UdskrivFaktura(fakturaNR,patientid,patientnavn);
             }
             catch (Exception)
             {

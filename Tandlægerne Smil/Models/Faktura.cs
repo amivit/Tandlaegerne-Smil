@@ -30,14 +30,14 @@ namespace Tandlægerne_Smil.Models
 		    
 	    }
 
-        public void UdskrivFaktura(int fakturaNR, int patientnr)
+        public void UdskrivFaktura(int fakturaNR, int patientnr, string indnavn)
         {
 
 
 
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            sfd.FileName = "test";
+            sfd.FileName = (indnavn +" Nr " + fakturaNR +" Dato " + DateTime.Today.ToShortDateString()).Replace(' ','_');
             //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
             sfd.FilterIndex = 1;
             StreamWriter SW = null;
@@ -51,51 +51,7 @@ namespace Tandlægerne_Smil.Models
                 var fakturalinjer = db.FakturalinjerDbs.ToList();
                 var faktura = db.FakturaDbs.ToList();
 
-#region patientjoin
-                var PatientJoin = from pa in patient
-                           join bo in bookning
-                               on pa.PatientId equals bo.PatientId
-
-                           join læ in læge
-                               on bo.LægeId equals læ.AnsatId
-
-                           join be in behandling
-                               on bo.BehandlingId equals be.BehandlingId
-
-                           join fal in fakturalinjer
-                               on be.BehandlingId equals fal.BehandlingId
-
-                           join fa in faktura
-                               on fal.FakturaId equals fa.FakturaId
-
-                           select new
-                           {
-                               patientNavn = pa.Fornavn.Replace(" ", string.Empty) +
-                               " " + pa.Efternavn.Replace(" ", string.Empty),
-                               //Navn uden alle mellemrum sat sammen fornavn + efternavn
-                               patientAdresse = pa.Adresse,
-                               patientPostnummer = pa.Postnummer,
-                               patientID = pa.PatientId,
-                               PatientCpr = pa.Cpr,
-
-                               lægeNavn = læ.Fornavn+ " " + læ.Efternavn,
-
-                               fakturaNummer = fa.FakturaId,
-                               fakturaDato = fa.FakturaDato,
-
-                               behandlingsNavn = be.Navn,
-                               behandlingsPris = be.Pris,
-                               behandlingsId = be.BehandlingId
-                               
-                           };
-
-                var PatientSortQurry = (from r in PatientJoin
-                                        where (r.fakturaNummer == fakturaNR)
-                                        select r).ToList();
-                #endregion
-
-
-
+                
                 var OrderLinier = from fl in fakturalinjer
                             join bh in behandling
                             on fl.BehandlingId equals bh.BehandlingId
@@ -114,51 +70,50 @@ namespace Tandlægerne_Smil.Models
                     where (r.PatientId == patientnr)
                     select r).ToList();
 
-                
-
-                int index = patientSortQurry.Count;
-                int PadVærdi = 120;
+                int PadVærdi = 60;
+                string linje ="\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     using (SW = new StreamWriter(sfd.FileName))
                         try
                         {
-                            MessageBox.Show(index.ToString());
-                            
-                                SW.WriteLine("Tandlægerne Smil A/S".PadLeft(PadVærdi));
-                                SW.WriteLine("TandlægeVej 420".PadLeft(PadVærdi));
-                                SW.WriteLine("7100 Vejle".PadLeft(PadVærdi));
+                                SW.WriteLine("Tandlægerne Smil A/S".PadLeft(PadVærdi+15));
+                                SW.WriteLine("TandlægeVej 420".PadLeft(PadVærdi + 15));
+                                SW.WriteLine("7100 Vejle".PadLeft(PadVærdi + 15));
                                 SW.WriteLine(Environment.NewLine);
-                                SW.WriteLine("Tlf: 420-1227".PadLeft(PadVærdi));
+                                SW.WriteLine("Tlf: 420-1227".PadLeft(PadVærdi + 15));
                                 SW.WriteLine(Environment.NewLine);
                                 SW.WriteLine(Environment.NewLine);
-                                SW.WriteLine(patientSortQurry[index-1].Fornavn + "EasyBill Bank".PadLeft(PadVærdi - (patientSortQurry[index-1].Fornavn.Length)));
-                                SW.WriteLine(patientSortQurry[index-1].Cpr + "RegNr: 0042".PadLeft(PadVærdi - (patientSortQurry[index-1].Cpr.Length)));
-                                SW.WriteLine(patientSortQurry[index-1].Adresse + "KontoNr: 00024960125".PadLeft(PadVærdi - (patientSortQurry[index-1].Adresse.Length)));
-                                SW.WriteLine(patientSortQurry[index-1].Postnummer + "");
-                                SW.WriteLine(patientSortQurry[index-1].PatientId + "");
+                                SW.WriteLine("Navn:".PadRight(15) + patientSortQurry[0].Fornavn +" "+patientSortQurry[0].Efternavn + "EasyBill Bank".PadLeft(PadVærdi - (1 + patientSortQurry[0].Fornavn.Length + patientSortQurry[0].Efternavn.Length)));
+                                SW.WriteLine("Cpr:".PadRight(15) + patientSortQurry[0].Cpr + "RegNr: 0042".PadLeft(PadVærdi - (patientSortQurry[0].Cpr.Length)));
+                                SW.WriteLine("Adresse:".PadRight(15) + patientSortQurry[0].Adresse + "KontoNr: 00024960125".PadLeft(PadVærdi - (patientSortQurry[0].Adresse.Length)));
+                                SW.WriteLine("PostNr:".PadRight(15) + patientSortQurry[0].Postnummer);
+                                SW.WriteLine("PatientNr:".PadRight(15)+patientSortQurry[0].PatientId);
                                 SW.WriteLine(Environment.NewLine);
                                 SW.WriteLine(Environment.NewLine);
                                 SW.WriteLine();
                                 SW.WriteLine();
                                 SW.WriteLine();
 
+                                SW.WriteLine("Behandling:".PadRight(PadVærdi)+"Pris:");
+                                SW.WriteLine(linje + linje + linje + linje );
 
-
-                                SW.WriteLine("Behandling              Pris           ");
-                                SW.WriteLine("---------------------------------------");
-                                
-                            
-
-
+                            int testpris = 0;
                             foreach (var r in OrderLinjerSortQurry)
                             {
-                                SW.WriteLine("Du har fået {0} og prisen er {1}       ", r.behandlingsNavn,
-                                    r.behandlingsPris);
+                                SW.WriteLine(r.behandlingsNavn.PadRight(PadVærdi) + r.behandlingsPris+" DKK");
+                                try
+                                {
+                                    string pris = r.behandlingsPris.ToString();
+                                    testpris += int.Parse(pris);
+                                }
+                                catch(Exception)
+                                { }
                             }
 
-                            SW.WriteLine("---------------------------------------");
-                            SW.WriteLine("Total Pris: xxxxx");
+                                SW.WriteLine(linje + linje + linje + linje );
+                                SW.WriteLine("Total Pris:".PadRight(PadVærdi)+testpris+" DKK");
+                                
                         }
                         catch (Exception e)
                         {
@@ -167,6 +122,7 @@ namespace Tandlægerne_Smil.Models
                         }
                         finally
                         {
+                            
                             SW.Close();
                         }
 
