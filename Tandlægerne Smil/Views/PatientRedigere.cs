@@ -23,13 +23,13 @@ namespace Tandlægerne_Smil.Views
             InitializeComponent();
             this._patientId = PatientID;
             this._startForm = startForm;
-            _controller.Patient.LoadRedigerePatient(Convert.ToInt32(PatientID), this);
+            _controller.Patient.LoadRedigerePatient(_patientId, this);
 
         }
 
         private void PatientRedigere_Load(object sender, EventArgs e)
         {
-            //_controller.Patient.LoadRedigerePatient(Convert.ToInt32(PatientID), this);
+            //_controller.Patient.LoadOpretBooking(Convert.ToInt32(PatientID), this);
         }
 
         private void Slet_Click(object sender, EventArgs e)

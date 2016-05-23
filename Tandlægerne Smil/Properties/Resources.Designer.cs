@@ -81,5 +81,15 @@ namespace Tandlægerne_Smil.Properties {
                 return ResourceManager.GetString("StartForm_omToolStripMenuItem_Click_", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tandlægerne_smil_Logo_2 {
+            get {
+                object obj = ResourceManager.GetObject("Tandlægerne-smil-Logo-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -322,6 +322,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
                 int PatientID = Convert.ToInt32(listViewPatienter.SelectedItems[0].SubItems[3].Text);
                 BookingOpretRedigere bookingOpretRedigere = new BookingOpretRedigere(PatientID, this);
                 bookingOpretRedigere.Show();
+
             }
             catch (Exception)
             {
