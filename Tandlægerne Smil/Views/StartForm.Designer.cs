@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Tandlægerne Smil\'s Patienter", System.Windows.Forms.HorizontalAlignment.Left);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gemVisKonsolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +58,6 @@
             this.buttonRedigerePatient = new System.Windows.Forms.Button();
             this.buttonOpretBooking = new System.Windows.Forms.Button();
             this.buttonOpretPatient = new System.Windows.Forms.Button();
-            this.opretTestPatient = new System.Windows.Forms.Button();
             this.listViewPatienter = new System.Windows.Forms.ListView();
             this.columnFornavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnEfternavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -69,8 +68,8 @@
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.buttonAkutAnkomst = new System.Windows.Forms.Button();
             this.buttonRedigereBookning = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonUnderBehandling = new System.Windows.Forms.Button();
+            this.buttonAfslutBehandling = new System.Windows.Forms.Button();
             this.buttonTjekkeInd = new System.Windows.Forms.Button();
             this.listViewDagensProgram = new System.Windows.Forms.ListView();
             this.columnHeaderTid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -312,7 +311,6 @@
             this.tabPatient.Controls.Add(this.buttonRedigerePatient);
             this.tabPatient.Controls.Add(this.buttonOpretBooking);
             this.tabPatient.Controls.Add(this.buttonOpretPatient);
-            this.tabPatient.Controls.Add(this.opretTestPatient);
             this.tabPatient.Controls.Add(this.listViewPatienter);
             this.tabPatient.Location = new System.Drawing.Point(4, 22);
             this.tabPatient.Name = "tabPatient";
@@ -323,6 +321,7 @@
             // 
             // buttonRedigerePatient
             // 
+            this.buttonRedigerePatient.Enabled = false;
             this.buttonRedigerePatient.Location = new System.Drawing.Point(672, 35);
             this.buttonRedigerePatient.Name = "buttonRedigerePatient";
             this.buttonRedigerePatient.Size = new System.Drawing.Size(96, 23);
@@ -333,6 +332,7 @@
             // 
             // buttonOpretBooking
             // 
+            this.buttonOpretBooking.Enabled = false;
             this.buttonOpretBooking.Location = new System.Drawing.Point(672, 64);
             this.buttonOpretBooking.Name = "buttonOpretBooking";
             this.buttonOpretBooking.Size = new System.Drawing.Size(96, 23);
@@ -351,16 +351,6 @@
             this.buttonOpretPatient.UseVisualStyleBackColor = true;
             this.buttonOpretPatient.Click += new System.EventHandler(this.buttonOpretPatient_Click);
             // 
-            // opretTestPatient
-            // 
-            this.opretTestPatient.Location = new System.Drawing.Point(672, 93);
-            this.opretTestPatient.Name = "opretTestPatient";
-            this.opretTestPatient.Size = new System.Drawing.Size(96, 23);
-            this.opretTestPatient.TabIndex = 0;
-            this.opretTestPatient.Text = "Refresh";
-            this.opretTestPatient.UseVisualStyleBackColor = true;
-            this.opretTestPatient.Click += new System.EventHandler(this.opretTestPatient_Click);
-            // 
             // listViewPatienter
             // 
             this.listViewPatienter.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -369,10 +359,10 @@
             this.columnTelefon,
             this.columnPatientID});
             this.listViewPatienter.FullRowSelect = true;
-            listViewGroup1.Header = "Tandlægerne Smil\'s Patienter";
-            listViewGroup1.Name = "Tandlægerne Smil\'s Patienter";
+            listViewGroup3.Header = "Tandlægerne Smil\'s Patienter";
+            listViewGroup3.Name = "Tandlægerne Smil\'s Patienter";
             this.listViewPatienter.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
+            listViewGroup3});
             this.listViewPatienter.HideSelection = false;
             this.listViewPatienter.Location = new System.Drawing.Point(6, 6);
             this.listViewPatienter.MultiSelect = false;
@@ -409,8 +399,8 @@
             this.tabLiveView.Controls.Add(this.dateTimePicker);
             this.tabLiveView.Controls.Add(this.buttonAkutAnkomst);
             this.tabLiveView.Controls.Add(this.buttonRedigereBookning);
-            this.tabLiveView.Controls.Add(this.button4);
-            this.tabLiveView.Controls.Add(this.button2);
+            this.tabLiveView.Controls.Add(this.buttonUnderBehandling);
+            this.tabLiveView.Controls.Add(this.buttonAfslutBehandling);
             this.tabLiveView.Controls.Add(this.buttonTjekkeInd);
             this.tabLiveView.Controls.Add(this.listViewDagensProgram);
             this.tabLiveView.Controls.Add(this.label2);
@@ -454,6 +444,7 @@
             // 
             // buttonRedigereBookning
             // 
+            this.buttonRedigereBookning.Enabled = false;
             this.buttonRedigereBookning.Location = new System.Drawing.Point(652, 74);
             this.buttonRedigereBookning.Name = "buttonRedigereBookning";
             this.buttonRedigereBookning.Size = new System.Drawing.Size(115, 23);
@@ -461,27 +452,30 @@
             this.buttonRedigereBookning.Text = "Åben booking";
             this.buttonRedigereBookning.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonUnderBehandling
             // 
-            this.button4.Location = new System.Drawing.Point(652, 240);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(115, 35);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Markér som under behandling";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonUnderBehandling.Enabled = false;
+            this.buttonUnderBehandling.Location = new System.Drawing.Point(652, 240);
+            this.buttonUnderBehandling.Name = "buttonUnderBehandling";
+            this.buttonUnderBehandling.Size = new System.Drawing.Size(115, 35);
+            this.buttonUnderBehandling.TabIndex = 8;
+            this.buttonUnderBehandling.Text = "Markér som under behandling";
+            this.buttonUnderBehandling.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonAfslutBehandling
             // 
-            this.button2.Location = new System.Drawing.Point(652, 281);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Afslut behandling";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonAfslutBehandling.Enabled = false;
+            this.buttonAfslutBehandling.Location = new System.Drawing.Point(652, 281);
+            this.buttonAfslutBehandling.Name = "buttonAfslutBehandling";
+            this.buttonAfslutBehandling.Size = new System.Drawing.Size(115, 23);
+            this.buttonAfslutBehandling.TabIndex = 6;
+            this.buttonAfslutBehandling.Text = "Afslut behandling";
+            this.buttonAfslutBehandling.UseVisualStyleBackColor = true;
+            this.buttonAfslutBehandling.Click += new System.EventHandler(this.button2_Click);
             // 
             // buttonTjekkeInd
             // 
+            this.buttonTjekkeInd.Enabled = false;
             this.buttonTjekkeInd.Location = new System.Drawing.Point(652, 45);
             this.buttonTjekkeInd.Name = "buttonTjekkeInd";
             this.buttonTjekkeInd.Size = new System.Drawing.Size(115, 23);
@@ -499,6 +493,7 @@
             this.columnHeaderLokale,
             this.columnHeaderPatient,
             this.columnHeaderBehandling});
+            this.listViewDagensProgram.FullRowSelect = true;
             this.listViewDagensProgram.Location = new System.Drawing.Point(9, 45);
             this.listViewDagensProgram.Name = "listViewDagensProgram";
             this.listViewDagensProgram.Size = new System.Drawing.Size(639, 176);
@@ -553,6 +548,7 @@
             this.columnBehandling,
             this.columnLæge,
             this.columnPatient});
+            this.listViewVenteværelse.FullRowSelect = true;
             this.listViewVenteværelse.Location = new System.Drawing.Point(9, 240);
             this.listViewVenteværelse.Name = "listViewVenteværelse";
             this.listViewVenteværelse.Size = new System.Drawing.Size(636, 185);
@@ -650,14 +646,13 @@
         private System.Windows.Forms.ColumnHeader columnTelefon;
         private System.Windows.Forms.Button buttonOpretPatient;
         private System.Windows.Forms.Button buttonRedigerePatient;
-        private System.Windows.Forms.Button opretTestPatient;
         private System.Windows.Forms.TabPage tabLiveView;
         private System.Windows.Forms.Button buttonUdskrivDagensBookinger;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Button buttonAkutAnkomst;
         private System.Windows.Forms.Button buttonRedigereBookning;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonUnderBehandling;
+        private System.Windows.Forms.Button buttonAfslutBehandling;
         private System.Windows.Forms.Button buttonTjekkeInd;
         private System.Windows.Forms.ListView listViewDagensProgram;
         private System.Windows.Forms.Label label2;

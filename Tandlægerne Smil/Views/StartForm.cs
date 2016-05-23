@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Tandlægerne_Smil.Controllers;
 using Tandlægerne_Smil.Controllers.DbController;
 using Tandlægerne_Smil.Models;
@@ -168,6 +169,17 @@ namespace Tandlægerne_Smil.Views
 
         private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // User-Experience feature, så man slet ikke KAN klikke på de relevant knapper, hvis ikke noget i listviewet er markeret.
+            if (listViewDagensProgram.SelectedItems.Count > 0)
+            {
+                buttonRedigereBookning.Enabled = true;
+                buttonTjekkeInd.Enabled = true;
+            }
+            else
+            {
+                buttonRedigereBookning.Enabled = false;
+                buttonTjekkeInd.Enabled = false;
+            }
         }
 
         private void buttonOpretPatient_Click(object sender, EventArgs e)
@@ -312,10 +324,32 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void listViewPatienter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // User-Experience feature, så man slet ikke KAN klikke på opret booking / redigere patient, hvis ikke en patient er markeret.
+            if (listViewPatienter.SelectedItems.Count > 0)
+            {
+                buttonRedigerePatient.Enabled = true;
+                buttonOpretBooking.Enabled = true;
+            }
+            else
+            {
+                buttonRedigerePatient.Enabled = false;
+                buttonOpretBooking.Enabled = false;
+            }
         }
 
         private void listViewVenteværelse_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // User-Experience feature, så man slet ikke KAN klikke på de relevant knapper, hvis ikke noget i listviewet er markeret.
+            if (listViewPatienter.SelectedItems.Count > 0)
+            {
+                buttonUnderBehandling.Enabled = true;
+                buttonAfslutBehandling.Enabled = true;
+            }
+            else
+            {
+                buttonUnderBehandling.Enabled = false;
+                buttonAfslutBehandling.Enabled = false;
+            }
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
