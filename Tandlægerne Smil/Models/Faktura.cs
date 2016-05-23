@@ -30,7 +30,7 @@ namespace Tandlægerne_Smil.Models
 		    
 	    }
 
-        public void UdskrivFaktura(int fakturaNR, int patientID)
+        public void UdskrivFaktura(int fakturaNR, int patientnr)
         {
 
 
@@ -51,7 +51,7 @@ namespace Tandlægerne_Smil.Models
                 var fakturalinjer = db.FakturalinjerDbs.ToList();
                 var faktura = db.FakturaDbs.ToList();
 
-
+#region patientjoin
                 var PatientJoin = from pa in patient
                            join bo in bookning
                                on pa.PatientId equals bo.PatientId
@@ -70,12 +70,15 @@ namespace Tandlægerne_Smil.Models
 
                            select new
                            {
-                               patientNavn = pa.Fornavn + " " + pa.Efternavn,
+                               patientNavn = pa.Fornavn.Replace(" ", string.Empty) +
+                               " " + pa.Efternavn.Replace(" ", string.Empty),
+                               //Navn uden alle mellemrum sat sammen fornavn + efternavn
                                patientAdresse = pa.Adresse,
                                patientPostnummer = pa.Postnummer,
                                patientID = pa.PatientId,
+                               PatientCpr = pa.Cpr,
 
-                               lægeNavn = læ.Fornavn + " " + læ.Efternavn,
+                               lægeNavn = læ.Fornavn+ " " + læ.Efternavn,
 
                                fakturaNummer = fa.FakturaId,
                                fakturaDato = fa.FakturaDato,
@@ -83,7 +86,15 @@ namespace Tandlægerne_Smil.Models
                                behandlingsNavn = be.Navn,
                                behandlingsPris = be.Pris,
                                behandlingsId = be.BehandlingId
+                               
                            };
+
+                var PatientSortQurry = (from r in PatientJoin
+                                        where (r.fakturaNummer == fakturaNR)
+                                        select r).ToList();
+                #endregion
+
+
 
                 var OrderLinier = from fl in fakturalinjer
                             join bh in behandling
@@ -94,28 +105,52 @@ namespace Tandlægerne_Smil.Models
                               behandlingsPris = bh.Pris,
                               fakturaID = fl.FakturaId 
                            };
-
-                var PatientSortQurry = (from r in PatientJoin
-                                 where (r.fakturaNummer == fakturaNR)
-                                 select r).ToList();
-
+                
                 var OrderLinjerSortQurry = (from r in OrderLinier
                                  where (r.fakturaID == fakturaNR)
                                  select r).ToList();
 
+                var patientSortQurry = (from r in patient
+                    where (r.PatientId == patientnr)
+                    select r).ToList();
+
+                
+
+                int index = patientSortQurry.Count;
+                int PadVærdi = 120;
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     using (SW = new StreamWriter(sfd.FileName))
                         try
                         {
-                            SW.WriteLine("Tandlægerne Smil A/S".PadRight(55));
-                            SW.WriteLine("TandlægeVej 420".PadRight(55));
-                            SW.WriteLine("Tandlægerne Smil A/S".PadRight(55));
-                            SW.WriteLine("Tandlægerne Smil A/S".PadRight(55));
-                            SW.WriteLine("Behandling              Pris           ");
-                            SW.WriteLine("---------------------------------------");
-
+                            MessageBox.Show(index.ToString());
                             
+                                SW.WriteLine("Tandlægerne Smil A/S".PadLeft(PadVærdi));
+                                SW.WriteLine("TandlægeVej 420".PadLeft(PadVærdi));
+                                SW.WriteLine("7100 Vejle".PadLeft(PadVærdi));
+                                SW.WriteLine(Environment.NewLine);
+                                SW.WriteLine("Tlf: 420-1227".PadLeft(PadVærdi));
+                                SW.WriteLine(Environment.NewLine);
+                                SW.WriteLine(Environment.NewLine);
+                                SW.WriteLine(patientSortQurry[index-1].Fornavn + "EasyBill Bank".PadLeft(PadVærdi - (patientSortQurry[index-1].Fornavn.Length)));
+                                SW.WriteLine(patientSortQurry[index-1].Cpr + "RegNr: 0042".PadLeft(PadVærdi - (patientSortQurry[index-1].Cpr.Length)));
+                                SW.WriteLine(patientSortQurry[index-1].Adresse + "KontoNr: 00024960125".PadLeft(PadVærdi - (patientSortQurry[index-1].Adresse.Length)));
+                                SW.WriteLine(patientSortQurry[index-1].Postnummer + "");
+                                SW.WriteLine(patientSortQurry[index-1].PatientId + "");
+                                SW.WriteLine(Environment.NewLine);
+                                SW.WriteLine(Environment.NewLine);
+                                SW.WriteLine();
+                                SW.WriteLine();
+                                SW.WriteLine();
+
+
+
+                                SW.WriteLine("Behandling              Pris           ");
+                                SW.WriteLine("---------------------------------------");
+                                
+                            
+
+
                             foreach (var r in OrderLinjerSortQurry)
                             {
                                 SW.WriteLine("Du har fået {0} og prisen er {1}       ", r.behandlingsNavn,
@@ -125,10 +160,10 @@ namespace Tandlægerne_Smil.Models
                             SW.WriteLine("---------------------------------------");
                             SW.WriteLine("Total Pris: xxxxx");
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
-
-                            MessageBox.Show("Test");
+                          
+                            MessageBox.Show(e.ToString());
                         }
                         finally
                         {
