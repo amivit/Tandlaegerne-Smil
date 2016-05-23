@@ -89,6 +89,7 @@
             this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.columnTotalAnslåetTid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.tabPatient.SuspendLayout();
@@ -496,6 +497,7 @@
             this.columnHeaderLokale,
             this.columnHeaderLæge,
             this.columnHeaderPatient,
+            this.columnTotalAnslåetTid,
             this.columnHeaderBehandling});
             this.listViewDagensProgram.Location = new System.Drawing.Point(6, 45);
             this.listViewDagensProgram.Name = "listViewDagensProgram";
@@ -508,7 +510,7 @@
             // columnHeaderTid
             // 
             this.columnHeaderTid.Text = "Tidspunkt";
-            this.columnHeaderTid.Width = 134;
+            this.columnHeaderTid.Width = 113;
             // 
             // columnHeaderLokale
             // 
@@ -518,17 +520,17 @@
             // columnHeaderLæge
             // 
             this.columnHeaderLæge.Text = "Læge";
-            this.columnHeaderLæge.Width = 91;
+            this.columnHeaderLæge.Width = 72;
             // 
             // columnHeaderPatient
             // 
             this.columnHeaderPatient.Text = "Patient";
-            this.columnHeaderPatient.Width = 109;
+            this.columnHeaderPatient.Width = 94;
             // 
             // columnHeaderBehandling
             // 
             this.columnHeaderBehandling.Text = "Behandling";
-            this.columnHeaderBehandling.Width = 217;
+            this.columnHeaderBehandling.Width = 222;
             // 
             // label2
             // 
@@ -597,6 +599,11 @@
             // backgroundWorker1
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+            // columnTotalAnslåetTid
+            // 
+            this.columnTotalAnslåetTid.Text = "Anslået Tid";
+            this.columnTotalAnslåetTid.Width = 66;
             // 
             // StartForm
             // 
@@ -686,5 +693,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderPatient;
         private System.Windows.Forms.ColumnHeader columnHeaderBehandling;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ColumnHeader columnTotalAnslåetTid;
     }
 }

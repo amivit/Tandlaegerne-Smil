@@ -16,15 +16,14 @@ namespace Tandlægerne_Smil.Views
 {
     public partial class FakturaPatienter : Form
     {
-        Global _global = new Global();
+        private Global _global = new Global();
         private readonly Controller _controller = new Controller();
-        StartForm startform;
+        private StartForm startform;
 
         public FakturaPatienter(StartForm startform)
         {
             this.startform = startform;
             InitializeComponent();
-
         }
 
         private void FakturaPatienter_Load(object sender, EventArgs e)
@@ -32,16 +31,13 @@ namespace Tandlægerne_Smil.Views
             using (var db = new smildb())
             {
                 var patientList = db.PatientDbs.ToList();
-                var index = 0;
                 foreach (var patientDb in patientList)
                 {
-                    ListViewItem lvi = new ListViewItem(patientList[index].Fornavn.Replace(" ", string.Empty)+" "
-                        + patientList[index].Efternavn.Replace(" ", string.Empty));
-                    lvi.SubItems.Add(patientList[index].PatientId.ToString());
-                    
+                    ListViewItem lvi = new ListViewItem(patientDb.Fornavn.Replace(" ", string.Empty) + " "
+                        + patientDb.Efternavn.Replace(" ", string.Empty));
+                    lvi.SubItems.Add(patientDb.PatientId.ToString());
+                    lvi.Group = listView.Groups[0];
                     listView.Items.Add(lvi);
-                    listView.Items[index].Group = listView.Groups[0];
-                    index++;
                 }
             }
         }
@@ -52,12 +48,10 @@ namespace Tandlægerne_Smil.Views
             startform.Button_Søg.PerformClick();
             startform.listView_FakturaDetaljer.Items.Clear();
             this.Close();
-
         }
 
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

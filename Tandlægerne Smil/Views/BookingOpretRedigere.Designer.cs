@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxPatient = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePickerBooking = new System.Windows.Forms.DateTimePicker();
+            this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxLæge = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -67,6 +67,7 @@
             this.textBoxPatient.ReadOnly = true;
             this.textBoxPatient.Size = new System.Drawing.Size(194, 20);
             this.textBoxPatient.TabIndex = 1;
+            this.textBoxPatient.TextChanged += new System.EventHandler(this.textBoxPatient_TextChanged);
             // 
             // label2
             // 
@@ -77,15 +78,15 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Tidspunkt";
             // 
-            // dateTimePickerBooking
+            // datePicker
             // 
-            this.dateTimePickerBooking.Checked = false;
-            this.dateTimePickerBooking.CustomFormat = "dd/MM/yy";
-            this.dateTimePickerBooking.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerBooking.Location = new System.Drawing.Point(12, 69);
-            this.dateTimePickerBooking.Name = "dateTimePickerBooking";
-            this.dateTimePickerBooking.Size = new System.Drawing.Size(93, 20);
-            this.dateTimePickerBooking.TabIndex = 3;
+            this.datePicker.Checked = false;
+            this.datePicker.CustomFormat = "dd/MM/yy";
+            this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.datePicker.Location = new System.Drawing.Point(12, 69);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.Size = new System.Drawing.Size(93, 20);
+            this.datePicker.TabIndex = 3;
             // 
             // label3
             // 
@@ -258,7 +259,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBoxLæge);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dateTimePickerBooking);
+            this.Controls.Add(this.datePicker);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxPatient);
             this.Controls.Add(this.label1);
@@ -279,19 +280,19 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
 		public System.Windows.Forms.TextBox textBoxPatient;
-		public System.Windows.Forms.DateTimePicker dateTimePickerBooking;
+		public System.Windows.Forms.DateTimePicker datePicker;
 		public System.Windows.Forms.ComboBox comboBoxLæge;
 		public System.Windows.Forms.ComboBox comboBoxBehandling;
 		public System.Windows.Forms.ComboBox comboBoxLokale;
 		public System.Windows.Forms.TextBox textBoxNoter;
 		private System.Windows.Forms.Button buttonTilføj;
 		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.ListView listViewBehandling;
 		private System.Windows.Forms.ColumnHeader ColumnBeskrivelse;
 		private System.Windows.Forms.ColumnHeader ColumnPris;
 		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.DateTimePicker dateTimeOnlyPicker;
 		private System.Windows.Forms.ColumnHeader columnAnslåetTid;
         private System.Windows.Forms.Button buttonGemBooking;
+        public System.Windows.Forms.DateTimePicker dateTimeOnlyPicker;
+        public System.Windows.Forms.ListView listViewBehandling;
     }
 }
