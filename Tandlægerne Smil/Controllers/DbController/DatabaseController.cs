@@ -504,10 +504,12 @@ namespace Tandlægerne_Smil.Controllers.DbController
     {
         public long? BookingId { get; set; } // booking_id
         public long BehandlingId { get; set; } // behandling_id
+        public long? FakturaId { get; set; } // faktura_id
 
         // Foreign keys
         public virtual BehandlingDb BehandlingDb { get; set; } // FK_Fakturalinjer_Behandling
         public virtual BookingDb BookingDb { get; set; } // FK_Behandlingslinjer_Booking
+        public virtual FakturaDb FakturaDb { get; set; } // FK_Behandlingslinjer_Faktura
     }
 
     // Behandlingsrum
@@ -541,7 +543,6 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
         // Reverse navigation
         public virtual System.Collections.Generic.ICollection<BehandlingslinjerDb> BehandlingslinjerDbs { get; set; } // Behandlingslinjer.FK_Behandlingslinjer_Booking
-        public virtual System.Collections.Generic.ICollection<FakturaDb> FakturaDbs { get; set; } // Faktura.FK_Faktura_Booking
         public virtual System.Collections.Generic.ICollection<VenteværelseDb> VenteværelseDb { get; set; } // Venteværelse.FK_Venteværelse_Booking
 
         // Foreign keys
@@ -552,7 +553,6 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public BookingDb()
         {
             BehandlingslinjerDbs = new System.Collections.Generic.List<BehandlingslinjerDb>();
-            FakturaDbs = new System.Collections.Generic.List<FakturaDb>();
             VenteværelseDb = new System.Collections.Generic.List<VenteværelseDb>();
         }
     }
@@ -567,9 +567,16 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public System.DateTime FakturaDato { get; set; } // faktura_dato
         public long BookingId { get; set; } // booking_id
 
+        // Reverse navigation
+        public virtual System.Collections.Generic.ICollection<BehandlingslinjerDb> BehandlingslinjerDbs { get; set; } // Behandlingslinjer.FK_Behandlingslinjer_Faktura
+
         // Foreign keys
-        public virtual BookingDb BookingDb { get; set; } // FK_Faktura_Booking
         public virtual PatientDb PatientDb { get; set; } // FK_Faktura_Patient
+        
+        public FakturaDb()
+        {
+            BehandlingslinjerDbs = new System.Collections.Generic.List<BehandlingslinjerDb>();
+        }
     }
 
     // Patient
@@ -749,9 +756,11 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
             Property(x => x.BookingId).HasColumnName(@"booking_id").IsOptional().HasColumnType("bigint");
             Property(x => x.BehandlingId).HasColumnName(@"behandling_id").IsRequired().HasColumnType("bigint");
+            Property(x => x.FakturaId).HasColumnName(@"faktura_id").IsOptional().HasColumnType("bigint");
 
             // Foreign keys
             HasOptional(a => a.BookingDb).WithMany(b => b.BehandlingslinjerDbs).HasForeignKey(c => c.BookingId); // FK_Behandlingslinjer_Booking
+            HasOptional(a => a.FakturaDb).WithMany(b => b.BehandlingslinjerDbs).HasForeignKey(c => c.FakturaId); // FK_Behandlingslinjer_Faktura
             HasRequired(a => a.BehandlingDb).WithOptional(b => b.BehandlingslinjerDb); // FK_Fakturalinjer_Behandling
         }
     }
@@ -824,7 +833,6 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.BookingId).HasColumnName(@"booking_id").IsRequired().HasColumnType("bigint");
 
             // Foreign keys
-            HasRequired(a => a.BookingDb).WithMany(b => b.FakturaDbs).HasForeignKey(c => c.BookingId); // FK_Faktura_Booking
             HasRequired(a => a.PatientDb).WithMany(b => b.FakturaDbs).HasForeignKey(c => c.PatientId); // FK_Faktura_Patient
         }
     }
