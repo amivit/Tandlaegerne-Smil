@@ -40,6 +40,14 @@ namespace Tandlægerne_Smil.Views
             lvi.SubItems.Add(behandling.AnslåetTid.ToString());
 
             listViewBehandling.Items.Add(lvi);
+
+
+
+            //test
+            if (comboBoxLæge.SelectedItem != null && comboBoxBehandling.SelectedItem != null && comboBoxLokale.SelectedItem != null && listViewBehandling.Items.Count > 0)
+            {
+                buttonGemBooking.Enabled = true;
+            }
         }
 
         private void dateTimeOnly_ValueChanged(object sender, EventArgs e) // TODO: fjerne sekunder
@@ -54,5 +62,33 @@ namespace Tandlægerne_Smil.Views
         private void textBoxPatient_TextChanged(object sender, EventArgs e)
         {
         }
+
+
+#region enable_GemBooking
+        private void comboBoxLæge_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxLæge.SelectedItem != null && comboBoxBehandling.SelectedItem != null && comboBoxLokale.SelectedItem != null && listViewBehandling.Items.Count > 0)
+            {
+                buttonGemBooking.Enabled = true;
+            }
+        }
+
+
+        private void comboBoxBehandling_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxLæge.SelectedItem != null && comboBoxBehandling.SelectedItem != null && comboBoxLokale.SelectedItem != null && listViewBehandling.Items.Count > 0)
+            {
+                buttonGemBooking.Enabled = true;
+            }
+        }
+
+        private void comboBoxLokale_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxLæge.SelectedItem != null && comboBoxBehandling.SelectedItem != null && comboBoxLokale.SelectedItem != null && listViewBehandling.Items.Count > 0)
+            {
+                buttonGemBooking.Enabled = true;
+            }
+        }
+#endregion
     }
 }
