@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +15,72 @@ namespace Tandlægerne_Smil.Models
     {
         //private readonly BookingDb _bookingDb = new BookingDb();
 
-        public void GemDagensProgram(DateTimePicker dateTimePicker) // TODO: Gem dagens program
+        public void GemDagensProgram(StartForm _startForm) // TODO: Gem dagens program
         {
-            //Console.WriteLine(dateTimePicker.Value.Day);
-            var index = 0;
-            var bookings = Db.BookingDbs.ToList();
-            Console.WriteLine(bookings[index].Tidspunkt.ToShortDateString());
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            sfd.FileName = ("Dagens Program");
+            //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
+            sfd.FilterIndex = 1;
+            StreamWriter sw = null;
+            StringBuilder sb;
+
+            using (var db = new smildb())
+            {
+                var dagensBookinger = db.BookingDbs
+                    .Include(b => b.BehandlingslinjerDbs)
+                    .Where(b => b.Tidspunkt.Day == _startForm.dateTimePicker.Value.Day) // Kun den valgte dag
+                    .OrderBy(b => b.Tidspunkt) // Sortere dem i rækkefølge
+                    .ToList();
+               
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    using (sw = new StreamWriter(sfd.FileName))
+                        try
+                        {
+                            sw.WriteLine("Tandlægernes Smil dagsprogram for den " +_startForm.dateTimePicker.Value.Day + "/" + _startForm.dateTimePicker.Value.Month);
+                            sw.WriteLine("");
+                            sw.WriteLine("======================================================================================");
+                            sw.WriteLine("");
+                            foreach (var booking in dagensBookinger)
+                            {
+                                var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == booking.BookingId).ToList();
+                                var behandlingString = "";
+                                var totalAnslåetTid = 0;
+
+                                if (behandlinger.Count > 0) // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
+                                {
+                                    behandlingString = behandlinger[0].Navn;
+                                    totalAnslåetTid = behandlinger[0].AnslåetTid;
+                                }
+                                foreach (var behandling in behandlinger.Skip(1)) // Spring den første over, og tilføje alle behandlinger (hvis der er nogle)
+                                {
+                                    behandlingString += ", " + behandling.Navn;
+                                    totalAnslåetTid += behandling.AnslåetTid;
+                                }
+                                
+                                    sw.WriteLine("Tidspunkt: " + booking.Tidspunkt.Hour + ":" + booking.Tidspunkt.Minute);
+                                    sw.WriteLine("Læge: " + booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+                                    sw.WriteLine("Lokale: " + booking.BehandlingsrumDb.RumNavn);
+                                    sw.WriteLine("Patient: " + booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
+                                    sw.WriteLine("Anslået tid: " + totalAnslåetTid + " Min");
+                                    sw.WriteLine("Behandling(er): " + behandlingString);      
+                                    sw.WriteLine(""); 
+                                    sw.WriteLine("");                    
+                            }
+
+
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.ToString());
+                        }
+                        finally
+                        {
+                            sw.Close();
+                        }
+                }
+            }
         }
 
         public void LoadOpretBooking(int patientID, BookingOpretRedigere bookingOpretRedigere)
