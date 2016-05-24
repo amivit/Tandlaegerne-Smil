@@ -19,9 +19,11 @@ namespace Tandlægerne_Smil.Models
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            sfd.FileName = ("Dagens Program");
+            sfd.FileName = ("Dagens-Program_" + _startForm.dateTimePicker.Value.Date.ToShortDateString());
             //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
             sfd.FilterIndex = 1;
+            
+           
             StreamWriter sw = null;
             StringBuilder sb;
 
@@ -32,41 +34,47 @@ namespace Tandlægerne_Smil.Models
                     .Where(b => b.Tidspunkt.Day == _startForm.dateTimePicker.Value.Day) // Kun den valgte dag
                     .OrderBy(b => b.Tidspunkt) // Sortere dem i rækkefølge
                     .ToList();
-               
+
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     using (sw = new StreamWriter(sfd.FileName))
                         try
                         {
-                            sw.WriteLine("Tandlægernes Smil dagsprogram for den " +_startForm.dateTimePicker.Value.Day + "/" + _startForm.dateTimePicker.Value.Month);
+                            sw.WriteLine("Tandlægernes Smil dagsprogram for den " + _startForm.dateTimePicker.Value.Day +
+                                         "/" + _startForm.dateTimePicker.Value.Month);
                             sw.WriteLine("");
-                            sw.WriteLine("======================================================================================");
+                            sw.WriteLine(
+                                "======================================================================================");
                             sw.WriteLine("");
                             foreach (var booking in dagensBookinger)
                             {
-                                var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == booking.BookingId).ToList();
+                                var behandlinger =
+                                    db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == booking.BookingId)
+                                        .ToList();
                                 var behandlingString = "";
                                 var totalAnslåetTid = 0;
 
-                                if (behandlinger.Count > 0) // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
+                                if (behandlinger.Count > 0)
+                                    // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
                                 {
                                     behandlingString = behandlinger[0].Navn;
                                     totalAnslåetTid = behandlinger[0].AnslåetTid;
                                 }
-                                foreach (var behandling in behandlinger.Skip(1)) // Spring den første over, og tilføje alle behandlinger (hvis der er nogle)
+                                foreach (var behandling in behandlinger.Skip(1))
+                                    // Spring den første over, og tilføje alle behandlinger (hvis der er nogle)
                                 {
                                     behandlingString += ", " + behandling.Navn;
                                     totalAnslåetTid += behandling.AnslåetTid;
                                 }
-                                
-                                    sw.WriteLine("Tidspunkt: " + booking.Tidspunkt.Hour + ":" + booking.Tidspunkt.Minute);
-                                    sw.WriteLine("Læge: " + booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
-                                    sw.WriteLine("Lokale: " + booking.BehandlingsrumDb.RumNavn);
-                                    sw.WriteLine("Patient: " + booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
-                                    sw.WriteLine("Anslået tid: " + totalAnslåetTid + " Min");
-                                    sw.WriteLine("Behandling(er): " + behandlingString);      
-                                    sw.WriteLine(""); 
-                                    sw.WriteLine("");                    
+
+                                sw.WriteLine("Tidspunkt: " + booking.Tidspunkt.Hour + ":" + booking.Tidspunkt.Minute);
+                                sw.WriteLine("Læge: " + booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+                                sw.WriteLine("Lokale: " + booking.BehandlingsrumDb.RumNavn);
+                                sw.WriteLine("Patient: " + booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
+                                sw.WriteLine("Anslået tid: " + totalAnslåetTid + " Min");
+                                sw.WriteLine("Behandling(er): " + behandlingString);
+                                sw.WriteLine("");
+                                sw.WriteLine("");
                             }
 
 
@@ -81,6 +89,7 @@ namespace Tandlægerne_Smil.Models
                         }
                 }
             }
+            MessageBox.Show(Path.GetDirectoryName(sfd.FileName));
         }
 
         public void LoadOpretBooking(int patientID, BookingOpretRedigere bookingOpretRedigere)
@@ -116,49 +125,69 @@ namespace Tandlægerne_Smil.Models
 
         public void GemBooking(int patientID, BookingOpretRedigere bookingOpretRedigere)
         {
-            var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
-
-            //_bookingDb.Ankommet = false;
-            var CreatedBooking = new BookingDb();
-
-            // Match Læge fra combobox, med databasen. Fornavn og efternavn skal splittes, da de ligger i 2 forskellige kolonner i db'en
-            var names = bookingOpretRedigere.comboBoxLæge.Text.Split(' ');
-            string lægeFornavn = names[0];
-            string lægeEfternavn = names[1];
-            var læge = Db.AnsatDbs.FirstOrDefault(a => a.Fornavn == lægeFornavn && a.Efternavn == lægeEfternavn);
-            CreatedBooking.AnsatDb = læge;
-
-            // Match Lokale fra combobox, med lokale i databasen
-            var lokale = Db.BehandlingsrumDbs.FirstOrDefault(b => b.RumNavn == bookingOpretRedigere.comboBoxLokale.Text);
-
-            var date = bookingOpretRedigere.datePicker.Value;
-            var time = bookingOpretRedigere.dateTimeOnlyPicker.Value;
-
-            CreatedBooking.Tidspunkt = new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, 0);
-            //    bookingOpretRedigere.datePicker.Value;
-            //bookingDb.Tidspunkt = bookingOpretRedigere.dateTimeOnlyPicker.Value;
-
-            CreatedBooking.PatientId = patient.PatientId;
-            CreatedBooking.LokaleId = lokale.RumId;
-
-            var addedBooking = Db.BookingDbs.Add(CreatedBooking);
-            LogSqlQuery();
-            Db.SaveChanges(); // Opret bookingen inden vi tilføjer behandlinger til den
-
-            for (int i = 0; i < bookingOpretRedigere.listViewBehandling.Items.Count; i++)
+            try
             {
-                var behandlingsNavn = bookingOpretRedigere.listViewBehandling.Items[i].Text;
-                var behandlingTemp = Db.BehandlingDbs.FirstOrDefault(b => b.Navn == behandlingsNavn);
+                var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
 
-                var linje = new BehandlingslinjerDb
+                //_bookingDb.Ankommet = false;
+                var CreatedBooking = new BookingDb();
+
+                // Match Læge fra combobox, med databasen. Fornavn og efternavn skal splittes, da de ligger i 2 forskellige kolonner i db'en
+                var names = bookingOpretRedigere.comboBoxLæge.Text.Split(' ');
+                string lægeFornavn = names[0];
+                string lægeEfternavn = names[1];
+                var læge = Db.AnsatDbs.FirstOrDefault(a => a.Fornavn == lægeFornavn && a.Efternavn == lægeEfternavn);
+                CreatedBooking.AnsatDb = læge;
+
+                // Match Lokale fra combobox, med lokale i databasen
+                var lokale =
+                    Db.BehandlingsrumDbs.FirstOrDefault(b => b.RumNavn == bookingOpretRedigere.comboBoxLokale.Text);
+
+                var date = bookingOpretRedigere.datePicker.Value;
+                var time = bookingOpretRedigere.dateTimeOnlyPicker.Value;
+
+                CreatedBooking.Tidspunkt = new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, 0);
+                //    bookingOpretRedigere.datePicker.Value;
+                //bookingDb.Tidspunkt = bookingOpretRedigere.dateTimeOnlyPicker.Value;
+
+                CreatedBooking.PatientId = patient.PatientId;
+                CreatedBooking.LokaleId = lokale.RumId;
+
+                var addedBooking = Db.BookingDbs.Add(CreatedBooking);
+                LogSqlQuery();
+                Db.SaveChanges(); // Opret bookingen inden vi tilføjer behandlinger til den
+
+                for (int i = 0; i < bookingOpretRedigere.listViewBehandling.Items.Count; i++)
                 {
-                    BookingDb = addedBooking,
-                    BehandlingDb = behandlingTemp
-                };
-                Db.BehandlingslinjerDbs.Add(linje);
+                    var behandlingsNavn = bookingOpretRedigere.listViewBehandling.Items[i].Text;
+                    var behandlingTemp = Db.BehandlingDbs.FirstOrDefault(b => b.Navn == behandlingsNavn);
+
+                    var linje = new BehandlingslinjerDb
+                    {
+                        BookingDb = addedBooking,
+                        BehandlingDb = behandlingTemp
+                    };
+                    Db.BehandlingslinjerDbs.Add(linje);
+                }
+                LogSqlQuery();
+                Db.SaveChanges();
+
+                MessageBox.Show("Patient oprettet", // Oprettelse besked
+                    "Oprettet",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                Form.ActiveForm.Close();
             }
-            LogSqlQuery();
-            Db.SaveChanges();
+            catch (Exception e)
+            {
+                MessageBox.Show("Fejl", // Oprettelse besked
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+
+            }
         }
     }
 }
