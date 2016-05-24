@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookingOpretRedigere));
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxPatient = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -263,6 +264,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxPatient);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BookingOpretRedigere";
             this.Text = "Booking";
             this.Load += new System.EventHandler(this.BookingOpretRedigere_Load);
