@@ -44,10 +44,20 @@ namespace Tandlægerne_Smil.Views
 
         private void button_OK_Click(object sender, EventArgs e)
         {
-            startform.textBox_PatientID.Text = listView.SelectedItems[0].SubItems[1].Text;
-            startform.Button_Søg.PerformClick();
-            startform.listView_FakturaDetaljer.Items.Clear();
-            this.Close();
+            try
+            {
+                startform.textBox_PatientID.Text = listView.SelectedItems[0].SubItems[1].Text;
+                startform.Button_Søg.PerformClick();
+                startform.listView_FakturaDetaljer.Items.Clear();
+                this.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Postnummeret eksistere ikke",
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+            }
         }
 
         private void listView_SelectedIndexChanged(object sender, EventArgs e)

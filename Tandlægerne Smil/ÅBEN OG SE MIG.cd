@@ -1,35 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Tandlægerne_Smil.Models.Book">
-    <Position X="7.25" Y="3" Width="1.5" />
+    <Position X="4.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAQAAAAABAAAAABAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAQAEAAAAAA=</HashCode>
       <FileName>Models\Book.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tandlægerne_Smil.Models.Faktura">
-    <Position X="9.5" Y="3" Width="1.5" />
+    <Position X="6.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAARAAAAAAAAAACAAABAAEAAAAAAAAAAAAAAACCAAAA=</HashCode>
+      <HashCode>AAARAAAAAAAAAACAAAhAAAAAAAAAAAAAAgAAACCAAAA=</HashCode>
       <FileName>Models\Faktura.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Tandlægerne_Smil.Models.Global" Collapsed="true">
-    <Position X="5" Y="1.75" Width="1.5" />
+  <Class Name="Tandlægerne_Smil.Models.Global">
+    <Position X="3.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
       <FileName>Models\Global.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tandlægerne_Smil.Models.Patient">
-    <Position X="0.5" Y="3" Width="1.5" />
+    <Position X="0.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <HashCode>EAAAAAAAAAAAAAAAAEAAAAAAAAAAEAAAAAAAAAEAAAA=</HashCode>
       <FileName>Models\Patient.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tandlægerne_Smil.Models.Venteværelse">
-    <Position X="2.75" Y="3" Width="1.5" />
+    <Position X="2.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAADACAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Venteværelse.cs</FileName>
@@ -38,22 +38,15 @@
   <Class Name="Tandlægerne_Smil.Views.StartForm" Collapsed="true">
     <Position X="14.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EVhAAAwBAaASADACAGCQAAACAeITAgAJJXoCAEZgFAA=</HashCode>
+      <HashCode>edxlgIQBBagSQBHDAGDQBAICAzYCAg4JJXoKKEfotBI=</HashCode>
       <FileName>Views\StartForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tandlægerne_Smil.Views.StartGui">
-    <Position X="11.75" Y="1.75" Width="1.5" />
+    <Position X="9" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\StartGui.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Tandlægerne_Smil.Models.Ansat">
-    <Position X="5" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>gAABAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAA=</HashCode>
-      <FileName>Models\Ansat.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="System.Object" Collapsed="true">
@@ -63,7 +56,7 @@
   <Interface Name="Tandlægerne_Smil.Controllers.DbController.Ismildb">
     <Position X="14.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAACAgQAAAAAEAAAAAUAAgAAAAAQQAACAAAAgQACAA=</HashCode>
+      <HashCode>gAAACAgQAAAAAEAAAAAUAAgAAAAAQAAACAQAAgQACAA=</HashCode>
       <FileName>Controllers\DbController\DatabaseController.cs</FileName>
     </TypeIdentifier>
   </Interface>

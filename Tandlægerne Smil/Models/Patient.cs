@@ -31,7 +31,7 @@ namespace Tandlægerne_Smil.Models
 
                 if (!postNummerCheck) // Hvis postnummert ikke findes
                 {
-                    MessageBox.Show("Postnummeret eksitere ikke",
+                    MessageBox.Show("Postnummeret eksistere ikke",
                      "Fejl",
                      MessageBoxButtons.OK,
                      MessageBoxIcon.Error);
