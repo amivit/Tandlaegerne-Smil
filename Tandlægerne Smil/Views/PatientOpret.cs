@@ -26,7 +26,7 @@ namespace Tandlægerne_Smil.Views
             PatientOpret._startForm = startForm;
         }
 
-        public static PatientOpret SingletonLazyInstance()
+        public static PatientOpret SingletonLazyInstance(StartForm _startForm)
         {
             // lazy initialization
             if (_instance == null)

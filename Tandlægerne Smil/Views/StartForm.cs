@@ -42,11 +42,6 @@ namespace Tandlægerne_Smil.Views
             InitializeComponent();
         }
 
-        private void opretTestPatient_Click(object sender, EventArgs e)
-        {
-            RefreshPatientView();
-        }
-
         public void RefreshPatientView()
         {
             listViewPatienter.Items.Clear();
@@ -184,7 +179,7 @@ namespace Tandlægerne_Smil.Views
 
         private void buttonOpretPatient_Click(object sender, EventArgs e)
         {
-            PatientOpret OP = PatientOpret.SingletonLazyInstance(); // Singleton så man kun kan åbne formen en gang
+            PatientOpret OP = PatientOpret.SingletonLazyInstance(this); // Singleton så man kun kan åbne formen en gang
             OP.Show();
         }
 
