@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,8 @@ namespace Tandlægerne_Smil.Models
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            sfd.FileName = ("Dagens-Program_" + _startForm.dateTimePicker.Value.Date.ToShortDateString());
+            var dato = _startForm.dateTimePicker.Value;
+            sfd.FileName = ("Dagens-Program_" + dato.Day + "-" + dato.Month + "-" + dato.Year);
             //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
             sfd.FilterIndex = 1;
             
@@ -86,11 +88,22 @@ namespace Tandlægerne_Smil.Models
                         finally
                         {
                             sw.Close();
+                            var færdigBox = MessageBox.Show("Filen er gemt som tekstfil! Vil du åbne den?",
+                                    "Success!",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question);
+
+                            if (færdigBox == DialogResult.Yes)
+                            {
+                                ÅbneGemtFil(sfd);
+                            }
                         }
                 }
             }
-            MessageBox.Show(Path.GetDirectoryName(sfd.FileName));
+            //MessageBox.Show(Path.GetDirectoryName(sfd.FileName));
         }
+
+        
 
         public void LoadOpretBooking(int patientID, BookingOpretRedigere bookingOpretRedigere)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core.EntityClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,19 @@ namespace Tandlægerne_Smil.Models
             Console.WriteLine("SQL QUERY KØRES: ");
             Console.ResetColor();
             Db.Database.Log = Console.Write;
+        }
+
+        public static void ÅbneGemtFil(SaveFileDialog sfd)
+        {
+            string filSti = sfd.FileName;
+            var process = new Process();
+            process.StartInfo = new ProcessStartInfo()
+            {
+                UseShellExecute = true,
+                FileName = filSti
+            };
+            process.Start();
+            process.WaitForExit();
         }
     }
 }

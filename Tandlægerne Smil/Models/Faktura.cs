@@ -26,7 +26,8 @@ namespace Tandlægerne_Smil.Models
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            sfd.FileName = (indnavn + " Nr " + fakturaNR + " Dato " + DateTime.Today.ToShortDateString()).Replace(' ', '_');
+            var dateToday = DateTime.Today;
+            sfd.FileName = (indnavn + "_Nr_" + fakturaNR + "_Dato_" + dateToday.Day + "_" + dateToday.Month + "_" + dateToday.Year); //DateTime.Today.ToShortDateString()).Replace(' ', '_');
             //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
             sfd.FilterIndex = 1;
             StreamWriter SW = null;
@@ -113,6 +114,15 @@ namespace Tandlægerne_Smil.Models
                         finally
                         {
                             SW.Close();
+                            var færdigBox = MessageBox.Show("Filen er gemt som tekstfil! Vil du åbne den?",
+                                    "Success!",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question);
+
+                            if (færdigBox == DialogResult.Yes)
+                            {
+                                ÅbneGemtFil(sfd);
+                            }
                         }
                 }
             }
