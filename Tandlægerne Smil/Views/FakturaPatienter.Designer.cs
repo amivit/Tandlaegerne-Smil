@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Patienter", System.Windows.Forms.HorizontalAlignment.Left);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FakturaPatienter));
             this.listView = new System.Windows.Forms.ListView();
             this.column_Navn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_PatientID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -83,6 +84,7 @@
             this.ClientSize = new System.Drawing.Size(262, 453);
             this.Controls.Add(this.button_OK);
             this.Controls.Add(this.listView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FakturaPatienter";
             this.Text = "FakturaPatienter";
             this.Load += new System.EventHandler(this.FakturaPatienter_Load);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientRedigere));
             this.textBoxTelefon = new System.Windows.Forms.TextBox();
             this.textBoxPostnummer = new System.Windows.Forms.TextBox();
             this.textBoxAdresse = new System.Windows.Forms.TextBox();
@@ -246,6 +247,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Afslut);
             this.Controls.Add(this.Gem);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PatientRedigere";
             this.Text = "PatientRedigere";
             this.Load += new System.EventHandler(this.PatientRedigere_Load);
