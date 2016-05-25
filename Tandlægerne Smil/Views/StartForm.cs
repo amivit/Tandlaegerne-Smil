@@ -96,6 +96,7 @@ namespace Tandlægerne_Smil.Views
                     list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
                     list.SubItems.Add(booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
                     list.SubItems.Add(behandlingString);
+                    list.SubItems.Add(booking.BookingId.ToString());
                     listViewDagensProgram.Items.Add(list);
                 }
             }
@@ -346,6 +347,28 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+        }
+
+        private void buttonSletbooking_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Er du sikker på at du vil slette valgte booking", "Advarsel", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);                  
+                    _controller.Book.SletBooking(bookingID);
+                    RefreshBookingView();
+                }
+                catch (Exception t)
+                {
+                    MessageBox.Show(t.ToString());
+                    //"Fejl",
+                    //MessageBoxButtons.OK,
+                    //MessageBoxIcon.Error);
+
+                }
+                
+            }
         }
     }
 }
