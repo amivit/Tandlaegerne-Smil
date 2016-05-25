@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Migrations.Infrastructure;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -49,10 +50,27 @@ namespace Tandlægerne_Smil.Views
         private void buttonGemBooking_Click(object sender, EventArgs e)
         {
             _controller.Book.GemBooking(_patientId, this);
+	        
         }
 
         private void textBoxPatient_TextChanged(object sender, EventArgs e)
         {
         }
-    }
+
+		private void buttonSletBehandling_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				listViewBehandling.SelectedItems[0].Remove();
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Ingen behandling valgt.",
+								"Advarsel",
+								MessageBoxButtons.OK,
+								MessageBoxIcon.Error);
+			}
+		
+		}
+	}
 }
