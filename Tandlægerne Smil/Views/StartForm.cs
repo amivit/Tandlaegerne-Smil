@@ -118,11 +118,13 @@ namespace Tandlægerne_Smil.Views
             {
                 buttonRedigereBookning.Enabled = true;
                 buttonTjekkeInd.Enabled = true;
+                buttonSletbooking.Enabled = true;
             }
             else
             {
                 buttonRedigereBookning.Enabled = false;
                 buttonTjekkeInd.Enabled = false;
+                buttonSletbooking.Enabled = false;
             }
         }
 
