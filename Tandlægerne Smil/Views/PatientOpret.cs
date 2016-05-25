@@ -18,7 +18,6 @@ namespace Tandlægerne_Smil.Views
     {
         private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
         private static StartForm _startForm;
-        private static PatientOpret _instance;
 
         public PatientOpret(StartForm startForm)
         {

@@ -65,7 +65,7 @@ namespace Tandlægerne_Smil.Views
             }
         }
 
-        private void RefreshBookingView()
+        public void RefreshBookingView()
         {
             listViewDagensProgram.Items.Clear();
             using (var db = new smildb())
@@ -102,6 +102,44 @@ namespace Tandlægerne_Smil.Views
             }
         }
 
+
+
+        private void RefreshVenteværelseView()
+        {
+            listViewVenteværelse.Items.Clear();
+            using (var db = new smildb())
+            {
+                var venteVærelse = db.BookingDbs        
+                    .Where(b => b.Ankommet == true) // Kun den valgte dag
+                    .OrderBy(b => b.Tidspunkt) // Sortere dem i rækkefølge
+                    .ToList();
+                foreach (var patient in venteVærelse)
+                {
+                    ListViewItem lvi = new ListViewItem(patient.Tidspunkt.ToString());
+                    var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == patient.BookingId).ToList();
+                    var behandlingString = "";
+                    var totalAnslåetTid = 0;
+                    if (behandlinger.Count > 0) // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
+                    {
+                        behandlingString = behandlinger[0].Navn;
+                        totalAnslåetTid = behandlinger[0].AnslåetTid;
+                    }
+                    foreach (var behandling in behandlinger.Skip(1)) // Spring den første over, og tilføje alle behandlinger (hvis der er nogle)
+                    {
+                        behandlingString += ", " + behandling.Navn;
+                        totalAnslåetTid += behandling.AnslåetTid;
+                    }
+                    lvi.SubItems.Add(patient.AnsatDb.Fornavn + " " + patient.AnsatDb.Efternavn);
+                    lvi.SubItems.Add(totalAnslåetTid.ToString());
+                    lvi.SubItems.Add(patient.BehandlingsrumDb.RumNavn);
+                    lvi.SubItems.Add(patient.PatientDb.Fornavn + " " + patient.PatientDb.Efternavn);
+                    lvi.SubItems.Add(behandlingString);
+                    listViewVenteværelse.Items.Add(lvi);
+                }
+            }
+        }
+
+
         private void button2_Click(object sender, EventArgs e)
         {
             listViewDagensProgram.SelectedItems[0].BackColor = Color.Green;
@@ -109,7 +147,37 @@ namespace Tandlægerne_Smil.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            RefreshBookingView();
+            try
+            {
+                var selectedPatientNavn = listViewDagensProgram.SelectedItems[0].SubItems[4].Text;
+                if (MessageBox.Show("Skal " + selectedPatientNavn + " tjekkes ind?",
+                        "Patient tjek-ind",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    using (var db = new smildb())
+                    {
+                        int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);
+                        var tjekketind = db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
+                        tjekketind.Ankommet = true;
+                        db.SaveChanges();
+                        RefreshVenteværelseView();
+
+
+                    }
+
+
+
+}
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Fejl",
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
+            }
+           
         }
 
         private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,8 +225,8 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         private void StartForm_Load(object sender, EventArgs e)
         {
             RefreshPatientView();
-            //new Task(RefreshBookingView).Start();
             RefreshBookingView();
+            RefreshVenteværelseView();
         }
 
         private void VisKonsolToolStripMenuItem_Click(object sender, EventArgs e)
@@ -368,13 +436,12 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
                     _controller.Book.SletBooking(bookingID);
                     RefreshBookingView();
                 }
-                catch (Exception t)
+                catch (Exception)
                 {
-                    MessageBox.Show(t.ToString());
-                    //"Fejl",
-                    //MessageBoxButtons.OK,
-                    //MessageBoxIcon.Error);
-
+                    MessageBox.Show("Vælg booking",
+                       "Fejl",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Error);
                 }
                 
             }

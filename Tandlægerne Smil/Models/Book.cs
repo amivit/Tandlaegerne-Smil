@@ -185,7 +185,7 @@ namespace Tandlægerne_Smil.Models
                 LogSqlQuery();
                 Db.SaveChanges();
 
-                MessageBox.Show("Patient oprettet", // Oprettelse besked
+                MessageBox.Show("Booking oprettet", // Oprettelse besked
                     "Oprettet",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

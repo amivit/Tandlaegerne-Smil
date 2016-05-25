@@ -74,7 +74,7 @@
             this.buttonTjekkeInd = new System.Windows.Forms.Button();
             this.listViewDagensProgram = new System.Windows.Forms.ListView();
             this.columnHeaderTid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderLæge = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderAnsat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTotalAnslåetTid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderLokale = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPatient = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -82,8 +82,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.listViewVenteværelse = new System.Windows.Forms.ListView();
             this.columnBookingTid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnAnsat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnBehandling = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnLæge = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnPatient = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -92,6 +92,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.buttonSletbooking = new System.Windows.Forms.Button();
             this.columnHeaderBookingID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnAnslåetTidTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnLokale = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.tabFaktura.SuspendLayout();
             this.tabPatient.SuspendLayout();
@@ -493,7 +495,7 @@
             // 
             this.listViewDagensProgram.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderTid,
-            this.columnHeaderLæge,
+            this.columnHeaderAnsat,
             this.columnTotalAnslåetTid,
             this.columnHeaderLokale,
             this.columnHeaderPatient,
@@ -513,10 +515,10 @@
             this.columnHeaderTid.Text = "Tidspunkt";
             this.columnHeaderTid.Width = 59;
             // 
-            // columnHeaderLæge
+            // columnHeaderAnsat
             // 
-            this.columnHeaderLæge.Text = "Læge";
-            this.columnHeaderLæge.Width = 72;
+            this.columnHeaderAnsat.Text = "Ansat";
+            this.columnHeaderAnsat.Width = 72;
             // 
             // columnTotalAnslåetTid
             // 
@@ -551,11 +553,13 @@
             // 
             this.listViewVenteværelse.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnBookingTid,
-            this.columnBehandling,
-            this.columnLæge,
-            this.columnPatient});
+            this.columnAnsat,
+            this.columnAnslåetTidTotal,
+            this.columnLokale,
+            this.columnPatient,
+            this.columnBehandling});
             this.listViewVenteværelse.FullRowSelect = true;
-            this.listViewVenteværelse.Location = new System.Drawing.Point(9, 240);
+            this.listViewVenteværelse.Location = new System.Drawing.Point(6, 243);
             this.listViewVenteværelse.Name = "listViewVenteværelse";
             this.listViewVenteværelse.Size = new System.Drawing.Size(636, 185);
             this.listViewVenteværelse.TabIndex = 2;
@@ -565,23 +569,23 @@
             // 
             // columnBookingTid
             // 
-            this.columnBookingTid.Text = "Booking Tid";
-            this.columnBookingTid.Width = 87;
+            this.columnBookingTid.Text = "Tidspunkt";
+            this.columnBookingTid.Width = 61;
+            // 
+            // columnAnsat
+            // 
+            this.columnAnsat.Text = "Ansat";
+            this.columnAnsat.Width = 74;
             // 
             // columnBehandling
             // 
-            this.columnBehandling.Text = "Behandling";
-            this.columnBehandling.Width = 195;
-            // 
-            // columnLæge
-            // 
-            this.columnLæge.Text = "Ansat";
-            this.columnLæge.Width = 102;
+            this.columnBehandling.Text = "Behandling(er)";
+            this.columnBehandling.Width = 244;
             // 
             // columnPatient
             // 
             this.columnPatient.Text = "Patient";
-            this.columnPatient.Width = 115;
+            this.columnPatient.Width = 106;
             // 
             // label1
             // 
@@ -622,6 +626,16 @@
             // 
             this.columnHeaderBookingID.Text = "BookingID";
             this.columnHeaderBookingID.Width = 66;
+            // 
+            // columnAnslåetTidTotal
+            // 
+            this.columnAnslåetTidTotal.Text = "Anslået Tid";
+            this.columnAnslåetTidTotal.Width = 71;
+            // 
+            // columnLokale
+            // 
+            this.columnLokale.Text = "Lokale";
+            this.columnLokale.Width = 75;
             // 
             // StartForm
             // 
@@ -680,8 +694,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListView listViewVenteværelse;
         private System.Windows.Forms.ColumnHeader columnBookingTid;
+        private System.Windows.Forms.ColumnHeader columnAnsat;
         private System.Windows.Forms.ColumnHeader columnBehandling;
-        private System.Windows.Forms.ColumnHeader columnLæge;
         private System.Windows.Forms.ColumnHeader columnPatient;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
@@ -706,7 +720,7 @@
         private System.Windows.Forms.Button buttonOpretBooking;
         private System.Windows.Forms.ColumnHeader columnHeaderTid;
         private System.Windows.Forms.ColumnHeader columnHeaderLokale;
-        private System.Windows.Forms.ColumnHeader columnHeaderLæge;
+        private System.Windows.Forms.ColumnHeader columnHeaderAnsat;
         private System.Windows.Forms.ColumnHeader columnHeaderPatient;
         private System.Windows.Forms.ColumnHeader columnHeaderBehandling;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -714,5 +728,7 @@
         public System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Button buttonSletbooking;
         private System.Windows.Forms.ColumnHeader columnHeaderBookingID;
+        private System.Windows.Forms.ColumnHeader columnAnslåetTidTotal;
+        private System.Windows.Forms.ColumnHeader columnLokale;
     }
 }

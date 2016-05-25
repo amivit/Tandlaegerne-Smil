@@ -39,8 +39,8 @@ namespace Tandlægerne_Smil.Views
             ListViewItem lvi = new ListViewItem(behandling.Navn);
             lvi.SubItems.Add(behandling.Pris.ToString());
             lvi.SubItems.Add(behandling.AnslåetTid.ToString());
-
             listViewBehandling.Items.Add(lvi);
+            buttonSletBehandling.Enabled = false;
         }
 
         private void dateTimeOnly_ValueChanged(object sender, EventArgs e) // TODO: fjerne sekunder
@@ -50,7 +50,7 @@ namespace Tandlægerne_Smil.Views
         private void buttonGemBooking_Click(object sender, EventArgs e)
         {
             _controller.Book.GemBooking(_patientId, this);
-	        
+	        _startForm.RefreshBookingView();
         }
 
         private void textBoxPatient_TextChanged(object sender, EventArgs e)
@@ -79,6 +79,14 @@ namespace Tandlægerne_Smil.Views
             {
                 buttonGemBooking.Enabled = true;
             }
+            if (listViewBehandling.SelectedItems.Count > 0)
+            {
+                buttonSletBehandling.Enabled = true;
+            }
+            else
+            {
+                buttonSletBehandling.Enabled = false;
+            }
         }
 
         private void comboBoxLæge_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,7 +94,6 @@ namespace Tandlægerne_Smil.Views
             if (comboBoxLæge.SelectedIndex != null && comboBoxBehandling.SelectedIndex != null & comboBoxLokale.SelectedIndex != null && listViewBehandling.Items.Count > 0)
             {
                 buttonGemBooking.Enabled = true;
-                MessageBox.Show("tesetsdf");
             }
         }
 
