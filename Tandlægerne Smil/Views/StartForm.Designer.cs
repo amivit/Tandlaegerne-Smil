@@ -465,6 +465,7 @@
             this.buttonUnderBehandling.TabIndex = 8;
             this.buttonUnderBehandling.Text = "Markér som under behandling";
             this.buttonUnderBehandling.UseVisualStyleBackColor = true;
+            this.buttonUnderBehandling.Click += new System.EventHandler(this.buttonUnderBehandling_Click);
             // 
             // buttonAfslutBehandling
             // 
@@ -608,6 +609,7 @@
             // 
             // buttonSletbooking
             // 
+            this.buttonSletbooking.Enabled = false;
             this.buttonSletbooking.Location = new System.Drawing.Point(652, 143);
             this.buttonSletbooking.Name = "buttonSletbooking";
             this.buttonSletbooking.Size = new System.Drawing.Size(115, 29);

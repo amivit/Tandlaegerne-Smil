@@ -104,6 +104,7 @@ namespace Tandlægerne_Smil.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
+            listViewDagensProgram.SelectedItems[0].BackColor = Color.Green;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -119,12 +120,16 @@ namespace Tandlægerne_Smil.Views
                 buttonRedigereBookning.Enabled = true;
                 buttonTjekkeInd.Enabled = true;
                 buttonSletbooking.Enabled = true;
+                buttonUnderBehandling.Enabled = true;
+                buttonAfslutBehandling.Enabled = true;
             }
             else
             {
                 buttonRedigereBookning.Enabled = false;
                 buttonTjekkeInd.Enabled = false;
                 buttonSletbooking.Enabled = false;
+                buttonUnderBehandling.Enabled = false;
+                buttonAfslutBehandling.Enabled = false;
             }
         }
 
@@ -275,11 +280,13 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             {
                 buttonRedigerePatient.Enabled = true;
                 buttonOpretBooking.Enabled = true;
+                buttonUnderBehandling.Enabled = true;
             }
             else
             {
                 buttonRedigerePatient.Enabled = false;
                 buttonOpretBooking.Enabled = false;
+                buttonUnderBehandling.Enabled = false;
             }
         }
 
@@ -371,6 +378,11 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
                 }
                 
             }
+        }
+
+        private void buttonUnderBehandling_Click(object sender, EventArgs e)
+        {
+            listViewDagensProgram.SelectedItems[0].BackColor = Color.Yellow;
         }
     }
 }
