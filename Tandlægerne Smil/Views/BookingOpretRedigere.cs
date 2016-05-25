@@ -75,22 +75,34 @@ namespace Tandlægerne_Smil.Views
         //gør opret book kanppen Disabled
         private void listViewBehandling_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (comboBoxLæge.SelectedIndex !=null && comboBoxBehandling.SelectedIndex != null & comboBoxLokale.SelectedIndex != null && listViewBehandling.Items.Count > 0)
+            {
+                buttonGemBooking.Enabled = true;
+            }
         }
 
         private void comboBoxLæge_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (comboBoxLæge.SelectedIndex != null && comboBoxBehandling.SelectedIndex != null & comboBoxLokale.SelectedIndex != null && listViewBehandling.Items.Count > 0)
+            {
+                buttonGemBooking.Enabled = true;
+            }
         }
 
         private void comboBoxBehandling_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (comboBoxLæge.SelectedIndex != null && comboBoxBehandling.SelectedIndex != null & comboBoxLokale.SelectedIndex != null && listViewBehandling.Items.Count > 0)
+            {
+                buttonGemBooking.Enabled = true;
+            }
         }
 
         private void comboBoxLokale_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (comboBoxLæge.SelectedIndex != null && comboBoxBehandling.SelectedIndex != null & comboBoxLokale.SelectedIndex != null && listViewBehandling.Items.Count > 0)
+            {
+                buttonGemBooking.Enabled = true;
+            }
         }
     }
 }
