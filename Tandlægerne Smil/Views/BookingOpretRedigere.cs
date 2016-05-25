@@ -86,6 +86,7 @@ namespace Tandlægerne_Smil.Views
             if (comboBoxLæge.SelectedIndex != null && comboBoxBehandling.SelectedIndex != null & comboBoxLokale.SelectedIndex != null && listViewBehandling.Items.Count > 0)
             {
                 buttonGemBooking.Enabled = true;
+                MessageBox.Show("tesetsdf");
             }
         }
 
