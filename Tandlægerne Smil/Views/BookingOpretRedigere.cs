@@ -54,5 +54,25 @@ namespace Tandlægerne_Smil.Views
         private void textBoxPatient_TextChanged(object sender, EventArgs e)
         {
         }
+        //gør opret book kanppen Disabled
+        private void listViewBehandling_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxLæge_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxBehandling_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxLokale_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

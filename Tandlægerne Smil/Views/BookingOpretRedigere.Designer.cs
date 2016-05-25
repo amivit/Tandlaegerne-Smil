@@ -106,6 +106,7 @@
             this.comboBoxLæge.Name = "comboBoxLæge";
             this.comboBoxLæge.Size = new System.Drawing.Size(194, 21);
             this.comboBoxLæge.TabIndex = 5;
+            this.comboBoxLæge.SelectedIndexChanged += new System.EventHandler(this.comboBoxLæge_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -124,6 +125,7 @@
             this.comboBoxBehandling.Name = "comboBoxBehandling";
             this.comboBoxBehandling.Size = new System.Drawing.Size(194, 21);
             this.comboBoxBehandling.TabIndex = 7;
+            this.comboBoxBehandling.SelectedIndexChanged += new System.EventHandler(this.comboBoxBehandling_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -142,6 +144,7 @@
             this.comboBoxLokale.Name = "comboBoxLokale";
             this.comboBoxLokale.Size = new System.Drawing.Size(194, 21);
             this.comboBoxLokale.TabIndex = 9;
+            this.comboBoxLokale.SelectedIndexChanged += new System.EventHandler(this.comboBoxLokale_SelectedIndexChanged);
             // 
             // textBoxNoter
             // 
@@ -194,6 +197,7 @@
             this.listViewBehandling.TabIndex = 15;
             this.listViewBehandling.UseCompatibleStateImageBehavior = false;
             this.listViewBehandling.View = System.Windows.Forms.View.Details;
+            this.listViewBehandling.SelectedIndexChanged += new System.EventHandler(this.listViewBehandling_SelectedIndexChanged);
             // 
             // ColumnBeskrivelse
             // 

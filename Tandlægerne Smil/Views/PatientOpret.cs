@@ -20,22 +20,12 @@ namespace Tandlægerne_Smil.Views
         private static StartForm _startForm;
         private static PatientOpret _instance;
 
-        protected PatientOpret(StartForm startForm) // protected så man ikke længere kan benytte constructeren, men skal bruge metoden SingletonLazyInstance()
+        public PatientOpret(StartForm startForm)
         {
             InitializeComponent();
             PatientOpret._startForm = startForm;
         }
-
-        public static PatientOpret SingletonLazyInstance(StartForm _startForm)
-        {
-            // lazy initialization
-            if (_instance == null)
-            {
-                _instance = new PatientOpret(_startForm);
-            }
-            return _instance;
-        }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             _controller.Patient.OpretPatient(textBoxNavn, textBoxEfternavn, textBoxCPR, textBoxAdresse, textBoxPostnummer,
