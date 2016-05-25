@@ -50,6 +50,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimeOnlyPicker = new System.Windows.Forms.DateTimePicker();
             this.buttonGemBooking = new System.Windows.Forms.Button();
+			this.buttonSletBehandling = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -111,7 +112,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 212);
+			this.label4.Location = new System.Drawing.Point(10, 241);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 6;
@@ -140,7 +141,7 @@
             // 
             this.comboBoxLokale.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLokale.FormattingEnabled = true;
-            this.comboBoxLokale.Location = new System.Drawing.Point(9, 228);
+			this.comboBoxLokale.Location = new System.Drawing.Point(10, 257);
             this.comboBoxLokale.Name = "comboBoxLokale";
             this.comboBoxLokale.Size = new System.Drawing.Size(194, 21);
             this.comboBoxLokale.TabIndex = 9;
@@ -167,12 +168,12 @@
             // buttonTilføj
             // 
             this.buttonTilføj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonTilføj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTilføj.Location = new System.Drawing.Point(209, 177);
+			this.buttonTilføj.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.buttonTilføj.Location = new System.Drawing.Point(9, 215);
             this.buttonTilføj.Name = "buttonTilføj";
-            this.buttonTilføj.Size = new System.Drawing.Size(24, 38);
+			this.buttonTilføj.Size = new System.Drawing.Size(96, 23);
             this.buttonTilføj.TabIndex = 12;
-            this.buttonTilføj.Text = "+";
+			this.buttonTilføj.Text = "Tilføj behandling";
             this.buttonTilføj.UseVisualStyleBackColor = true;
             this.buttonTilføj.Click += new System.EventHandler(this.buttonTilføj_Click);
             // 
@@ -245,11 +246,22 @@
             this.buttonGemBooking.UseVisualStyleBackColor = true;
             this.buttonGemBooking.Click += new System.EventHandler(this.buttonGemBooking_Click);
             // 
+			// buttonSletBehandling
+			// 
+			this.buttonSletBehandling.Location = new System.Drawing.Point(111, 215);
+			this.buttonSletBehandling.Name = "buttonSletBehandling";
+			this.buttonSletBehandling.Size = new System.Drawing.Size(92, 23);
+			this.buttonSletBehandling.TabIndex = 19;
+			this.buttonSletBehandling.Text = "Slet behandling";
+			this.buttonSletBehandling.UseVisualStyleBackColor = true;
+			this.buttonSletBehandling.Click += new System.EventHandler(this.buttonSletBehandling_Click);
+			// 
             // BookingOpretRedigere
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 342);
+			this.Controls.Add(this.buttonSletBehandling);
             this.Controls.Add(this.buttonGemBooking);
             this.Controls.Add(this.dateTimeOnlyPicker);
             this.Controls.Add(this.label8);
@@ -300,5 +312,6 @@
         private System.Windows.Forms.Button buttonGemBooking;
         public System.Windows.Forms.DateTimePicker dateTimeOnlyPicker;
         public System.Windows.Forms.ListView listViewBehandling;
+		private System.Windows.Forms.Button buttonSletBehandling;
     }
 }

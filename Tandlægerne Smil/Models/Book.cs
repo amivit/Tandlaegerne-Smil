@@ -202,5 +202,18 @@ namespace Tandlægerne_Smil.Models
 
             }
         }
+
+        public void SletBooking(int bookingID)
+        {
+            var booking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
+            var bookinglinjer = Db.BehandlingslinjerDbs.Where(b => b.BookingDb.BookingId == booking.BookingId).ToList();
+
+            foreach (var linjer in bookinglinjer)
+            {
+                Db.BehandlingslinjerDbs.Remove(linjer);
+            }
+            Db.BookingDbs.Remove(booking);
+            Db.SaveChanges();
+        }
     }
 }
