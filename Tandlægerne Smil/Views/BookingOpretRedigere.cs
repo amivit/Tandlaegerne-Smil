@@ -71,6 +71,26 @@ namespace Tandlægerne_Smil.Views
 								MessageBoxIcon.Error);
 			}
 		
-		}
-	}
+        }
+        //gør opret book kanppen Disabled
+        private void listViewBehandling_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxLæge_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxBehandling_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxLokale_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

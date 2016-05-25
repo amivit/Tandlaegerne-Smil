@@ -73,7 +73,7 @@
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(242, 31);
             this.button_OK.TabIndex = 1;
-            this.button_OK.Text = "Ok";
+            this.button_OK.Text = "Hent Patient";
             this.button_OK.UseVisualStyleBackColor = true;
             this.button_OK.Click += new System.EventHandler(this.button_OK_Click);
             // 
