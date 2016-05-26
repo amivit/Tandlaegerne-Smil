@@ -27,7 +27,6 @@ namespace Tandlægerne_Smil.Models
             
            
             StreamWriter sw = null;
-            StringBuilder sb;
 
             using (var db = new smildb())
             {
@@ -192,7 +191,7 @@ namespace Tandlægerne_Smil.Models
 
                 Form.ActiveForm.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Fejl", // Oprettelse besked
                     "Error",

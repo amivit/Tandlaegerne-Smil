@@ -51,7 +51,7 @@ namespace Tandlægerne_Smil.Views
                 startform.listView_FakturaDetaljer.Items.Clear();
                 this.Close();
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 MessageBox.Show("Postnummeret eksistere ikke",
                      "Fejl",
