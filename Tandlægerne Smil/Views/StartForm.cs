@@ -189,8 +189,7 @@ namespace Tandlægerne_Smil.Views
                 buttonRedigereBookning.Enabled = true;
                 buttonTjekkeInd.Enabled = true;
                 buttonSletbooking.Enabled = true;
-                buttonUnderBehandling.Enabled = true;
-                buttonAfslutBehandling.Enabled = true;
+                
             }
             else
             {
@@ -362,10 +361,11 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         private void listViewVenteværelse_SelectedIndexChanged(object sender, EventArgs e)
         {
             // User-Experience feature, så man slet ikke KAN klikke på de relevant knapper, hvis ikke noget i listviewet er markeret.
-            if (listViewPatienter.SelectedItems.Count > 0)
+            if (listViewVenteværelse.SelectedItems.Count > 0)
             {
                 buttonUnderBehandling.Enabled = true;
                 buttonAfslutBehandling.Enabled = true;
+
             }
             else
             {
@@ -450,8 +450,9 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void buttonUnderBehandling_Click(object sender, EventArgs e)
         {
-           
-            listViewDagensProgram.SelectedItems[0].BackColor = Color.Yellow;
+            int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
+            _controller.Venteværelse.MarkereSomUnderBehandling(bookingID);
+            //listViewDagensProgram.SelectedItems[0].BackColor = Color.Yellow;
         }
     }
 }

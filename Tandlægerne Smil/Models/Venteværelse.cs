@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers.DbController;
 
 namespace Tandlægerne_Smil.Models
@@ -19,9 +20,27 @@ namespace Tandlægerne_Smil.Models
 
         public void MarkereSomUnderBehandling(int bookingID)
         {
-            var venteværelseBooking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
-
+            try
+            {
+                if (MessageBox.Show("Skal den valgte booking markeres som underbehandling?",
+                "Underbehandling",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    var venteværelseBooking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
+                    venteværelseBooking.Behandlingstatus = true;
+                }
+            }
+            catch (Exception)
+            {
+                 MessageBox.Show("Fejl",
+                         "Fejl",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Error);
+            }
             
+
+
         }
     }
 }
