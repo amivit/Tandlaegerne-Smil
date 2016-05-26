@@ -134,6 +134,7 @@ namespace Tandlægerne_Smil.Views
                     lvi.SubItems.Add(patient.BehandlingsrumDb.RumNavn);
                     lvi.SubItems.Add(patient.PatientDb.Fornavn + " " + patient.PatientDb.Efternavn);
                     lvi.SubItems.Add(behandlingString);
+                    lvi.SubItems.Add(patient.BookingId.ToString());
                     listViewVenteværelse.Items.Add(lvi);
                 }
             }
@@ -449,6 +450,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void buttonUnderBehandling_Click(object sender, EventArgs e)
         {
+           
             listViewDagensProgram.SelectedItems[0].BackColor = Color.Yellow;
         }
     }

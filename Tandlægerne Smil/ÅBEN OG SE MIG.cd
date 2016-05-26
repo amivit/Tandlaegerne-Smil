@@ -3,7 +3,7 @@
   <Class Name="Tandlægerne_Smil.Models.Book">
     <Position X="4.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAQAEAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAgAAAAAAAAQAEAAAAAA=</HashCode>
       <FileName>Models\Book.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -28,17 +28,10 @@
       <FileName>Models\Patient.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Tandlægerne_Smil.Models.Venteværelse">
-    <Position X="2.75" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAADACAAAgAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Venteværelse.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Tandlægerne_Smil.Views.StartForm" Collapsed="true">
     <Position X="14.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>edxlgIQBBagSQBHDAGDQBAICAzYCAg4JJXoKKEfotBI=</HashCode>
+      <HashCode>+d5lgJQBBagSQBHHAHDUBAICAzYCAg4ZJXoKIEXotBo=</HashCode>
       <FileName>Views\StartForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -52,6 +45,13 @@
   <Class Name="System.Object" Collapsed="true">
     <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier />
+  </Class>
+  <Class Name="Tandlægerne_Smil.Models.Venteværelse">
+    <Position X="2.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABACAAAgCAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Venteværelse.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="Tandlægerne_Smil.Controllers.DbController.Ismildb">
     <Position X="14.5" Y="2" Width="1.5" />

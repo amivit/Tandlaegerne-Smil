@@ -17,9 +17,11 @@ namespace Tandlægerne_Smil.Models
             throw new System.NotImplementedException();
         }
 
-        public void TjekkeUd()
+        public void MarkereSomUnderBehandling(int bookingID)
         {
-            throw new System.NotImplementedException();
+            var venteværelseBooking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
+
+            
         }
     }
 }
