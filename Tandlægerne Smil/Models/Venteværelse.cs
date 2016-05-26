@@ -29,6 +29,7 @@ namespace Tandlægerne_Smil.Models
                 {
                     var venteværelseBooking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
                     venteværelseBooking.Behandlingstatus = true;
+                    Db.SaveChanges();
                 }
             }
             catch (Exception)

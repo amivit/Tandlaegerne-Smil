@@ -113,10 +113,11 @@ namespace Tandlægerne_Smil.Views
                     .Where(b => b.Ankommet == true) // Kun den valgte dag
                     .OrderBy(b => b.Tidspunkt) // Sortere dem i rækkefølge
                     .ToList();
-                foreach (var patient in venteVærelse)
+                foreach (var booking in venteVærelse)
                 {
-                    ListViewItem lvi = new ListViewItem(patient.Tidspunkt.ToString());
-                    var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == patient.BookingId).ToList();
+                    
+                    ListViewItem lvi = new ListViewItem(booking.Tidspunkt.ToString());
+                    var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == booking.BookingId).ToList();
                     var behandlingString = "";
                     var totalAnslåetTid = 0;
                     if (behandlinger.Count > 0) // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
@@ -129,12 +130,18 @@ namespace Tandlægerne_Smil.Views
                         behandlingString += ", " + behandling.Navn;
                         totalAnslåetTid += behandling.AnslåetTid;
                     }
-                    lvi.SubItems.Add(patient.AnsatDb.Fornavn + " " + patient.AnsatDb.Efternavn);
+
+                    if (booking.Behandlingstatus == true)
+                    {
+                        lvi.BackColor = Color.Yellow;
+
+                    }
+                    lvi.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
                     lvi.SubItems.Add(totalAnslåetTid.ToString());
-                    lvi.SubItems.Add(patient.BehandlingsrumDb.RumNavn);
-                    lvi.SubItems.Add(patient.PatientDb.Fornavn + " " + patient.PatientDb.Efternavn);
+                    lvi.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
+                    lvi.SubItems.Add(booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
                     lvi.SubItems.Add(behandlingString);
-                    lvi.SubItems.Add(patient.BookingId.ToString());
+                    lvi.SubItems.Add(booking.BookingId.ToString());
                     listViewVenteværelse.Items.Add(lvi);
                 }
             }
@@ -143,7 +150,7 @@ namespace Tandlægerne_Smil.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            listViewDagensProgram.SelectedItems[0].BackColor = Color.Green;
+            //listViewDagensProgram.SelectedItems[0].BackColor = Color.Green;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -452,7 +459,8 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         {
             int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
             _controller.Venteværelse.MarkereSomUnderBehandling(bookingID);
-            //listViewDagensProgram.SelectedItems[0].BackColor = Color.Yellow;
+            RefreshVenteværelseView();
+           
         }
     }
 }
