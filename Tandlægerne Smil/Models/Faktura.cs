@@ -38,11 +38,13 @@ namespace Tandlægerne_Smil.Models
          
 
             var behandlingsLinjer = Db.BehandlingslinjerDbs.ToList();
-            var behandlingsLinjjerQurry = (from r in behandlingsLinjer
-                                    where (r.BookingId == bookingID)
-                                    select r).ToList();
+            //var behandlingsLinjjerQurry = (from r in behandlingsLinjer
+                                    //where (r.BookingId == bookingID)
+                                    //select r).ToList();
+            var behandlinger = Db.BehandlingslinjerDbs.Where(b => b.BookingId == booking.BookingId).ToList();
 
-            foreach (var item in behandlingsLinjjerQurry)
+
+            foreach (var item in behandlinger)
             {
                 item.FakturaId = Faktura.FakturaId;
             }

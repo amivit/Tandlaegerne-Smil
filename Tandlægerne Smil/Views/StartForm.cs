@@ -75,6 +75,7 @@ namespace Tandlægerne_Smil.Views
                     .Where(b => b.Tidspunkt.Day == dateTimePicker.Value.Day) // Kun den valgte dag
                     .OrderBy(b => b.Tidspunkt) // Sortere dem i rækkefølge
                     .ToList();
+
                 foreach (var booking in dagensBookinger)
                 {
                     ListViewItem list = new ListViewItem(booking.Tidspunkt.Hour.ToString() + ":" + booking.Tidspunkt.Minute.ToString());
@@ -90,6 +91,13 @@ namespace Tandlægerne_Smil.Views
                     {
                         behandlingString += ", " + behandling.Navn;
                         totalAnslåetTid += behandling.AnslåetTid;
+                    }
+                    var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => booking.BookingId == b.BookingId);
+
+                    if (behandlingslinjen?.FakturaId != null)
+                    {
+                        list.BackColor = Color.LimeGreen;
+
                     }
                     list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
                     list.SubItems.Add(totalAnslåetTid.ToString());
@@ -155,6 +163,7 @@ namespace Tandlægerne_Smil.Views
             _controller.Faktura.opretFaktura(bookingID);
             _controller.Venteværelse.Afslutbehandling(bookingID);
             listViewVenteværelse.SelectedItems[0].Remove();
+            RefreshBookingView();
         }
 
         private void button1_Click(object sender, EventArgs e)
