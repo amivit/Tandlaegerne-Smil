@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers;
+using Tandlægerne_Smil.Controllers.DbController;
 using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
@@ -30,6 +31,30 @@ namespace Tandlægerne_Smil.Views
 
 		private void BookingOpretRedigere_Load(object sender, EventArgs e)
 		{
+			try
+			{
+				var Patient = _global.Db.PatientDbs;
+
+				var patientSort = (from p in Patient
+								   where p.PatientId == _patientId
+								   select p).ToList();
+
+				if (patientSort[0].Tandlægeskræk.Value == true)
+				{
+					labelTandlægeSkræk.Text = "Har tandlægeskræk";
+				}
+				else
+				{
+					labelTandlægeSkræk.Text = "";
+				}
+			}
+			catch (Exception)
+			{
+				
+				throw;
+			}
+			
+
 		}
 
 		private void buttonTilføj_Click(object sender, EventArgs e)
@@ -83,7 +108,7 @@ namespace Tandlægerne_Smil.Views
 			{
 				buttonGemBooking.Enabled = true;
 			}
-			if (listViewBehandling.SelectedItems.Count > 0)
+			else if (listViewBehandling.SelectedItems.Count > 0)
 			{
 				buttonSletBehandling.Enabled = true;
 			}
