@@ -181,7 +181,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
             StillingDbs = new FakeDbSet<StillingDb>("StillingId");
             SysdiagramsDbs = new FakeDbSet<SysdiagramsDb>("DiagramId");
             UdstyrDbs = new FakeDbSet<UdstyrDb>("UdstyrId");
-            VenteværelseDb = new FakeDbSet<VenteværelseDb>("PatientId");
+            VenteværelseDb = new FakeDbSet<VenteværelseDb>("PatientId", "BookingId");
         }
         
         public int SaveChangesCount { get; private set; } 
@@ -544,7 +544,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
         // Reverse navigation
         public virtual System.Collections.Generic.ICollection<BehandlingslinjerDb> BehandlingslinjerDbs { get; set; } // Behandlingslinjer.FK_Behandlingslinjer_Booking
-        public virtual System.Collections.Generic.ICollection<VenteværelseDb> VenteværelseDb { get; set; } // Venteværelse.FK_Venteværelse_Booking
+        public virtual System.Collections.Generic.ICollection<VenteværelseDb> VenteværelseDb { get; set; } // Many to many mapping
 
         // Foreign keys
         public virtual AnsatDb AnsatDb { get; set; } // FK_Booking_Ansat
@@ -597,7 +597,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         // Reverse navigation
         public virtual System.Collections.Generic.ICollection<BookingDb> BookingDbs { get; set; } // Booking.FK_Booking_Patient
         public virtual System.Collections.Generic.ICollection<FakturaDb> FakturaDbs { get; set; } // Faktura.FK_Faktura_Patient
-        public virtual VenteværelseDb VenteværelseDb { get; set; } // Venteværelse.FK_Venteværelse_Patient
+        public virtual System.Collections.Generic.ICollection<VenteværelseDb> VenteværelseDb { get; set; } // Many to many mapping
 
         // Foreign keys
         public virtual PostnummerDb PostnummerDb { get; set; } // FK_Patient_Postnummer
@@ -606,6 +606,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         {
             BookingDbs = new System.Collections.Generic.List<BookingDb>();
             FakturaDbs = new System.Collections.Generic.List<FakturaDb>();
+            VenteværelseDb = new System.Collections.Generic.List<VenteværelseDb>();
         }
     }
 
@@ -677,7 +678,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
     public class VenteværelseDb
     {
-        public long PatientId { get; set; } // patient_id (Primary key)
+        public long PatientId { get; set; } // patient_id
         public long BookingId { get; set; } // booking_id
 
         // Foreign keys
@@ -964,14 +965,14 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public VenteværelseDbConfiguration(string schema)
         {
             ToTable(schema + ".Venteværelse");
-            HasKey(x => x.PatientId);
+            HasKey(x => new { x.PatientId, x.BookingId });
 
             Property(x => x.PatientId).HasColumnName(@"patient_id").IsRequired().HasColumnType("bigint").HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.BookingId).HasColumnName(@"booking_id").IsRequired().HasColumnType("bigint");
 
             // Foreign keys
             HasRequired(a => a.BookingDb).WithMany(b => b.VenteværelseDb).HasForeignKey(c => c.BookingId); // FK_Venteværelse_Booking
-            HasRequired(a => a.PatientDb).WithOptional(b => b.VenteværelseDb); // FK_Venteværelse_Patient
+            HasRequired(a => a.PatientDb).WithMany(b => b.VenteværelseDb).HasForeignKey(c => c.PatientId); // FK_Venteværelse_Patient
         }
     }
 
