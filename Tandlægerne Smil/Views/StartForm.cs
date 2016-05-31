@@ -158,12 +158,19 @@ namespace Tandlægerne_Smil.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //listViewDagensProgram.SelectedItems[0].BackColor = Color.Green;
-            int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
-            _controller.Faktura.opretFaktura(bookingID);
-            _controller.Venteværelse.Afslutbehandling(bookingID);
-            listViewVenteværelse.SelectedItems[0].Remove();
-            RefreshBookingView();
+            if (
+                MessageBox.Show("Skal Behandlingen afsluttes ?",
+                "Afslut Behandling",
+                MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //listViewDagensProgram.SelectedItems[0].BackColor = Color.Green;
+                int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
+                _controller.Faktura.opretFaktura(bookingID);
+                _controller.Venteværelse.Afslutbehandling(bookingID);
+                listViewVenteværelse.SelectedItems[0].Remove();
+                RefreshBookingView();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -474,6 +481,11 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             _controller.Venteværelse.MarkereSomUnderBehandling(bookingID);
             RefreshVenteværelseView();
            
+        }
+
+        private void buttonRedigereBookning_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
