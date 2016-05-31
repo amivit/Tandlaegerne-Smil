@@ -475,5 +475,10 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             RefreshVenteværelseView();
            
         }
-    }
+
+		private void buttonAkutAnkomst_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }
