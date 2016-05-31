@@ -166,8 +166,13 @@ namespace Tandlægerne_Smil.Views
             {
                 //listViewDagensProgram.SelectedItems[0].BackColor = Color.Green;
                 int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
-                _controller.Faktura.opretFaktura(bookingID);
-                _controller.Venteværelse.Afslutbehandling(bookingID);
+                
+                //_controller.Faktura.opretFaktura(bookingID);
+                //_controller.Venteværelse.Afslutbehandling(bookingID);
+
+                BehandlingAfslut BehandlingAfslut = new BehandlingAfslut(bookingID);
+                BehandlingAfslut.ShowDialog();
+
                 listViewVenteværelse.SelectedItems[0].Remove();
                 RefreshBookingView();
             }

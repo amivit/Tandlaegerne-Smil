@@ -61,10 +61,21 @@ namespace Tandlægerne_Smil.Models
 
         public void SletPatient(int patientID)
         {
-            var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
-            Db.PatientDbs.Remove(patient);
-            Db.SaveChanges();
-            Form.ActiveForm.Close();
+            try
+            {
+                var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
+                Db.PatientDbs.Remove(patient);
+                Db.SaveChanges();
+                Form.ActiveForm.Close();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show(
+                    "Patienten har stadig ubetalte faktura liggende\n" +
+                    "Slet venneligst dem først før sletningen kan genneføres","Fejl!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            
         }
 
         public void LoadRedigerePatient(int patientID, PatientRedigere patientRedigere)
