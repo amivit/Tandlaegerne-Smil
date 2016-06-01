@@ -459,6 +459,7 @@
             this.buttonAkutAnkomst.TabIndex = 10;
             this.buttonAkutAnkomst.Text = "AKUT Ankomst";
             this.buttonAkutAnkomst.UseVisualStyleBackColor = true;
+            this.buttonAkutAnkomst.Click += new System.EventHandler(this.buttonAkutAnkomst_Click);
             // 
             // buttonRedigereBookning
             // 

@@ -492,5 +492,10 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         {
 
         }
+
+        private void buttonAkutAnkomst_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
