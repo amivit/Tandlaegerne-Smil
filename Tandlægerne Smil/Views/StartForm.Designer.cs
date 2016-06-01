@@ -615,7 +615,7 @@
             // columnBehandling
             // 
             this.columnBehandling.Text = "Behandling(er)";
-            this.columnBehandling.Width = 184;
+			this.columnBehandling.Width = 182;
             // 
             // columnBookingID
             // 
