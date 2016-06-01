@@ -50,67 +50,11 @@ namespace Tandlægerne_Smil.Views
         {
             LoadPatientInfo();
             LoadBehandlingerTilCombobox();
+            LoadTidligereBehandlinger();
+        }
 
-            // ======================================================================
-            //var behandlingslinjer = _global.Db.BehandlingslinjerDbs.ToList();
-            //var behandling = _global.Db.BehandlingDbs.ToList();
-
-
-            //var blQuery = from bl in behandlingslinjer
-            //    join b in behandling
-            //        on bl.BehandlingId equals b.BehandlingId
-            //    select new
-            //    {
-            //        booking_ID = bl.BookingId,
-            //        bl.BehandlingId,
-            //        b.Navn,
-            //        b.Pris
-            //    };
-
-            //var sortedList = (from r in blQuery
-            //                  where (r.booking_ID == booking_ID)
-            //                  select r).ToList();
-
-            //int index = 0;
-            //foreach (var r in sortedList)
-            //{
-            //    ListViewItem lvi = new ListViewItem(sortedList[index].Navn);
-            //    lvi.SubItems.Add(sortedList[index].Pris.ToString());
-
-            //    listView_BehandlingsList.Items.Add(lvi);
-            //    index++;
-            //}
-
-
-
-
-
-
-            //var behandlingslinjer = _global.Db.BehandlingslinjerDbs.ToList();
-            //var behandlinger = _global.Db.BehandlingDbs.ToList();
-            //var joined = from b in behandlingslinjer
-            //             join bl in behandlinger
-            //             on b.BehandlingId equals bl.BehandlingId
-            //             select new
-            //             {
-            //                bId = b.BehandlingId,
-            //                fId = b.FakturaId,
-            //                 navn = bl.Navn,
-            //                 bl.Pris,
-            //                 b.BookingId
-
-            //             };
-
-            //var linjercount = (from g in behandlingslinjer
-            //                   where (g.BookingId == booking_ID)
-            //    select g).ToList();
-
-
-
-            //var sortedList = (from r in joined
-            //                  where (r.BookingId == booking_ID)
-            //                  select r).ToList();
-
+        public void LoadTidligereBehandlinger()
+        {
             var behandlingslinjer = _global.Db.BehandlingslinjerDbs
                     .Where(b => b.BookingId == booking_ID) // Kun den valgte dag
                     .ToList();
@@ -127,7 +71,6 @@ namespace Tandlægerne_Smil.Views
                 }
             }
         }
-
         public void LoadBehandlingerTilCombobox()
         {
             var behandling = _global.Db.BehandlingDbs.ToList();
@@ -185,6 +128,51 @@ namespace Tandlægerne_Smil.Views
             lvi.SubItems.Add(behandling.Pris.ToString());
             
             listView_BehandlingsList.Items.Add(lvi);
+        }
+
+        private void button_GemOgFaktur_Click(object sender, EventArgs e)
+        {
+            OpdaterBehandlinger();
+
+            //Faktura oprettelse
+            _controller.Faktura.opretFaktura(booking_ID);
+            //Skift flag så patienten fjernes fra venteværlesrerseseses
+            var tjekketind = _global.Db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
+            tjekketind.Ankommet = false;
+            _global.Db.SaveChanges();
+
+            this.Close();
+        }
+
+        public void OpdaterBehandlinger()
+        {
+            //Sletter tidligere behandlinger
+            var behandlingslinje_ = _global.Db.BehandlingslinjerDbs.Where(b => b.BookingId == booking_ID).ToList();
+
+
+            foreach (var linjer in behandlingslinje_)
+            {
+                _global.Db.BehandlingslinjerDbs.Remove(linjer);
+            }
+            //_global.LogSqlQuery();
+            //_global.Db.SaveChanges();
+
+            //opretter linjer fra listview (virker?)
+            
+            for (int i = 0; i < listView_BehandlingsList.Items.Count; i++)
+            {
+                var behandlingsNavn = listView_BehandlingsList.Items[i].Text;
+                var behandlingTemp = _global.Db.BehandlingDbs.FirstOrDefault(b => b.Navn == behandlingsNavn);
+
+                var linje = new BehandlingslinjerDb
+                {
+                    BookingId = booking_ID,
+                    BehandlingDb = behandlingTemp
+                };
+                _global.Db.BehandlingslinjerDbs.Add(linje);
+            }
+            _global.LogSqlQuery();
+            _global.Db.SaveChanges();
         }
     }
 }

@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BehandlingAfslut));
             this.listView_BehandlingsList = new System.Windows.Forms.ListView();
+            this.Behandling = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Pris = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button_FjernBehandling = new System.Windows.Forms.Button();
             this.comboBox_Behandlinger = new System.Windows.Forms.ComboBox();
             this.button_TiljøjBehandling = new System.Windows.Forms.Button();
@@ -53,8 +55,7 @@
             this.lage = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.Behandling = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Pris = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button_GemOgFaktur = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView_BehandlingsList
@@ -68,6 +69,15 @@
             this.listView_BehandlingsList.TabIndex = 0;
             this.listView_BehandlingsList.UseCompatibleStateImageBehavior = false;
             this.listView_BehandlingsList.View = System.Windows.Forms.View.Details;
+            // 
+            // Behandling
+            // 
+            this.Behandling.Text = "Behandling";
+            this.Behandling.Width = 329;
+            // 
+            // Pris
+            // 
+            this.Pris.Text = "Pris";
             // 
             // button_FjernBehandling
             // 
@@ -264,20 +274,22 @@
             this.label9.TabIndex = 23;
             this.label9.Text = "dato";
             // 
-            // Behandling
+            // button_GemOgFaktur
             // 
-            this.Behandling.Text = "Behandling";
-            this.Behandling.Width = 329;
-            // 
-            // Pris
-            // 
-            this.Pris.Text = "Pris";
+            this.button_GemOgFaktur.Location = new System.Drawing.Point(559, 399);
+            this.button_GemOgFaktur.Name = "button_GemOgFaktur";
+            this.button_GemOgFaktur.Size = new System.Drawing.Size(75, 23);
+            this.button_GemOgFaktur.TabIndex = 24;
+            this.button_GemOgFaktur.Text = "Afslut";
+            this.button_GemOgFaktur.UseVisualStyleBackColor = true;
+            this.button_GemOgFaktur.Click += new System.EventHandler(this.button_GemOgFaktur_Click);
             // 
             // BehandlingAfslut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 435);
+            this.Controls.Add(this.button_GemOgFaktur);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lage);
@@ -339,5 +351,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ColumnHeader Behandling;
         private System.Windows.Forms.ColumnHeader Pris;
+        private System.Windows.Forms.Button button_GemOgFaktur;
     }
 }
