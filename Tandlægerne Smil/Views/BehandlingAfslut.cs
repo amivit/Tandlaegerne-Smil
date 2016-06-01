@@ -174,5 +174,10 @@ namespace Tandlægerne_Smil.Views
             _global.LogSqlQuery();
             _global.Db.SaveChanges();
         }
-    }
+
+		private void textBox_Efternanv_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+	}
 }
