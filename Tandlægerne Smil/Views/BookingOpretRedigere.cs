@@ -31,6 +31,9 @@ namespace Tandlægerne_Smil.Views
 
 		private void BookingOpretRedigere_Load(object sender, EventArgs e)
 		{
+            dateTimeOnlyPicker.MinDate = DateTime.Parse("8:30:00");
+            dateTimeOnlyPicker.MaxDate = DateTime.Parse("16:00:00");
+
 			try
 			{
 				var Patient = _global.Db.PatientDbs;
@@ -50,29 +53,25 @@ namespace Tandlægerne_Smil.Views
 			}
 			catch (Exception)
 			{
-				
 				throw;
 			}
-			
-
 		}
 
 		private void buttonTilføj_Click(object sender, EventArgs e)
 		{
             try
             {
-                var behandling = _global.Db.BehandlingDbs.FirstOrDefault(b => b.Navn == comboBoxBehandling.Text);
-                //Console.WriteLine(behandling.ToString());
-                ListViewItem lvi = new ListViewItem(behandling.Navn);
-                lvi.SubItems.Add(behandling.Pris.ToString());
-                lvi.SubItems.Add(behandling.AnslåetTid.ToString());
-                listViewBehandling.Items.Add(lvi);
+			var behandling = _global.Db.BehandlingDbs.FirstOrDefault(b => b.Navn == comboBoxBehandling.Text);
+			//Console.WriteLine(behandling.ToString());
+			ListViewItem lvi = new ListViewItem(behandling.Navn);
+			lvi.SubItems.Add(behandling.Pris.ToString());
+			lvi.SubItems.Add(behandling.AnslåetTid.ToString());
+			listViewBehandling.Items.Add(lvi);
 
                 if (comboBoxLæge.SelectedIndex > 0 && comboBoxBehandling.SelectedIndex > 0 & comboBoxLokale.SelectedIndex > 0 && listViewBehandling.Items.Count > 0)
                 {
                     buttonGemBooking.Enabled = true;
-                }
-                
+		}
             }
             catch (Exception)
             {
@@ -80,7 +79,6 @@ namespace Tandlægerne_Smil.Views
                                 "Advarsel",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
-
             }
 		}
 
@@ -103,17 +101,16 @@ namespace Tandlægerne_Smil.Views
 			try
 			{
 				listViewBehandling.SelectedItems[0].Remove();
-				
 			}
 			catch (Exception)
 			{
-                MessageBox.Show("Ingen behandling valgt.",
-                                "Advarsel",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
-		
-		}
+				MessageBox.Show("Ingen behandling valgt.",
+								"Advarsel",
+								MessageBoxButtons.OK,
+								MessageBoxIcon.Error);
+			}
+        }
+
 		//gør opret book kanppen Disabled
 		private void listViewBehandling_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -121,7 +118,6 @@ namespace Tandlægerne_Smil.Views
 			{
 				buttonGemBooking.Enabled = true;
 			}
-			
 		}
 
 		private void comboBoxLæge_SelectedIndexChanged(object sender, EventArgs e)

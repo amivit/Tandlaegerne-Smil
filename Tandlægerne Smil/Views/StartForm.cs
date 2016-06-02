@@ -97,7 +97,6 @@ namespace Tandlægerne_Smil.Views
                     if (behandlingslinjen?.FakturaId != null)
                     {
                         list.BackColor = Color.LimeGreen;
-
                     }
                     list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
                     list.SubItems.Add(totalAnslåetTid.ToString());
@@ -110,20 +109,17 @@ namespace Tandlægerne_Smil.Views
             }
         }
 
-
-
         private void RefreshVenteværelseView()
         {
             listViewVenteværelse.Items.Clear();
             using (var db = new smildb())
             {
-                var venteVærelse = db.BookingDbs        
+                var venteVærelse = db.BookingDbs
                     .Where(b => b.Ankommet == true) // Kun den valgte dag
                     .OrderBy(b => b.Tidspunkt) // Sortere dem i rækkefølge
                     .ToList();
                 foreach (var booking in venteVærelse)
                 {
-                    
                     ListViewItem lvi = new ListViewItem(booking.Tidspunkt.ToString());
                     var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == booking.BookingId).ToList();
                     var behandlingString = "";
@@ -142,7 +138,6 @@ namespace Tandlægerne_Smil.Views
                     if (booking.Behandlingstatus == true)
                     {
                         lvi.BackColor = Color.Yellow;
-
                     }
                     lvi.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
                     lvi.SubItems.Add(totalAnslåetTid.ToString());
@@ -155,7 +150,6 @@ namespace Tandlægerne_Smil.Views
             }
         }
 
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (
@@ -166,7 +160,7 @@ namespace Tandlægerne_Smil.Views
             {
                 //listViewDagensProgram.SelectedItems[0].BackColor = Color.Green;
                 int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
-                
+
                 //_controller.Faktura.opretFaktura(bookingID);
                 //_controller.Venteværelse.Afslutbehandling(bookingID);
 
@@ -195,13 +189,8 @@ namespace Tandlægerne_Smil.Views
                         tjekketind.Ankommet = true;
                         db.SaveChanges();
                         RefreshVenteværelseView();
-
-
                     }
-
-
-
-}
+                }
             }
             catch (Exception)
             {
@@ -210,7 +199,6 @@ namespace Tandlægerne_Smil.Views
                      MessageBoxButtons.OK,
                      MessageBoxIcon.Error);
             }
-           
         }
 
         private void listViewDagensProgram_SelectedIndexChanged(object sender, EventArgs e)
@@ -221,7 +209,6 @@ namespace Tandlægerne_Smil.Views
                 buttonRedigereBookning.Enabled = true;
                 buttonTjekkeInd.Enabled = true;
                 buttonSletbooking.Enabled = true;
-                
             }
             else
             {
@@ -238,7 +225,7 @@ namespace Tandlægerne_Smil.Views
             PatientOpret OP = new PatientOpret(this);
             OP.ShowDialog();
         }
-        
+
         private void label1_Click(object sender, EventArgs e)
         {
         }
@@ -397,7 +384,6 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             {
                 buttonUnderBehandling.Enabled = true;
                 buttonAfslutBehandling.Enabled = true;
-
             }
             else
             {
@@ -465,7 +451,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             {
                 try
                 {
-                    int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);                  
+                    int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);
                     _controller.Book.SletBooking(bookingID);
                     RefreshBookingView();
                 }
@@ -476,7 +462,6 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
                        MessageBoxButtons.OK,
                        MessageBoxIcon.Error);
                 }
-                
             }
         }
 
@@ -485,17 +470,16 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
             _controller.Venteværelse.MarkereSomUnderBehandling(bookingID);
             RefreshVenteværelseView();
-           
         }
 
         private void buttonRedigereBookning_Click(object sender, EventArgs e)
         {
-
         }
 
         private void buttonAkutAnkomst_Click(object sender, EventArgs e)
         {
-
+            AkutPatient akutPatientForm = new AkutPatient();
+            akutPatientForm.Show();
         }
     }
 }
