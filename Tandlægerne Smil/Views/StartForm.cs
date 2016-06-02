@@ -121,7 +121,7 @@ namespace Tandlægerne_Smil.Views
             }
         }
 
-        private void RefreshVenteværelseView()
+        public void RefreshVenteværelseView()
         {
             listViewVenteværelse.Items.Clear();
             using (var db = new smildb())
@@ -169,16 +169,10 @@ namespace Tandlægerne_Smil.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (
-                MessageBox.Show("Skal Behandlingen afsluttes ?",
-                "Afslut Behandling",
-                MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
-                BehandlingAfslut BehandlingAfslut = new BehandlingAfslut(bookingID, this);
-                BehandlingAfslut.ShowDialog();
-            }
+            int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
+            BehandlingAfslut BehandlingAfslut = new BehandlingAfslut(bookingID, this);
+            BehandlingAfslut.ShowDialog();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
