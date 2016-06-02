@@ -49,14 +49,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox_Tlfnr = new System.Windows.Forms.TextBox();
-            this.textBox_Læge = new System.Windows.Forms.TextBox();
-            this.textBox_Lokale = new System.Windows.Forms.TextBox();
-            this.textBox_dato = new System.Windows.Forms.TextBox();
             this.lage = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.button_GemOgFaktur = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.comboBoxLæge = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -229,53 +225,14 @@
             this.textBox_Tlfnr.Size = new System.Drawing.Size(143, 20);
             this.textBox_Tlfnr.TabIndex = 17;
             // 
-            // textBox_Læge
-            // 
-            this.textBox_Læge.Location = new System.Drawing.Point(303, 12);
-            this.textBox_Læge.Name = "textBox_Læge";
-            this.textBox_Læge.Size = new System.Drawing.Size(116, 20);
-            this.textBox_Læge.TabIndex = 18;
-            // 
-            // textBox_Lokale
-            // 
-            this.textBox_Lokale.Location = new System.Drawing.Point(303, 38);
-            this.textBox_Lokale.Name = "textBox_Lokale";
-            this.textBox_Lokale.Size = new System.Drawing.Size(116, 20);
-            this.textBox_Lokale.TabIndex = 19;
-            // 
-            // textBox_dato
-            // 
-            this.textBox_dato.Location = new System.Drawing.Point(303, 64);
-            this.textBox_dato.Name = "textBox_dato";
-            this.textBox_dato.Size = new System.Drawing.Size(116, 20);
-            this.textBox_dato.TabIndex = 20;
-            // 
             // lage
             // 
             this.lage.AutoSize = true;
-            this.lage.Location = new System.Drawing.Point(266, 15);
+            this.lage.Location = new System.Drawing.Point(235, 15);
             this.lage.Name = "lage";
-            this.lage.Size = new System.Drawing.Size(31, 13);
+            this.lage.Size = new System.Drawing.Size(34, 13);
             this.lage.TabIndex = 21;
-            this.lage.Text = "læge";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(262, 41);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "lokale";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(269, 67);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(28, 13);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "dato";
+            this.lage.Text = "Ansat";
             // 
             // button_GemOgFaktur
             // 
@@ -297,19 +254,23 @@
             this.pictureBox1.TabIndex = 25;
             this.pictureBox1.TabStop = false;
             // 
+            // comboBoxLæge
+            // 
+            this.comboBoxLæge.FormattingEnabled = true;
+            this.comboBoxLæge.Location = new System.Drawing.Point(275, 12);
+            this.comboBoxLæge.Name = "comboBoxLæge";
+            this.comboBoxLæge.Size = new System.Drawing.Size(144, 21);
+            this.comboBoxLæge.TabIndex = 26;
+            // 
             // BehandlingAfslut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(431, 435);
+            this.Controls.Add(this.comboBoxLæge);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button_GemOgFaktur);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.lage);
-            this.Controls.Add(this.textBox_dato);
-            this.Controls.Add(this.textBox_Lokale);
-            this.Controls.Add(this.textBox_Læge);
             this.Controls.Add(this.textBox_Tlfnr);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -358,15 +319,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox_Tlfnr;
-        private System.Windows.Forms.TextBox textBox_Læge;
-        private System.Windows.Forms.TextBox textBox_Lokale;
-        private System.Windows.Forms.TextBox textBox_dato;
         private System.Windows.Forms.Label lage;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ColumnHeader Behandling;
         private System.Windows.Forms.ColumnHeader Pris;
         private System.Windows.Forms.Button button_GemOgFaktur;
 		private System.Windows.Forms.PictureBox pictureBox1;
-	}
+        private System.Windows.Forms.ComboBox comboBoxLæge;
+    }
 }

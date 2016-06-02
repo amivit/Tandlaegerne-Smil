@@ -68,8 +68,10 @@ namespace Tandlægerne_Smil.Models
                                 }
 
                                 sw.WriteLine("Tidspunkt: " + booking.Tidspunkt.Hour + ":" + booking.Tidspunkt.Minute);
-                                sw.WriteLine("Læge: " + booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
-                                sw.WriteLine("Lokale: " + booking.BehandlingsrumDb.RumNavn);
+                                if (booking.AnsatDb != null)
+                                    sw.WriteLine("Læge: " + booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+                                if (booking.BehandlingsrumDb != null)
+                                    sw.WriteLine("Lokale: " + booking.BehandlingsrumDb.RumNavn);
                                 sw.WriteLine("Patient: " + booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
                                 sw.WriteLine("Anslået tid: " + totalAnslåetTid + " Min");
                                 sw.WriteLine("Behandling(er): " + behandlingString);
@@ -214,8 +216,8 @@ namespace Tandlægerne_Smil.Models
                 LogSqlQuery();
                 Db.SaveChanges();
 
-                MessageBox.Show("Booking oprettet", // Oprettelse besked
-                    "Oprettet",
+                MessageBox.Show("Akut Booking Oprettet", // Oprettelse besked
+                    "Succes",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -93,16 +94,16 @@ namespace Tandlægerne_Smil.Views
                         totalAnslåetTid += behandling.AnslåetTid;
                     }
                     var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => booking.BookingId == b.BookingId);
-
+                    
                     if (behandlingslinjen?.FakturaId != null)
                     {
                         list.BackColor = Color.LimeGreen;
                     }
-
-                    if (booking.Akut == true && behandlingslinjen?.FakturaId == null)
+                    else if (booking.Akut == true && behandlingslinjen?.FakturaId == null)
                     {
                         list.BackColor = Color.Red;
                     }
+
 
 
                     if (booking.AnsatDb != null) list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
@@ -490,8 +491,21 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void buttonAkutAnkomst_Click(object sender, EventArgs e)
         {
-            AkutPatient akutPatientForm = new AkutPatient();
+            AkutPatient akutPatientForm = new AkutPatient(this);
             akutPatientForm.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Thread.Sleep(10000);
+            RefreshAlt();
+        }
+
+        public void RefreshAlt()
+        {
+            RefreshPatientView();
+            RefreshBookingView();
+            RefreshVenteværelseView();
         }
     }
 }

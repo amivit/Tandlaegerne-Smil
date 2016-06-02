@@ -15,10 +15,11 @@ namespace Tandlægerne_Smil.Views
     public partial class AkutPatient : Form
     {
         private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
+        private StartForm _startForm;
 
-
-        public AkutPatient()
+        public AkutPatient(StartForm startForm)
         {
+            this._startForm = startForm;
             InitializeComponent();
         }
 
@@ -54,6 +55,32 @@ namespace Tandlægerne_Smil.Views
         {
             var patientId = Convert.ToInt32(listViewPatient.SelectedItems[0].SubItems[1].Text);
             _controller.Book.GemBookingAkut(patientId, this);
+            _startForm.RefreshBookingView();
+        }
+
+        private void listViewPatient_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (listViewPatient.SelectedItems.Count > 0 && comboBoxTidspunkt.SelectedIndex >= 0)
+            {
+                buttonOpretAkutBooking.Enabled = true;
+            }
+            else
+            {
+                buttonOpretAkutBooking.Enabled = false;
+            }
+        }
+
+        private void comboBoxTidspunkt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewPatient.SelectedItems.Count > 0 && comboBoxTidspunkt.SelectedIndex >= 0)
+            {
+                buttonOpretAkutBooking.Enabled = true;
+            }
+            else
+            {
+                buttonOpretAkutBooking.Enabled = false;
+            }
         }
     }
 }
