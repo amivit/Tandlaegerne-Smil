@@ -87,13 +87,17 @@ namespace Tandlægerne_Smil.Views
         {
             var Patient = _global.Db.PatientDbs.ToList();
             var booking = _global.Db.BookingDbs.ToList();
-
-            
-
+            var behandlingsrum = _global.Db.BehandlingsrumDbs.ToList();
+            var ansat = _global.Db.AnsatDbs.ToList();
+        
             var PatientJoin = from b in booking
                               join p in Patient
-                                  on b.PatientId equals p.PatientId
-                            
+                              on b.PatientId equals p.PatientId
+                              join br in behandlingsrum
+                              on b.LokaleId equals br.RumId
+                              join a in ansat
+                              on b.LægeId equals a.AnsatId
+
                               select new
                               {
                                   b.BookingId,
@@ -103,8 +107,10 @@ namespace Tandlægerne_Smil.Views
                                   p.Adresse,
                                   p.Postnummer,
                                   p.Cpr,
-                                  p.Telefon
-
+                                  p.Telefon,
+                                  br.RumNavn,
+                                  b.Tidspunkt,
+                                  lægeNavn = a.Fornavn + " "+ a.Efternavn
                               };
 
             var patientSort = (from r in PatientJoin
@@ -118,7 +124,10 @@ namespace Tandlægerne_Smil.Views
             textBox_Adresse.Text = patientSort[0].Adresse;
             textBox_Postnr.Text = patientSort[0].Postnummer.ToString();
             textBox_Tlfnr.Text = patientSort[0].Telefon;
-        }
+            textBox_Lokale.Text = patientSort[0].RumNavn;
+            textBox_dato.Text = patientSort[0].Tidspunkt.ToString();
+            textBox_Læge.Text = patientSort[0].lægeNavn;
+                }
 
         private void button_TiljøjBehandling_Click(object sender, EventArgs e) //ADD behandling
         {
@@ -141,6 +150,11 @@ namespace Tandlægerne_Smil.Views
             tjekketind.Ankommet = false;
             _global.Db.SaveChanges();
 
+            string Afslutning = "Behandlingen af "+(textBox_Fornavn.Text + " " +textBox_Efternanv.Text)+" er nu afsluttet";
+            Afslutning += Environment.NewLine;
+            Afslutning += "Patientens Faktura kan findes under Patient ID: " +textBox_PatientNr.Text;
+            MessageBox.Show(Afslutning,"Færdig!");
+            
             this.Close();
         }
 
