@@ -24,8 +24,7 @@ namespace Tandlægerne_Smil.Models
             sfd.FileName = ("Dagens-Program_" + dato.Day + "-" + dato.Month + "-" + dato.Year);
             //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
             sfd.FilterIndex = 1;
-            
-           
+
             StreamWriter sw = null;
 
             using (var db = new smildb())
@@ -56,13 +55,13 @@ namespace Tandlægerne_Smil.Models
                                 var totalAnslåetTid = 0;
 
                                 if (behandlinger.Count > 0)
-                                    // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
+                                // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
                                 {
                                     behandlingString = behandlinger[0].Navn;
                                     totalAnslåetTid = behandlinger[0].AnslåetTid;
                                 }
                                 foreach (var behandling in behandlinger.Skip(1))
-                                    // Spring den første over, og tilføje alle behandlinger (hvis der er nogle)
+                                // Spring den første over, og tilføje alle behandlinger (hvis der er nogle)
                                 {
                                     behandlingString += ", " + behandling.Navn;
                                     totalAnslåetTid += behandling.AnslåetTid;
@@ -77,8 +76,6 @@ namespace Tandlægerne_Smil.Models
                                 sw.WriteLine("");
                                 sw.WriteLine("");
                             }
-
-
                         }
                         catch (Exception e)
                         {
@@ -101,8 +98,6 @@ namespace Tandlægerne_Smil.Models
             }
             //MessageBox.Show(Path.GetDirectoryName(sfd.FileName));
         }
-
-        
 
         public void LoadOpretBooking(int patientID, BookingOpretRedigere bookingOpretRedigere)
         {
@@ -197,8 +192,6 @@ namespace Tandlægerne_Smil.Models
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-
-
             }
         }
 
@@ -213,6 +206,21 @@ namespace Tandlægerne_Smil.Models
             }
             Db.BookingDbs.Remove(booking);
             Db.SaveChanges();
+        }
+
+        public List<DateTime> AkutTider()
+        {
+            var akutTidNu = DateTime.Now;
+            TimeSpan morgenTid = new TimeSpan(8, 00, 0);
+            TimeSpan lukkeTid = new TimeSpan(16, 30, 0);
+            var akutTidMorgen = DateTime.Now.ToShortDateString() + " " + morgenTid;
+            var akutTidLuk = DateTime.Now.ToShortDateString() + " " + lukkeTid;
+            List<DateTime> akutTider = new List<DateTime>();
+            akutTider.Add(akutTidNu);
+            akutTider.Add(Convert.ToDateTime(akutTidMorgen));
+            akutTider.Add(Convert.ToDateTime(akutTidLuk));
+
+            return akutTider;
         }
     }
 }

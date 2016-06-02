@@ -112,7 +112,7 @@
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(803, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(803, 29);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -124,7 +124,7 @@
             this.demotilstandToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.filerToolStripMenuItem.Name = "filerToolStripMenuItem";
-            this.filerToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.filerToolStripMenuItem.Size = new System.Drawing.Size(52, 25);
             this.filerToolStripMenuItem.Text = "Filer";
             // 
             // gemVisKonsolToolStripMenuItem
@@ -133,7 +133,7 @@
             this.gemVisKonsolToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.gemVisKonsolToolStripMenuItem.Name = "gemVisKonsolToolStripMenuItem";
             this.gemVisKonsolToolStripMenuItem.ShowShortcutKeys = false;
-            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.gemVisKonsolToolStripMenuItem.Text = "Vis Konsol";
             this.gemVisKonsolToolStripMenuItem.Click += new System.EventHandler(this.VisKonsolToolStripMenuItem_Click);
             // 
@@ -142,13 +142,13 @@
             this.demotilstandToolStripMenuItem.Checked = true;
             this.demotilstandToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.demotilstandToolStripMenuItem.Name = "demotilstandToolStripMenuItem";
-            this.demotilstandToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.demotilstandToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.demotilstandToolStripMenuItem.Text = "Demo-tilstand";
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.AfslutToolStripMenuItem_Click);
             // 
@@ -157,13 +157,13 @@
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.omToolStripMenuItem});
             this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
-            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(63, 25);
             this.hjælpToolStripMenuItem.Text = "Hjælp";
             // 
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 26);
             this.omToolStripMenuItem.Text = "Om";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -457,7 +457,7 @@
             this.buttonAkutAnkomst.Name = "buttonAkutAnkomst";
             this.buttonAkutAnkomst.Size = new System.Drawing.Size(115, 23);
             this.buttonAkutAnkomst.TabIndex = 10;
-            this.buttonAkutAnkomst.Text = "AKUT Ankomst";
+            this.buttonAkutAnkomst.Text = "AKUT Patient";
             this.buttonAkutAnkomst.UseVisualStyleBackColor = true;
             this.buttonAkutAnkomst.Click += new System.EventHandler(this.buttonAkutAnkomst_Click);
             // 
@@ -615,7 +615,7 @@
             // columnBehandling
             // 
             this.columnBehandling.Text = "Behandling(er)";
-			this.columnBehandling.Width = 182;
+            this.columnBehandling.Width = 182;
             // 
             // columnBookingID
             // 
