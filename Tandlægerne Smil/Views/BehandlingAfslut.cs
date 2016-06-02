@@ -85,29 +85,19 @@ namespace Tandlægerne_Smil.Views
         }
         public void LoadPatientInfo()
         {
-            var Patient = _global.Db.PatientDbs.ToList();
-            var booking = _global.Db.BookingDbs.ToList();
-	    //    var ansat = _global.Db.AnsatDbs.ToList();
-	    //    var AnsatJoin = from b in booking
-		   //     join a in ansat
-			  //      on b.LægeId equals a.AnsatId
-		   //     select new
-		   //     {
-			  //      navn = a.Fornavn + " " + a.Efternavn,
-					//a.AnsatId
-		   //     };
-			//var AnsatSort = (from ar in AnsatJoin
-			//				 where ar.AnsatId
-			//				 select ar).ToList();
-
+            var Patient         = _global.Db.PatientDbs.ToList();
+            var booking         = _global.Db.BookingDbs.ToList();
+            var behandlingsrum  = _global.Db.BehandlingsrumDbs.ToList();
+            
+	    
 
 
 			var PatientJoin = from b in booking
                               join p in Patient
                                   on b.PatientId equals p.PatientId
-								
-								
-                            
+                                  join br in behandlingsrum
+                                  on b.LokaleId equals br.RumId
+
                               select new
                               {
                                   b.BookingId,
@@ -117,9 +107,8 @@ namespace Tandlægerne_Smil.Views
                                   p.Adresse,
                                   p.Postnummer,
                                   p.Cpr,
-                                  p.Telefon
-								  
-
+                                  p.Telefon,
+                                  br.RumNavn
                               };
 
             var patientSort = (from r in PatientJoin
@@ -133,7 +122,7 @@ namespace Tandlægerne_Smil.Views
             textBox_Adresse.Text = patientSort[0].Adresse;
             textBox_Postnr.Text = patientSort[0].Postnummer.ToString();
             textBox_Tlfnr.Text = patientSort[0].Telefon;
-			//textBox_Læge.Text = patientSort[0].
+            textBox_Lokale.Text = patientSort[0].RumNavn;
         }
 
         private void button_TiljøjBehandling_Click(object sender, EventArgs e) //ADD behandling

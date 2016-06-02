@@ -59,13 +59,29 @@ namespace Tandlægerne_Smil.Views
 
 		private void buttonTilføj_Click(object sender, EventArgs e)
 		{
-			var behandling = _global.Db.BehandlingDbs.FirstOrDefault(b => b.Navn == comboBoxBehandling.Text);
-			//Console.WriteLine(behandling.ToString());
-			ListViewItem lvi = new ListViewItem(behandling.Navn);
-			lvi.SubItems.Add(behandling.Pris.ToString());
-			lvi.SubItems.Add(behandling.AnslåetTid.ToString());
-			listViewBehandling.Items.Add(lvi);
-			buttonSletBehandling.Enabled = false;
+            try
+            {
+                var behandling = _global.Db.BehandlingDbs.FirstOrDefault(b => b.Navn == comboBoxBehandling.Text);
+                //Console.WriteLine(behandling.ToString());
+                ListViewItem lvi = new ListViewItem(behandling.Navn);
+                lvi.SubItems.Add(behandling.Pris.ToString());
+                lvi.SubItems.Add(behandling.AnslåetTid.ToString());
+                listViewBehandling.Items.Add(lvi);
+
+                if (comboBoxLæge.SelectedIndex > 0 && comboBoxBehandling.SelectedIndex > 0 & comboBoxLokale.SelectedIndex > 0 && listViewBehandling.Items.Count > 0)
+                {
+                    buttonGemBooking.Enabled = true;
+                }
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ingen behandling valgt.",
+                                "Advarsel",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+            }
 		}
 
 		private void dateTimeOnly_ValueChanged(object sender, EventArgs e) // TODO: fjerne sekunder
@@ -87,18 +103,15 @@ namespace Tandlægerne_Smil.Views
 			try
 			{
 				listViewBehandling.SelectedItems[0].Remove();
-				if (listViewBehandling.Items.Count == 0)
-				{
-					buttonGemBooking.Enabled = false;
-				}
+				
 			}
 			catch (Exception)
 			{
-				MessageBox.Show("Ingen behandling valgt.",
-								"Advarsel",
-								MessageBoxButtons.OK,
-								MessageBoxIcon.Error);
-			}
+                MessageBox.Show("Ingen behandling valgt.",
+                                "Advarsel",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
 		
 		}
 		//gør opret book kanppen Disabled
@@ -108,14 +121,7 @@ namespace Tandlægerne_Smil.Views
 			{
 				buttonGemBooking.Enabled = true;
 			}
-			else if (listViewBehandling.SelectedItems.Count > 0)
-			{
-				buttonSletBehandling.Enabled = true;
-			}
-			else
-			{
-				buttonSletBehandling.Enabled = false;
-			}
+			
 		}
 
 		private void comboBoxLæge_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,7 +134,6 @@ namespace Tandlægerne_Smil.Views
 
 		private void comboBoxBehandling_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            buttonTilføj.Enabled = true;
             if (comboBoxLæge.SelectedIndex > 0 && comboBoxBehandling.SelectedIndex > 0 & comboBoxLokale.SelectedIndex > 0 && listViewBehandling.Items.Count > 0)
 			{
 				buttonGemBooking.Enabled = true;
