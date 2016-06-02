@@ -117,7 +117,7 @@ namespace Tandlægerne_Smil.Views
 		//gør opret book kanppen Disabled
 		private void listViewBehandling_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (comboBoxLæge.SelectedIndex > 0 && comboBoxBehandling.SelectedIndex > 0 & comboBoxLokale.SelectedIndex > 0 && listViewBehandling.Items.Count > 0)
+			if (comboBoxLæge.SelectedIndex >= 0 && comboBoxBehandling.SelectedIndex >= 0 & comboBoxLokale.SelectedIndex >= 0 && listViewBehandling.Items.Count >= 0)
 			{
 				buttonGemBooking.Enabled = true;
 			}
@@ -126,7 +126,7 @@ namespace Tandlægerne_Smil.Views
 
 		private void comboBoxLæge_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (comboBoxLæge.SelectedIndex > 0 && comboBoxBehandling.SelectedIndex > 0 & comboBoxLokale.SelectedIndex > 0 && listViewBehandling.Items.Count > 0)
+			if (comboBoxLæge.SelectedIndex >= 0 && comboBoxBehandling.SelectedIndex >= 0 & comboBoxLokale.SelectedIndex >= 0 && listViewBehandling.Items.Count >= 0)
 			{
 				buttonGemBooking.Enabled = true;
 			}
@@ -134,7 +134,7 @@ namespace Tandlægerne_Smil.Views
 
 		private void comboBoxBehandling_SelectedIndexChanged(object sender, EventArgs e)
 		{
-            if (comboBoxLæge.SelectedIndex > 0 && comboBoxBehandling.SelectedIndex > 0 & comboBoxLokale.SelectedIndex > 0 && listViewBehandling.Items.Count > 0)
+            if (comboBoxLæge.SelectedIndex >= 0 && comboBoxBehandling.SelectedIndex >= 0 & comboBoxLokale.SelectedIndex >= 0 && listViewBehandling.Items.Count >= 0)
 			{
 				buttonGemBooking.Enabled = true;
 			}
@@ -142,7 +142,7 @@ namespace Tandlægerne_Smil.Views
 
 		private void comboBoxLokale_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (comboBoxLæge.SelectedIndex > 0 && comboBoxBehandling.SelectedIndex > 0 & comboBoxLokale.SelectedIndex > 0 && listViewBehandling.Items.Count > 0)
+			if (comboBoxLæge.SelectedIndex >= 0 && comboBoxBehandling.SelectedIndex >= 0 & comboBoxLokale.SelectedIndex >= 0 && listViewBehandling.Items.Count >= 0)
 			{
 				buttonGemBooking.Enabled = true;
 			}
