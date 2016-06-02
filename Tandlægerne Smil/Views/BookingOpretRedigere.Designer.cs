@@ -52,6 +52,8 @@
             this.buttonGemBooking = new System.Windows.Forms.Button();
             this.buttonSletBehandling = new System.Windows.Forms.Button();
             this.labelTandlægeSkræk = new System.Windows.Forms.Label();
+            this.listViewDagensBookinger = new System.Windows.Forms.ListView();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -267,11 +269,30 @@
             this.labelTandlægeSkræk.TabIndex = 20;
             this.labelTandlægeSkræk.Text = "Tandlægeskræk";
             // 
+            // listViewDagensBookinger
+            // 
+            this.listViewDagensBookinger.Location = new System.Drawing.Point(10, 375);
+            this.listViewDagensBookinger.Name = "listViewDagensBookinger";
+            this.listViewDagensBookinger.Size = new System.Drawing.Size(712, 169);
+            this.listViewDagensBookinger.TabIndex = 21;
+            this.listViewDagensBookinger.UseCompatibleStateImageBehavior = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 359);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(159, 13);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Dagens Eksisterende Bookinger";
+            // 
             // BookingOpretRedigere
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(736, 342);
+            this.ClientSize = new System.Drawing.Size(734, 556);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.listViewDagensBookinger);
             this.Controls.Add(this.labelTandlægeSkræk);
             this.Controls.Add(this.buttonSletBehandling);
             this.Controls.Add(this.buttonGemBooking);
@@ -326,5 +347,7 @@
         public System.Windows.Forms.ListView listViewBehandling;
 		private System.Windows.Forms.Button buttonSletBehandling;
 		private System.Windows.Forms.Label labelTandlægeSkræk;
-	}
+        private System.Windows.Forms.ListView listViewDagensBookinger;
+        private System.Windows.Forms.Label label9;
+    }
 }
