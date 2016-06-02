@@ -476,9 +476,18 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void buttonUnderBehandling_Click(object sender, EventArgs e)
         {
-            int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
-            _controller.Venteværelse.MarkereSomUnderBehandling(bookingID);
-            RefreshVenteværelseView();
+            try
+            {
+                int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
+                _controller.Venteværelse.MarkereSomUnderBehandling(bookingID);
+                RefreshVenteværelseView();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
 
         private void buttonRedigereBookning_Click(object sender, EventArgs e)
