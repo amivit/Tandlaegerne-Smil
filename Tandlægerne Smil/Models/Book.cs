@@ -195,6 +195,41 @@ namespace Tandlægerne_Smil.Models
             }
         }
 
+        public void GemBookingAkut(int patientID, AkutPatient akutPatient)
+        {
+            try
+            {
+                var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
+                var akutTider = AkutTider();
+                var akutTidIndex = akutPatient.comboBoxTidspunkt.SelectedIndex;
+
+                var createdBooking = new BookingDb
+                {
+                    PatientId = patient.PatientId,
+                    Akut = true
+                };
+                createdBooking.Tidspunkt = akutTider[akutTidIndex];
+
+                Db.BookingDbs.Add(createdBooking);
+                LogSqlQuery();
+                Db.SaveChanges();
+
+                MessageBox.Show("Booking oprettet", // Oprettelse besked
+                    "Oprettet",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                Form.ActiveForm.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Fejl", // Oprettelse besked
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
         public void SletBooking(int bookingID)
         {
             var booking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);

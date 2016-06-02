@@ -536,10 +536,10 @@ namespace Tandlægerne_Smil.Controllers.DbController
     {
         public long BookingId { get; set; } // booking_id (Primary key)
         public System.DateTime Tidspunkt { get; set; } // tidspunkt
-        public short LokaleId { get; set; } // lokale_id
+        public short? LokaleId { get; set; } // lokale_id
         public int? LægeId { get; set; } // læge_id
         public long PatientId { get; set; } // patient_id
-        public bool Ankommet { get; set; } // ankommet
+        public bool? Ankommet { get; set; } // ankommet
         public bool? Behandlingstatus { get; set; } // behandlingstatus
         public bool? Akut { get; set; } // akut
 
@@ -803,16 +803,16 @@ namespace Tandlægerne_Smil.Controllers.DbController
 
             Property(x => x.BookingId).HasColumnName(@"booking_id").IsRequired().HasColumnType("bigint").HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.Tidspunkt).HasColumnName(@"tidspunkt").IsRequired().HasColumnType("datetime");
-            Property(x => x.LokaleId).HasColumnName(@"lokale_id").IsRequired().HasColumnType("smallint");
+            Property(x => x.LokaleId).HasColumnName(@"lokale_id").IsOptional().HasColumnType("smallint");
             Property(x => x.LægeId).HasColumnName(@"læge_id").IsOptional().HasColumnType("int");
             Property(x => x.PatientId).HasColumnName(@"patient_id").IsRequired().HasColumnType("bigint");
-            Property(x => x.Ankommet).HasColumnName(@"ankommet").IsRequired().HasColumnType("bit");
+            Property(x => x.Ankommet).HasColumnName(@"ankommet").IsOptional().HasColumnType("bit");
             Property(x => x.Behandlingstatus).HasColumnName(@"behandlingstatus").IsOptional().HasColumnType("bit");
             Property(x => x.Akut).HasColumnName(@"akut").IsOptional().HasColumnType("bit");
 
             // Foreign keys
             HasOptional(a => a.AnsatDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.LægeId); // FK_Booking_Ansat
-            HasRequired(a => a.BehandlingsrumDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.LokaleId); // FK_Booking_Behandlingsrum
+            HasOptional(a => a.BehandlingsrumDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.LokaleId); // FK_Booking_Behandlingsrum
             HasRequired(a => a.PatientDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.PatientId); // FK_Booking_Patient
         }
     }

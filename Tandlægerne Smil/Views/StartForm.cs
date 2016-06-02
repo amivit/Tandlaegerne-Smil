@@ -98,9 +98,21 @@ namespace Tandlægerne_Smil.Views
                     {
                         list.BackColor = Color.LimeGreen;
                     }
-                    list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+
+                    if (booking.Akut == true && behandlingslinjen?.FakturaId == null)
+                    {
+                        list.BackColor = Color.Red;
+                    }
+
+
+                    if (booking.AnsatDb != null) list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+                    else list.SubItems.Add("Akut");
+                    
                     list.SubItems.Add(totalAnslåetTid.ToString());
-                    list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
+
+                    if (booking.BehandlingsrumDb != null) list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
+                    else list.SubItems.Add("");
+
                     list.SubItems.Add(booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
                     list.SubItems.Add(behandlingString);
                     list.SubItems.Add(booking.BookingId.ToString());
@@ -139,9 +151,14 @@ namespace Tandlægerne_Smil.Views
                     {
                         lvi.BackColor = Color.Yellow;
                     }
-                    lvi.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+                    if (booking.AnsatDb != null)
+                        lvi.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+                    else lvi.SubItems.Add("Akut");
+
                     lvi.SubItems.Add(totalAnslåetTid.ToString());
-                    lvi.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
+                    if (booking.BehandlingsrumDb != null)
+                        lvi.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
+                    else lvi.SubItems.Add("Akut");
                     lvi.SubItems.Add(booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
                     lvi.SubItems.Add(behandlingString);
                     lvi.SubItems.Add(booking.BookingId.ToString());
@@ -158,17 +175,9 @@ namespace Tandlægerne_Smil.Views
                 MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                //listViewDagensProgram.SelectedItems[0].BackColor = Color.Green;
                 int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
-
-                //_controller.Faktura.opretFaktura(bookingID);
-                //_controller.Venteværelse.Afslutbehandling(bookingID);
-
-                BehandlingAfslut BehandlingAfslut = new BehandlingAfslut(bookingID);
+                BehandlingAfslut BehandlingAfslut = new BehandlingAfslut(bookingID, this);
                 BehandlingAfslut.ShowDialog();
-
-                listViewVenteværelse.SelectedItems[0].Remove();
-                RefreshBookingView();
             }
         }
 
@@ -192,9 +201,9 @@ namespace Tandlægerne_Smil.Views
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Fejl",
+                MessageBox.Show(ex.ToString(),
                      "Fejl",
                      MessageBoxButtons.OK,
                      MessageBoxIcon.Error);

@@ -14,7 +14,8 @@ namespace Tandlægerne_Smil.Views
 {
     public partial class AkutPatient : Form
     {
-        private Controller C = new Controller();
+        private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
+
 
         public AkutPatient()
         {
@@ -23,6 +24,11 @@ namespace Tandlægerne_Smil.Views
 
         private void AkutPatient_Load(object sender, EventArgs e)
         {
+
+            comboBoxTidspunkt.Items.Add("Akuttid NU");
+            comboBoxTidspunkt.Items.Add("Morgen Akuttid 8:00");
+            comboBoxTidspunkt.Items.Add("Eftermiddags Akuttid 16:30");
+
             using (var db = new smildb())
             {
                 var patientList = db.PatientDbs.ToList();
@@ -34,11 +40,20 @@ namespace Tandlægerne_Smil.Views
                     lvi.Group = listViewPatient.Groups[0];
                     listViewPatient.Items.Add(lvi);
                 }
-                foreach (var item in C.Book.AkutTider())
-                {
-                    comboBoxTidspunkt.Items.Add(item);
-                }
+
+                
+
+                //foreach (var item in _controller.Book.AkutTider())
+                //{
+                //    comboBoxTidspunkt.Items.Add(item);
+                //}
             }
+        }
+
+        private void buttonAkutpatient_Click(object sender, EventArgs e)
+        {
+            var patientId = Convert.ToInt32(listViewPatient.SelectedItems[0].SubItems[1].Text);
+            _controller.Book.GemBookingAkut(patientId, this);
         }
     }
 }

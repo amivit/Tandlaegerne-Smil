@@ -53,7 +53,7 @@ namespace Tandlægerne_Smil.Views
             }
             catch (Exception)
             {
-                MessageBox.Show("Postnummeret eksistere ikke",
+                MessageBox.Show("Fejl",
                      "Fejl",
                      MessageBoxButtons.OK,
                      MessageBoxIcon.Error);

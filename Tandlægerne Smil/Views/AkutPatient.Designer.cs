@@ -82,6 +82,7 @@
             this.buttonAkutpatient.TabIndex = 3;
             this.buttonAkutpatient.Text = "Akut Booking";
             this.buttonAkutpatient.UseVisualStyleBackColor = true;
+            this.buttonAkutpatient.Click += new System.EventHandler(this.buttonAkutpatient_Click);
             // 
             // AkutPatient
             // 
@@ -103,7 +104,7 @@
         private System.Windows.Forms.ListView listViewPatient;
         private System.Windows.Forms.ColumnHeader column_Navn;
         private System.Windows.Forms.ColumnHeader column_PatientID;
-        private System.Windows.Forms.ComboBox comboBoxTidspunkt;
         private System.Windows.Forms.Button buttonAkutpatient;
+        public System.Windows.Forms.ComboBox comboBoxTidspunkt;
     }
 }
