@@ -87,12 +87,26 @@ namespace Tandlægerne_Smil.Views
         {
             var Patient = _global.Db.PatientDbs.ToList();
             var booking = _global.Db.BookingDbs.ToList();
+	    //    var ansat = _global.Db.AnsatDbs.ToList();
+	    //    var AnsatJoin = from b in booking
+		   //     join a in ansat
+			  //      on b.LægeId equals a.AnsatId
+		   //     select new
+		   //     {
+			  //      navn = a.Fornavn + " " + a.Efternavn,
+					//a.AnsatId
+		   //     };
+			//var AnsatSort = (from ar in AnsatJoin
+			//				 where ar.AnsatId
+			//				 select ar).ToList();
 
-            
 
-            var PatientJoin = from b in booking
+
+			var PatientJoin = from b in booking
                               join p in Patient
                                   on b.PatientId equals p.PatientId
+								
+								
                             
                               select new
                               {
@@ -104,6 +118,7 @@ namespace Tandlægerne_Smil.Views
                                   p.Postnummer,
                                   p.Cpr,
                                   p.Telefon
+								  
 
                               };
 
@@ -118,6 +133,7 @@ namespace Tandlægerne_Smil.Views
             textBox_Adresse.Text = patientSort[0].Adresse;
             textBox_Postnr.Text = patientSort[0].Postnummer.ToString();
             textBox_Tlfnr.Text = patientSort[0].Telefon;
+			//textBox_Læge.Text = patientSort[0].
         }
 
         private void button_TiljøjBehandling_Click(object sender, EventArgs e) //ADD behandling
