@@ -458,6 +458,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
                     int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);
                     _controller.Book.SletBooking(bookingID);
                     RefreshBookingView();
+                    RefreshVenteværelseView();
                 }
                 catch (Exception)
                 {

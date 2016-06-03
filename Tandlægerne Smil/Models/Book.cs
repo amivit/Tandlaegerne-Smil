@@ -241,6 +241,7 @@ namespace Tandlægerne_Smil.Models
             {
                 Db.BehandlingslinjerDbs.Remove(linjer);
             }
+            booking.Akut = false;
             Db.BookingDbs.Remove(booking);
             Db.SaveChanges();
         }
