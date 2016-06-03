@@ -48,8 +48,8 @@ namespace Tandlægerne_Smil.Views
 
 		private void BehandlingAfslut_Load(object sender, EventArgs e) //LOAD
 		{
-            LoadBehandlingerTilCombobox();
-            LoadPatientInfo();
+			LoadBehandlingerTilCombobox();
+			LoadPatientInfo();
 			LoadTidligereBehandlinger();
 		}
 
@@ -139,30 +139,30 @@ namespace Tandlægerne_Smil.Views
 		private void button_GemOgFaktur_Click(object sender, EventArgs e)
 		{
 			OpdaterBehandlinger();
-		    if (listView_BehandlingsList.Items.Count != 0)
-		    {
-                //Faktura oprettelse
-                _controller.Faktura.opretFaktura(booking_ID);
-                //Skift flag så patienten fjernes fra venteværlesrerseseses
-                var tjekketind = _global.Db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
-                tjekketind.Ankommet = false;
-                _global.Db.SaveChanges();
+			if (listView_BehandlingsList.Items.Count != 0)
+			{
+				//Faktura oprettelse
+				_controller.Faktura.opretFaktura(booking_ID);
+				//Skift flag så patienten fjernes fra venteværlesrerseseses
+				var tjekketind = _global.Db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
+				tjekketind.Ankommet = false;
+				_global.Db.SaveChanges();
 
-                string Afslutning = "Behandlingen af " + (textBox_Fornavn.Text + " " + textBox_Efternanv.Text) + " er nu afsluttet";
-                Afslutning += Environment.NewLine;
-                Afslutning += "Patientens Faktura kan findes under Patient ID: " + textBox_PatientNr.Text;
-                MessageBox.Show(Afslutning, "Færdig!");
-                _startForm.RefreshVenteværelseView();
-                _startForm.RefreshBookingView();
-                this.Close();
-            }
-		    else
-		    {
-                MessageBox.Show("Tilføje nogle behandlingslinjer",
-                    "Fejl",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
+				string Afslutning = "Behandlingen af " + (textBox_Fornavn.Text + " " + textBox_Efternanv.Text) + " er nu afsluttet";
+				Afslutning += Environment.NewLine;
+				Afslutning += "Patientens Faktura kan findes under Patient ID: " + textBox_PatientNr.Text;
+				MessageBox.Show(Afslutning, "Færdig!");
+				_startForm.RefreshVenteværelseView();
+				_startForm.RefreshBookingView();
+				this.Close();
+			}
+			else
+			{
+				MessageBox.Show("Tilføje nogle behandlingslinjer",
+					"Fejl",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Error);
+			}
 			
 		}
 
@@ -176,8 +176,8 @@ namespace Tandlægerne_Smil.Views
 			{
 				_global.Db.BehandlingslinjerDbs.Remove(linjer);
 			}
-			//_global.LogSqlQuery();
-			//_global.Db.SaveChanges();
+			_global.LogSqlQuery();
+			_global.Db.SaveChanges();
 
 			//opretter linjer fra listview (virker?)
 			
