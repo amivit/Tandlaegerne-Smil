@@ -179,7 +179,11 @@ namespace Tandlægerne_Smil.Views
                     {
                         list.BackColor = Color.LimeGreen;
                     }
-                    list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+                    if (booking.AnsatDb != null)
+                        list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+                    else
+                        list.SubItems.Add("");
+
                     list.SubItems.Add(totalAnslåetTid.ToString());
                     list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
                     list.SubItems.Add(booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);

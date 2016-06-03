@@ -280,7 +280,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 359);
+            this.label9.Location = new System.Drawing.Point(23, 344);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(159, 13);
             this.label9.TabIndex = 22;
@@ -297,9 +297,9 @@
             this.columnHeaderBehandling,
             this.columnHeaderBookingID});
             this.listViewDagensProgram.FullRowSelect = true;
-            this.listViewDagensProgram.Location = new System.Drawing.Point(12, 375);
+            this.listViewDagensProgram.Location = new System.Drawing.Point(12, 368);
             this.listViewDagensProgram.Name = "listViewDagensProgram";
-            this.listViewDagensProgram.Size = new System.Drawing.Size(639, 176);
+            this.listViewDagensProgram.Size = new System.Drawing.Size(712, 176);
             this.listViewDagensProgram.TabIndex = 23;
             this.listViewDagensProgram.UseCompatibleStateImageBehavior = false;
             this.listViewDagensProgram.View = System.Windows.Forms.View.Details;
