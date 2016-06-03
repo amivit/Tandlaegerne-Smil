@@ -179,13 +179,21 @@ namespace Tandlægerne_Smil.Views
                     {
                         list.BackColor = Color.LimeGreen;
                     }
-                    if (booking.AnsatDb != null)
-                        list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
-                    else
-                        list.SubItems.Add("");
+                    else if (booking.Akut == true && behandlingslinjen?.FakturaId == null)
+                    {
+                        list.BackColor = Color.Red;
+                    }
+
+
+
+                    if (booking.AnsatDb != null) list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+                    else list.SubItems.Add("Akut");
 
                     list.SubItems.Add(totalAnslåetTid.ToString());
-                    list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
+
+                    if (booking.BehandlingsrumDb != null) list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
+                    else list.SubItems.Add("");
+
                     list.SubItems.Add(booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
                     list.SubItems.Add(behandlingString);
                     list.SubItems.Add(booking.BookingId.ToString());
@@ -193,6 +201,8 @@ namespace Tandlægerne_Smil.Views
                 }
             }
         }
+
+       
 
         private void datePicker_ValueChanged(object sender, EventArgs e)
         {
