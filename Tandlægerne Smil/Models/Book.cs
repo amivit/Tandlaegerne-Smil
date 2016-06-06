@@ -145,7 +145,7 @@ namespace Tandlægerne_Smil.Models
 
                 // Match Lokale fra combobox, med lokale i databasen
                 var lokale =
-                    Db.BehandlingsrumDbs.FirstOrDefault(b => b.RumNavn == bookingOpretRedigere.comboBoxLokale.Text);
+                Db.BehandlingsrumDbs.FirstOrDefault(b => b.RumNavn == bookingOpretRedigere.comboBoxLokale.Text);
 
                 var date = bookingOpretRedigere.datePicker.Value;
                 var time = bookingOpretRedigere.dateTimeOnlyPicker.Value;
@@ -168,8 +168,8 @@ namespace Tandlægerne_Smil.Models
 
                     var linje = new BehandlingslinjerDb
                     {
-                        BookingDb = addedBooking,
-                        BehandlingDb = behandlingTemp
+                        BookingId = addedBooking.BookingId,
+                        BehandlingId = behandlingTemp.BehandlingId
                     };
                     Db.BehandlingslinjerDbs.Add(linje);
                 }

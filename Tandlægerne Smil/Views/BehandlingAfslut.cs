@@ -122,13 +122,10 @@ namespace Tandlægerne_Smil.Views
                 using (var db = new smildb())
                 {
                     var behandlingslinje_ = db.BehandlingslinjerDbs.Where(b => booking_ID == b.BookingId).ToList();
+                    //db.BehandlingslinjerDbs.RemoveRange(behandlingslinje_);
 
-                    foreach (var linjer in behandlingslinje_)
-                    {
-                        db.BehandlingslinjerDbs.Remove(linjer);
-                    }
-                    // _global.UdskrivSqlTilKonsol();
-                    db.SaveChanges();
+                    //_global.UdskrivSqlTilKonsol();
+                    //db.SaveChanges();
 
                     //opretter linjer fra listview (virker?)
                     var booking = db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
