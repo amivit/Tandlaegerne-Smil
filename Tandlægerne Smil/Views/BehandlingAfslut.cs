@@ -189,6 +189,11 @@ namespace Tandlægerne_Smil.Views
 
             _global.UdskrivSqlTilKonsol();
             _global.Db.SaveChanges();
+
+
+
+
+
         }
 
         private void textBox_Efternanv_TextChanged(object sender, EventArgs e)
