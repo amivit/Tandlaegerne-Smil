@@ -92,7 +92,7 @@ namespace Tandlægerne_Smil.Models
                             SW.WriteLine("TandlægeVej 420".PadLeft(padVærdi + 15));
                             SW.WriteLine("7100 Vejle".PadLeft(padVærdi + 15));
                             SW.WriteLine(Environment.NewLine);
-                            SW.WriteLine("Tlf: 420-1227".PadLeft(padVærdi + 15));
+                            SW.WriteLine("Tlf: 420-1337".PadLeft(padVærdi + 15));
                             SW.WriteLine(Environment.NewLine);
                             SW.WriteLine(Environment.NewLine);
                             SW.WriteLine("Navn:".PadRight(15) + patienter[0].Fornavn + " " + patienter[0].Efternavn + "EasyBill Bank".PadLeft(padVærdi - (1 + patienter[0].Fornavn.Length + patienter[0].Efternavn.Length)));

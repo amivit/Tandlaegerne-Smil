@@ -132,33 +132,33 @@ namespace Tandlægerne_Smil.Models
             try
             {
                 var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
-
-                //_bookingDb.Ankommet = false;
+                //Gemmer den valgte patients Fields i en liste
                 var CreatedBooking = new BookingDb();
-
+                //Opretter en ny booking
                 // Match Læge fra combobox, med databasen. Fornavn og efternavn skal splittes, da de ligger i 2 forskellige kolonner i db'en
                 var names = bookingOpretRedigere.comboBoxLæge.Text.Split(' ');
                 string lægeFornavn = names[0];
                 string lægeEfternavn = names[1];
                 var læge = Db.AnsatDbs.FirstOrDefault(a => a.Fornavn == lægeFornavn && a.Efternavn == lægeEfternavn);
                 CreatedBooking.AnsatDb = læge;
+                //Visuelt er lægens fornavn og efternavn sat sammen i selve formen for at give et bedre overblik for brugeren
+                //der for er det vigtigt at vi splitter navnet op så vi kan knytte bookingen til valgte læge
 
                 // Match Lokale fra combobox, med lokale i databasen
                 var lokale =
                 Db.BehandlingsrumDbs.FirstOrDefault(b => b.RumNavn == bookingOpretRedigere.comboBoxLokale.Text);
 
-                var date = bookingOpretRedigere.datePicker.Value;
-                var time = bookingOpretRedigere.dateTimeOnlyPicker.Value;
+                var date = bookingOpretRedigere.datePicker.Value; //valgte dato ud fra vores date picker
+                var time = bookingOpretRedigere.dateTimeOnlyPicker.Value; // valgte tidspunkt ud fra vores picker
 
                 CreatedBooking.Tidspunkt = new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, 0);
-                //    bookingOpretRedigere.datePicker.Value;
-                //bookingDb.Tidspunkt = bookingOpretRedigere.dateTimeOnlyPicker.Value;
+                //gemmer tidspunktet til databasen
 
-                CreatedBooking.PatientId = patient.PatientId;
-                CreatedBooking.LokaleId = lokale.RumId;
+                CreatedBooking.PatientId = patient.PatientId; // knytter patient id til bookingen
+                CreatedBooking.LokaleId = lokale.RumId; // lokalet knyttes
 
                 var addedBooking = Db.BookingDbs.Add(CreatedBooking);
-                UdskrivSqlTilKonsol();
+                UdskrivSqlTilKonsol(); // udskriver til vores konsol
                 Db.SaveChanges(); // Opret bookingen inden vi tilføjer behandlinger til den
 
                 for (int i = 0; i < bookingOpretRedigere.listViewBehandling.Items.Count; i++)
@@ -171,12 +171,14 @@ namespace Tandlægerne_Smil.Models
                         BookingId = addedBooking.BookingId,
                         BehandlingId = behandlingTemp.BehandlingId
                     };
+                    //her oprettes linjerne til bookingen ud fra hvad brugeren har valgt at behandlinger
+                    // de tilføjes så til databasen en ad gangen
                     Db.BehandlingslinjerDbs.Add(linje);
                 }
                 UdskrivSqlTilKonsol();
-                Db.SaveChanges();
+                Db.SaveChanges(); // gemmer alle informationerne i databasen
 
-                MessageBox.Show("Booking oprettet", // Oprettelse besked
+                MessageBox.Show("Booking oprettet", // Oprettelse besked udskrives
                     "Oprettet",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
