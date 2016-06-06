@@ -172,7 +172,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         {
             AnsatDbs = new FakeDbSet<AnsatDb>("AnsatId");
             BehandlingDbs = new FakeDbSet<BehandlingDb>("BehandlingId");
-            BehandlingslinjerDbs = new FakeDbSet<BehandlingslinjerDb>("BehandlingId");
+            BehandlingslinjerDbs = new FakeDbSet<BehandlingslinjerDb>("BehandlingslinjeId");
             BehandlingsrumDbs = new FakeDbSet<BehandlingsrumDb>("RumId");
             BookingDbs = new FakeDbSet<BookingDb>("BookingId");
             FakturaDbs = new FakeDbSet<FakturaDb>("FakturaId");
@@ -492,19 +492,25 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public int? KrævetUdstyrId { get; set; } // krævet_udstyr_id
 
         // Reverse navigation
-        public virtual BehandlingslinjerDb BehandlingslinjerDb { get; set; } // Behandlingslinjer.FK_Fakturalinjer_Behandling
+        public virtual System.Collections.Generic.ICollection<BehandlingslinjerDb> BehandlingslinjerDbs { get; set; } // Behandlingslinjer.FK_Fakturalinjer_Behandling
 
         // Foreign keys
         public virtual UdstyrDb UdstyrDb { get; set; } // FK_Behandling_Udstyr
+        
+        public BehandlingDb()
+        {
+            BehandlingslinjerDbs = new System.Collections.Generic.List<BehandlingslinjerDb>();
+        }
     }
 
     // Behandlingslinjer
     [System.CodeDom.Compiler.GeneratedCodeAttribute("EF.Reverse.POCO.Generator", "2.19.2.0")]
     public class BehandlingslinjerDb
     {
-        public long? BookingId { get; set; } // booking_id
+        public long BookingId { get; set; } // booking_id
         public long BehandlingId { get; set; } // behandling_id
         public long? FakturaId { get; set; } // faktura_id
+        public long BehandlingslinjeId { get; set; } // behandlingslinje_id (Primary key)
 
         // Foreign keys
         public virtual BehandlingDb BehandlingDb { get; set; } // FK_Fakturalinjer_Behandling
@@ -756,16 +762,17 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public BehandlingslinjerDbConfiguration(string schema)
         {
             ToTable(schema + ".Behandlingslinjer");
-            HasKey(x => x.BehandlingId);
+            HasKey(x => x.BehandlingslinjeId);
 
-            Property(x => x.BookingId).HasColumnName(@"booking_id").IsOptional().HasColumnType("bigint");
+            Property(x => x.BookingId).HasColumnName(@"booking_id").IsRequired().HasColumnType("bigint");
             Property(x => x.BehandlingId).HasColumnName(@"behandling_id").IsRequired().HasColumnType("bigint");
             Property(x => x.FakturaId).HasColumnName(@"faktura_id").IsOptional().HasColumnType("bigint");
+            Property(x => x.BehandlingslinjeId).HasColumnName(@"behandlingslinje_id").IsRequired().HasColumnType("bigint").HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
             // Foreign keys
-            HasOptional(a => a.BookingDb).WithMany(b => b.BehandlingslinjerDbs).HasForeignKey(c => c.BookingId); // FK_Behandlingslinjer_Booking
             HasOptional(a => a.FakturaDb).WithMany(b => b.BehandlingslinjerDbs).HasForeignKey(c => c.FakturaId); // FK_Behandlingslinjer_Faktura
-            HasRequired(a => a.BehandlingDb).WithOptional(b => b.BehandlingslinjerDb); // FK_Fakturalinjer_Behandling
+            HasRequired(a => a.BehandlingDb).WithMany(b => b.BehandlingslinjerDbs).HasForeignKey(c => c.BehandlingId); // FK_Fakturalinjer_Behandling
+            HasRequired(a => a.BookingDb).WithMany(b => b.BehandlingslinjerDbs).HasForeignKey(c => c.BookingId); // FK_Behandlingslinjer_Booking
         }
     }
 

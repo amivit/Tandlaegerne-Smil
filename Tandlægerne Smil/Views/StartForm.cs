@@ -74,7 +74,7 @@ namespace Tandlægerne_Smil.Views
                 foreach (var booking in dagensBookinger)
                 {
                     ListViewItem list = new ListViewItem(booking.Tidspunkt.Hour.ToString() + ":" + booking.Tidspunkt.Minute.ToString());
-                    var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == booking.BookingId).ToList();
+                    var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDbs.Any(bb => bb.BookingId == booking.BookingId)).ToList();
                     var behandlingString = "";
                     var totalAnslåetTid = 0;
                     if (behandlinger.Count > 0) // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
@@ -87,7 +87,7 @@ namespace Tandlægerne_Smil.Views
                         behandlingString += ", " + behandling.Navn;
                         totalAnslåetTid += behandling.AnslåetTid;
                     }
-                    //var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == booking.BookingId);
+                    var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == booking.BookingId);
 
                     if (booking.Faktureret == true)
                     {
@@ -126,7 +126,7 @@ namespace Tandlægerne_Smil.Views
                 foreach (var booking in venteVærelse)
                 {
                     ListViewItem lvi = new ListViewItem(booking.Tidspunkt.ToString());
-                    var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == booking.BookingId).ToList();
+                    var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDbs.Any(bb => bb.BookingId == booking.BookingId)).ToList();
                     var behandlingString = "";
                     var totalAnslåetTid = 0;
                     if (behandlinger.Count > 0) // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl

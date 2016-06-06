@@ -144,55 +144,55 @@ namespace Tandlægerne_Smil.Views
         public void RefreshBookingView()
         {
             listViewDagensProgram.Items.Clear();
-            using (var db = new smildb())
-            {
-                var dagensBookinger = db.BookingDbs
-                    .Include(b => b.BehandlingslinjerDbs)
-                    .Where(b => b.Tidspunkt.Day == datePicker.Value.Day) // Kun den valgte dag
-                    .OrderBy(b => b.Tidspunkt) // Sortere dem i rækkefølge
-                    .ToList();
+            //using (var db = new smildb())
+            //{
+            //    var dagensBookinger = db.BookingDbs
+            //        .Include(b => b.BehandlingslinjerDbs)
+            //        .Where(b => b.Tidspunkt.Day == datePicker.Value.Day) // Kun den valgte dag
+            //        .OrderBy(b => b.Tidspunkt) // Sortere dem i rækkefølge
+            //        .ToList();
 
-                foreach (var booking in dagensBookinger)
-                {
-                    ListViewItem list = new ListViewItem(booking.Tidspunkt.Hour.ToString() + ":" + booking.Tidspunkt.Minute.ToString());
-                    var behandlinger = db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == booking.BookingId).ToList();
-                    var behandlingString = "";
-                    var totalAnslåetTid = 0;
-                    if (behandlinger.Count > 0) // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
-                    {
-                        behandlingString = behandlinger[0].Navn;
-                        totalAnslåetTid = behandlinger[0].AnslåetTid;
-                    }
-                    foreach (var behandling in behandlinger.Skip(1)) // Spring den første over, og tilføje alle behandlinger (hvis der er nogle)
-                    {
-                        behandlingString += ", " + behandling.Navn;
-                        totalAnslåetTid += behandling.AnslåetTid;
-                    }
-                    var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => booking.BookingId == b.BookingId);
+            //    foreach (var booking in dagensBookinger)
+            //    {
+            //        ListViewItem list = new ListViewItem(booking.Tidspunkt.Hour.ToString() + ":" + booking.Tidspunkt.Minute.ToString());
+            //        //var behandlinger = db.BehandlingDbs.Where(b => b..BookingId == booking.BookingId).ToList();
+            //        var behandlingString = "";
+            //        var totalAnslåetTid = 0;
+            //        if (behandlinger.Count > 0) // Hvis der overhovedet er nogle behandlinger tilknyttede bookingen, så man ikke får fejl
+            //        {
+            //            behandlingString = behandlinger[0].Navn;
+            //            totalAnslåetTid = behandlinger[0].AnslåetTid;
+            //        }
+            //        foreach (var behandling in behandlinger.Skip(1)) // Spring den første over, og tilføje alle behandlinger (hvis der er nogle)
+            //        {
+            //            behandlingString += ", " + behandling.Navn;
+            //            totalAnslåetTid += behandling.AnslåetTid;
+            //        }
+            //        var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => booking.BookingId == b.BookingId);
 
-                    if (behandlingslinjen?.FakturaId != null)
-                    {
-                        list.BackColor = Color.LimeGreen;
-                    }
-                    else if (booking.Akut == true && behandlingslinjen?.FakturaId == null)
-                    {
-                        list.BackColor = Color.Red;
-                    }
+            //        if (behandlingslinjen?.FakturaId != null)
+            //        {
+            //            list.BackColor = Color.LimeGreen;
+            //        }
+            //        else if (booking.Akut == true && behandlingslinjen?.FakturaId == null)
+            //        {
+            //            list.BackColor = Color.Red;
+            //        }
 
-                    if (booking.AnsatDb != null) list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
-                    else list.SubItems.Add("Akut");
+            //        if (booking.AnsatDb != null) list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
+            //        else list.SubItems.Add("Akut");
 
-                    list.SubItems.Add(totalAnslåetTid.ToString());
+            //        list.SubItems.Add(totalAnslåetTid.ToString());
 
-                    if (booking.BehandlingsrumDb != null) list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
-                    else list.SubItems.Add("");
+            //        if (booking.BehandlingsrumDb != null) list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
+            //        else list.SubItems.Add("");
 
-                    list.SubItems.Add(booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
-                    list.SubItems.Add(behandlingString);
-                    list.SubItems.Add(booking.BookingId.ToString());
-                    listViewDagensProgram.Items.Add(list);
-                }
-            }
+            //        list.SubItems.Add(booking.PatientDb.Fornavn + " " + booking.PatientDb.Efternavn);
+            //        list.SubItems.Add(behandlingString);
+            //        list.SubItems.Add(booking.BookingId.ToString());
+            //        listViewDagensProgram.Items.Add(list);
+            //    }
+            //}
         }
 
         private void datePicker_ValueChanged(object sender, EventArgs e)

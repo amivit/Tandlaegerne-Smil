@@ -44,8 +44,8 @@ namespace Tandlægerne_Smil.Models
                             foreach (var booking in dagensBookinger)
                             {
                                 var behandlinger =
-                                    db.BehandlingDbs.Where(b => b.BehandlingslinjerDb.BookingId == booking.BookingId)
-                                        .ToList();
+                                    db.BehandlingDbs.Where(b => b.BehandlingslinjerDbs.Any(BB => BB.BookingId == booking.BookingId))
+                                    .ToList();
                                 var behandlingString = "";
                                 var totalAnslåetTid = 0;
 

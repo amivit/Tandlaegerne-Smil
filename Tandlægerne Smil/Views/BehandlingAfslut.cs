@@ -58,7 +58,7 @@ namespace Tandlægerne_Smil.Views
                 foreach (var linje in behandlingslinjer)
                 {
                     ListViewItem list = new ListViewItem(linje.BehandlingDb.Navn);
-                    list.SubItems.Add(linje.BehandlingDb.ToString());
+                    list.SubItems.Add(linje.BehandlingDb.Pris.ToString());
                     listView_BehandlingsList.Items.Add(list);
                 }
             }
@@ -121,15 +121,7 @@ namespace Tandlægerne_Smil.Views
                 paient og gemmer dem så fakturaen nu kan blive dannet */
                 using (var db = new smildb())
                 {
-                    var behandlingslinje_ = db.BehandlingslinjerDbs.Where(b => booking_ID == b.BookingId).ToList();
-                    //db.BehandlingslinjerDbs.RemoveRange(behandlingslinje_);
-
-                    //_global.UdskrivSqlTilKonsol();
-                    //db.SaveChanges();
-
-                    //opretter linjer fra listview (virker?)
                     var booking = db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
-
                     var faktura = new FakturaDb
                     {
                         PatientId = booking.PatientId,
@@ -137,31 +129,26 @@ namespace Tandlægerne_Smil.Views
                         BookingId = booking_ID,
                         FakturaDato = DateTime.Now
                     };
-                    db.FakturaDbs.Add(faktura);
-
-                    for (int i = 0; i < listView_BehandlingsList.Items.Count; i++)
-                    {
-                        var behandlingsNavn = listView_BehandlingsList.Items[i].Text;
-                        var behandlingTemp = db.BehandlingDbs.FirstOrDefault(b => b.Navn == behandlingsNavn);
-
-                        var linje = new BehandlingslinjerDb
-                        {
-                            BookingId = booking_ID,
-                            BehandlingDb = behandlingTemp,
-                            FakturaId = faktura.FakturaId
-                        };
-                        db.BehandlingslinjerDbs.Add(linje);
-                    }
                     booking.Ankommet = false;
                     booking.Faktureret = true;
-                    _controller.Global.UdskrivSqlTilKonsol();
-                    db.SaveChanges();
 
-                    //Faktura oprettelse
-                    //_controller.Faktura.OpretFaktura(booking_ID);
-                    //Skift flag så patienten fjernes fra venteværlesrerseseses
-                    //var tjekketind = db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
-                    _controller.Global.UdskrivSqlTilKonsol();
+                    var nyfaktura = db.FakturaDbs.Add(faktura);
+                    db.SaveChanges();
+                    var bList = db.BehandlingslinjerDbs.ToList();
+                    foreach (var test in bList)
+                    {
+                        if (test.BookingId == booking_ID && test.BehandlingDb.Navn == listView_BehandlingsList.Items[0].Text) // TODO: for eller foreach (pas på i)
+                            test.FakturaId = nyfaktura.FakturaId;
+                    }
+                    //foreach (var behandlingsNavn in )
+                    //{
+                    //var behandlingsNavn = listView_BehandlingsList.Items[0].Text;
+                    //var linje = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == booking_ID && b.BehandlingDb.Navn == TESTlIST);
+                    //linje.FakturaId = nyfaktura.FakturaId;
+                    //}
+                    // var linje = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == booking_ID && b.BehandlingDb.Navn == behandlingsNavn.T);
+
+                    //_controller.Global.UdskrivSqlTilKonsol();
                     db.SaveChanges();
 
                     //Ekstra information til brugeren iform af: et navn og hvor man kan finde den ny oprettet faktura
