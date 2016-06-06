@@ -61,6 +61,16 @@ namespace Tandlægerne_Smil.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Billede_til_list_view {
+            get {
+                object obj = ResourceManager.GetObject("Billede-til-list-view", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 
         ///Denne konsol er blot til debugging og slås fra for produktion.
         ///.

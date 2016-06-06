@@ -164,30 +164,15 @@ namespace Tandlægerne_Smil.Models
         public void HentOplysningerPåValgteFakatura(int fakturaNr, ListView fakuraDetaljer)
         {
             fakuraDetaljer.Items.Clear();
-            var fakturaLinjer = Db.BehandlingslinjerDbs.ToList();
-            var behandlinger = Db.BehandlingDbs.ToList();
 
-            var joined = from fl in fakturaLinjer
-                         join bl in behandlinger
-                         on fl.BehandlingId equals bl.BehandlingId
-                         select new
-                         {
-                             fl.BehandlingId,
-                             fl.FakturaId,
-                             navn = bl.Navn,
-                             bl.Pris
-                         };
+            var behandlingslinjer = Db.BehandlingslinjerDbs.Where(b => b.FakturaId == fakturaNr).ToList();
 
-            var sortedList = (from r in joined
-                              where (r.FakturaId == fakturaNr)
-                              select r).ToList();
-
-            foreach (var r in sortedList)
+            foreach (var item in behandlingslinjer)
             {
-                ListViewItem listViewItem = new ListViewItem(r.BehandlingId.ToString());
-                listViewItem.SubItems.Add(r.FakturaId.ToString());
-                listViewItem.SubItems.Add(r.navn);
-                listViewItem.SubItems.Add(r.Pris.ToString());
+                ListViewItem listViewItem = new ListViewItem(item.BehandlingId.ToString());
+                listViewItem.SubItems.Add(item.FakturaId.ToString());
+                listViewItem.SubItems.Add(item.BehandlingDb.Navn);
+                listViewItem.SubItems.Add(item.BehandlingDb.Pris.ToString());
                 fakuraDetaljer.Items.Add(listViewItem);
             }
         }

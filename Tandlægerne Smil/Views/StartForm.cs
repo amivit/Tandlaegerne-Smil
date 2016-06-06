@@ -201,13 +201,11 @@ namespace Tandlægerne_Smil.Views
             // User-Experience feature, så man slet ikke KAN klikke på de relevant knapper, hvis ikke noget i listviewet er markeret.
             if (listViewDagensProgram.SelectedItems.Count > 0)
             {
-                buttonRedigereBookning.Enabled = true;
                 buttonTjekkeInd.Enabled = true;
                 buttonSletbooking.Enabled = true;
             }
             else
             {
-                buttonRedigereBookning.Enabled = false;
                 buttonTjekkeInd.Enabled = false;
                 buttonSletbooking.Enabled = false;
                 buttonUnderBehandling.Enabled = false;
