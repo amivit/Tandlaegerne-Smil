@@ -483,8 +483,9 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             }
             catch (Exception)
             {
-                
-            }
+				MessageBox.Show("Fejl. Markér venligst en patient.");
+				buttonUnderBehandling.Enabled = false;
+			}
         }
 
         private void buttonRedigereBookning_Click(object sender, EventArgs e)
