@@ -179,6 +179,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DatabaseController.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\Billede-til-list-view.png" />
     <None Include="Resources\stocked.gif" />
     <None Include="Resources\Tandlægerne-smil-Logo-2.png" />
   </ItemGroup>
