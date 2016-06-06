@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers.DbController;
 
@@ -34,24 +31,19 @@ namespace Tandlægerne_Smil.Models
             }
             catch (Exception)
             {
-                 MessageBox.Show("Fejl",
-                         "Fejl",
-                         MessageBoxButtons.OK,
-                         MessageBoxIcon.Error);
+                MessageBox.Show("Fejl",
+                        "Fejl",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
             }
-            
-
-
         }
 
         public void Afslutbehandling(int bookingID)
         {
-            
             var venteværelseBooking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
             venteværelseBooking.Behandlingstatus = false;
             venteværelseBooking.Ankommet = false;
             Db.SaveChanges();
-
         }
     }
 }

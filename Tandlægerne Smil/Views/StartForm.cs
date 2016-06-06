@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using Tandlægerne_Smil.Controllers;
 using Tandlægerne_Smil.Controllers.DbController;
-using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
 {
@@ -94,7 +88,7 @@ namespace Tandlægerne_Smil.Views
                         totalAnslåetTid += behandling.AnslåetTid;
                     }
                     var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => booking.BookingId == b.BookingId);
-                    
+
                     if (behandlingslinjen?.FakturaId != null)
                     {
                         list.BackColor = Color.LimeGreen;
@@ -104,11 +98,9 @@ namespace Tandlægerne_Smil.Views
                         list.BackColor = Color.Red;
                     }
 
-
-
                     if (booking.AnsatDb != null) list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
                     else list.SubItems.Add("Akut");
-                    
+
                     list.SubItems.Add(totalAnslåetTid.ToString());
 
                     if (booking.BehandlingsrumDb != null) list.SubItems.Add(booking.BehandlingsrumDb.RumNavn);
@@ -173,7 +165,6 @@ namespace Tandlægerne_Smil.Views
             int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
             BehandlingAfslut BehandlingAfslut = new BehandlingAfslut(bookingID, this);
             BehandlingAfslut.ShowDialog();
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -480,10 +471,8 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             }
             catch (Exception)
             {
-
                 throw;
             }
-            
         }
 
         private void buttonRedigereBookning_Click(object sender, EventArgs e)
@@ -507,6 +496,10 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             RefreshPatientView();
             RefreshBookingView();
             RefreshVenteværelseView();
+        }
+
+        private void demotilstandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
     }
 }

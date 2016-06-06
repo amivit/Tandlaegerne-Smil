@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Core.EntityClient;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers.DbController;
 
@@ -17,8 +11,8 @@ namespace Tandlægerne_Smil.Models
         // Her kan tilføjes fields/metoder som alle sub-klasser skal kunne bruge
         // F.eks. skal alle have adgang til database-interfacet
         public smildb Db = new smildb();
-        
-        public void LogSqlQuery()
+
+        public void UdskrivSqlTilKonsol()
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = ConsoleColor.White;
@@ -29,6 +23,8 @@ namespace Tandlægerne_Smil.Models
 
         public static void ÅbneGemtFil(SaveFileDialog sfd)
         {
+            // Denne metode kan bruges til at åbne et givet gemt fil fra SaveFileDialog
+            // F.eks udprint af faktura eller dagens program
             string filSti = sfd.FileName;
             var process = new Process();
             process.StartInfo = new ProcessStartInfo()

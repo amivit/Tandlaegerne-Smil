@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers.DbController;
 using Tandlægerne_Smil.Views;
@@ -14,15 +11,13 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Book : Global
     {
-        //private readonly BookingDb _bookingDb = new BookingDb();
-
-        public void GemDagensProgram(StartForm _startForm) // TODO: Gem dagens program
+        public void GemDagensProgram(StartForm _startForm)
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             var dato = _startForm.dateTimePicker.Value;
             sfd.FileName = ("Dagens-Program_" + dato.Day + "-" + dato.Month + "-" + dato.Year);
-            //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
+            // Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
             sfd.FilterIndex = 1;
 
             StreamWriter sw = null;
@@ -163,7 +158,7 @@ namespace Tandlægerne_Smil.Models
                 CreatedBooking.LokaleId = lokale.RumId;
 
                 var addedBooking = Db.BookingDbs.Add(CreatedBooking);
-                LogSqlQuery();
+                UdskrivSqlTilKonsol();
                 Db.SaveChanges(); // Opret bookingen inden vi tilføjer behandlinger til den
 
                 for (int i = 0; i < bookingOpretRedigere.listViewBehandling.Items.Count; i++)
@@ -178,7 +173,7 @@ namespace Tandlægerne_Smil.Models
                     };
                     Db.BehandlingslinjerDbs.Add(linje);
                 }
-                LogSqlQuery();
+                UdskrivSqlTilKonsol();
                 Db.SaveChanges();
 
                 MessageBox.Show("Booking oprettet", // Oprettelse besked
@@ -199,12 +194,13 @@ namespace Tandlægerne_Smil.Models
 
         public void GemBookingAkut(int patientID, AkutPatient akutPatient)
         {
+            // Denne metode opretter en akut-booking, der på teknisk plan
+            // blot er en almindelig men tom booking, hvor akut-bool på true i databasen
             try
             {
                 var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
                 var akutTider = AkutTider();
                 var akutTidIndex = akutPatient.comboBoxTidspunkt.SelectedIndex;
-
                 var createdBooking = new BookingDb
                 {
                     PatientId = patient.PatientId,
@@ -213,7 +209,7 @@ namespace Tandlægerne_Smil.Models
                 createdBooking.Tidspunkt = akutTider[akutTidIndex];
 
                 Db.BookingDbs.Add(createdBooking);
-                LogSqlQuery();
+                UdskrivSqlTilKonsol();
                 Db.SaveChanges();
 
                 MessageBox.Show("Akut Booking Oprettet", // Oprettelse besked
@@ -234,6 +230,7 @@ namespace Tandlægerne_Smil.Models
 
         public void SletBooking(int bookingID)
         {
+            // Denne metode tager imod et booking id, finder alle dens behandlingslinjer, og sletter det hele fra databasen
             var booking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
             var bookinglinjer = Db.BehandlingslinjerDbs.Where(b => b.BookingDb.BookingId == booking.BookingId).ToList();
 
@@ -241,13 +238,15 @@ namespace Tandlægerne_Smil.Models
             {
                 Db.BehandlingslinjerDbs.Remove(linjer);
             }
-            booking.Akut = false;
+            // booking.Akut = false; // Dette er ikke nødvendigt? TODO: Slet mig
             Db.BookingDbs.Remove(booking);
             Db.SaveChanges();
         }
 
         public List<DateTime> AkutTider()
         {
+            // Denne metode opretter akut-tider til en liste, som senere hentes til viewet i en combobox
+            // De tider bør ligge i databasen, så listen dannes derfra. Men for nu er de hardcoded ind i programmet
             var akutTidNu = DateTime.Now;
             TimeSpan morgenTid = new TimeSpan(8, 00, 0);
             TimeSpan lukkeTid = new TimeSpan(16, 30, 0);

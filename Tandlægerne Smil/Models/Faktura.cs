@@ -1,81 +1,65 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers.DbController;
-using Tandlægerne_Smil.Views;
 
 namespace Tandlægerne_Smil.Models
 {
     internal class Faktura : Global
     {
-        private readonly FakturaDb _fakturaDb = new FakturaDb();
-        private readonly BehandlingslinjerDb _fakturalinjerDb = new BehandlingslinjerDb();
-        private readonly PatientDb _patientDb = new PatientDb();
-        private readonly BehandlingDb _behandlingDb = new BehandlingDb();
-        private readonly AnsatDb _ansatDb = new AnsatDb();
+        //private readonly FakturaDb _fakturaDb = new FakturaDb(); TODO: Slet mig
+        //private readonly BehandlingslinjerDb _fakturalinjerDb = new BehandlingslinjerDb();
+        //private readonly PatientDb _patientDb = new PatientDb();
+        //private readonly BehandlingDb _behandlingDb = new BehandlingDb();
+        //private readonly AnsatDb _ansatDb = new AnsatDb();
 
-        public Faktura()
+        public void OpretFaktura(int bookingId)
         {
-        }
+            var booking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingId);
+            var faktura = new FakturaDb
+            {
+                PatientId = booking.PatientId,
+                Betalt = false,
+                BookingId = bookingId,
+                FakturaDato = DateTime.Now
+            };
+            Db.FakturaDbs.Add(faktura);
 
-
-        public void opretFaktura(int bookingID)
-        {
-            var booking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
-            var Faktura = new FakturaDb();
-
-            Faktura.PatientId = booking.PatientId;
-            Faktura.Betalt = false;
-            Faktura.BookingId = bookingID;
-            Faktura.FakturaDato = DateTime.Now;
-            
-            var addedfaktura = Db.FakturaDbs.Add(Faktura);
-            
-         
-
-            var behandlingsLinjer = Db.BehandlingslinjerDbs.ToList();
-            //var behandlingsLinjjerQurry = (from r in behandlingsLinjer
-                                    //where (r.BookingId == bookingID)
-                                    //select r).ToList();
             var behandlinger = Db.BehandlingslinjerDbs.Where(b => b.BookingId == booking.BookingId).ToList();
-
 
             foreach (var item in behandlinger)
             {
-                item.FakturaId = Faktura.FakturaId;
+                item.FakturaId = faktura.FakturaId;
             }
 
-            LogSqlQuery();
+            UdskrivSqlTilKonsol();
             Db.SaveChanges();
         }
+
         public void UdskrivFaktura(int fakturaNR, int patientnr, string indnavn)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             var dateToday = DateTime.Today;
-            sfd.FileName = (indnavn + "_Nr_" + fakturaNR + "_Dato_" + dateToday.Day + "_" + dateToday.Month + "_" + dateToday.Year); //DateTime.Today.ToShortDateString()).Replace(' ', '_');
-            //Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
-            sfd.FilterIndex = 1;
-            StreamWriter SW = null;
+            SaveFileDialog sfd = new SaveFileDialog // Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
+            {
+                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
+                FileName =
+                    (indnavn + "_Nr_" + fakturaNR + "_Dato_" + dateToday.Day + "_" + dateToday.Month + "_" +
+                     dateToday.Year),
+                FilterIndex = 1
+            };
             using (var db = new smildb())
             {
                 var patient = db.PatientDbs.ToList();
-                var bookning = db.BookingDbs.ToList();
-                var læge = db.AnsatDbs.ToList();
                 var behandling = db.BehandlingDbs.ToList(); //indeholder navn og pris
                 var behandlingslinje = db.BehandlingslinjerDbs.ToList(); // tidliger faktura linjer
                 var faktura = db.FakturaDbs.ToList();
 
                 var OrderLinier = from fi in faktura
                                   join bl in behandlingslinje
-                                  on fi.FakturaId equals bl.FakturaId
+                                      on fi.FakturaId equals bl.FakturaId
                                   join be in behandling
-                                  on bl.BehandlingId equals be.BehandlingId
-
+                                      on bl.BehandlingId equals be.BehandlingId
                                   select new
                                   {
                                       _behandlingsNavn = be.Navn,
@@ -83,18 +67,19 @@ namespace Tandlægerne_Smil.Models
                                       _fakturaNummer = fi.FakturaId
                                   };
 
-                var OrderLinjerSortQurry = (from r in OrderLinier
-                                            where (r._fakturaNummer == fakturaNR)
-                                            select r).ToList();
+                var ordreLinjer = (from r in OrderLinier
+                                   where r._fakturaNummer == fakturaNR
+                                   select r).ToList();
 
-                var patientSortQurry = (from r in patient
-                                        where (r.PatientId == patientnr)
-                                        select r).ToList();
+                var patienter = (from r in patient
+                                 where r.PatientId == patientnr
+                                 select r).ToList();
 
                 int padVærdi = 60;
                 var linje = $"───────────────────";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
+                    StreamWriter SW = null;
                     using (SW = new StreamWriter(sfd.FileName))
                         try
                         {
@@ -105,11 +90,11 @@ namespace Tandlægerne_Smil.Models
                             SW.WriteLine("Tlf: 420-1227".PadLeft(padVærdi + 15));
                             SW.WriteLine(Environment.NewLine);
                             SW.WriteLine(Environment.NewLine);
-                            SW.WriteLine("Navn:".PadRight(15) + patientSortQurry[0].Fornavn + " " + patientSortQurry[0].Efternavn + "EasyBill Bank".PadLeft(padVærdi - (1 + patientSortQurry[0].Fornavn.Length + patientSortQurry[0].Efternavn.Length)));
-                            SW.WriteLine("Cpr:".PadRight(15) + patientSortQurry[0].Cpr + "RegNr: 0042".PadLeft(padVærdi - (patientSortQurry[0].Cpr.Length)));
-                            SW.WriteLine("Adresse:".PadRight(15) + patientSortQurry[0].Adresse + "KontoNr: 00024960125".PadLeft(padVærdi - (patientSortQurry[0].Adresse.Length)));
-                            SW.WriteLine("PostNr:".PadRight(15) + patientSortQurry[0].Postnummer);
-                            SW.WriteLine("PatientNr:".PadRight(15) + patientSortQurry[0].PatientId);
+                            SW.WriteLine("Navn:".PadRight(15) + patienter[0].Fornavn + " " + patienter[0].Efternavn + "EasyBill Bank".PadLeft(padVærdi - (1 + patienter[0].Fornavn.Length + patienter[0].Efternavn.Length)));
+                            SW.WriteLine("Cpr:".PadRight(15) + patienter[0].Cpr + "RegNr: 0042".PadLeft(padVærdi - (patienter[0].Cpr.Length)));
+                            SW.WriteLine("Adresse:".PadRight(15) + patienter[0].Adresse + "KontoNr: 00024960125".PadLeft(padVærdi - (patienter[0].Adresse.Length)));
+                            SW.WriteLine("PostNr:".PadRight(15) + patienter[0].Postnummer);
+                            SW.WriteLine("PatientNr:".PadRight(15) + patienter[0].PatientId);
                             SW.WriteLine(Environment.NewLine);
                             SW.WriteLine(Environment.NewLine);
                             SW.WriteLine();
@@ -120,7 +105,7 @@ namespace Tandlægerne_Smil.Models
                             SW.WriteLine(linje + linje + linje + linje);
 
                             int testpris = 0;
-                            foreach (var r in OrderLinjerSortQurry)
+                            foreach (var r in ordreLinjer)
                             {
                                 SW.WriteLine(r._behandlingsNavn.PadRight(padVærdi) + r._behandlingsPris + " DKK");
                                 try
@@ -199,11 +184,11 @@ namespace Tandlægerne_Smil.Models
 
             foreach (var r in sortedList)
             {
-                ListViewItem list = new ListViewItem(r.BehandlingId.ToString());
-                list.SubItems.Add(r.FakturaId.ToString());
-                list.SubItems.Add(r.navn);
-                list.SubItems.Add(r.Pris.ToString());
-                fakuraDetaljer.Items.Add(list);
+                ListViewItem listViewItem = new ListViewItem(r.BehandlingId.ToString());
+                listViewItem.SubItems.Add(r.FakturaId.ToString());
+                listViewItem.SubItems.Add(r.navn);
+                listViewItem.SubItems.Add(r.Pris.ToString());
+                fakuraDetaljer.Items.Add(listViewItem);
             }
         }
     }

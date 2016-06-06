@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Migrations.Infrastructure;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tandlægerne_Smil.Controllers;
 using Tandlægerne_Smil.Controllers.DbController;
@@ -184,8 +179,6 @@ namespace Tandlægerne_Smil.Views
                         list.BackColor = Color.Red;
                     }
 
-
-
                     if (booking.AnsatDb != null) list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
                     else list.SubItems.Add("Akut");
 
@@ -201,8 +194,6 @@ namespace Tandlægerne_Smil.Views
                 }
             }
         }
-
-       
 
         private void datePicker_ValueChanged(object sender, EventArgs e)
         {
