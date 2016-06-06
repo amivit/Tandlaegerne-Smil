@@ -106,10 +106,11 @@ namespace Tandlægerne_Smil.Models
                             SW.WriteLine();
                             SW.WriteLine();
 
-                            SW.WriteLine("Behandling:".PadRight(padVærdi) + "Pris:");
+                            SW.WriteLine("Behandling:".PadRight(padVærdi) + "Pris: (incl moms)");
                             SW.WriteLine(linje + linje + linje + linje);
 
                             int testpris = 0;
+                            double moms = 0;
                             foreach (var r in ordreLinjer)
                             {
                                 SW.WriteLine(r._behandlingsNavn.PadRight(padVærdi) + r._behandlingsPris + " DKK");
@@ -117,6 +118,7 @@ namespace Tandlægerne_Smil.Models
                                 {
                                     var pris = r._behandlingsPris.ToString();
                                     testpris += int.Parse(pris);
+                                    moms = testpris;
                                 }
                                 catch (Exception)
                                 {
@@ -125,7 +127,10 @@ namespace Tandlægerne_Smil.Models
                             }
 
                             SW.WriteLine(linje + linje + linje + linje);
-                            SW.WriteLine("Total Pris:".PadRight(padVærdi) + testpris + " DKK");
+                            SW.WriteLine("Pris Excl Moms:".PadRight(padVærdi) + (moms * 0.8) + " DKK");
+                            SW.WriteLine("Moms udegøre: ".PadRight(padVærdi) + (moms*0.2) + " DKK");
+                            SW.WriteLine(Environment.NewLine);
+                            SW.WriteLine("Pris Incl Moms:".PadRight(padVærdi) + testpris + " DKK");
                         }
                         catch (Exception e)
                         {
