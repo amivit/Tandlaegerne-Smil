@@ -238,7 +238,8 @@ namespace Tandlægerne_Smil.Models
             {
                 Db.BehandlingslinjerDbs.Remove(linjer);
             }
-            // booking.Akut = false; // Dette er ikke nødvendigt? TODO: Slet mig
+            // booking.Akut = false; // Dette er ikke nødvendigt?
+            // TODO: Slet ovenstående
             Db.BookingDbs.Remove(booking);
             Db.SaveChanges();
         }

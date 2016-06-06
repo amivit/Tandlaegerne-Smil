@@ -68,7 +68,6 @@
             this.buttonUdskrivDagensBookinger = new System.Windows.Forms.Button();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.buttonAkutAnkomst = new System.Windows.Forms.Button();
-            this.buttonRedigereBookning = new System.Windows.Forms.Button();
             this.buttonUnderBehandling = new System.Windows.Forms.Button();
             this.buttonAfslutBehandling = new System.Windows.Forms.Button();
             this.buttonTjekkeInd = new System.Windows.Forms.Button();
@@ -123,7 +122,7 @@
             this.gemVisKonsolToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.filerToolStripMenuItem.Name = "filerToolStripMenuItem";
-            this.filerToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+            this.filerToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.filerToolStripMenuItem.Text = "Filer";
             // 
             // gemVisKonsolToolStripMenuItem
@@ -132,14 +131,14 @@
             this.gemVisKonsolToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.gemVisKonsolToolStripMenuItem.Name = "gemVisKonsolToolStripMenuItem";
             this.gemVisKonsolToolStripMenuItem.ShowShortcutKeys = false;
-            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gemVisKonsolToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.gemVisKonsolToolStripMenuItem.Text = "Vis Konsol";
             this.gemVisKonsolToolStripMenuItem.Click += new System.EventHandler(this.VisKonsolToolStripMenuItem_Click);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.AfslutToolStripMenuItem_Click);
             // 
@@ -154,7 +153,7 @@
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
             this.omToolStripMenuItem.Text = "Om";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -319,9 +318,9 @@
             // buttonRedigerePatient
             // 
             this.buttonRedigerePatient.Enabled = false;
-            this.buttonRedigerePatient.Location = new System.Drawing.Point(672, 35);
+            this.buttonRedigerePatient.Location = new System.Drawing.Point(600, 35);
             this.buttonRedigerePatient.Name = "buttonRedigerePatient";
-            this.buttonRedigerePatient.Size = new System.Drawing.Size(96, 23);
+            this.buttonRedigerePatient.Size = new System.Drawing.Size(168, 23);
             this.buttonRedigerePatient.TabIndex = 2;
             this.buttonRedigerePatient.Text = "Redigere patient";
             this.buttonRedigerePatient.UseVisualStyleBackColor = true;
@@ -330,9 +329,9 @@
             // buttonOpretBooking
             // 
             this.buttonOpretBooking.Enabled = false;
-            this.buttonOpretBooking.Location = new System.Drawing.Point(672, 64);
+            this.buttonOpretBooking.Location = new System.Drawing.Point(600, 64);
             this.buttonOpretBooking.Name = "buttonOpretBooking";
-            this.buttonOpretBooking.Size = new System.Drawing.Size(96, 23);
+            this.buttonOpretBooking.Size = new System.Drawing.Size(168, 23);
             this.buttonOpretBooking.TabIndex = 15;
             this.buttonOpretBooking.Text = "Opret booking";
             this.buttonOpretBooking.UseVisualStyleBackColor = true;
@@ -340,9 +339,9 @@
             // 
             // buttonOpretPatient
             // 
-            this.buttonOpretPatient.Location = new System.Drawing.Point(672, 6);
+            this.buttonOpretPatient.Location = new System.Drawing.Point(600, 6);
             this.buttonOpretPatient.Name = "buttonOpretPatient";
-            this.buttonOpretPatient.Size = new System.Drawing.Size(96, 23);
+            this.buttonOpretPatient.Size = new System.Drawing.Size(168, 23);
             this.buttonOpretPatient.TabIndex = 1;
             this.buttonOpretPatient.Text = "Opret ny patient";
             this.buttonOpretPatient.UseVisualStyleBackColor = true;
@@ -364,7 +363,7 @@
             this.listViewPatienter.Location = new System.Drawing.Point(6, 6);
             this.listViewPatienter.MultiSelect = false;
             this.listViewPatienter.Name = "listViewPatienter";
-            this.listViewPatienter.Size = new System.Drawing.Size(661, 425);
+            this.listViewPatienter.Size = new System.Drawing.Size(588, 422);
             this.listViewPatienter.TabIndex = 3;
             this.listViewPatienter.UseCompatibleStateImageBehavior = false;
             this.listViewPatienter.View = System.Windows.Forms.View.Details;
@@ -396,7 +395,6 @@
             this.tabLiveView.Controls.Add(this.buttonUdskrivDagensBookinger);
             this.tabLiveView.Controls.Add(this.dateTimePicker);
             this.tabLiveView.Controls.Add(this.buttonAkutAnkomst);
-            this.tabLiveView.Controls.Add(this.buttonRedigereBookning);
             this.tabLiveView.Controls.Add(this.buttonUnderBehandling);
             this.tabLiveView.Controls.Add(this.buttonAfslutBehandling);
             this.tabLiveView.Controls.Add(this.buttonTjekkeInd);
@@ -416,7 +414,7 @@
             // buttonSletbooking
             // 
             this.buttonSletbooking.Enabled = false;
-            this.buttonSletbooking.Location = new System.Drawing.Point(652, 143);
+            this.buttonSletbooking.Location = new System.Drawing.Point(650, 114);
             this.buttonSletbooking.Name = "buttonSletbooking";
             this.buttonSletbooking.Size = new System.Drawing.Size(115, 29);
             this.buttonSletbooking.TabIndex = 14;
@@ -426,7 +424,7 @@
             // 
             // buttonUdskrivDagensBookinger
             // 
-            this.buttonUdskrivDagensBookinger.Location = new System.Drawing.Point(652, 103);
+            this.buttonUdskrivDagensBookinger.Location = new System.Drawing.Point(650, 74);
             this.buttonUdskrivDagensBookinger.Name = "buttonUdskrivDagensBookinger";
             this.buttonUdskrivDagensBookinger.Size = new System.Drawing.Size(115, 34);
             this.buttonUdskrivDagensBookinger.TabIndex = 13;
@@ -444,24 +442,13 @@
             // 
             // buttonAkutAnkomst
             // 
-            this.buttonAkutAnkomst.Location = new System.Drawing.Point(652, 310);
+            this.buttonAkutAnkomst.Location = new System.Drawing.Point(652, 149);
             this.buttonAkutAnkomst.Name = "buttonAkutAnkomst";
             this.buttonAkutAnkomst.Size = new System.Drawing.Size(115, 23);
             this.buttonAkutAnkomst.TabIndex = 10;
             this.buttonAkutAnkomst.Text = "AKUT Patient";
             this.buttonAkutAnkomst.UseVisualStyleBackColor = true;
             this.buttonAkutAnkomst.Click += new System.EventHandler(this.buttonAkutAnkomst_Click);
-            // 
-            // buttonRedigereBookning
-            // 
-            this.buttonRedigereBookning.Enabled = false;
-            this.buttonRedigereBookning.Location = new System.Drawing.Point(652, 74);
-            this.buttonRedigereBookning.Name = "buttonRedigereBookning";
-            this.buttonRedigereBookning.Size = new System.Drawing.Size(115, 23);
-            this.buttonRedigereBookning.TabIndex = 9;
-            this.buttonRedigereBookning.Text = "Åben booking";
-            this.buttonRedigereBookning.UseVisualStyleBackColor = true;
-            this.buttonRedigereBookning.Click += new System.EventHandler(this.buttonRedigereBookning_Click);
             // 
             // buttonUnderBehandling
             // 
@@ -690,7 +677,6 @@
         private System.Windows.Forms.TabPage tabLiveView;
         private System.Windows.Forms.Button buttonUdskrivDagensBookinger;
         private System.Windows.Forms.Button buttonAkutAnkomst;
-        private System.Windows.Forms.Button buttonRedigereBookning;
         private System.Windows.Forms.Button buttonUnderBehandling;
         private System.Windows.Forms.Button buttonAfslutBehandling;
         private System.Windows.Forms.Button buttonTjekkeInd;
