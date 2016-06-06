@@ -87,7 +87,7 @@ namespace Tandlægerne_Smil.Views
                         behandlingString += ", " + behandling.Navn;
                         totalAnslåetTid += behandling.AnslåetTid;
                     }
-                    var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => booking.BookingId == b.BookingId);
+                    var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == booking.BookingId);
 
                     if (behandlingslinjen?.FakturaId != null)
                     {
@@ -96,6 +96,10 @@ namespace Tandlægerne_Smil.Views
                     else if (booking.Akut == true && behandlingslinjen?.FakturaId == null)
                     {
                         list.BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        list.BackColor = Color.White;
                     }
 
                     if (booking.AnsatDb != null) list.SubItems.Add(booking.AnsatDb.Fornavn + " " + booking.AnsatDb.Efternavn);
@@ -483,7 +487,6 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             }
             catch (Exception)
             {
-                
             }
         }
 
