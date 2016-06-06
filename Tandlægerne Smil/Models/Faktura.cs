@@ -27,9 +27,11 @@ namespace Tandlægerne_Smil.Models
                     FakturaDato = DateTime.Now
                 };
                 db.FakturaDbs.Add(faktura);
+                UdskrivSqlTilKonsol();
+                db.SaveChanges();
 
-                var behandlinger = db.BehandlingslinjerDbs.Where(b => b.BookingId == booking.BookingId).ToList();
-
+                var behandlinger = db.BehandlingslinjerDbs.Where(b => b.BookingId == bookingId).ToList();
+                //var faktura = db.FakturaDbs.FirstOrDefault(f => f.FakturaId == bookingId);
                 foreach (var item in behandlinger)
                 {
                     item.FakturaId = faktura.FakturaId;

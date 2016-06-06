@@ -542,6 +542,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
         public bool? Ankommet { get; set; } // ankommet
         public bool? Behandlingstatus { get; set; } // behandlingstatus
         public bool? Akut { get; set; } // akut
+        public bool? Faktureret { get; set; } // faktureret
 
         // Reverse navigation
         public virtual System.Collections.Generic.ICollection<BehandlingslinjerDb> BehandlingslinjerDbs { get; set; } // Behandlingslinjer.FK_Behandlingslinjer_Booking
@@ -809,6 +810,7 @@ namespace Tandlægerne_Smil.Controllers.DbController
             Property(x => x.Ankommet).HasColumnName(@"ankommet").IsOptional().HasColumnType("bit");
             Property(x => x.Behandlingstatus).HasColumnName(@"behandlingstatus").IsOptional().HasColumnType("bit");
             Property(x => x.Akut).HasColumnName(@"akut").IsOptional().HasColumnType("bit");
+            Property(x => x.Faktureret).HasColumnName(@"faktureret").IsOptional().HasColumnType("bit");
 
             // Foreign keys
             HasOptional(a => a.AnsatDb).WithMany(b => b.BookingDbs).HasForeignKey(c => c.LægeId); // FK_Booking_Ansat
