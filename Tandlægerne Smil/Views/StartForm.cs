@@ -160,11 +160,14 @@ namespace Tandlægerne_Smil.Views
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)// Afslut af behandling knap
         {
             int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
+            //converter tekste i listview (booking id) til en int32 for den kan bruges i behandlings klassns constructor
             BehandlingAfslut BehandlingAfslut = new BehandlingAfslut(bookingID, this);
+            //en instans af Afslut behandling oprettes med booking id og main formen
             BehandlingAfslut.ShowDialog();
+            //åbner Afslut behandlings vinduet med en dialog så man kun kan åbne et vindu ad gangen
         }
 
         private void button1_Click(object sender, EventArgs e)
