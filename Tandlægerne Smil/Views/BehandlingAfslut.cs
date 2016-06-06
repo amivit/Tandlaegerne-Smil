@@ -18,7 +18,7 @@ namespace Tandlægerne_Smil.Views
         private int booking_ID;
 
         public BehandlingAfslut(int booking_ID, StartForm startForm)
-            //modtager booking id fra tidligere valgte booking
+        //modtager booking id fra tidligere valgte booking
         {
             InitializeComponent();
             this.booking_ID = booking_ID; //gemmer dem i de lokale variabler
@@ -139,7 +139,7 @@ namespace Tandlægerne_Smil.Views
         }
 
         private void button_GemOgFaktur_Click(object sender, EventArgs e)
-            //knappen der afslutter behandlingen og gemmer faktura
+        //knappen der afslutter behandlingen og gemmer faktura
         {
             OpdaterBehandlinger();
             /*Kalder metoden der refresher behandlings listen på valgte
@@ -155,25 +155,28 @@ namespace Tandlægerne_Smil.Views
                     tjekketind.Ankommet = false;
                     db.SaveChanges();
 
-                //Ekstra information til brugeren iform af: et navn og hvor man kan finde den ny oprettet faktura
-                string Afslutning = "Behandlingen af " + (textBox_Fornavn.Text + " " + textBox_Efternanv.Text) + " er nu afsluttet";
-                Afslutning += Environment.NewLine;
-                Afslutning += "Patientens Faktura kan findes under Patient ID: " + textBox_PatientNr.Text;
-                MessageBox.Show(Afslutning, "Færdig!");
+                    //Ekstra information til brugeren iform af: et navn og hvor man kan finde den ny oprettet faktura
+                    string Afslutning = "Behandlingen af " + (textBox_Fornavn.Text + " " + textBox_Efternanv.Text) +
+                                        " er nu afsluttet";
+                    Afslutning += Environment.NewLine;
+                    Afslutning += "Patientens Faktura kan findes under Patient ID: " + textBox_PatientNr.Text;
+                    MessageBox.Show(Afslutning, "Færdig!");
 
-                _startForm.RefreshVenteværelseView();
-                //Refresh af veenteværelsets listview
-                _startForm.RefreshBookingView();
-                //refresher bookingview
-                this.Close();
-                //lukker "pop up" formen ned igen
-            }
-            else
-            {// Beder brugern om at tilføje behandlings linjer før behandlingen kan afsluttes
-                MessageBox.Show("Tilføje nogle behandlingslinjer",
-                    "Fejl",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    _startForm.RefreshVenteværelseView();
+                    //Refresh af veenteværelsets listview
+                    _startForm.RefreshBookingView();
+                    //refresher bookingview
+                    this.Close();
+                    //lukker "pop up" formen ned igen
+                }
+                else
+                {
+                    // Beder brugern om at tilføje behandlings linjer før behandlingen kan afsluttes
+                    MessageBox.Show("Tilføje nogle behandlingslinjer",
+                        "Fejl",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
 
