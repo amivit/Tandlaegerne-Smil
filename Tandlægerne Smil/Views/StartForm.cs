@@ -171,19 +171,30 @@ namespace Tandlægerne_Smil.Views
         {
             try
             {
-                var selectedPatientNavn = listViewDagensProgram.SelectedItems[0].SubItems[4].Text;
-                if (MessageBox.Show("Skal " + selectedPatientNavn + " tjekkes ind?",
-                        "Patient tjek-ind",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.Yes)
+                using (var db = new smildb())
                 {
-                    using (var db = new smildb())
+                    int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);
+                    var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == bookingID);
+                    var selectedPatientNavn = listViewDagensProgram.SelectedItems[0].SubItems[4].Text;
+                    if (behandlingslinjen?.FakturaId == null)
                     {
-                        int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);
-                        var tjekketind = db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
-                        tjekketind.Ankommet = true;
-                        db.SaveChanges();
-                        RefreshVenteværelseView();
+                        if (MessageBox.Show("Skal " + selectedPatientNavn + " tjekkes ind?",
+                            "Patient tjek-ind",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            var tjekketind = db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
+                            tjekketind.Ankommet = true;
+                            db.SaveChanges();
+                            RefreshVenteværelseView();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Denne booking er faktureret - du kan ikke tjekke en afsluttede booking ind.",
+                         "Fejl",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Error);
                     }
                 }
             }
