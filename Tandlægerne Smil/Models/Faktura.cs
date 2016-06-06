@@ -36,7 +36,7 @@ namespace Tandlægerne_Smil.Models
                 {
                     item.FakturaId = faktura.FakturaId;
                 }
-
+                booking.Faktureret = true;
                 UdskrivSqlTilKonsol();
                 db.SaveChanges();
             }

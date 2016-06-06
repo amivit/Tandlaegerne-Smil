@@ -127,7 +127,8 @@ namespace Tandlægerne_Smil.Views
                     {
                         db.BehandlingslinjerDbs.Remove(linjer);
                     }
-                    // _global.UdskrivSqlTilKonsol();
+                    _global.UdskrivSqlTilKonsol();
+
                     db.SaveChanges();
 
                     //opretter linjer fra listview (virker?)
@@ -156,31 +157,30 @@ namespace Tandlægerne_Smil.Views
                         db.BehandlingslinjerDbs.Add(linje);
                     }
                     booking.Ankommet = false;
+                    booking.Faktureret = true;
                     _controller.Global.UdskrivSqlTilKonsol();
                     db.SaveChanges();
-                    if (listView_BehandlingsList.Items.Count != 0)
-                    {
-                        //Faktura oprettelse
-                        //_controller.Faktura.OpretFaktura(booking_ID);
-                        //Skift flag så patienten fjernes fra venteværlesrerseseses
-                        //var tjekketind = db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
-                        _controller.Global.UdskrivSqlTilKonsol();
-                        db.SaveChanges();
 
-                        //Ekstra information til brugeren iform af: et navn og hvor man kan finde den ny oprettet faktura
-                        string Afslutning = "Behandlingen af " + (textBox_Fornavn.Text + " " + textBox_Efternanv.Text) +
-                                            " er nu afsluttet";
-                        Afslutning += Environment.NewLine;
-                        Afslutning += "Patientens Faktura kan findes under Patient ID: " + textBox_PatientNr.Text;
-                        MessageBox.Show(Afslutning, "Færdig!");
+                    //Faktura oprettelse
+                    //_controller.Faktura.OpretFaktura(booking_ID);
+                    //Skift flag så patienten fjernes fra venteværlesrerseseses
+                    //var tjekketind = db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
+                    _controller.Global.UdskrivSqlTilKonsol();
+                    db.SaveChanges();
 
-                        _startForm.RefreshVenteværelseView();
-                        //Refresh af veenteværelsets listview
-                        _startForm.RefreshBookingView();
-                        //refresher bookingview
-                        this.Close();
-                        //lukker "pop up" formen ned igen
-                    }
+                    //Ekstra information til brugeren iform af: et navn og hvor man kan finde den ny oprettet faktura
+                    string Afslutning = "Behandlingen af " + (textBox_Fornavn.Text + " " + textBox_Efternanv.Text) +
+                                        " er nu afsluttet";
+                    Afslutning += Environment.NewLine;
+                    Afslutning += "Patientens Faktura kan findes under Patient ID: " + textBox_PatientNr.Text;
+                    MessageBox.Show(Afslutning, "Færdig!");
+
+                    _startForm.RefreshVenteværelseView();
+                    //Refresh af veenteværelsets listview
+                    _startForm.RefreshBookingView();
+                    //refresher bookingview
+                    this.Close();
+                    //lukker "pop up" formen ned igen
                 }
             }
         }
