@@ -16,25 +16,28 @@ namespace Tandlægerne_Smil.Models
 
         public void OpretFaktura(int bookingId)
         {
-            var booking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingId);
-            var faktura = new FakturaDb
+            using (var db = new smildb())
             {
-                PatientId = booking.PatientId,
-                Betalt = false,
-                BookingId = bookingId,
-                FakturaDato = DateTime.Now
-            };
-            Db.FakturaDbs.Add(faktura);
+                var booking = db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingId);
+                var faktura = new FakturaDb
+                {
+                    PatientId = booking.PatientId,
+                    Betalt = false,
+                    BookingId = bookingId,
+                    FakturaDato = DateTime.Now
+                };
+                db.FakturaDbs.Add(faktura);
 
-            var behandlinger = Db.BehandlingslinjerDbs.Where(b => b.BookingId == booking.BookingId).ToList();
+                var behandlinger = db.BehandlingslinjerDbs.Where(b => b.BookingId == booking.BookingId).ToList();
 
-            foreach (var item in behandlinger)
-            {
-                item.FakturaId = faktura.FakturaId;
+                foreach (var item in behandlinger)
+                {
+                    item.FakturaId = faktura.FakturaId;
+                }
+
+                UdskrivSqlTilKonsol();
+                db.SaveChanges();
             }
-
-            UdskrivSqlTilKonsol();
-            Db.SaveChanges();
         }
 
         public void UdskrivFaktura(int fakturaNR, int patientnr, string indnavn)

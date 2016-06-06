@@ -37,13 +37,5 @@ namespace Tandlægerne_Smil.Models
                         MessageBoxIcon.Error);
             }
         }
-
-        public void Afslutbehandling(int bookingID)
-        {
-            var venteværelseBooking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
-            venteværelseBooking.Behandlingstatus = false;
-            venteværelseBooking.Ankommet = false;
-            Db.SaveChanges();
-        }
     }
 }

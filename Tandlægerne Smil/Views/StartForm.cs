@@ -160,30 +160,44 @@ namespace Tandlægerne_Smil.Views
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)// Afslut af behandling knap
         {
             int bookingID = Convert.ToInt32(listViewVenteværelse.SelectedItems[0].SubItems[6].Text);
+            //converter tekste i listview (booking id) til en int32 for den kan bruges i behandlings klassns constructor
             BehandlingAfslut BehandlingAfslut = new BehandlingAfslut(bookingID, this);
+            //en instans af Afslut behandling oprettes med booking id og main formen
             BehandlingAfslut.ShowDialog();
+            //åbner Afslut behandlings vinduet med en dialog så man kun kan åbne et vindu ad gangen
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                var selectedPatientNavn = listViewDagensProgram.SelectedItems[0].SubItems[4].Text;
-                if (MessageBox.Show("Skal " + selectedPatientNavn + " tjekkes ind?",
-                        "Patient tjek-ind",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question) == DialogResult.Yes)
+                using (var db = new smildb())
                 {
-                    using (var db = new smildb())
+                    int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);
+                    var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == bookingID);
+                    var selectedPatientNavn = listViewDagensProgram.SelectedItems[0].SubItems[4].Text;
+                    if (behandlingslinjen?.FakturaId == null)
                     {
-                        int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);
-                        var tjekketind = db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
-                        tjekketind.Ankommet = true;
-                        db.SaveChanges();
-                        RefreshVenteværelseView();
+                        if (MessageBox.Show("Skal " + selectedPatientNavn + " tjekkes ind?",
+                            "Patient tjek-ind",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            var tjekketind = db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
+                            tjekketind.Ankommet = true;
+                            db.SaveChanges();
+                            RefreshVenteværelseView();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Denne booking er faktureret - du kan ikke tjekke en afsluttede booking ind.",
+                         "Fejl",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Error);
                     }
                 }
             }
@@ -469,8 +483,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
             }
             catch (Exception)
             {
-	            MessageBox.Show("Fejl. Markér venligst en patient.");
-	            buttonUnderBehandling.Enabled = false;
+                
             }
         }
 

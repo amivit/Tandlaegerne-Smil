@@ -3,21 +3,21 @@
   <Class Name="Tandlægerne_Smil.Models.Book">
     <Position X="4.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAgAAAAAAAAQAEAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAAAAEAAACAAgAAAAAAAAQAEAAAAAA=</HashCode>
       <FileName>Models\Book.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tandlægerne_Smil.Models.Faktura">
     <Position X="6.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAARAAAAAAAAAACAAAhAAAAAAAAAAAAAAgAAACCAAAA=</HashCode>
+      <HashCode>AAAQAAAAAAAAAAgAAAgAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Models\Faktura.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tandlægerne_Smil.Models.Global">
     <Position X="3.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAIAAI=</HashCode>
       <FileName>Models\Global.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -31,7 +31,7 @@
   <Class Name="Tandlægerne_Smil.Views.StartForm" Collapsed="true">
     <Position X="14.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>+d5lgJQBBagSQBHHAHDUBAICAzYCAg4ZJXoKIEXotBo=</HashCode>
+      <HashCode>+d5lgJQBBaASQBHHAHDUBAIKQzYCIg45JXoKIEXotBo=</HashCode>
       <FileName>Views\StartForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -49,7 +49,7 @@
   <Class Name="Tandlægerne_Smil.Models.Venteværelse">
     <Position X="2.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAABACAAAgCAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAABACAAAgCAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Models\Venteværelse.cs</FileName>
     </TypeIdentifier>
   </Class>

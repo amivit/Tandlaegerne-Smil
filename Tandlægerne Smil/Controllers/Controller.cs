@@ -11,6 +11,7 @@ namespace Tandlægerne_Smil.Controllers
         // Som fields, så viewet kan se vores
         public Patient Patient = new Patient();
 
+        public Global Global = new Global();
         public Faktura Faktura = new Faktura();
         public Book Book = new Book();
         public Venteværelse Venteværelse = new Venteværelse();

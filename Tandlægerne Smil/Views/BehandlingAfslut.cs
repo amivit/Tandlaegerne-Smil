@@ -18,10 +18,11 @@ namespace Tandlægerne_Smil.Views
         private int booking_ID;
 
         public BehandlingAfslut(int booking_ID, StartForm startForm)
+        //modtager booking id fra tidligere valgte booking
         {
             InitializeComponent();
-            this.booking_ID = booking_ID;
-            this._startForm = startForm;
+            this.booking_ID = booking_ID; //gemmer dem i de lokale variabler
+            this._startForm = startForm; //
         }
 
         private void button1_Click(object sender, EventArgs e) //FJERN LINJE
@@ -48,30 +49,36 @@ namespace Tandlægerne_Smil.Views
 
         public void LoadTidligereBehandlinger()
         {
-            var behandlingslinjer = _global.Db.BehandlingslinjerDbs
-                    .Where(b => b.BookingId == booking_ID) // Kun den valgte dag
-                    .ToList();
-            foreach (var linje in behandlingslinjer)
+            using (var db = new smildb())
             {
-                var behandlinger = _global.Db.BehandlingDbs
-                    .Where(b => b.BehandlingId == linje.BehandlingId) // Kun den valgte dag
-                    .ToList();
-                foreach (var behandling in behandlinger)
+                var behandlingslinjer = db.BehandlingslinjerDbs
+                       .Where(b => b.BookingId == booking_ID) // Kun den valgte dag
+                       .ToList();
+                foreach (var linje in behandlingslinjer)
                 {
-                    ListViewItem list = new ListViewItem(behandling.Navn);
-                    list.SubItems.Add(behandling.Pris.ToString());
-                    listView_BehandlingsList.Items.Add(list);
+                    var behandlinger = db.BehandlingDbs
+                        .Where(b => b.BehandlingId == linje.BehandlingId) // Kun den valgte dag
+                        .ToList();
+                    foreach (var behandling in behandlinger)
+                    {
+                        ListViewItem list = new ListViewItem(behandling.Navn);
+                        list.SubItems.Add(behandling.Pris.ToString());
+                        listView_BehandlingsList.Items.Add(list);
+                    }
                 }
             }
         }
 
         public void LoadBehandlingerTilCombobox()
         {
-            var behandlinger = _global.Db.BehandlingDbs.ToList();
-
-            foreach (var item in behandlinger)
+            using (var db = new smildb())
             {
-                comboBox_Behandlinger.Items.Add(item.Navn);
+                var behandlinger = db.BehandlingDbs.ToList();
+
+                foreach (var item in behandlinger)
+                {
+                    comboBox_Behandlinger.Items.Add(item.Navn);
+                }
             }
         }
 
@@ -132,63 +139,79 @@ namespace Tandlægerne_Smil.Views
         }
 
         private void button_GemOgFaktur_Click(object sender, EventArgs e)
+        //knappen der afslutter behandlingen og gemmer faktura
         {
             OpdaterBehandlinger();
-            if (listView_BehandlingsList.Items.Count != 0)
+            /*Kalder metoden der refresher behandlings listen på valgte
+            paient og gemmer dem så fakturaen nu kan blive dannet */
+            using (var db = new smildb())
             {
-                //Faktura oprettelse
-                _controller.Faktura.OpretFaktura(booking_ID);
-                //Skift flag så patienten fjernes fra venteværlesrerseseses
-                var tjekketind = _global.Db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
-                tjekketind.Ankommet = false;
-                _global.Db.SaveChanges();
+                if (listView_BehandlingsList.Items.Count != 0)
+                {
+                    //Faktura oprettelse
+                    _controller.Faktura.OpretFaktura(booking_ID);
+                    //Skift flag så patienten fjernes fra venteværlesrerseseses
+                    var tjekketind = db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
+                    tjekketind.Ankommet = false;
+                    db.SaveChanges();
 
-                string Afslutning = "Behandlingen af " + (textBox_Fornavn.Text + " " + textBox_Efternanv.Text) + " er nu afsluttet";
-                Afslutning += Environment.NewLine;
-                Afslutning += "Patientens Faktura kan findes under Patient ID: " + textBox_PatientNr.Text;
-                MessageBox.Show(Afslutning, "Færdig!");
-                _startForm.RefreshVenteværelseView();
-                _startForm.RefreshBookingView();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Tilføje nogle behandlingslinjer",
-                    "Fejl",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    //Ekstra information til brugeren iform af: et navn og hvor man kan finde den ny oprettet faktura
+                    string Afslutning = "Behandlingen af " + (textBox_Fornavn.Text + " " + textBox_Efternanv.Text) +
+                                        " er nu afsluttet";
+                    Afslutning += Environment.NewLine;
+                    Afslutning += "Patientens Faktura kan findes under Patient ID: " + textBox_PatientNr.Text;
+                    MessageBox.Show(Afslutning, "Færdig!");
+
+                    _startForm.RefreshVenteværelseView();
+                    //Refresh af veenteværelsets listview
+                    _startForm.RefreshBookingView();
+                    //refresher bookingview
+                    this.Close();
+                    //lukker "pop up" formen ned igen
+                }
+                else
+                {
+                    // Beder brugern om at tilføje behandlings linjer før behandlingen kan afsluttes
+                    MessageBox.Show("Tilføje nogle behandlingslinjer",
+                        "Fejl",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
 
         public void OpdaterBehandlinger()
         {
             //Sletter tidligere behandlinger
-            var behandlingslinje_ = _global.Db.BehandlingslinjerDbs.Where(b => b.BookingId == booking_ID).ToList();
-
-            foreach (var linjer in behandlingslinje_)
+            using (var db = new smildb())
             {
-                _global.Db.BehandlingslinjerDbs.Remove(linjer);
-            }
-            _global.UdskrivSqlTilKonsol();
-            _global.Db.SaveChanges();
+                var behandlingslinje_ = db.BehandlingslinjerDbs.Where(b => b.BookingId == booking_ID).ToList();
 
-            //opretter linjer fra listview (virker?)
-
-            for (int i = 0; i < listView_BehandlingsList.Items.Count; i++)
-            {
-                var behandlingsNavn = listView_BehandlingsList.Items[i].Text;
-                var behandlingTemp = _global.Db.BehandlingDbs.FirstOrDefault(b => b.Navn == behandlingsNavn);
-
-                var linje = new BehandlingslinjerDb
+                foreach (var linjer in behandlingslinje_)
                 {
-                    BookingId = booking_ID,
-                    BehandlingDb = behandlingTemp
-                };
-                _global.Db.BehandlingslinjerDbs.Add(linje);
-            }
+                    db.BehandlingslinjerDbs.Remove(linjer);
+                }
+                _global.UdskrivSqlTilKonsol();
+                db.SaveChanges();
 
-            _global.UdskrivSqlTilKonsol();
-            _global.Db.SaveChanges();
+                //opretter linjer fra listview (virker?)
+
+                for (int i = 0; i < listView_BehandlingsList.Items.Count; i++)
+                {
+                    var behandlingsNavn = listView_BehandlingsList.Items[i].Text;
+                    var behandlingTemp = db.BehandlingDbs.FirstOrDefault(b => b.Navn == behandlingsNavn);
+
+                    var linje = new BehandlingslinjerDb
+                    {
+                        BookingId = booking_ID,
+                        BehandlingDb = behandlingTemp
+                    };
+                    db.BehandlingslinjerDbs.Add(linje);
+                }
+
+                _controller.Global.UdskrivSqlTilKonsol();
+                db.SaveChanges();
+            }
         }
 
         private void textBox_Efternanv_TextChanged(object sender, EventArgs e)
