@@ -29,7 +29,7 @@ namespace Tandlægerne_Smil.Models
 
                 if (!postNummerCheck) // Hvis postnummeret ikke findes
                 {
-                    MessageBox.Show("Postnummeret eksistere ikke - prøve igen",
+                    MessageBox.Show("Postnummeret eksistere ikke - prøv igen",
                      "Oops",
                      MessageBoxButtons.OK,
                      MessageBoxIcon.Warning);
@@ -37,8 +37,8 @@ namespace Tandlægerne_Smil.Models
                 else // Hvis postnummeret findes
                 {
                     Db.PatientDbs.Add(patient); // Tilføj patienten til tabellen
-                    UdskrivSqlTilKonsol(); // Vores metode til at smide rå sql-query's ud til konsollen
                     Db.SaveChanges(); // Gem ændringerne i db
+                    UdskrivSqlTilKonsol(); // Vores metode til at smide rå sql-query's ud til konsollen
 
                     MessageBox.Show("Patient oprettet",
                         "Oprettet",
@@ -94,7 +94,7 @@ namespace Tandlægerne_Smil.Models
             try
             {
                 {
-                    var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID); // Denne LINQ i stedet for nedenstående
+                    var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
                     Db.PatientDbs.Attach(patient);
                     patient.Fornavn = patientRedigere.textBoxNavn.Text;
                     patient.Adresse = patientRedigere.textBoxAdresse.Text;

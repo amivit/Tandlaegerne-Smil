@@ -232,7 +232,6 @@ namespace Tandlægerne_Smil.Models
 
         public void SletBooking(int bookingID)
         {
-            // Denne metode tager imod et booking id, finder alle dens behandlingslinjer, og sletter det hele fra databasen
             var booking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
             var bookinglinjer = Db.BehandlingslinjerDbs.Where(b => b.BookingDb.BookingId == booking.BookingId).ToList();
 
@@ -240,8 +239,6 @@ namespace Tandlægerne_Smil.Models
             {
                 Db.BehandlingslinjerDbs.Remove(linjer);
             }
-            // booking.Akut = false; // Dette er ikke nødvendigt?
-            // TODO: Slet ovenstående
             Db.BookingDbs.Remove(booking);
             Db.SaveChanges();
         }

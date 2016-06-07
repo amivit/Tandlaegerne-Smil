@@ -439,7 +439,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
                 int PatientID = Convert.ToInt32(listViewPatienter.SelectedItems[0].SubItems[3].Text);
                 // Converter patient ID til en int variabel
                 BookingOpretRedigere bookingOpretRedigere = new BookingOpretRedigere(PatientID, this);
-                // laver en ny instans og sender patient ID og Mainformen med til Opret booking klassens Constructor            
+                // laver en ny instans og sender patient ID og Mainformen med til Opret booking klassens Constructor
                 bookingOpretRedigere.Show();
                 //Åbner formen op
             }
