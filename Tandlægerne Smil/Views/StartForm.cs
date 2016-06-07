@@ -458,22 +458,41 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
 
         private void buttonSletbooking_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Er du sikker på at du vil slette valgte booking", "Advarsel", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            try
             {
-                try
+                using (var db = new smildb())
                 {
                     int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);
-                    _controller.Book.SletBooking(bookingID);
-                    RefreshBookingView();
-                    RefreshVenteværelseView();
+                    var booking = db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
+
+                    if (booking.Faktureret != true)
+                    {
+                        if (MessageBox.Show("Skal den valgte booking slettes?",
+                            "Booking",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            _controller.Book.SletBooking(bookingID);
+                            RefreshBookingView();
+                            RefreshVenteværelseView();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Du kan ikke slette en booking som allerede er fakturaret",
+                         "Fejl",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception)
-                {
-                    MessageBox.Show("Vælg booking",
-                       "Fejl",
-                       MessageBoxButtons.OK,
-                       MessageBoxIcon.Error);
-                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(),
+                     "Fejl",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Error);
             }
         }
 
