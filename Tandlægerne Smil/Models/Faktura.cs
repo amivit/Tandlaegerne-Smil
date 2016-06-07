@@ -8,12 +8,6 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Faktura : Global
     {
-        //private readonly FakturaDb _fakturaDb = new FakturaDb(); TODO: Slet mig
-        //private readonly BehandlingslinjerDb _fakturalinjerDb = new BehandlingslinjerDb();
-        //private readonly PatientDb _patientDb = new PatientDb();
-        //private readonly BehandlingDb _behandlingDb = new BehandlingDb();
-        //private readonly AnsatDb _ansatDb = new AnsatDb();
-
         public void OpretFaktura(int bookingId)
         {
             using (var db = new smildb())
@@ -80,11 +74,11 @@ namespace Tandlægerne_Smil.Models
 
                 int padVærdi = 60;
                 var linje = $"───────────────────";
-                if (sfd.ShowDialog() == DialogResult.OK)
+                if (sfd.ShowDialog() == DialogResult.OK) //tjekker for dialog resultat. 
                 {
-                    StreamWriter SW = null;
-                    using (SW = new StreamWriter(sfd.FileName))
-                        try
+                    StreamWriter SW = null; 
+                    using (SW = new StreamWriter(sfd.FileName)) //opretter ny txt-fil.
+                        try //indsender data til txt-fil.
                         {
                             SW.WriteLine("Tandlægerne Smil A/S".PadLeft(padVærdi + 15));
                             SW.WriteLine("TandlægeVej 420".PadLeft(padVærdi + 15));
@@ -105,10 +99,10 @@ namespace Tandlægerne_Smil.Models
                             SW.WriteLine();
 
                             SW.WriteLine("Behandling:".PadRight(padVærdi) + "Pris:");
-                            SW.WriteLine(linje + linje + linje + linje);
+                            SW.WriteLine(linje + linje + linje + linje); //opdeler tekst i txt-fil.
 
                             int testpris = 0;
-                            foreach (var r in ordreLinjer)
+                            foreach (var r in ordreLinjer) //laver linjer pr. behandling. 
                             {
                                 SW.WriteLine(r._behandlingsNavn.PadRight(padVærdi) + r._behandlingsPris + " DKK");
                                 try
