@@ -30,14 +30,21 @@ namespace Tandlægerne_Smil.Views
         {
             try
             {
-                listView_BehandlingsList.SelectedItems[0].Remove();
+                using (var db = new smildb())
+                {
+                    var id = int.Parse(listView_BehandlingsList.SelectedItems[0].SubItems[2].Text);
+                    var itemSkalSlettes = db.BehandlingslinjerDbs.SingleOrDefault(x => x.BehandlingslinjeId == id);
+                    db.BehandlingslinjerDbs.Remove(itemSkalSlettes);
+                    db.SaveChanges();
+                    listView_BehandlingsList.SelectedItems[0].Remove();
+                }
             }
-            catch (Exception)
+            catch (Exception f)
             {
                 MessageBox.Show("Ingen behandling valgt.",
-                                "Advarsel",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                    "Advarsel",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -60,6 +67,7 @@ namespace Tandlægerne_Smil.Views
                 {
                     ListViewItem list = new ListViewItem(linje.BehandlingDb.Navn);
                     list.SubItems.Add(linje.BehandlingDb.Pris.ToString());
+                    list.SubItems.Add(linje.BehandlingslinjeId.ToString());
                     listView_BehandlingsList.Items.Add(list);
                 }
             }
@@ -96,12 +104,21 @@ namespace Tandlægerne_Smil.Views
 
         private void button_TiljøjBehandling_Click(object sender, EventArgs e) //ADD behandling
         {
-            var behandling = _global.Db.BehandlingDbs.FirstOrDefault(b => b.Navn == comboBox_Behandlinger.Text);
-
-            ListViewItem lvi = new ListViewItem(behandling.Navn);
-            lvi.SubItems.Add(behandling.Pris.ToString());
-
-            listView_BehandlingsList.Items.Add(lvi);
+            using (var db = new smildb())
+            {
+                var behandling = _global.Db.BehandlingDbs.FirstOrDefault(b => b.Navn == comboBox_Behandlinger.Text);
+                var linje = new BehandlingslinjerDb
+                {
+                    BookingId = booking_ID,
+                    BehandlingId = behandling.BehandlingId,
+                };
+                var nyLinje = db.BehandlingslinjerDbs.Add(linje);
+                db.SaveChanges();
+                ListViewItem lvi = new ListViewItem(behandling.Navn);
+                lvi.SubItems.Add(behandling.Pris.ToString());
+                lvi.SubItems.Add(linje.BehandlingslinjeId.ToString());
+                listView_BehandlingsList.Items.Add(lvi);
+            }
         }
 
         private void button_GemOgFaktur_Click(object sender, EventArgs e)
@@ -135,21 +152,30 @@ namespace Tandlægerne_Smil.Views
 
                     var nyfaktura = db.FakturaDbs.Add(faktura);
                     db.SaveChanges();
+
                     List<string> navnList = listView_BehandlingsList.Items.Cast<ListViewItem>()
                                             .Select(item => item.Text)
                                             .ToList();
 
-                    var bList = db.BehandlingslinjerDbs.ToList();
+                    List<int> idlist = listView_BehandlingsList.Items.Cast<ListViewItem>()
+                                          .Select(item => int.Parse(item.SubItems[2].Text))
+                                          .ToList();
+
+                    List<BehandlingslinjerDb> bList = new List<BehandlingslinjerDb>();
+                    for (int i = 0; i < navnList.Count; i++)
+                    {
+                        var navn = navnList[i];
+                        var id = idlist[i];
+                        bList.Add(
+                            db.BehandlingslinjerDbs.FirstOrDefault(
+                                b => b.BehandlingDb.Navn == navn && b.BehandlingslinjeId == id));
+                        // bList = db.BehandlingslinjerDbs.Where(b => b.BehandlingDb.Navn == item).ToList();
+                    }
+
                     foreach (var test in bList)
                     {
-                        if (test.BookingId == booking_ID) // TODO: for eller foreach (pas på i)
-                        {
-                            foreach (var navn in navnList)
-                            {
-                                if (test.BehandlingDb.Navn == navn)
-                                    test.FakturaId = nyfaktura.FakturaId;
-                            }
-                        }
+                        test.FakturaId = nyfaktura.FakturaId;
+                        db.SaveChanges();
                     }
 
                     //foreach (var behandlingsNavn in )
@@ -190,6 +216,18 @@ namespace Tandlægerne_Smil.Views
 
         private void textBox_Efternanv_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void listView_BehandlingsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void comboBox_Behandlinger_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_Behandlinger.SelectedIndex >= 0)
+            {
+                button_TiljøjBehandling.Enabled = true;
+            }
         }
     }
 }

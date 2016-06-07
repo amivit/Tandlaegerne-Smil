@@ -177,9 +177,10 @@ namespace Tandlægerne_Smil.Views
                 using (var db = new smildb())
                 {
                     int bookingID = Convert.ToInt32(listViewDagensProgram.SelectedItems[0].SubItems[6].Text);
-                    var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == bookingID);
+                    var booking = db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
+                    //var behandlingslinjen = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == bookingID);
                     var selectedPatientNavn = listViewDagensProgram.SelectedItems[0].SubItems[4].Text;
-                    if (behandlingslinjen?.FakturaId == null)
+                    if (booking.Faktureret != true)
                     {
                         if (MessageBox.Show("Skal " + selectedPatientNavn + " tjekkes ind?",
                             "Patient tjek-ind",

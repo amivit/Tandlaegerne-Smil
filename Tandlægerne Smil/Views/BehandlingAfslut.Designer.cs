@@ -51,6 +51,7 @@
             this.textBox_Tlfnr = new System.Windows.Forms.TextBox();
             this.button_GemOgFaktur = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.columnBehandlinglinjeNR = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,22 +59,25 @@
             // 
             this.listView_BehandlingsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Behandling,
-            this.Pris});
+            this.Pris,
+            this.columnBehandlinglinjeNR});
             this.listView_BehandlingsList.Location = new System.Drawing.Point(12, 249);
             this.listView_BehandlingsList.Name = "listView_BehandlingsList";
             this.listView_BehandlingsList.Size = new System.Drawing.Size(407, 174);
             this.listView_BehandlingsList.TabIndex = 0;
             this.listView_BehandlingsList.UseCompatibleStateImageBehavior = false;
             this.listView_BehandlingsList.View = System.Windows.Forms.View.Details;
+            this.listView_BehandlingsList.SelectedIndexChanged += new System.EventHandler(this.listView_BehandlingsList_SelectedIndexChanged);
             // 
             // Behandling
             // 
             this.Behandling.Text = "Behandling";
-            this.Behandling.Width = 329;
+            this.Behandling.Width = 225;
             // 
             // Pris
             // 
             this.Pris.Text = "Pris";
+            this.Pris.Width = 78;
             // 
             // button_FjernBehandling
             // 
@@ -92,9 +96,11 @@
             this.comboBox_Behandlinger.Name = "comboBox_Behandlinger";
             this.comboBox_Behandlinger.Size = new System.Drawing.Size(225, 21);
             this.comboBox_Behandlinger.TabIndex = 2;
+            this.comboBox_Behandlinger.SelectedIndexChanged += new System.EventHandler(this.comboBox_Behandlinger_SelectedIndexChanged);
             // 
             // button_TiljøjBehandling
             // 
+            this.button_TiljøjBehandling.Enabled = false;
             this.button_TiljøjBehandling.Location = new System.Drawing.Point(344, 220);
             this.button_TiljøjBehandling.Name = "button_TiljøjBehandling";
             this.button_TiljøjBehandling.Size = new System.Drawing.Size(75, 23);
@@ -243,6 +249,11 @@
             this.pictureBox1.TabIndex = 25;
             this.pictureBox1.TabStop = false;
             // 
+            // columnBehandlinglinjeNR
+            // 
+            this.columnBehandlinglinjeNR.Text = "ID";
+            this.columnBehandlinglinjeNR.Width = 89;
+            // 
             // BehandlingAfslut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,5 +313,6 @@
         private System.Windows.Forms.ColumnHeader Pris;
         private System.Windows.Forms.Button button_GemOgFaktur;
 		private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ColumnHeader columnBehandlinglinjeNR;
     }
 }
