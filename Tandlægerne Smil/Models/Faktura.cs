@@ -8,15 +8,9 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Faktura : Global
     {
-        //private readonly FakturaDb _fakturaDb = new FakturaDb(); TODO: Slet mig
-        //private readonly BehandlingslinjerDb _fakturalinjerDb = new BehandlingslinjerDb();
-        //private readonly PatientDb _patientDb = new PatientDb();
-        //private readonly BehandlingDb _behandlingDb = new BehandlingDb();
-        //private readonly AnsatDb _ansatDb = new AnsatDb();
-
         public void OpretFaktura(int bookingId)
         {
-            using (var db = new smildb())
+            using (var db = new smildb()) //anvender smil-databasen
             {
                 var booking = db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingId);
                 var faktura = new FakturaDb
@@ -31,7 +25,7 @@ namespace Tandlægerne_Smil.Models
                 db.SaveChanges();
 
                 var behandlinger = db.BehandlingslinjerDbs.Where(b => b.BookingId == bookingId).ToList();
-                //var faktura = db.FakturaDbs.FirstOrDefault(f => f.FakturaId == bookingId);
+                
                 foreach (var item in behandlinger)
                 {
                     item.FakturaId = faktura.FakturaId;
@@ -42,7 +36,7 @@ namespace Tandlægerne_Smil.Models
             }
         }
 
-        public void UdskrivFaktura(int fakturaNR, int patientnr, string indnavn)
+        public void UdskrivFaktura(int fakturaNR, int patientnr, string indnavn) //Udskriver faktura med et genereret navn.
         {
             var dateToday = DateTime.Today;
             SaveFileDialog sfd = new SaveFileDialog // Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
@@ -55,7 +49,7 @@ namespace Tandlægerne_Smil.Models
             };
             using (var db = new smildb())
             {
-                var patient = db.PatientDbs.ToList();
+                var patient = db.PatientDbs.ToList(); //heenter patientoplysninger
                 var behandling = db.BehandlingDbs.ToList(); //indeholder navn og pris
                 var behandlingslinje = db.BehandlingslinjerDbs.ToList(); // tidliger faktura linjer
                 var faktura = db.FakturaDbs.ToList();
@@ -82,10 +76,10 @@ namespace Tandlægerne_Smil.Models
 
                 int padVærdi = 60;
                 var linje = $"───────────────────";
-                if (sfd.ShowDialog() == DialogResult.OK)
+                if (sfd.ShowDialog() == DialogResult.OK) //Tjekker for dialog resultat.
                 {
                     StreamWriter SW = null;
-                    using (SW = new StreamWriter(sfd.FileName))
+                    using (SW = new StreamWriter(sfd.FileName)) //opretter ny faktura. 
                         try
                         {
                             SW.WriteLine("Tandlægerne Smil A/S".PadLeft(padVærdi + 15));
@@ -111,7 +105,7 @@ namespace Tandlægerne_Smil.Models
 
                             int testpris = 0;
                             double moms = 0;
-                            foreach (var r in ordreLinjer)
+                            foreach (var r in ordreLinjer) //indhenter ordrelinjer pr. behandling.
                             {
                                 SW.WriteLine(r._behandlingsNavn.PadRight(padVærdi) + r._behandlingsPris + " DKK");
                                 try
@@ -127,10 +121,10 @@ namespace Tandlægerne_Smil.Models
                             }
 
                             SW.WriteLine(linje + linje + linje + linje);
-                            SW.WriteLine("Pris Excl Moms:".PadRight(padVærdi) + (moms * 0.8) + " DKK");
-                            SW.WriteLine("Moms udegøre: ".PadRight(padVærdi) + (moms*0.2) + " DKK");
+                            SW.WriteLine("Pris ekskl. Moms: ".PadRight(padVærdi) + (moms * 0.8) + " DKK");
+                            SW.WriteLine("Moms udgør: ".PadRight(padVærdi) + (moms*0.2) + " DKK");
                             SW.WriteLine(Environment.NewLine);
-                            SW.WriteLine("Pris Incl Moms:".PadRight(padVærdi) + testpris + " DKK");
+                            SW.WriteLine("Pris inkl. Moms: ".PadRight(padVærdi) + testpris + " DKK");
                         }
                         catch (Exception e)
                         {
@@ -138,7 +132,7 @@ namespace Tandlægerne_Smil.Models
                         }
                         finally
                         {
-                            SW.Close();
+                            SW.Close(); //Færdiggørelse af faktura.
                             var færdigBox = MessageBox.Show("Filen er gemt som tekstfil! Vil du åbne den?",
                                     "Success!",
                                     MessageBoxButtons.YesNo,
