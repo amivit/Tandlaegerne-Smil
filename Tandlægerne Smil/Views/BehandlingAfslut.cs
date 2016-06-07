@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -134,12 +135,23 @@ namespace Tandlægerne_Smil.Views
 
                     var nyfaktura = db.FakturaDbs.Add(faktura);
                     db.SaveChanges();
+                    List<string> navnList = listView_BehandlingsList.Items.Cast<ListViewItem>()
+                                            .Select(item => item.Text)
+                                            .ToList();
+
                     var bList = db.BehandlingslinjerDbs.ToList();
                     foreach (var test in bList)
                     {
-                        if (test.BookingId == booking_ID && test.BehandlingDb.Navn == listView_BehandlingsList.Items[0].Text) // TODO: for eller foreach (pas på i)
-                            test.FakturaId = nyfaktura.FakturaId;
+                        if (test.BookingId == booking_ID) // TODO: for eller foreach (pas på i)
+                        {
+                            foreach (var navn in navnList)
+                            {
+                                if (test.BehandlingDb.Navn == navn)
+                                    test.FakturaId = nyfaktura.FakturaId;
+                            }
+                        }
                     }
+
                     //foreach (var behandlingsNavn in )
                     //{
                     //var behandlingsNavn = listView_BehandlingsList.Items[0].Text;
