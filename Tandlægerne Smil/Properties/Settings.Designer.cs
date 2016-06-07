@@ -33,5 +33,15 @@ namespace Tandlægerne_Smil.Properties {
                 return ((string)(this["smildbConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=smildb;Integrated Security=True")]
+        public string smildbConnectionString1 {
+            get {
+                return ((string)(this["smildbConnectionString1"]));
+            }
+        }
     }
 }

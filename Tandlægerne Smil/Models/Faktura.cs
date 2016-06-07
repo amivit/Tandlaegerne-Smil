@@ -8,6 +8,12 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Faktura : Global
     {
+        //private readonly FakturaDb _fakturaDb = new FakturaDb(); TODO: Slet mig
+        //private readonly BehandlingslinjerDb _fakturalinjerDb = new BehandlingslinjerDb();
+        //private readonly PatientDb _patientDb = new PatientDb();
+        //private readonly BehandlingDb _behandlingDb = new BehandlingDb();
+        //private readonly AnsatDb _ansatDb = new AnsatDb();
+
         public void OpretFaktura(int bookingId)
         {
             using (var db = new smildb())
@@ -21,14 +27,16 @@ namespace Tandlægerne_Smil.Models
                     FakturaDato = DateTime.Now
                 };
                 db.FakturaDbs.Add(faktura);
+                UdskrivSqlTilKonsol();
+                db.SaveChanges();
 
-                var behandlinger = db.BehandlingslinjerDbs.Where(b => b.BookingId == booking.BookingId).ToList();
-
+                var behandlinger = db.BehandlingslinjerDbs.Where(b => b.BookingId == bookingId).ToList();
+                //var faktura = db.FakturaDbs.FirstOrDefault(f => f.FakturaId == bookingId);
                 foreach (var item in behandlinger)
                 {
                     item.FakturaId = faktura.FakturaId;
                 }
-
+                booking.Faktureret = true;
                 UdskrivSqlTilKonsol();
                 db.SaveChanges();
             }
@@ -74,17 +82,17 @@ namespace Tandlægerne_Smil.Models
 
                 int padVærdi = 60;
                 var linje = $"───────────────────";
-                if (sfd.ShowDialog() == DialogResult.OK) //tjekker for dialog resultat. 
+                if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    StreamWriter SW = null; 
-                    using (SW = new StreamWriter(sfd.FileName)) //opretter ny txt-fil.
-                        try //indsender data til txt-fil.
+                    StreamWriter SW = null;
+                    using (SW = new StreamWriter(sfd.FileName))
+                        try
                         {
                             SW.WriteLine("Tandlægerne Smil A/S".PadLeft(padVærdi + 15));
                             SW.WriteLine("TandlægeVej 420".PadLeft(padVærdi + 15));
                             SW.WriteLine("7100 Vejle".PadLeft(padVærdi + 15));
                             SW.WriteLine(Environment.NewLine);
-                            SW.WriteLine("Tlf: 420-1227".PadLeft(padVærdi + 15));
+                            SW.WriteLine("Tlf: 420-1337".PadLeft(padVærdi + 15));
                             SW.WriteLine(Environment.NewLine);
                             SW.WriteLine(Environment.NewLine);
                             SW.WriteLine("Navn:".PadRight(15) + patienter[0].Fornavn + " " + patienter[0].Efternavn + "EasyBill Bank".PadLeft(padVærdi - (1 + patienter[0].Fornavn.Length + patienter[0].Efternavn.Length)));
@@ -98,17 +106,19 @@ namespace Tandlægerne_Smil.Models
                             SW.WriteLine();
                             SW.WriteLine();
 
-                            SW.WriteLine("Behandling:".PadRight(padVærdi) + "Pris:");
-                            SW.WriteLine(linje + linje + linje + linje); //opdeler tekst i txt-fil.
+                            SW.WriteLine("Behandling:".PadRight(padVærdi) + "Pris: (incl moms)");
+                            SW.WriteLine(linje + linje + linje + linje);
 
                             int testpris = 0;
-                            foreach (var r in ordreLinjer) //laver linjer pr. behandling. 
+                            double moms = 0;
+                            foreach (var r in ordreLinjer)
                             {
                                 SW.WriteLine(r._behandlingsNavn.PadRight(padVærdi) + r._behandlingsPris + " DKK");
                                 try
                                 {
                                     var pris = r._behandlingsPris.ToString();
                                     testpris += int.Parse(pris);
+                                    moms = testpris;
                                 }
                                 catch (Exception)
                                 {
@@ -117,7 +127,10 @@ namespace Tandlægerne_Smil.Models
                             }
 
                             SW.WriteLine(linje + linje + linje + linje);
-                            SW.WriteLine("Total Pris:".PadRight(padVærdi) + testpris + " DKK");
+                            SW.WriteLine("Pris Excl Moms:".PadRight(padVærdi) + (moms * 0.8) + " DKK");
+                            SW.WriteLine("Moms udegøre: ".PadRight(padVærdi) + (moms*0.2) + " DKK");
+                            SW.WriteLine(Environment.NewLine);
+                            SW.WriteLine("Pris Incl Moms:".PadRight(padVærdi) + testpris + " DKK");
                         }
                         catch (Exception e)
                         {
