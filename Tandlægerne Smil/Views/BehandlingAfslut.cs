@@ -39,7 +39,7 @@ namespace Tandlægerne_Smil.Views
                     listView_BehandlingsList.SelectedItems[0].Remove();
                 }
             }
-            catch (Exception f)
+            catch (Exception)
             {
                 MessageBox.Show("Ingen behandling valgt.",
                     "Advarsel",
