@@ -8,12 +8,12 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Faktura : Global
     {
-        
-
-        public void UdskrivFaktura(int fakturaNR, int patientnr, string indnavn) //Udskriver faktura med et genereret navn.
-		{ //****KODET AF: KASPER, NIKOLAJ & PATRICK****
-			var dateToday = DateTime.Today;
-            SaveFileDialog sfd = new SaveFileDialog // Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
+        public void UdskrivFaktura(int fakturaNR, int patientnr, string indnavn)
+        //Udskriver faktura med et genereret navn.
+        { //****KODET AF: KASPER, NIKOLAJ & PATRICK****
+            var dateToday = DateTime.Today;
+            SaveFileDialog sfd = new SaveFileDialog
+            // Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
             {
                 Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
                 FileName =
@@ -53,7 +53,7 @@ namespace Tandlægerne_Smil.Models
                 if (sfd.ShowDialog() == DialogResult.OK) //Tjekker for dialog resultat.
                 {
                     StreamWriter SW = null;
-                    using (SW = new StreamWriter(sfd.FileName)) //opretter ny faktura. 
+                    using (SW = new StreamWriter(sfd.FileName)) //opretter ny faktura.
                         try
                         {
                             SW.WriteLine("Tandlægerne Smil A/S".PadLeft(padVærdi + 15));
@@ -63,9 +63,13 @@ namespace Tandlægerne_Smil.Models
                             SW.WriteLine("Tlf: 420-1337".PadLeft(padVærdi + 15));
                             SW.WriteLine(Environment.NewLine);
                             SW.WriteLine(Environment.NewLine);
-                            SW.WriteLine("Navn:".PadRight(15) + patienter[0].Fornavn + " " + patienter[0].Efternavn + "EasyBill Bank".PadLeft(padVærdi - (1 + patienter[0].Fornavn.Length + patienter[0].Efternavn.Length)));
-                            SW.WriteLine("Cpr:".PadRight(15) + patienter[0].Cpr + "RegNr: 0042".PadLeft(padVærdi - (patienter[0].Cpr.Length)));
-                            SW.WriteLine("Adresse:".PadRight(15) + patienter[0].Adresse + "KontoNr: 00024960125".PadLeft(padVærdi - (patienter[0].Adresse.Length)));
+                            SW.WriteLine("Navn:".PadRight(15) + patienter[0].Fornavn + " " + patienter[0].Efternavn +
+                            "EasyBill Bank".PadLeft(padVærdi - (1 + patienter[0].Fornavn.Length +
+                            patienter[0].Efternavn.Length)));
+                            SW.WriteLine("Cpr:".PadRight(15) + patienter[0].Cpr + "RegNr: 0042".PadLeft(padVærdi -
+                            (patienter[0].Cpr.Length)));
+                            SW.WriteLine("Adresse:".PadRight(15) + patienter[0].Adresse +
+                            "KontoNr: 00024960125".PadLeft(padVærdi - (patienter[0].Adresse.Length)));
                             SW.WriteLine("PostNr:".PadRight(15) + patienter[0].Postnummer);
                             SW.WriteLine("PatientNr:".PadRight(15) + patienter[0].PatientId);
                             SW.WriteLine(Environment.NewLine);
@@ -96,7 +100,7 @@ namespace Tandlægerne_Smil.Models
 
                             SW.WriteLine(linje + linje + linje + linje);
                             SW.WriteLine("Pris ekskl. Moms: ".PadRight(padVærdi) + (moms * 0.8) + " DKK");
-                            SW.WriteLine("Moms udgør: ".PadRight(padVærdi) + (moms*0.2) + " DKK");
+                            SW.WriteLine("Moms udgør: ".PadRight(padVærdi) + (moms * 0.2) + " DKK");
                             SW.WriteLine(Environment.NewLine);
                             SW.WriteLine("Pris inkl. Moms: ".PadRight(padVærdi) + testpris + " DKK");
                         }
@@ -122,8 +126,8 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void HentFaktura(int patientId, ListView V)
-		{ //****KODET AF: PATRICK & NIKOLAJ****
-			var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientId);
+        { //****KODET AF: PATRICK & NIKOLAJ****
+            var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientId);
 
             var query = (from r in Db.FakturaDbs.AsEnumerable()
                          where (r.PatientId == patientId)
@@ -140,8 +144,8 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void HentOplysningerPåValgteFakatura(int fakturaNr, ListView fakuraDetaljer)
-		{ //****KODET AF: PATRICK****
-			fakuraDetaljer.Items.Clear();
+        { //****KODET AF: PATRICK****
+            fakuraDetaljer.Items.Clear();
 
             var behandlingslinjer = Db.BehandlingslinjerDbs.Where(b => b.FakturaId == fakturaNr).ToList();
 

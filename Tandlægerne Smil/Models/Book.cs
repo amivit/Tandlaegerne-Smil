@@ -12,7 +12,7 @@ namespace Tandlægerne_Smil.Models
     internal class Book : Global
     {
         public void GemDagensProgram(StartForm _startForm) //****KODET AF: PAUL & KASPER****
-		{
+        {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             var dato = _startForm.dateTimePicker.Value;
@@ -97,8 +97,8 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void LoadOpretBooking(int patientID, BookingOpretRedigere bookingOpretRedigere)
-		{ //****KODET AF: PAUL & KASPER****
-			var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
+        { //****KODET AF: PAUL & KASPER****
+            var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
             bookingOpretRedigere.textBoxPatient.Text = patient.Fornavn + " " + patient.Efternavn;
             bookingOpretRedigere.textBoxNoter.Text = patient.Noter;
 
@@ -128,14 +128,15 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void GemBooking(int patientID, BookingOpretRedigere bookingOpretRedigere)
-		{//****KODET AF: ALLE****
-			try
+        {//****KODET AF: ALLE****
+            try
             {
                 var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
                 //Gemmer den valgte patients Fields i en liste
                 var CreatedBooking = new BookingDb();
                 //Opretter en ny booking
-                // Match Læge fra combobox, med databasen. Fornavn og efternavn skal splittes, da de ligger i 2 forskellige kolonner i db'en
+                // Match Læge fra combobox, med databasen. Fornavn og efternavn
+                //skal splittes, da de ligger i 2 forskellige kolonner i db'en
                 var names = bookingOpretRedigere.comboBoxLæge.Text.Split(' ');
                 string lægeFornavn = names[0];
                 string lægeEfternavn = names[1];
@@ -195,10 +196,10 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void GemBookingAkut(int patientID, AkutPatient akutPatient)
-		{ //****KODET AF: PAUL & KASPER****
-		  // Denne metode opretter en akut-booking, der på teknisk plan
-		  // blot er en almindelig men tom booking, hvor akut-bool på true i databasen
-			try
+        { //****KODET AF: PAUL & KASPER****
+          // Denne metode opretter en akut-booking, der på teknisk plan
+          // blot er en almindelig men tom booking, hvor akut-bool på true i databasen
+            try
             {
                 var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);
                 var akutTider = AkutTider();
@@ -231,8 +232,8 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void SletBooking(int bookingID)
-		{ //****KODET AF: KASPER****
-			var booking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
+        { //****KODET AF: KASPER****
+            var booking = Db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingID);
             var bookinglinjer = Db.BehandlingslinjerDbs.Where(b => b.BookingDb.BookingId == booking.BookingId).ToList();
 
             foreach (var linjer in bookinglinjer)
@@ -244,7 +245,7 @@ namespace Tandlægerne_Smil.Models
         }
 
         public List<DateTime> AkutTider() //****KODET AF: PAUL & KASPER****
-		{
+        {
             // Denne metode opretter akut-tider til en liste, som senere hentes til viewet i en combobox
             // De tider bør ligge i databasen, så listen dannes derfra. Men for nu er de hardcoded ind i programmet
             var akutTidNu = DateTime.Now;

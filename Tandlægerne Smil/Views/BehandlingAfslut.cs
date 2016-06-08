@@ -9,7 +9,7 @@ using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
 { //****KODET AF: PATRICK & NIKOLAJ****
-	public partial class BehandlingAfslut : Form
+    public partial class BehandlingAfslut : Form
     {
         private StartForm _startForm;
 
@@ -134,9 +134,7 @@ namespace Tandlægerne_Smil.Views
             }
             else
             {
-                //OpdaterBehandlinger();
-                /*Kalder metoden der refresher behandlings listen på valgte
-                paient og gemmer dem så fakturaen nu kan blive dannet */
+                // Opretter faktura
                 using (var db = new smildb())
                 {
                     var booking = db.BookingDbs.FirstOrDefault(b => b.BookingId == booking_ID);
@@ -147,16 +145,16 @@ namespace Tandlægerne_Smil.Views
                         BookingId = booking_ID,
                         FakturaDato = DateTime.Now
                     };
-                    booking.Ankommet = false;
-                    booking.Faktureret = true;
+                    booking.Ankommet = false; // sørge for at de ikke er i venteværelset mere
+                    booking.Faktureret = true; // bool på om der findes en faktura
 
                     var nyfaktura = db.FakturaDbs.Add(faktura);
                     db.SaveChanges();
-
+                    //Finder navnene på behandlingslinjerne i listviewet
                     List<string> navnList = listView_BehandlingsList.Items.Cast<ListViewItem>()
                                             .Select(item => item.Text)
                                             .ToList();
-
+                    //Finder ID på behandlingslinjerne i listviewet
                     List<int> idlist = listView_BehandlingsList.Items.Cast<ListViewItem>()
                                           .Select(item => int.Parse(item.SubItems[2].Text))
                                           .ToList();
@@ -169,31 +167,24 @@ namespace Tandlægerne_Smil.Views
                         bList.Add(
                             db.BehandlingslinjerDbs.FirstOrDefault(
                                 b => b.BehandlingDb.Navn == navn && b.BehandlingslinjeId == id));
-                        // bList = db.BehandlingslinjerDbs.Where(b => b.BehandlingDb.Navn == item).ToList();
                     }
-
+                    //Giver alle behandlingslinjerne den samme fakturaID
                     foreach (var test in bList)
                     {
                         test.FakturaId = nyfaktura.FakturaId;
                         db.SaveChanges();
                     }
 
-                    //foreach (var behandlingsNavn in )
-                    //{
-                    //var behandlingsNavn = listView_BehandlingsList.Items[0].Text;
-                    //var linje = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == booking_ID && b.BehandlingDb.Navn == TESTlIST);
-                    //linje.FakturaId = nyfaktura.FakturaId;
-                    //}
-                    // var linje = db.BehandlingslinjerDbs.FirstOrDefault(b => b.BookingId == booking_ID && b.BehandlingDb.Navn == behandlingsNavn.T);
-
-                    //_controller.Global.UdskrivSqlTilKonsol();
                     db.SaveChanges();
 
-                    //Ekstra information til brugeren iform af: et navn og hvor man kan finde den ny oprettet faktura
-                    string Afslutning = "Behandlingen af " + (textBox_Fornavn.Text + " " + textBox_Efternanv.Text) +
+                    //Ekstra information til brugeren iform af:
+                    //et navn og hvor man kan finde den ny oprettet faktura
+                    string Afslutning = "Behandlingen af " +
+                        (textBox_Fornavn.Text + " " + textBox_Efternanv.Text) +
                                         " er nu afsluttet";
                     Afslutning += Environment.NewLine;
-                    Afslutning += "Patientens Faktura kan findes under Patient ID: " + textBox_PatientNr.Text;
+                    Afslutning += "Patientens Faktura kan findes under Patient ID: "
+                        + textBox_PatientNr.Text;
                     MessageBox.Show(Afslutning, "Færdig!");
 
                     _startForm.RefreshVenteværelseView();
