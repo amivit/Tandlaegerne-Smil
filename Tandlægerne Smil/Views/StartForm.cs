@@ -11,8 +11,8 @@ using Tandlægerne_Smil.Controllers;
 using Tandlægerne_Smil.Controllers.DbController;
 
 namespace Tandlægerne_Smil.Views
-{
-    public partial class StartForm : Form
+{ //****KODET AF: PAUL, PATRICK, NIKOLAJ & KASPER****
+	public partial class StartForm : Form
     {
         #region Console-Debugger
 
@@ -340,23 +340,7 @@ Nikolaj Kiil, Kasper Skov, Patrick Korsgaard & Paul Wittig", @"Version 0.0.1");
         {
         }
 
-        private void button_VisAllePatienter_Click(object sender, EventArgs e)
-        {
-            int idNummer = 0;
-            try
-            {
-                listView_Faktura.Items.Clear();
-                foreach (var item in listView_Faktura.Items.ToString())
-                {
-                    _controller.Faktura.HentFaktura(idNummer, listView_Faktura);
-                    idNummer++;
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Kunne ikke hente data");
-            }
-        }
+        
 
         private void tabFaktura_Click(object sender, EventArgs e)
         {

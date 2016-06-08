@@ -10,14 +10,11 @@ namespace Tandlægerne_Smil.Models
         private readonly BookingDb _bookingDb = new BookingDb();
         private readonly VenteværelseDb _venteværelseDb = new VenteværelseDb();
 
-        public void TjekkeInd(PatientDb patientDb)
-        {
-            throw new System.NotImplementedException();
-        }
+        
 
         public void MarkereSomUnderBehandling(int bookingID)
-        {
-            try
+		{ //****KODET AF: KASPER & PAUL****
+			try
             {
                 if (MessageBox.Show("Skal den valgte booking markeres som underbehandling?",
                 "Underbehandling",

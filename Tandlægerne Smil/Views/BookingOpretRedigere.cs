@@ -11,8 +11,8 @@ using Tandlægerne_Smil.Models;
 namespace Tandlægerne_Smil.Views
 {
     public partial class BookingOpretRedigere : Form
-    {
-        private StartForm _startForm;
+	{ //****KODET AF: PATRICK, NIKOLAJ & PAUL****
+		private StartForm _startForm;
         private readonly int _patientId;
         private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controllerenPatient P = new Patient();
         private Global _global = new Global();

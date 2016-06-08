@@ -8,37 +8,11 @@ namespace Tandlægerne_Smil.Models
 {
     internal class Faktura : Global
     {
-        public void OpretFaktura(int bookingId)
-        {
-            using (var db = new smildb()) //anvender smil-databasen
-            {
-                var booking = db.BookingDbs.FirstOrDefault(b => b.BookingId == bookingId);
-                var faktura = new FakturaDb
-                {
-                    PatientId = booking.PatientId,
-                    Betalt = false,
-                    BookingId = bookingId,
-                    FakturaDato = DateTime.Now
-                };
-                db.FakturaDbs.Add(faktura);
-                UdskrivSqlTilKonsol();
-                db.SaveChanges();
-
-                var behandlinger = db.BehandlingslinjerDbs.Where(b => b.BookingId == bookingId).ToList();
-                
-                foreach (var item in behandlinger)
-                {
-                    item.FakturaId = faktura.FakturaId;
-                }
-                booking.Faktureret = true;
-                UdskrivSqlTilKonsol();
-                db.SaveChanges();
-            }
-        }
+        
 
         public void UdskrivFaktura(int fakturaNR, int patientnr, string indnavn) //Udskriver faktura med et genereret navn.
-        {
-            var dateToday = DateTime.Today;
+		{ //****KODET AF: KASPER, NIKOLAJ & PATRICK****
+			var dateToday = DateTime.Today;
             SaveFileDialog sfd = new SaveFileDialog // Taget fra http://stackoverflow.com/questions/14449407/writing-a-text-file-using-c-sharp
             {
                 Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
@@ -148,8 +122,8 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void HentFaktura(int patientId, ListView V)
-        {
-            var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientId);
+		{ //****KODET AF: PATRICK & NIKOLAJ****
+			var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientId);
 
             var query = (from r in Db.FakturaDbs.AsEnumerable()
                          where (r.PatientId == patientId)
@@ -166,8 +140,8 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void HentOplysningerPåValgteFakatura(int fakturaNr, ListView fakuraDetaljer)
-        {
-            fakuraDetaljer.Items.Clear();
+		{ //****KODET AF: PATRICK****
+			fakuraDetaljer.Items.Clear();
 
             var behandlingslinjer = Db.BehandlingslinjerDbs.Where(b => b.FakturaId == fakturaNr).ToList();
 

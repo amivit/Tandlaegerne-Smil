@@ -9,8 +9,8 @@ namespace Tandlægerne_Smil.Models
     internal class Patient : Global
     {
         public void OpretPatient(TextBox textBoxNavn, TextBox textBoxEfternavn, TextBox textBoxCPR, TextBox textBoxAdresse, TextBox textBoxPostnummer, TextBox textBoxTelefon) // Opret test patient her, denne metode bør slettes
-        {
-            try
+		{//****KODET AF: KASPER & PAUL****
+			try
             {   // Her opretter vi et patient-objekt og pålægger passende data ind fra formen på objektets attributter
                 var patient = new PatientDb
                 {
@@ -58,8 +58,8 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void SletPatient(int patientId)
-        {
-            try
+		{ //****KODET AF: KASPER & PATRICK****
+			try
             {
                 var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientId);
                 Db.PatientDbs.Remove(patient);
@@ -76,8 +76,8 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void LoadRedigerePatient(int patientId, PatientRedigere patientRedigere)
-        {
-            var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientId);
+		{ //****KODET AF: ALLE****
+			var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientId);
             patientRedigere.textBoxNavn.Text = patient.Fornavn;
             patientRedigere.textBoxAdresse.Text = patient.Adresse;
             patientRedigere.textBoxCPR.Text = patient.Cpr;
@@ -90,8 +90,8 @@ namespace Tandlægerne_Smil.Models
         }
 
         public void RedigerePatientGem(int patientID, PatientRedigere patientRedigere)
-        {
-            try
+		{ //****KODET AF: PAUL****
+			try
             {
                 {
                     var patient = Db.PatientDbs.FirstOrDefault(p => p.PatientId == patientID);

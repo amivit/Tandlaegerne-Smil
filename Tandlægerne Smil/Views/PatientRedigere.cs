@@ -12,8 +12,8 @@ using Tandlægerne_Smil.Controllers.DbController;
 using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
-{
-    public partial class PatientRedigere : Form
+{ //****KODET AF: KASPER & NIKOLAJ****
+	public partial class PatientRedigere : Form
     {
         readonly int _patientId;
         private StartForm _startForm;

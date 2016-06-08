@@ -11,8 +11,8 @@ using Tandlægerne_Smil.Controllers;
 using Tandlægerne_Smil.Controllers.DbController;
 
 namespace Tandlægerne_Smil.Views
-{
-    public partial class AkutPatient : Form
+{ //****KODET AF: PAUL & KASPER****
+	public partial class AkutPatient : Form
     {
         private readonly Controller _controller = new Controller(); // Så vores view kan snakke med controlleren
         private StartForm _startForm;

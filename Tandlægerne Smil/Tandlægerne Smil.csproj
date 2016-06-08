@@ -78,11 +78,6 @@
     <Compile Include="Models\Venteværelse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="smildbDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>smildbDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Views\AkutPatient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,18 +154,6 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\Tandlægerne_Smil.Controllers.DbController.PatientDb.datasource" />
     <None Include="Properties\DataSources\Tandlægerne_Smil.Models.Patient.datasource" />
-    <None Include="smildbDataSet.xsc">
-      <DependentUpon>smildbDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="smildbDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>smildbDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="smildbDataSet.xss">
-      <DependentUpon>smildbDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ÅBEN OG SE MIG.cd" />
     <None Include="Controllers\DbController\EF.Reverse.POCO.Core.ttinclude" />
     <None Include="Controllers\DbController\EF.Reverse.POCO.ttinclude" />
     <None Include="packages.config" />

@@ -4,8 +4,8 @@ using Tandlægerne_Smil.Views;
 
 namespace Tandlægerne_Smil.Controllers
 {
-    internal class Controller
-    {
+    internal class Controller //****KODET AF: PAUL****
+	{
         // Denne klasse er controlleren, hvor model-klasserne dannes som fields så der kan kigges på
         // Danner forbindelse mellem vores controller og models
         // Som fields, så viewet kan se vores

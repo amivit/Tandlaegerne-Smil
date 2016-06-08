@@ -3,8 +3,8 @@
 namespace Tandlægerne_Smil.Views
 {
     internal class StartGui
-    {
-        public StartGui()
+	{ //****KODET AF: PAUL****
+		public StartGui()
         {
             // Denne klasses eneste formål er at starte brugerfladen, således at det
             // ansvar ikke ligger hos controlleren, men her i viewet.

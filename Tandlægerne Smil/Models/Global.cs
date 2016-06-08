@@ -13,8 +13,8 @@ namespace Tandlægerne_Smil.Models
         public smildb Db = new smildb();
 
         public void UdskrivSqlTilKonsol()
-        {
-            Console.BackgroundColor = ConsoleColor.DarkGreen;
+		{ //****KODET AF: PAUL****
+			Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("SQL QUERY KØRES: ");
             Console.ResetColor();
@@ -22,10 +22,10 @@ namespace Tandlægerne_Smil.Models
         }
 
         public static void ÅbneGemtFil(SaveFileDialog sfd)
-        {
-            // Denne metode kan bruges til at åbne et givet gemt fil fra SaveFileDialog
-            // F.eks udprint af faktura eller dagens program
-            string filSti = sfd.FileName;
+		{ //****KODET AF: KASPER & PAUL****
+		  // Denne metode kan bruges til at åbne et givet gemt fil fra SaveFileDialog
+		  // F.eks udprint af faktura eller dagens program
+			string filSti = sfd.FileName;
             var process = new Process();
             process.StartInfo = new ProcessStartInfo()
             {

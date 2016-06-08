@@ -6,8 +6,8 @@ using Tandlægerne_Smil.Controllers.DbController;
 using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
-{
-    public partial class FakturaPatienter : Form
+{//****KODET AF: PATRICK****
+	public partial class FakturaPatienter : Form
     {
         private Global _global = new Global();
         private readonly Controller _controller = new Controller();

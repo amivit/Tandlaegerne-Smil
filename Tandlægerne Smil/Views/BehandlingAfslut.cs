@@ -8,8 +8,8 @@ using Tandlægerne_Smil.Controllers.DbController;
 using Tandlægerne_Smil.Models;
 
 namespace Tandlægerne_Smil.Views
-{
-    public partial class BehandlingAfslut : Form
+{ //****KODET AF: PATRICK & NIKOLAJ****
+	public partial class BehandlingAfslut : Form
     {
         private StartForm _startForm;
 
@@ -39,7 +39,7 @@ namespace Tandlægerne_Smil.Views
                     listView_BehandlingsList.SelectedItems[0].Remove();
                 }
             }
-            catch (Exception f)
+            catch (Exception)
             {
                 MessageBox.Show("Ingen behandling valgt.",
                     "Advarsel",
